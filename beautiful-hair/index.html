@@ -454,21 +454,22 @@ footer .cols div{display:flex;flex-direction:column;gap:4px}
   f.addEventListener('input',upd);f.addEventListener('change',upd);f.addEventListener('submit',function(e){e.preventDefault();});
   pick(chosen,false);upd();
 
-  // ---- hair physics: the locks swing with scroll, pointer and phone tilt
+  // ---- hair physics: each lock is two layers of hair (back and front) that
+  // swing on their own springs, so the hair separates a little as it moves
   (function(){
     var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var CW=1.6; // canvas is 1.6x the lock width
+    var CW=1.6, SEG=160; // canvas is 1.6x the lock width
     var L=btns.map(function(b,i){
-      var img=new Image();img.src='img/ciocche/'+SH[i][5]+'.webp';
       var r=Math.sin(i*12.9898)*43758.5453;r=r-Math.floor(r);
-      return {cv:b.querySelector('canvas.hair'),img:img,a:0,va:0,b:0,vb:0,
-        dir:(i%2?1:-1)*(0.7+0.6*r),k:52+r*24,ph:r*6.28,fq:0.6+r*0.5,w:0,h:0};
+      var o={cv:b.querySelector('canvas.hair'),dir:(i%2?1:-1)*(0.7+0.6*r),k:52+r*24,ph:r*6.28,fq:0.6+r*0.5,w:0,h:0,layers:[]};
+      ['b','f'].forEach(function(n,j){
+        var img=new Image();img.src='img/ciocche/'+SH[i][5]+'-'+n+'.webp';
+        o.layers.push({img:img,a:0,va:0,b:0,vb:0,km:j?0.82:1.08,lag:j?0.48:0.62,push:j?1.25:0.75,ph:j*1.3});
+      });
+      return o;
     });
-    // Each lock is drawn as a GPU mesh of thin horizontal strips that follow the
-    // bend curve, so the hair curves smoothly at any screen density.
     var VS='attribute vec2 p;attribute vec2 uv;uniform vec2 res;varying vec2 v;void main(){v=uv;gl_Position=vec4(p.x/res.x*2.-1.,1.-p.y/res.y*2.,0.,1.);}';
     var FS='precision mediump float;varying vec2 v;uniform sampler2D t;void main(){gl_FragColor=texture2D(t,v);}';
-    var SEG=160;
     function glSetup(o){
       var gl=o.cv.getContext('webgl',{alpha:true,premultipliedAlpha:true,antialias:true})||o.cv.getContext('experimental-webgl');
       if(!gl)return false;
@@ -482,79 +483,82 @@ footer .cols div{display:flex;flex-direction:column;gap:4px}
       gl.enableVertexAttribArray(lp);gl.vertexAttribPointer(lp,2,gl.FLOAT,false,16,0);
       gl.enableVertexAttribArray(lu);gl.vertexAttribPointer(lu,2,gl.FLOAT,false,16,8);
       o.ures=gl.getUniformLocation(pr,'res');
-      o.tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,o.tex);
-      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
-      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
       gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);
       gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.clearColor(0,0,0,0);
+      o.layers.forEach(function(l){l.tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,l.tex);
+        gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);});
       return true;
     }
     function size(){var d=Math.min(3,window.devicePixelRatio||1);L.forEach(function(o){
       var w=o.cv.clientWidth,h=o.cv.clientHeight;if(!w||!h)return;o.w=w;o.h=h;o.cv.width=Math.round(w*d);o.cv.height=Math.round(h*d);o.d=d;
       if(o.mode===undefined)o.mode=glSetup(o)?'gl':'2d';
       if(o.mode==='2d')o.ctx=o.cv.getContext('2d');
-      o.off=null;prep(o);});}
-    function prep(o){if(!o.img.complete||!o.img.naturalWidth||!o.w)return;
-      // pre-scale the photo to the exact on-screen size with high-quality filtering
+      o.layers.forEach(function(l){l.off=null;prep(o,l);});});}
+    function prep(o,l){if(!l.img.complete||!l.img.naturalWidth||!o.w)return;
+      // pre-scale to the exact on-screen size with high-quality filtering
       var lw=Math.round(o.w/CW*o.d),hh=o.cv.height,c=document.createElement('canvas');c.width=lw;c.height=hh;
-      var x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(o.img,0,0,lw,hh);o.off=c;
-      if(o.mode==='gl'){var gl=o.gl;try{gl.bindTexture(gl.TEXTURE_2D,o.tex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,c);}catch(e){o.off=null;}}
+      var x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(l.img,0,0,lw,hh);l.off=c;
+      if(o.mode==='gl'){var gl=o.gl;try{gl.bindTexture(gl.TEXTURE_2D,l.tex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,c);}catch(e){l.off=null;}}
     }
     function draw(o){
-      if(!o.mode)return;if(!o.off)prep(o);if(!o.off)return;
-      var W=o.cv.width,H=o.cv.height,lw=o.off.width,x0=(W-lw)/2;
-      function bend(y){var t=y/H;return lw*(o.a*Math.pow(t,1.7)+(o.b-o.a)*0.9*t*t*t);}
-      if(o.mode==='gl'){
-        var gl=o.gl,a=o.arr,k=0;
-        for(var i=0;i<=SEG;i++){var y=H*i/SEG,dx=x0+bend(y),v=i/SEG;
-          a[k++]=dx;a[k++]=y;a[k++]=0;a[k++]=v;
-          a[k++]=dx+lw;a[k++]=y;a[k++]=1;a[k++]=v;}
-        gl.viewport(0,0,W,H);gl.clear(gl.COLOR_BUFFER_BIT);
-        gl.bindBuffer(gl.ARRAY_BUFFER,o.buf);gl.bufferData(gl.ARRAY_BUFFER,a,gl.DYNAMIC_DRAW);
-        gl.uniform2f(o.ures,W,H);gl.bindTexture(gl.TEXTURE_2D,o.tex);
-        gl.drawArrays(gl.TRIANGLE_STRIP,0,(SEG+1)*2);
-        return;
+      if(!o.mode)return;
+      var W=o.cv.width,H=o.cv.height,first=true;
+      for(var li=0;li<2;li++){
+        var l=o.layers[li];if(!l.off)prep(o,l);if(!l.off)continue;
+        var lw=l.off.width,x0=(W-lw)/2;
+        var bend=function(y){var t=y/H;return lw*(l.a*Math.pow(t,1.7)+(l.b-l.a)*0.9*t*t*t);};
+        if(o.mode==='gl'){
+          var gl=o.gl,a=o.arr,k=0;
+          if(first){gl.viewport(0,0,W,H);gl.clear(gl.COLOR_BUFFER_BIT);gl.uniform2f(o.ures,W,H);first=false;}
+          for(var i=0;i<=SEG;i++){var y=H*i/SEG,dx=x0+bend(y),v=i/SEG;
+            a[k++]=dx;a[k++]=y;a[k++]=0;a[k++]=v;a[k++]=dx+lw;a[k++]=y;a[k++]=1;a[k++]=v;}
+          gl.bindBuffer(gl.ARRAY_BUFFER,o.buf);gl.bufferData(gl.ARRAY_BUFFER,a,gl.DYNAMIC_DRAW);
+          gl.bindTexture(gl.TEXTURE_2D,l.tex);gl.drawArrays(gl.TRIANGLE_STRIP,0,(SEG+1)*2);
+        }else{
+          var c=o.ctx,N=48;c.setTransform(1,0,0,1,0,0);if(first){c.clearRect(0,0,W,H);first=false;}
+          var y0=0,d0=0;
+          for(var j=1;j<=N;j++){var y1=Math.round(H*j/N),d1=bend(y1),h1=y1-y0;if(h1<=0)continue;var sk=(d1-d0)/h1;
+            c.setTransform(1,0,sk,1,x0+d0-sk*y0,0);c.drawImage(l.off,0,y0,lw,h1,0,y0,lw,h1);y0=y1;d0=d1;}
+          c.setTransform(1,0,0,1,0,0);
+        }
       }
-      // fallback without WebGL: sheared bands
-      var c=o.ctx,N=48;c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,W,H);
-      var y0=0,d0=0;
-      for(var j=1;j<=N;j++){var y1=Math.round(H*j/N),d1=bend(y1),h1=y1-y0;if(h1<=0)continue;var sk=(d1-d0)/h1;
-        c.setTransform(1,0,sk,1,x0+d0-sk*y0,0);c.drawImage(o.off,0,y0,lw,h1,0,y0,lw,h1);y0=y1;d0=d1;}
-      c.setTransform(1,0,0,1,0,0);
     }
-    var lastY=scrollY,px=null,py=null,pvx=0,tilt=0,running=false,visible=true,last=0,t0=performance.now();
+    var lastY=scrollY,px=null,tilt=0,running=false,visible=true,last=0,t0=performance.now();
     function frame(now){
       var dt=Math.min(.033,(now-(last||now))/1000);last=now;
       var dy=scrollY-lastY;lastY=scrollY;
-      var e=0,tm=(now-t0)/1000;
-      L.forEach(function(o,i){
-        var f=Math.max(-2.5,Math.min(2.5,dy*0.03*o.dir));                                 // scroll flick
-        var breeze=0.035*Math.sin(tm*o.fq+o.ph)+0.02*Math.sin(tm*o.fq*2.3+o.ph*1.7);
-        var target=tilt+breeze;
-        o.va+=(-o.k*(o.a-target)-5.5*o.va)*dt+f;
-        o.a+=o.va*dt;
-        o.vb+=(-(o.k*0.55)*(o.b-o.a)-3.2*o.vb)*dt;            // tip lags behind
-        o.b+=o.vb*dt;
-        o.a=Math.max(-.9,Math.min(.9,o.a));o.b=Math.max(-1.2,Math.min(1.2,o.b));
-        draw(o);e+=Math.abs(o.va)+Math.abs(o.vb);
+      var tm=(now-t0)/1000;
+      L.forEach(function(o){
+        var f=Math.max(-2.5,Math.min(2.5,dy*0.03*o.dir));             // scroll flick
+        o.layers.forEach(function(l){
+          var breeze=0.035*Math.sin(tm*o.fq+o.ph+l.ph)+0.02*Math.sin(tm*o.fq*2.3+o.ph*1.7+l.ph);
+          var k=o.k*l.km;
+          l.va+=(-k*(l.a-tilt-breeze)-5.5*l.va)*dt+f*l.push;
+          l.a+=l.va*dt;
+          l.vb+=(-(k*l.lag)*(l.b-l.a)-3.0*l.vb)*dt;                    // tip lags behind
+          l.b+=l.vb*dt;
+          l.a=Math.max(-.9,Math.min(.9,l.a));l.b=Math.max(-1.2,Math.min(1.2,l.b));
+        });
+        draw(o);
       });
-      pvx*=0.8;
       if(visible){requestAnimationFrame(frame);}else running=false;
     }
     function start(){if(!running&&!RM){running=true;last=0;requestAnimationFrame(frame);}}
-    // pointer brushing through the locks
+    // pointer brushing through the locks: the front hair is touched first
     var chart=document.querySelector('.chart');
     chart.addEventListener('pointermove',function(ev){
       if(px!==null){var vx=ev.clientX-px;
         L.forEach(function(o){var r=o.cv.getBoundingClientRect(),cx=r.left+r.width/2,lw=r.width/CW;
           if(ev.clientY>r.top&&ev.clientY<r.bottom&&Math.abs(ev.clientX-cx)<lw*0.9){
-            var depth=(ev.clientY-r.top)/r.height;o.va+=vx*0.02*(0.4+depth);o.vb+=vx*0.03*depth;}});}
-      px=ev.clientX;py=ev.clientY;});
+            var depth=(ev.clientY-r.top)/r.height;
+            o.layers.forEach(function(l){l.va+=vx*0.02*(0.4+depth)*l.push;l.vb+=vx*0.03*depth*l.push;});}});}
+      px=ev.clientX;});
     chart.addEventListener('pointerleave',function(){px=null;});
     // phone tilt (where the browser allows it without asking)
     addEventListener('deviceorientation',function(ev){if(ev.gamma!=null)tilt=Math.max(-.5,Math.min(.5,-ev.gamma/60));},{passive:true});
     addEventListener('resize',function(){size();if(RM)L.forEach(draw);});
-    L.forEach(function(o){o.img.addEventListener('load',function(){o.off=null;size();draw(o);});});
+    L.forEach(function(o){o.layers.forEach(function(l){l.img.addEventListener('load',function(){if(!o.mode)size();prep(o,l);draw(o);});});});
     size();
     if('IntersectionObserver' in window){new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible)start();}).observe(chart);}
     start();
