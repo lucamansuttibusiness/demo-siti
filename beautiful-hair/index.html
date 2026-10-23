@@ -77,13 +77,9 @@ p{max-width:60ch}
 .locks{position:relative;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:clamp(6px,1vw,14px);list-style:none}
 .lock{position:relative}
 .lock button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;width:100%;transform-origin:50% 0;transition:transform 420ms var(--ease)}
-.lock .tab{width:100%;padding:28px 0 8px;background:var(--white);border-radius:6px 6px 2px 2px;text-align:center;font-size:.75rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--cape);position:relative}
+.lock .tab{width:100%;z-index:1;padding:28px 0 8px;background:var(--white);border-radius:6px 6px 2px 2px;text-align:center;font-size:.75rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--cape);position:relative}
 .lock .tab::before{content:"";position:absolute;top:6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--foil);box-shadow:inset 0 1px 2px rgba(0,0,0,.25)}
-.lock .hair{width:78%;height:clamp(190px,36vh,360px);background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.13) 0 1px, transparent 1px 3px, rgba(0,0,0,.10) 3px 4px, transparent 4px 6px),
-    linear-gradient(180deg, var(--c2) 0%, var(--c) 35%, var(--c) 70%, var(--c3) 100%);
-  clip-path:polygon(0 0,100% 0,96% 70%,82% 92%,58% 100%,40% 96%,16% 88%,4% 66%);
-  filter:saturate(1.05)}
+.lock .hair{display:block;width:92%;height:auto;aspect-ratio:180/750;margin-top:-2px;filter:drop-shadow(0 6px 8px rgba(34,31,46,.18))}
 .lock .name{margin-top:12px;font-size:.8125rem;line-height:1.25;text-align:center;color:var(--ink2);min-height:2.5em}
 .lock button[aria-pressed="true"]{transform:translateY(-14px)}
 .lock button[aria-pressed="true"] .tab{background:var(--cape);color:var(--foil)}
@@ -100,17 +96,45 @@ p{max-width:60ch}
   @keyframes swing{0%{transform:rotate(-9deg) translateY(-10px);opacity:0}60%{opacity:1}100%{transform:none}}
 }
 
+/* ---------- salon strip ---------- */
+.salon{padding:0 var(--gut) clamp(72px,9vw,120px);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:12px}
+.salon figure{position:relative;overflow:hidden;border-radius:14px;background:var(--mist)}
+.salon img{width:100%;height:100%;object-fit:cover;display:block}
+.salon .big{grid-row:span 2;aspect-ratio:1200/859}
+.salon figure:not(.big) img{position:absolute;inset:0}
+.salon figcaption,.wall figcaption{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--cape);font-size:.8125rem}
+
 /* ---------- services ---------- */
 .services{padding:clamp(88px,11vw,152px) var(--gut);background:var(--white)}
 .services-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:end;margin-bottom:clamp(48px,6vw,80px)}
 .services-head p{font-size:var(--s-lead);line-height:1.4;color:var(--ink2)}
 .menus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(32px,4vw,64px)}
+.menus figure{margin-bottom:24px;border-radius:14px;overflow:hidden;aspect-ratio:4/5;background:var(--mist)}
+.menus figure img{width:100%;height:100%;object-fit:cover;display:block}
 .menus h3{font-family:var(--display);font-size:2rem;line-height:1;padding-bottom:16px;border-bottom:2px solid var(--cape)}
 .menus ul{list-style:none}
 .menus li{padding:16px 0;border-bottom:1px solid var(--mist);display:flex;flex-direction:column;gap:2px}
 .menus li b{font-weight:600}
 .menus li span{font-size:var(--s-small);color:var(--ink2);line-height:1.45}
 .ask{margin-top:40px;font-size:var(--s-small);color:var(--ink2)}
+
+/* ---------- team ---------- */
+.team{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,5vw,88px);align-items:center;padding:clamp(88px,11vw,152px) var(--gut);background:var(--cape);color:var(--foil)}
+.team figure{border-radius:18px;overflow:hidden;aspect-ratio:1073/1200}
+.team figure img{width:100%;height:100%;object-fit:cover;display:block}
+.team .lead{font-size:var(--s-lead);line-height:1.4;margin-top:20px;color:#cfccd8;max-width:34ch}
+.team p.more{margin-top:20px;color:#cfccd8;max-width:44ch}
+
+/* ---------- wall ---------- */
+.wall-sec{padding:clamp(88px,11vw,152px) var(--gut)}
+.wall-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.wall{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:clamp(70px,7vw,112px);gap:12px}
+.wall figure{position:relative;overflow:hidden;border-radius:14px;background:var(--mist)}
+.wall img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 900ms var(--ease)}
+@media (hover:hover) and (pointer:fine){.wall figure:hover img{transform:scale(1.04)}}
+.w1{grid-column:1/6;grid-row:span 5}.w2{grid-column:6/9;grid-row:span 3}.w3{grid-column:9/13;grid-row:span 4}
+.w4{grid-column:6/9;grid-row:span 3}.w5{grid-column:9/13;grid-row:span 2}.w6{grid-column:1/5;grid-row:span 3}
+.w7{grid-column:5/13;grid-row:span 3}
 
 /* ---------- hours ---------- */
 .hours-sec{padding:clamp(88px,11vw,152px) var(--gut);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:start}
@@ -168,6 +192,11 @@ footer .cols div{display:flex;flex-direction:column;gap:4px}
   .top nav a:not(.tel){display:none}
   .hero-body,.services-head,.hours-sec,.book,.words{grid-template-columns:1fr}
   .menus{grid-template-columns:1fr}
+  .menus figure{aspect-ratio:4/3}
+  .salon{grid-template-columns:1fr 1fr}.salon .big{grid-column:1/-1;grid-row:auto}.salon figure:not(.big){aspect-ratio:4/5}
+  .team{grid-template-columns:1fr}
+  .wall{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:150px;gap:8px}
+  .wall figure{grid-column:auto;grid-row:span 2}.wall .w1,.wall .w7{grid-column:1/-1}
   .lock .hair{height:clamp(150px,28vh,220px)}
   .lock .tab{padding:22px 0 6px;font-size:.6875rem}
   .lock .tab::before{width:9px;height:9px;margin-left:-4.5px;top:5px}
@@ -210,6 +239,12 @@ footer .cols div{display:flex;flex-direction:column;gap:4px}
   </div>
 </header>
 
+<section class="salon" aria-label="Il salone">
+  <figure class="big"><img src="img/reception.jpg" width="1200" height="859" alt="Il salone: la postazione in vetro, gli specchi e lo scaffale dei prodotti" loading="lazy"><figcaption>Il salone in via Zorutti</figcaption></figure>
+  <figure><img src="img/specchio.jpg" width="1200" height="934" alt="Lo specchio con cornice in vetro e la poltrona da barbiere" loading="lazy"></figure>
+  <figure><img src="img/poltrona.jpg" width="960" height="1200" alt="La poltrona da barbiere davanti allo specchio" loading="lazy"></figure>
+</section>
+
 <section class="services" id="servizi" aria-labelledby="sv-h">
   <div class="services-head">
     <h2 id="sv-h">Cosa facciamo</h2>
@@ -217,30 +252,59 @@ footer .cols div{display:flex;flex-direction:column;gap:4px}
   </div>
   <div class="menus">
     <div>
+      <figure><img src="img/piega.jpg" width="960" height="1200" alt="Piega con spazzola tonda e phon" loading="lazy"></figure>
       <h3>Donna</h3>
       <ul>
         <li><b>Taglio e piega</b><span>Shampoo, taglio su misura e piega.</span></li>
+        <li><b>Piega</b><span>Liscia o mossa, anche solo per un'occasione.</span></li>
+        <li><b>Acconciature</b><span>Raccolti e onde per cerimonie e feste.</span></li>
+      </ul>
+    </div>
+    <div>
+      <figure><img src="img/lavaggio.jpg" width="960" height="1200" alt="Risciacquo del colore al lavatesta" loading="lazy"></figure>
+      <h3>Colore</h3>
+      <ul>
         <li><b>Colore</b><span>Ripresa della ricrescita o colore pieno, anche naturale.</span></li>
         <li><b>Colpi di sole</b><span>Schiariture a ciocche per luce e movimento.</span></li>
-        <li><b>Maschere e trattamenti</b><span>Nutrimento per capelli trattati o sfibrati.</span></li>
+        <li><b>Maschere e trattamenti</b><span>Nutrimento per capelli trattati o sfibrati, con prodotti milk_shake.</span></li>
       </ul>
     </div>
     <div>
+      <figure><img src="img/barba.jpg" width="1092" height="1200" alt="Rifinitura della nuca con il trimmer" loading="lazy"></figure>
       <h3>Uomo</h3>
       <ul>
-        <li><b>Taglio uomo</b><span>Shampoo e taglio, classico o moderno.</span></li>
+        <li><b>Taglio uomo</b><span>Shampoo e taglio, classico o sfumato.</span></li>
         <li><b>Barba</b><span>Rifinitura e rasatura, da sola o con il taglio.</span></li>
-      </ul>
-    </div>
-    <div>
-      <h3>Occasioni</h3>
-      <ul>
-        <li><b>Acconciature</b><span>Raccolti e onde per matrimoni, cerimonie e feste.</span></li>
-        <li><b>Prova acconciatura</b><span>Per arrivare al giorno importante senza sorprese.</span></li>
+        <li><b>Linea Depot</b><span>I prodotti da barbiere per la cura a casa.</span></li>
       </ul>
     </div>
   </div>
   <p class="ask">Prezzi e tempi di ogni servizio: chiedi su WhatsApp.</p>
+</section>
+
+<section class="team" aria-labelledby="tm-h">
+  <figure><img src="img/martina-taglio.jpg" width="1073" height="1200" alt="Martina mentre rifinisce un taglio uomo" loading="lazy"></figure>
+  <div>
+    <h2 id="tm-h">Martina e il suo team</h2>
+    <p class="lead">Giovani parrucchiere con esperienza, inventiva e fantasia, e una formazione anche nei trattamenti estetici.</p>
+    <p class="more">Per donna c'è il colore, la piega e le acconciature; per uomo una postazione da barbiere con la linea Depot. Si lavora con prodotti professionali che rispettano cute e capelli.</p>
+  </div>
+</section>
+
+<section class="wall-sec" aria-labelledby="wl-h">
+  <div class="wall-head">
+    <h2 id="wl-h">Dal salone</h2>
+    <a class="link" href="https://www.instagram.com/beautifulhair_manzano/" target="_blank" rel="noopener">@beautifulhair_manzano</a>
+  </div>
+  <div class="wall">
+    <figure class="w1"><img src="img/taglio-corto.jpg" width="960" height="1200" alt="Taglio corto su capelli biondi, con forbici e pettine" loading="lazy"><figcaption>Corto biondo</figcaption></figure>
+    <figure class="w2"><img src="img/pettine.jpg" width="1200" height="911" alt="Taglio a forbice con il pettine rosa" loading="lazy"><figcaption>A forbice</figcaption></figure>
+    <figure class="w3"><img src="img/forbici.jpg" width="960" height="1200" alt="Scalatura con pinze e pettine" loading="lazy"><figcaption>Scalatura</figcaption></figure>
+    <figure class="w4"><img src="img/macchinetta.jpg" width="1054" height="1200" alt="Sfumatura con la macchinetta" loading="lazy" style="object-position:50% 40%"><figcaption>Sfumatura</figcaption></figure>
+    <figure class="w5"><img src="img/rasatura.jpg" width="1002" height="1200" alt="Pennello da barba e vaporizzatore Depot" loading="lazy" style="object-position:50% 35%"><figcaption>Angolo barbiere</figcaption></figure>
+    <figure class="w6"><img src="img/martina-logo.jpg" width="1200" height="1200" alt="La maglia con il logo Beautiful Hair" loading="lazy" style="object-position:50% 60%"></figure>
+    <figure class="w7"><img src="img/taglio-biondo.jpg" width="1200" height="800" alt="Martina mentre taglia una ciocca bionda" loading="lazy" style="object-position:50% 45%"><figcaption>Punte e forma</figcaption></figure>
+  </div>
 </section>
 
 <section class="hours-sec" id="orari" aria-labelledby="or-h">
@@ -303,6 +367,7 @@ footer .cols div{display:flex;flex-direction:column;gap:4px}
   <div class="cols">
     <div><span>Via Pietro Zorutti 40</span><span>33044 Manzano (UD)</span></div>
     <div><a href="tel:+393347496307">334 749 6307</a><a href="https://www.instagram.com/beautifulhair_manzano/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/BeautifulHairByMartina/" target="_blank" rel="noopener">Facebook</a></div>
+    <div><span>Foto: Beautiful Hair by Martina</span></div>
   </div>
 </footer>
 
@@ -319,22 +384,22 @@ footer .cols div{display:flex;flex-direction:column;gap:4px}
 
   // ---- swatches: [label, level, base, root, tip]
   var SH=[
-    ['Nero','1.0','#1d1919','#141111','#2b2524'],
-    ['Castano scuro','3.0','#33231d','#251915','#4a342a'],
-    ['Cioccolato','5.35','#5b3a2a','#3f281e','#7a5139'],
-    ['Rame','7.44','#9a4d2b','#6e3720','#c06a3c'],
-    ['Biondo dorato','7.3','#a87a45','#7c5933','#c99a5f'],
-    ['Biondo miele','8.3','#c49a5f','#9b7646','#ddb985'],
-    ['Biondo cenere','9.1','#bdb3a0','#958b78','#d8d0c0'],
-    ['Platino','10.21','#e2dbd1','#bdb5a9','#f3eee8'],
-    ['Lavanda','fantasia','#b6a2cb','#8d78a6','#d6c9e3']
+    ['Nero','1.0','#1d1919','#141111','#2b2524','nero'],
+    ['Castano scuro','3.0','#33231d','#251915','#4a342a','castano'],
+    ['Cioccolato','5.35','#5b3a2a','#3f281e','#7a5139','cioccolato'],
+    ['Rame','7.44','#a8492a','#6e3720','#c06a3c','rame'],
+    ['Biondo dorato','7.3','#a87a45','#7c5933','#c99a5f','dorato'],
+    ['Biondo miele','8.3','#c49a5f','#9b7646','#ddb985','miele'],
+    ['Biondo cenere','9.1','#aea38e','#958b78','#d8d0c0','cenere'],
+    ['Platino','10.21','#d6cec1','#bdb5a9','#f3eee8','platino'],
+    ['Lavanda','fantasia','#ad98c6','#8d78a6','#d6c9e3','lavanda']
   ];
   var ul=document.getElementById('locks'),btns=[],chosen=5;
   SH.forEach(function(s,i){
     var li=document.createElement('li');li.className='lock';li.style.setProperty('--i',i);
     var b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed',i===chosen?'true':'false');
     b.setAttribute('aria-label',s[0]+' '+s[1]);
-    b.innerHTML='<span class="tab">'+(s[1]==='fantasia'?'★':s[1])+'</span><span class="hair" style="--c:'+s[2]+';--c2:'+s[3]+';--c3:'+s[4]+'"></span><span class="name">'+s[0]+'</span>';
+    b.innerHTML='<span class="tab">'+(s[1]==='fantasia'?'★':s[1])+'</span><img class="hair" src="img/ciocche/'+s[5]+'.webp" width="180" height="750" alt=""><span class="name">'+s[0]+'</span>';
     b.addEventListener('click',function(){pick(i,true);});
     li.appendChild(b);ul.appendChild(li);btns.push(b);
   });
