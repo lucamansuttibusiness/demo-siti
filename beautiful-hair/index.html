@@ -464,27 +464,62 @@ footer .cols div{display:flex;flex-direction:column;gap:4px}
       return {cv:b.querySelector('canvas.hair'),img:img,a:0,va:0,b:0,vb:0,
         dir:(i%2?1:-1)*(0.7+0.6*r),k:52+r*24,ph:r*6.28,fq:0.6+r*0.5,w:0,h:0};
     });
+    // Each lock is drawn as a GPU mesh of thin horizontal strips that follow the
+    // bend curve, so the hair curves smoothly at any screen density.
+    var VS='attribute vec2 p;attribute vec2 uv;uniform vec2 res;varying vec2 v;void main(){v=uv;gl_Position=vec4(p.x/res.x*2.-1.,1.-p.y/res.y*2.,0.,1.);}';
+    var FS='precision mediump float;varying vec2 v;uniform sampler2D t;void main(){gl_FragColor=texture2D(t,v);}';
+    var SEG=160;
+    function glSetup(o){
+      var gl=o.cv.getContext('webgl',{alpha:true,premultipliedAlpha:true,antialias:true})||o.cv.getContext('experimental-webgl');
+      if(!gl)return false;
+      function sh(type,src){var x=gl.createShader(type);gl.shaderSource(x,src);gl.compileShader(x);return x;}
+      var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);
+      if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return false;
+      gl.useProgram(pr);
+      o.gl=gl;o.buf=gl.createBuffer();o.arr=new Float32Array((SEG+1)*2*4);
+      gl.bindBuffer(gl.ARRAY_BUFFER,o.buf);
+      var lp=gl.getAttribLocation(pr,'p'),lu=gl.getAttribLocation(pr,'uv');
+      gl.enableVertexAttribArray(lp);gl.vertexAttribPointer(lp,2,gl.FLOAT,false,16,0);
+      gl.enableVertexAttribArray(lu);gl.vertexAttribPointer(lu,2,gl.FLOAT,false,16,8);
+      o.ures=gl.getUniformLocation(pr,'res');
+      o.tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,o.tex);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);
+      gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.clearColor(0,0,0,0);
+      return true;
+    }
     function size(){var d=Math.min(3,window.devicePixelRatio||1);L.forEach(function(o){
-      var w=o.cv.clientWidth,h=o.cv.clientHeight;if(!w||!h)return;o.w=w;o.h=h;o.cv.width=Math.round(w*d);o.cv.height=Math.round(h*d);
-      o.ctx=o.cv.getContext('2d');o.d=d;o.off=null;prep(o);});}
+      var w=o.cv.clientWidth,h=o.cv.clientHeight;if(!w||!h)return;o.w=w;o.h=h;o.cv.width=Math.round(w*d);o.cv.height=Math.round(h*d);o.d=d;
+      if(o.mode===undefined)o.mode=glSetup(o)?'gl':'2d';
+      if(o.mode==='2d')o.ctx=o.cv.getContext('2d');
+      o.off=null;prep(o);});}
     function prep(o){if(!o.img.complete||!o.img.naturalWidth||!o.w)return;
-      var d=o.d,lw=Math.round(o.w/CW*d),hh=o.cv.height,c=document.createElement('canvas');c.width=lw;c.height=hh;
-      var x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(o.img,0,0,lw,hh);o.off=c;}
+      // pre-scale the photo to the exact on-screen size with high-quality filtering
+      var lw=Math.round(o.w/CW*o.d),hh=o.cv.height,c=document.createElement('canvas');c.width=lw;c.height=hh;
+      var x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(o.img,0,0,lw,hh);o.off=c;
+      if(o.mode==='gl'){var gl=o.gl;try{gl.bindTexture(gl.TEXTURE_2D,o.tex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,c);}catch(e){o.off=null;}}
+    }
     function draw(o){
-      if(!o.ctx)return;if(!o.off)prep(o);if(!o.off)return;
-      // the lock is cut into bands; each band is sheared so the bands meet
-      // exactly, giving a smooth curve instead of a staircase
-      var c=o.ctx,W=o.cv.width,H=o.cv.height,lw=o.off.width,x0=(W-lw)/2,N=32;
+      if(!o.mode)return;if(!o.off)prep(o);if(!o.off)return;
+      var W=o.cv.width,H=o.cv.height,lw=o.off.width,x0=(W-lw)/2;
       function bend(y){var t=y/H;return lw*(o.a*Math.pow(t,1.7)+(o.b-o.a)*0.9*t*t*t);}
-      c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,W,H);
-      var y0=0,d0=bend(0);
-      for(var i=1;i<=N;i++){
-        var y1=Math.round(H*i/N),d1=bend(y1),hh=y1-y0;if(hh<=0)continue;
-        var sk=(d1-d0)/hh;
-        c.setTransform(1,0,sk,1,x0+d0-sk*y0,0);
-        c.drawImage(o.off,0,y0,lw,hh,0,y0,lw,hh);
-        y0=y1;d0=d1;
+      if(o.mode==='gl'){
+        var gl=o.gl,a=o.arr,k=0;
+        for(var i=0;i<=SEG;i++){var y=H*i/SEG,dx=x0+bend(y),v=i/SEG;
+          a[k++]=dx;a[k++]=y;a[k++]=0;a[k++]=v;
+          a[k++]=dx+lw;a[k++]=y;a[k++]=1;a[k++]=v;}
+        gl.viewport(0,0,W,H);gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.bindBuffer(gl.ARRAY_BUFFER,o.buf);gl.bufferData(gl.ARRAY_BUFFER,a,gl.DYNAMIC_DRAW);
+        gl.uniform2f(o.ures,W,H);gl.bindTexture(gl.TEXTURE_2D,o.tex);
+        gl.drawArrays(gl.TRIANGLE_STRIP,0,(SEG+1)*2);
+        return;
       }
+      // fallback without WebGL: sheared bands
+      var c=o.ctx,N=48;c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,W,H);
+      var y0=0,d0=0;
+      for(var j=1;j<=N;j++){var y1=Math.round(H*j/N),d1=bend(y1),h1=y1-y0;if(h1<=0)continue;var sk=(d1-d0)/h1;
+        c.setTransform(1,0,sk,1,x0+d0-sk*y0,0);c.drawImage(o.off,0,y0,lw,h1,0,y0,lw,h1);y0=y1;d0=d1;}
       c.setTransform(1,0,0,1,0,0);
     }
     var lastY=scrollY,px=null,py=null,pvx=0,tilt=0,running=false,visible=true,last=0,t0=performance.now();
