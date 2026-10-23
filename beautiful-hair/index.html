@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beautiful Hair by Martina · Manzano</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Beautiful Hair by Martina, parrucchiera in via Zorutti 40 a Manzano: taglio, piega, colore e colpi di sole per donna, taglio e barba per uomo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Idea: the page is a hairdresser's colour chart. The hero is a ring of hair
+   swatches; tapping one sets the page's accent and goes straight into the
+   WhatsApp booking message. Everything else stays quiet. */
+:root{
+  color-scheme:light;
+  --foil:#ecebef;      /* aluminium foils */
+  --mist:#dedce4;      /* second ground */
+  --cape:#221f2e;      /* the black-violet salon cape */
+  --ink2:#5d586b;      /* secondary text */
+  --chrome:#a9a6b3;    /* scissors and ring */
+  --white:#ffffff;
+  --shade:#c49a5f;     /* chosen hair colour, set by JS */
+  --on-shade:#221f2e;
+
+  --display:'Gloock', 'Bodoni 72', Didot, Georgia, serif;
+  --text:'Figtree', 'Avenir Next', system-ui, sans-serif;
+
+  --s-small:.875rem;
+  --s-body:clamp(1.0625rem, 1rem + .2vw, 1.1875rem);
+  --s-lead:clamp(1.1875rem, 1.05rem + .55vw, 1.4375rem);
+  --s-head:clamp(2.25rem, 1.5rem + 2.8vw, 4rem);
+  --s-display:clamp(2.75rem, 1.6rem + 4.2vw, 5.75rem);
+
+  --gut:max(clamp(20px, 5vw, 80px), env(safe-area-inset-left, 0px));
+  --ease:cubic-bezier(0.23, 1, 0.32, 1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--foil);color:var(--cape);font-family:var(--text);font-size:var(--s-body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-weight:400;text-wrap:balance}
+h2{font-family:var(--display);font-size:var(--s-head);line-height:1.02}
+p{max-width:60ch}
+:focus-visible{outline:2px solid var(--cape);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:52px;padding:0 1.5em;border-radius:999px;background:var(--cape);color:var(--foil);font:600 1rem/1 var(--text);text-decoration:none;border:0;cursor:pointer;transition:background-color 200ms ease, transform 160ms var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn svg{width:20px;height:20px;fill:currentColor}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:#3a3550}}
+.link{font-weight:500;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:grid;grid-template-rows:auto 1fr;padding:24px var(--gut) clamp(40px,6vh,72px)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:var(--s-small)}
+.mark{display:flex;flex-direction:column;text-decoration:none;line-height:1}
+.mark b{font-family:var(--display);font-weight:400;font-size:1.6rem}
+.mark span{font-size:.8125rem;color:var(--ink2);margin-top:3px;letter-spacing:.02em}
+.top nav{display:flex;gap:24px;align-items:center}
+.top nav a{text-decoration:none}
+.top nav .tel{font-weight:600}
+
+.hero-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:center;padding-top:clamp(24px,5vh,56px)}
+.hero h1{font-family:var(--display);font-size:var(--s-display);line-height:.98;letter-spacing:-.01em}
+.hero .lead{font-size:var(--s-lead);line-height:1.4;margin-top:24px;max-width:32ch;color:var(--ink2)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;margin-top:32px}
+.status{display:flex;align-items:center;gap:10px;font-size:var(--s-small)}
+.dot{width:9px;height:9px;border-radius:50%;background:#3f8a57;flex:none}
+.dot.off{background:#b5544a}
+
+/* the swatch ring */
+.chart{position:relative;padding-top:22px}
+.ring{position:absolute;left:-2%;right:-2%;top:10px;height:14px;border-radius:7px;background:linear-gradient(#d9d7df,#8f8c99 60%,#c5c3cc);box-shadow:inset 0 -1px 0 rgba(0,0,0,.15)}
+.locks{position:relative;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:clamp(6px,1vw,14px);list-style:none}
+.lock{position:relative}
+.lock button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;width:100%;transform-origin:50% 0;transition:transform 420ms var(--ease)}
+.lock .tab{width:100%;padding:28px 0 8px;background:var(--white);border-radius:6px 6px 2px 2px;text-align:center;font-size:.75rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--cape);position:relative}
+.lock .tab::before{content:"";position:absolute;top:6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--foil);box-shadow:inset 0 1px 2px rgba(0,0,0,.25)}
+.lock .hair{width:78%;height:clamp(190px,36vh,360px);background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.13) 0 1px, transparent 1px 3px, rgba(0,0,0,.10) 3px 4px, transparent 4px 6px),
+    linear-gradient(180deg, var(--c2) 0%, var(--c) 35%, var(--c) 70%, var(--c3) 100%);
+  clip-path:polygon(0 0,100% 0,96% 70%,82% 92%,58% 100%,40% 96%,16% 88%,4% 66%);
+  filter:saturate(1.05)}
+.lock .name{margin-top:12px;font-size:.8125rem;line-height:1.25;text-align:center;color:var(--ink2);min-height:2.5em}
+.lock button[aria-pressed="true"]{transform:translateY(-14px)}
+.lock button[aria-pressed="true"] .tab{background:var(--cape);color:var(--foil)}
+.lock button[aria-pressed="true"] .name{color:var(--cape);font-weight:600}
+.lock button:focus-visible .tab{outline:2px solid var(--cape);outline-offset:2px}
+@media (hover:hover) and (pointer:fine){.lock button:hover{transform:translateY(-8px) rotate(-1.5deg)}.lock button[aria-pressed="true"]:hover{transform:translateY(-14px)}}
+.pick{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;font-size:var(--s-small);color:var(--ink2)}
+.pick strong{color:var(--cape);font-weight:600}
+.pick .chip{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:999px;background:var(--white);color:var(--cape)}
+.pick .chip i{width:22px;height:22px;border-radius:50%;background:var(--shade);transition:background-color 400ms ease}
+
+@media (prefers-reduced-motion:no-preference){
+  .lock button{animation:swing 1100ms var(--ease) both;animation-delay:calc(var(--i) * 70ms + 200ms)}
+  @keyframes swing{0%{transform:rotate(-9deg) translateY(-10px);opacity:0}60%{opacity:1}100%{transform:none}}
+}
+
+/* ---------- services ---------- */
+.services{padding:clamp(88px,11vw,152px) var(--gut);background:var(--white)}
+.services-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:end;margin-bottom:clamp(48px,6vw,80px)}
+.services-head p{font-size:var(--s-lead);line-height:1.4;color:var(--ink2)}
+.menus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(32px,4vw,64px)}
+.menus h3{font-family:var(--display);font-size:2rem;line-height:1;padding-bottom:16px;border-bottom:2px solid var(--cape)}
+.menus ul{list-style:none}
+.menus li{padding:16px 0;border-bottom:1px solid var(--mist);display:flex;flex-direction:column;gap:2px}
+.menus li b{font-weight:600}
+.menus li span{font-size:var(--s-small);color:var(--ink2);line-height:1.45}
+.ask{margin-top:40px;font-size:var(--s-small);color:var(--ink2)}
+
+/* ---------- hours ---------- */
+.hours-sec{padding:clamp(88px,11vw,152px) var(--gut);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:start}
+.hours-sec .lead{font-size:var(--s-lead);line-height:1.4;color:var(--ink2);margin-top:20px;max-width:34ch}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;align-items:end;height:260px;font-variant-numeric:tabular-nums}
+.day{display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end;font-size:var(--s-small)}
+.day .bar{position:relative;width:100%;flex:1;border-radius:6px;background:var(--mist)}
+.day .bar i{position:absolute;left:0;right:0;border-radius:6px;background:var(--cape)}
+.day.closed .bar{background:repeating-linear-gradient(135deg,var(--mist) 0 6px,transparent 6px 12px)}
+.day.today b{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+.day small{color:var(--ink2);font-size:.75rem;text-align:center;line-height:1.3;min-height:2.6em}
+.scale{display:flex;justify-content:space-between;font-size:.75rem;color:var(--ink2);margin-bottom:8px}
+.where{margin-top:36px;display:flex;flex-direction:column;gap:6px}
+
+/* ---------- words ---------- */
+.words{padding:clamp(72px,9vw,128px) var(--gut);background:var(--cape);color:var(--foil);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(32px,5vw,88px)}
+.words blockquote{font-family:var(--display);font-size:clamp(1.75rem,1.2rem + 2vw,3rem);line-height:1.1}
+.words .more{display:flex;flex-direction:column;gap:12px;justify-content:flex-end;color:var(--chrome)}
+.words cite{display:block;margin-top:16px;font:400 var(--s-small)/1.4 var(--text);font-style:normal;color:var(--chrome)}
+
+/* ---------- booking ---------- */
+.book{padding:clamp(88px,11vw,152px) var(--gut);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:start}
+.book .lead{font-size:var(--s-lead);line-height:1.4;color:var(--ink2);margin-top:20px;max-width:30ch}
+.composer{background:var(--white);border-radius:20px;padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;gap:22px}
+.group{display:flex;flex-direction:column;gap:10px;font-size:var(--s-small);color:var(--ink2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative}
+.chips input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.chips span{display:block;padding:10px 16px;border-radius:999px;background:var(--foil);color:var(--cape);font-size:var(--s-small);transition:background-color 160ms ease,color 160ms ease}
+.chips input:checked + span{background:var(--cape);color:var(--foil)}
+.chips input:focus-visible + span{outline:2px solid var(--cape);outline-offset:2px}
+.composer input[type=text],.composer select{width:100%;height:52px;border:0;border-radius:12px;background:var(--foil);color:var(--cape);font:400 16px/1 var(--text);padding:0 16px;appearance:none;-webkit-appearance:none}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shade-line{display:flex;align-items:center;gap:10px;color:var(--cape)}
+.shade-line i{width:18px;height:18px;border-radius:50%;background:var(--shade);flex:none}
+.shade-line button{all:unset;cursor:pointer;color:var(--ink2);text-decoration:underline;text-underline-offset:3px;margin-left:auto}
+.bubble{align-self:flex-end;max-width:92%;background:#dcf3d0;color:#1d2a1a;padding:14px 16px 10px;border-radius:14px 14px 4px 14px;font-size:var(--s-small);line-height:1.5}
+.bubble small{display:block;text-align:right;color:#5d7356;font-size:.75rem;margin-top:4px}
+.composer .btn{width:100%}
+.note{font-size:var(--s-small);color:var(--ink2)}
+
+footer{padding:56px var(--gut) 40px;border-top:1px solid var(--mist);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:var(--s-small);color:var(--ink2)}
+footer .mark b{color:var(--cape)}
+footer .cols{display:flex;gap:32px;flex-wrap:wrap}
+footer .cols div{display:flex;flex-direction:column;gap:4px}
+
+.wa{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;align-items:center;gap:10px;height:52px;padding:0 20px;border-radius:999px;background:#1f8f4e;color:#fff;text-decoration:none;font-weight:600;box-shadow:0 6px 20px rgba(34,31,46,.25);transition:opacity 200ms ease,transform 160ms var(--ease)}
+.wa svg{width:20px;height:20px;fill:currentColor}
+.wa:active{transform:scale(.97)}
+.wa.hide{opacity:0;pointer-events:none;transform:translateY(8px)}
+
+/* ---------- phone ---------- */
+@media (max-width:900px){
+  .hero{min-height:0}
+  .top nav a:not(.tel){display:none}
+  .hero-body,.services-head,.hours-sec,.book,.words{grid-template-columns:1fr}
+  .menus{grid-template-columns:1fr}
+  .lock .hair{height:clamp(150px,28vh,220px)}
+  .lock .tab{padding:22px 0 6px;font-size:.6875rem}
+  .lock .tab::before{width:9px;height:9px;margin-left:-4.5px;top:5px}
+  .lock .name{font-size:.6875rem}
+  .row2{grid-template-columns:1fr}
+}
+@media (max-width:420px){.lock .name{display:none}.locks{gap:5px}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="top">
+    <a class="mark" href="#top"><b>Beautiful Hair</b><span>by Martina</span></a>
+    <nav aria-label="Sezioni">
+      <a href="#servizi">Servizi</a>
+      <a href="#orari">Orari</a>
+      <a class="tel" href="tel:+393347496307">334 749 6307</a>
+    </nav>
+  </div>
+
+  <div class="hero-body">
+    <div>
+      <h1>Taglio, colore e piega in via Zorutti</h1>
+      <p class="lead">Martina e il suo giovane team, a Manzano. Per donna e per uomo, con prodotti professionali che rispettano cute e capelli.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#prenota">Prenota</a>
+        <span class="status" data-status><span class="dot"></span>Aperto da martedì a sabato</span>
+      </div>
+    </div>
+
+    <div class="chart">
+      <div class="ring" aria-hidden="true"></div>
+      <ul class="locks" id="locks" aria-label="Scegli una nuance di colore"></ul>
+      <div class="pick" aria-live="polite">
+        <span class="chip"><i></i><span id="pick-name">Biondo miele 8.3</span></span>
+        <span>Che colore hai in mente? Tocca una ciocca e lo aggiungiamo alla prenotazione.</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="services" id="servizi" aria-labelledby="sv-h">
+  <div class="services-head">
+    <h2 id="sv-h">Cosa facciamo</h2>
+    <p>Esperienza, inventiva e fantasia: dal taglio di tutti i giorni al colore che cambia il look.</p>
+  </div>
+  <div class="menus">
+    <div>
+      <h3>Donna</h3>
+      <ul>
+        <li><b>Taglio e piega</b><span>Shampoo, taglio su misura e piega.</span></li>
+        <li><b>Colore</b><span>Ripresa della ricrescita o colore pieno, anche naturale.</span></li>
+        <li><b>Colpi di sole</b><span>Schiariture a ciocche per luce e movimento.</span></li>
+        <li><b>Maschere e trattamenti</b><span>Nutrimento per capelli trattati o sfibrati.</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Uomo</h3>
+      <ul>
+        <li><b>Taglio uomo</b><span>Shampoo e taglio, classico o moderno.</span></li>
+        <li><b>Barba</b><span>Rifinitura e rasatura, da sola o con il taglio.</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Occasioni</h3>
+      <ul>
+        <li><b>Acconciature</b><span>Raccolti e onde per matrimoni, cerimonie e feste.</span></li>
+        <li><b>Prova acconciatura</b><span>Per arrivare al giorno importante senza sorprese.</span></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ask">Prezzi e tempi di ogni servizio: chiedi su WhatsApp.</p>
+</section>
+
+<section class="hours-sec" id="orari" aria-labelledby="or-h">
+  <div>
+    <h2 id="or-h">Orari pensati per chi lavora</h2>
+    <p class="lead">Il giovedì restiamo aperti fino alle 20, il sabato apriamo alle 8.</p>
+    <p class="status" data-status-long style="margin-top:24px"><span class="dot"></span>Aperto da martedì a sabato</p>
+    <div class="where">
+      <span>Via Pietro Zorutti 40, 33044 Manzano (UD)</span>
+      <span>Telefono e WhatsApp: <a href="tel:+393347496307">334 749 6307</a></span>
+      <a class="link" href="https://www.google.com/maps/search/?api=1&query=Beautiful%20Hair%20by%20Martina%20Via%20Pietro%20Zorutti%2040%20Manzano" target="_blank" rel="noopener">Apri in Google Maps</a>
+    </div>
+  </div>
+  <div>
+    <div class="scale" aria-hidden="true"><span>8:00</span><span>14:00</span><span>20:00</span></div>
+    <div class="week" id="week" role="table" aria-label="Orari di apertura"></div>
+  </div>
+</section>
+
+<section class="words" aria-label="Recensioni">
+  <figure><blockquote>“Salone luminoso e accogliente”</blockquote><cite>Recensione su Google</cite></figure>
+  <div class="more"><p>Le recensioni dei clienti, su Google e sui social.</p><a class="link" href="https://www.google.com/maps/search/?api=1&query=Beautiful%20Hair%20by%20Martina%20Manzano" target="_blank" rel="noopener">Leggi tutte le recensioni</a></div>
+</section>
+
+<section class="book" id="prenota" aria-labelledby="bk-h">
+  <div>
+    <h2 id="bk-h">Prenota su WhatsApp</h2>
+    <p class="lead">Scegli cosa ti serve: il messaggio si scrive da solo, tu devi solo inviarlo.</p>
+  </div>
+
+  <form class="composer" id="book-form">
+    <div class="group">
+      <span id="g-what">Cosa vuoi fare</span>
+      <div class="chips" role="group" aria-labelledby="g-what">
+        <label><input type="radio" name="what" value="taglio e piega" checked><span>Taglio e piega</span></label>
+        <label><input type="radio" name="what" value="colore"><span>Colore</span></label>
+        <label><input type="radio" name="what" value="colpi di sole"><span>Colpi di sole</span></label>
+        <label><input type="radio" name="what" value="un trattamento"><span>Trattamento</span></label>
+        <label><input type="radio" name="what" value="un taglio uomo"><span>Uomo</span></label>
+        <label><input type="radio" name="what" value="un'acconciatura"><span>Acconciatura</span></label>
+      </div>
+    </div>
+    <div class="group shade-group" id="shade-group" hidden>
+      <span>Nuance</span>
+      <div class="shade-line"><i></i><span id="shade-txt">Biondo miele 8.3</span><button type="button" id="shade-change">Cambia</button></div>
+    </div>
+    <div class="row2">
+      <div class="group"><label for="f-day">Giorno</label><select id="f-day" name="day"><option>Primo giorno libero</option></select></div>
+      <div class="group"><label for="f-when">Momento</label><select id="f-when" name="when"><option>Mattina</option><option>Primo pomeriggio</option><option>Tardo pomeriggio</option></select></div>
+    </div>
+    <div class="group"><label for="f-name">Il tuo nome</label><input type="text" id="f-name" name="name" autocomplete="given-name" placeholder="Es. Giulia"></div>
+    <p class="bubble" id="bubble" aria-live="polite"></p>
+    <a class="btn" id="wa-link" href="https://wa.me/393347496307" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8a3.3 3.3 0 0 0 2.1-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg>Invia su WhatsApp</a>
+    <p class="note">Ti risponde il salone con il primo orario libero.</p>
+  </form>
+</section>
+
+<footer>
+  <a class="mark" href="#top"><b>Beautiful Hair</b><span>by Martina</span></a>
+  <div class="cols">
+    <div><span>Via Pietro Zorutti 40</span><span>33044 Manzano (UD)</span></div>
+    <div><a href="tel:+393347496307">334 749 6307</a><a href="https://www.instagram.com/beautifulhair_manzano/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/BeautifulHairByMartina/" target="_blank" rel="noopener">Facebook</a></div>
+  </div>
+</footer>
+
+<a class="wa hide" id="wa-float" href="https://wa.me/393347496307?text=Ciao%20Martina%2C%20vorrei%20prenotare" target="_blank" rel="noopener" aria-label="Scrivi su WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8a3.3 3.3 0 0 0 2.1-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg>Prenota</a>
+
+<script>
+(function(){
+  var PHONE='393347496307';
+  // hours in minutes from midnight; null = closed
+  var H={0:null,1:null,2:[570,870],3:[570,900],4:[660,1200],5:[570,1080],6:[480,960]};
+  var DAYS=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+  var SHORT=['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+  function fmt(m){return Math.floor(m/60)+':'+(m%60<10?'0':'')+m%60;}
+
+  // ---- swatches: [label, level, base, root, tip]
+  var SH=[
+    ['Nero','1.0','#1d1919','#141111','#2b2524'],
+    ['Castano scuro','3.0','#33231d','#251915','#4a342a'],
+    ['Cioccolato','5.35','#5b3a2a','#3f281e','#7a5139'],
+    ['Rame','7.44','#9a4d2b','#6e3720','#c06a3c'],
+    ['Biondo dorato','7.3','#a87a45','#7c5933','#c99a5f'],
+    ['Biondo miele','8.3','#c49a5f','#9b7646','#ddb985'],
+    ['Biondo cenere','9.1','#bdb3a0','#958b78','#d8d0c0'],
+    ['Platino','10.21','#e2dbd1','#bdb5a9','#f3eee8'],
+    ['Lavanda','fantasia','#b6a2cb','#8d78a6','#d6c9e3']
+  ];
+  var ul=document.getElementById('locks'),btns=[],chosen=5;
+  SH.forEach(function(s,i){
+    var li=document.createElement('li');li.className='lock';li.style.setProperty('--i',i);
+    var b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed',i===chosen?'true':'false');
+    b.setAttribute('aria-label',s[0]+' '+s[1]);
+    b.innerHTML='<span class="tab">'+(s[1]==='fantasia'?'★':s[1])+'</span><span class="hair" style="--c:'+s[2]+';--c2:'+s[3]+';--c3:'+s[4]+'"></span><span class="name">'+s[0]+'</span>';
+    b.addEventListener('click',function(){pick(i,true);});
+    li.appendChild(b);ul.appendChild(li);btns.push(b);
+  });
+  function lum(hex){var n=parseInt(hex.slice(1),16),r=(n>>16)/255,g=(n>>8&255)/255,bl=(n&255)/255;
+    function c(v){return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*c(r)+.7152*c(g)+.0722*c(bl);}
+  function label(i){var s=SH[i];return s[0]+(s[1]==='fantasia'?' (colore fantasia)':' '+s[1]);}
+  var f=document.getElementById('book-form'),touched=false;
+  function pick(i,fromUser){
+    chosen=i;var s=SH[i];
+    btns.forEach(function(b,k){b.setAttribute('aria-pressed',k===i?'true':'false');});
+    document.documentElement.style.setProperty('--shade',s[2]);
+    document.documentElement.style.setProperty('--on-shade',lum(s[2])>.3?'#221f2e':'#ffffff');
+    document.getElementById('pick-name').textContent=label(i);
+    document.getElementById('shade-txt').textContent=label(i);
+    if(fromUser){touched=true;var c=f.querySelector('input[value="colore"]');if(c){c.checked=true;}upd();}
+  }
+  document.getElementById('shade-change').addEventListener('click',function(){
+    document.getElementById('top').scrollIntoView();btns[chosen].focus({preventScroll:true});});
+
+  // ---- status
+  var now=new Date(),d=now.getDay(),mins=now.getHours()*60+now.getMinutes();
+  var t=H[d],open=t&&mins>=t[0]&&mins<t[1],s,l;
+  if(open){s='<span class="dot"></span>Aperto ora, fino alle '+fmt(t[1]);l=s+'. Rispondiamo anche su WhatsApp.';}
+  else{var k=0,nd=d,slot;if(t&&mins<t[0]){slot=t;}else{do{k++;nd=(d+k)%7;slot=H[nd];}while(!slot&&k<7);}
+    var w=k===0?'oggi':(k===1?'domani':DAYS[nd]);s='<span class="dot off"></span>Chiuso ora, riapre '+w+' alle '+fmt(slot[0]);l=s+'. Puoi già scrivere su WhatsApp.';}
+  document.querySelectorAll('[data-status]').forEach(function(e){e.innerHTML=s;});
+  var sl=document.querySelector('[data-status-long]');if(sl)sl.innerHTML=l;
+
+  // ---- week chart (8:00–20:00)
+  var wk=document.getElementById('week'),A=480,B=1200;
+  [1,2,3,4,5,6,0].forEach(function(dd){
+    var h=H[dd],el=document.createElement('div');el.className='day'+(h?'':' closed')+(dd===d?' today':'');el.setAttribute('role','row');
+    var bar='<span class="bar" aria-hidden="true">'+(h?'<i style="top:'+((h[0]-A)/(B-A)*100)+'%;bottom:'+((B-h[1])/(B-A)*100)+'%"></i>':'')+'</span>';
+    el.innerHTML=bar+'<b role="rowheader">'+SHORT[dd]+'</b><small role="cell">'+(h?fmt(h[0])+'<br>'+fmt(h[1]):'chiuso')+'</small>';
+    wk.appendChild(el);
+  });
+
+  // ---- booking
+  var sel=document.getElementById('f-day');
+  for(var i=0,n=0;n<10&&i<21;i++){var dt=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i),h=H[dt.getDay()];
+    if(!h||(i===0&&mins>h[1]-60))continue;var lab=(i===0?'Oggi, ':i===1?'Domani, ':'')+DAYS[dt.getDay()]+' '+dt.getDate()+'/'+(dt.getMonth()+1);
+    var o=document.createElement('option');o.textContent=lab.charAt(0).toUpperCase()+lab.slice(1);sel.appendChild(o);n++;}
+  var bub=document.getElementById('bubble'),wl=document.getElementById('wa-link'),sg=document.getElementById('shade-group');
+  function msg(){var nm=f.name.value.trim(),what=f.querySelector('input[name=what]:checked').value;
+    var colourish=(what==='colore'||what==='colpi di sole');
+    var extra=colourish&&touched?' Pensavo a un '+label(chosen).toLowerCase()+'.':'';
+    return 'Ciao Martina'+(nm?', sono '+nm:'')+'! Vorrei prenotare '+what+'.'+extra+' '+f.day.value+', '+f.when.value.toLowerCase()+'. Grazie!';}
+  function upd(){var what=f.querySelector('input[name=what]:checked').value;
+    sg.hidden=!((what==='colore'||what==='colpi di sole')&&touched);
+    var m=msg(),hh=now.getHours(),mm=now.getMinutes();bub.textContent=m;
+    var sm=document.createElement('small');sm.textContent=hh+':'+(mm<10?'0':'')+mm;bub.appendChild(sm);
+    wl.href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(m);}
+  f.addEventListener('input',upd);f.addEventListener('change',upd);f.addEventListener('submit',function(e){e.preventDefault();});
+  pick(chosen,false);upd();
+
+  var wa=document.getElementById('wa-float'),book=document.getElementById('prenota');
+  function wc(){var r=book.getBoundingClientRect();wa.classList.toggle('hide',scrollY<innerHeight*.6||(r.top<innerHeight&&r.bottom>0));}
+  addEventListener('scroll',wc,{passive:true});wc();
+})();
+</script>
+</body>
+</html>
