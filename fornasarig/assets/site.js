@@ -26,23 +26,26 @@
     });
   });
 
-  // filtri del catalogo
+  // filtri del catalogo: linea (barra con le sagome) + caratteristiche
   var grid = document.getElementById('pgrid');
   if (grid) {
-    var f = { tipo: '', coll: '', flag: '' }, count = document.getElementById('count');
+    var f = { linea: '', flag: '' }, count = document.getElementById('count');
+    var btns = document.querySelectorAll('#filters button, .feat-filter button');
     var params = new URLSearchParams(location.search);
-    ['tipo', 'coll', 'flag'].forEach(function (k) { if (params.get(k)) f[k] = params.get(k); });
+    ['linea', 'flag'].forEach(function (k) { if (params.get(k)) f[k] = params.get(k); });
+    if (location.hash.length > 1) f.linea = location.hash.slice(1);
+    function has(c, k) { return !f[k] || (' ' + c.dataset[k] + ' ').indexOf(' ' + f[k] + ' ') > -1; }
     function apply() {
       var n = 0;
-      grid.querySelectorAll('.pcard').forEach(function (c) {
-        var ok = (!f.tipo || c.dataset.tipo === f.tipo) && (!f.coll || c.dataset.coll === f.coll) && (!f.flag || (' ' + c.dataset.flags + ' ').indexOf(' ' + f.flag + ' ') > -1);
-        c.hidden = !ok; if (ok) n++;
-      });
+      grid.querySelectorAll('.pcard').forEach(function (c) { var ok = has(c, 'linea') && has(c, 'flag'); c.hidden = !ok; if (ok) n++; });
       count.textContent = n === 1 ? '1 prodotto' : n + ' prodotti';
-      document.querySelectorAll('#filters button').forEach(function (x) { x.setAttribute('aria-pressed', f[x.dataset.f] === x.dataset.v ? 'true' : 'false'); });
+      btns.forEach(function (x) { x.setAttribute('aria-pressed', f[x.dataset.f] === x.dataset.v ? 'true' : 'false'); });
     }
-    document.querySelectorAll('#filters button').forEach(function (x) {
-      x.addEventListener('click', function () { f[x.dataset.f] = x.dataset.v; apply(); });
+    btns.forEach(function (x) {
+      x.addEventListener('click', function () {
+        f[x.dataset.f] = x.dataset.v; apply();
+        if (x.dataset.f === 'linea') history.replaceState(null, '', x.dataset.v ? '#' + x.dataset.v : location.pathname + location.search);
+      });
     });
     apply();
   }
