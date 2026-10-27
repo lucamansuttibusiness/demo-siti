@@ -291,14 +291,15 @@ details p{padding:0 20px 20px;margin:0;color:var(--ink-2);max-width:72ch}
 /* ---- catalogo: barra linee con sagome + schede grandi ---- */
 .catbar{display:grid;grid-template-columns:minmax(200px,1fr) minmax(0,3fr);gap:4px;margin:32px 0 12px}
 .catbar button{font:inherit;color:var(--ink);background:#f1f0ee;border:0;cursor:pointer;transition:background .2s,color .2s}
-.cat-all{font-size:1.25rem;padding:24px}
+.cat-all{font-size:1.25rem;padding:24px;font-weight:400}
 .cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));background:#f1f0ee}
-.cat{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;padding:22px 8px 18px;font-size:var(--s-sm);line-height:1.3;text-align:center}
-.cat svg{width:56px;height:56px;color:#9b978f;transition:color .2s,transform .25s}
+.cat{display:grid;grid-template-rows:72px 2.6em;justify-items:center;align-items:end;gap:10px;padding:26px 8px 20px;font-size:var(--s-sm);line-height:1.3;text-align:center}
+.cat span{align-self:start}
+.cat svg{width:72px;height:72px;color:#9b978f;transition:color .2s,transform .25s}
 .catbar button:hover svg{color:var(--ink);transform:translateY(-3px)}
 .catbar button:hover{background:#e7e5e1}
-.catbar button[aria-pressed="true"]{background:var(--ink);color:#fff}
-.catbar button[aria-pressed="true"] svg{color:#fff}
+.catbar button[aria-pressed="true"]{background:#e2dfd9;box-shadow:inset 0 -3px 0 var(--accent);font-weight:500}
+.catbar button[aria-pressed="true"] svg{color:var(--ink)}
 .feat-filter{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
 .feat-filter button{font:500 var(--s-sm) var(--font);background:transparent;color:var(--ink);border:0;box-shadow:inset 0 0 0 1px #c9c5bd;padding:.55em 1em;cursor:pointer}
 .feat-filter button:hover{box-shadow:inset 0 0 0 2px var(--ink)}
