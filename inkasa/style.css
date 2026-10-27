@@ -1,4 +1,6 @@
 /* Layout: the place carries it. Full-width photographs, condensed type, one gold action. */
+@font-face { font-family: 'Barlow Condensed'; font-weight: 500; font-display: swap; src: url(fonts/barlow-condensed-latin-500-normal.woff2) format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-weight: 600; font-display: swap; src: url(fonts/barlow-condensed-latin-600-normal.woff2) format('woff2'); }
 @font-face { font-family: 'Barlow Condensed'; font-weight: 700; font-display: swap; src: url(fonts/barlow-condensed-latin-700-normal.woff2) format('woff2'); }
 @font-face { font-family: 'Barlow'; font-weight: 400; font-display: swap; src: url(fonts/barlow-latin-400-normal.woff2) format('woff2'); }
 @font-face { font-family: 'Barlow'; font-weight: 500; font-display: swap; src: url(fonts/barlow-latin-500-normal.woff2) format('woff2'); }
@@ -20,7 +22,7 @@
   --step-body: 1.125rem;
   --step-lead: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
   --step-head: clamp(2.75rem, 1.2rem + 5vw, 5.5rem);
-  --step-hero: clamp(4.5rem, 12vw, 11.5rem);
+  --step-hero: clamp(2.2rem, 8vw, 8.75rem);
 
   --margin: clamp(16px, 2.2vw, 32px);
   --gap-section: clamp(120px, 14vw, 220px);
@@ -50,7 +52,7 @@ ol { padding: 0; list-style: none; }
 .skip:focus { top: 12px; }
 
 .wrap { padding-left: max(var(--margin), env(safe-area-inset-left, 0px)); padding-right: max(var(--margin), env(safe-area-inset-right, 0px)); }
-.h2 { font: 700 var(--step-head)/0.92 var(--display); letter-spacing: -0.02em; text-transform: uppercase; text-wrap: balance; }
+.h2 { font: 600 var(--step-head)/0.95 var(--display); letter-spacing: -0.015em; text-wrap: balance; }
 .lead { font-size: var(--step-lead); line-height: 1.4; max-width: 34ch; }
 
 /* Buttons: square corners, one fill, ink on gold */
@@ -83,29 +85,31 @@ ol { padding: 0; list-style: none; }
 .top nav a { text-decoration: none; font-size: var(--step-body); }
 @media (hover: hover) and (pointer: fine) { .top nav a:hover { text-decoration: underline; } }
 
-/* Hero: one line, the photograph is the missing word */
-.hero {
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  padding: clamp(150px, 22vh, 230px) max(var(--margin), env(safe-area-inset-right, 0px)) 0 max(var(--margin), env(safe-area-inset-left, 0px));
-  text-align: center;
-}
-.hero-line {
-  width: 100%; display: flex; align-items: baseline; gap: 0.12em;
-  font: 700 var(--step-hero)/0.86 var(--display); letter-spacing: -0.02em; text-transform: uppercase;
-}
-.hero-line .w { white-space: nowrap; }
-.strip { flex: 1; align-self: center; height: 0.7em; min-width: 1.6em; position: relative; overflow: hidden; }
-.strip img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
-.hero-sub { margin-top: 40px; font-size: var(--step-lead); line-height: 1.4; max-width: 40ch; }
-.hero .btn { margin-top: 36px; }
+/* Hero: one real house, full screen; the tagline reads like a film title */
+.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: var(--field); color: #fff; }
+.hero-photo { position: absolute; inset: 0; }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+.hero-scrim { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(8,8,8,0.45) 0, rgba(8,8,8,0) 18%, rgba(8,8,8,0.08) 38%, rgba(8,8,8,0.8) 100%); } /* taste-skill-ignore: neutral scrim under text on a photograph */
+.hero-body { position: relative; width: 100%; padding: 0 max(var(--margin), env(safe-area-inset-right, 0px)) clamp(28px, 5vh, 56px) max(var(--margin), env(safe-area-inset-left, 0px)); }
+.hero h1 { font: 500 var(--step-hero)/0.98 var(--display); letter-spacing: -0.012em; text-wrap: balance; }
+.hero-foot { margin-top: clamp(28px, 4vh, 44px); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3fr); gap: 24px 48px; align-items: end; }
+.hero-sub { font-size: var(--step-lead); line-height: 1.4; max-width: 34ch; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+.hero-link { color: #fff; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.3em; }
+@media (hover: hover) and (pointer: fine) { .hero-link:hover { color: var(--accent); } }
+.hero-caption { justify-self: end; text-align: right; font-size: var(--step-small); color: rgba(255,255,255,0.86); max-width: 24ch; }
+.top.on-photo { color: #fff; }
 
+@media (max-width: 900px) {
+  .hero-foot { grid-template-columns: 1fr; }
+  .hero-caption { justify-self: start; text-align: left; }
+}
 @media (max-width: 760px) {
   .top nav a:not(:last-child) { display: none; }
-  .hero-line { flex-wrap: wrap; justify-content: center; row-gap: 12px; font-size: 19vw; line-height: 0.88; }
-  .hero-line .w:last-child { flex-basis: 100%; }
-  .strip { min-width: 0; flex: 1 1 30%; height: 0.72em; }
-  .hero-sub { margin-top: 32px; font-size: var(--step-body); }
-  .hero { justify-content: center; }
+  .hero { min-height: 92svh; }
+  .hero h1 { font-size: 8.4vw; }
+  .hero-sub { font-size: var(--step-body); }
 }
 
 /* Work: one filmstrip, slides snap to the centre */
@@ -143,7 +147,7 @@ ol { padding: 0; list-style: none; }
 .svc-scrim { position: absolute; inset: 0 0 auto; height: 62%; background: rgba(12, 11, 10, 0.72); }
 .steps-list { position: relative; z-index: 1; margin: 0 auto; padding-top: clamp(48px, 9vh, 96px); width: min(560px, calc(100% - 2 * var(--margin))); text-align: center; display: grid; gap: 10px; }
 .steps-list li { color: var(--on-field-muted); transition: color 300ms ease; }
-.s-title { font: 700 var(--step-lead)/1.1 var(--display); letter-spacing: 0.01em; text-transform: uppercase; }
+.s-title { font: 600 var(--step-lead)/1.15 var(--display); letter-spacing: 0; }
 .steps-list li p { font-size: var(--step-body); color: var(--on-field); max-width: 42ch; margin: 8px auto 6px; }
 .js .steps-list li p { display: none; }
 .js .steps-list li.is-active p { display: block; }
@@ -186,21 +190,21 @@ ol { padding: 0; list-style: none; }
 .panel { display: grid; align-content: center; padding: 28px; font-size: var(--step-small); }
 .p-call { background: var(--ink); color: var(--on-field); gap: 4px; }
 .p-call span { color: var(--on-field-muted); }
-.p-call b { font: 700 var(--step-lead)/1.1 var(--display); color: var(--accent); margin-bottom: 18px; font-variant-numeric: tabular-nums; }
+.p-call b { font: 600 var(--step-lead)/1.1 var(--display); color: var(--accent); margin-bottom: 18px; font-variant-numeric: tabular-nums; }
 .p-season { grid-template-columns: repeat(12, 1fr); align-content: end; gap: 0; position: relative; background: var(--surface); padding: 28px 20px; }
 .p-season .m { text-align: center; font: 700 var(--step-small)/1 var(--display); color: var(--muted); padding-top: 10px; }
 .p-season i { position: absolute; bottom: 64px; }
 .p-season .snow { left: 20px; width: calc((100% - 40px) / 12 * 3); height: 58%; background: var(--ink); }
 .p-season .sea { left: calc(20px + (100% - 40px) / 12 * 5); width: calc((100% - 40px) / 12 * 4); height: 70%; background: var(--accent); }
-.p-season em { position: absolute; top: 28px; font: 700 var(--step-small)/1 var(--display); font-style: normal; text-transform: uppercase; }
+.p-season em { position: absolute; top: 28px; font: 600 var(--step-small)/1 var(--display); font-style: normal; }
 .p-season .l-snow { left: 20px; }
 .p-season .l-sea { left: calc(20px + (100% - 40px) / 12 * 5); }
 .p-doc { background: #faf9f6; align-content: start; gap: 8px; }
-.p-doc b { font: 700 var(--step-lead)/1.05 var(--display); text-transform: uppercase; margin-bottom: 10px; }
+.p-doc b { font: 600 var(--step-lead)/1.05 var(--display); margin-bottom: 10px; }
 .p-doc span { color: var(--muted); padding: 8px 10px; background: var(--surface); }
 .p-doc i { width: 64px; height: 64px; margin-top: auto; justify-self: end; background: var(--accent); clip-path: polygon(0 40%, 100% 0, 100% 60%, 0 100%); }
 .p-pay { background: var(--accent); color: var(--ink); gap: 4px; }
-.p-pay b { font: 700 var(--step-lead)/1.1 var(--display); text-transform: uppercase; margin-bottom: 18px; }
+.p-pay b { font: 600 var(--step-lead)/1.1 var(--display); margin-bottom: 18px; }
 @media (max-width: 760px) {
   .how-btns { display: none; }
   .row { gap: 16px; }
@@ -219,7 +223,7 @@ ol { padding: 0; list-style: none; }
 .m-tile svg { width: 100%; height: 100%; }
 .m-tile .it { fill: var(--ink); }
 .m-tile .dot { fill: var(--bg); stroke: var(--ink); stroke-width: 3; }
-.m-tile .lbl { font: 700 24px var(--display); fill: var(--ink); text-transform: uppercase; }
+.m-tile .lbl { font: 600 24px var(--display); fill: var(--ink); }
 .m-facts { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; font-size: var(--step-small); }
 .m-facts dt { color: var(--muted); }
 .m-facts dd { font-size: var(--step-body); font-weight: 500; }
@@ -235,7 +239,7 @@ ol { padding: 0; list-style: none; }
 .c-photo { position: absolute; inset: 0; overflow: hidden; }
 .c-photo img { width: 100%; height: 100%; object-fit: cover; }
 .card { position: relative; width: 420px; max-width: 100%; background: var(--bg); padding: 32px 32px 0; display: flex; flex-direction: column; }
-.c-title { font: 700 var(--step-lead)/1 var(--display); text-transform: uppercase; letter-spacing: -0.01em; }
+.c-title { font: 600 var(--step-lead)/1.05 var(--display); letter-spacing: 0; }
 .c-intro { margin-top: 12px; color: var(--muted); font-size: var(--step-body); }
 .card label { margin-top: 18px; font-size: var(--step-small); font-weight: 500; }
 .card input, .card select {
@@ -269,7 +273,7 @@ ol { padding: 0; list-style: none; }
 .f-side { display: flex; flex-direction: column; padding: 80px max(var(--margin), env(safe-area-inset-right, 0px)) 24px clamp(24px, 8vw, 120px); }
 .brand.on-dark { color: var(--on-field); }
 .f-menu { margin-top: 48px; display: grid; gap: 18px; justify-items: start; }
-.f-menu a { font: 700 var(--step-head)/0.95 var(--display); text-transform: uppercase; text-decoration: none; transition: transform 240ms var(--ease-out), color 200ms ease; }
+.f-menu a { font: 500 var(--step-head)/0.98 var(--display); text-decoration: none; transition: transform 240ms var(--ease-out), color 200ms ease; }
 @media (hover: hover) and (pointer: fine) {
   .f-menu:hover a { color: var(--on-field-muted); }
   .f-menu a:hover { color: var(--accent); transform: translateX(12px); }
@@ -287,10 +291,18 @@ ol { padding: 0; list-style: none; }
 /* Motion */
 .reveal { opacity: 0; transform: translateY(24px); }
 .reveal.in { opacity: 1; transform: none; transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-out); transition-delay: var(--d, 0ms); }
-.js .strip { clip-path: inset(0 100% 0 0); }
-.js .strip img { transform: scale(1.12); }
-.js.loaded .strip { clip-path: inset(0 0 0 0); transition: clip-path 1100ms var(--ease-in-out) 200ms; }
-.js.loaded .strip img { transform: none; transition: transform 1600ms var(--ease-out) 200ms; }
+.js .hero-photo { clip-path: inset(0 0 100% 0); }
+.js .hero-photo img { transform: scale(1.12); }
+.js.loaded .hero-photo { clip-path: inset(0 0 0 0); transition: clip-path 1100ms var(--ease-in-out); }
+.js.loaded .hero-photo img { transform: none; transition: transform 1800ms var(--ease-out); }
+.js .hero h1, .js .hero-foot > * { opacity: 0; transform: translateY(24px); }
+.js .hero-foot > * { display: block; }
+.js.loaded .hero h1, .js.loaded .hero-foot > * { opacity: 1; transform: none; transition: opacity 800ms var(--ease-out), transform 1000ms var(--ease-out); }
+.js.loaded .hero h1 { transition-delay: 650ms; }
+.js.loaded .hero-foot > :nth-child(1) { transition-delay: 880ms; }
+.js.loaded .hero-foot > :nth-child(2) { transition-delay: 950ms; }
+.js.loaded .hero-foot > :nth-child(3) { transition-delay: 1020ms; }
+.js .hero-foot > .hero-actions { display: flex; }
 .c-photo img { animation: drift 28s ease-in-out infinite alternate; }
 @keyframes drift { from { transform: scale(1.02); } to { transform: scale(1.1) translate(-1.5%, -1%); } }
 @media (hover: hover) and (pointer: fine) {
@@ -300,8 +312,9 @@ ol { padding: 0; list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal, .reveal.in { opacity: 1; transform: none; transition: none; }
-  .js .strip, .js.loaded .strip { clip-path: none; transition: none; }
-  .js .strip img, .js.loaded .strip img { transform: none; transition: none; }
+  .js .hero-photo, .js.loaded .hero-photo { clip-path: none; transition: none; }
+  .js .hero-photo img, .js.loaded .hero-photo img { transform: none; transition: none; }
+  .js .hero h1, .js .hero-foot > * { opacity: 1; transform: none; transition: none; }
   .c-photo img { animation: none; }
   .pair img { transition: opacity 200ms ease; transform: none; }
 }

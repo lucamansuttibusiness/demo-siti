@@ -7,13 +7,13 @@
   <title>Inkasa Property Management</title>
   <meta name="description" content="Inkasa gestisce il tuo affitto breve dall'annuncio al bonifico: annunci, ospiti, pulizie e pagamenti. Oltre 40 immobili in tutta Italia.">
   <link rel="icon" href="img/logo.svg" type="image/svg+xml">
-  <link rel="preload" href="fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/barlow-condensed-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#case">Vai al contenuto</a>
 
-  <header class="top">
+  <header class="top on-photo">
     <a class="brand" href="#" aria-label="Inkasa, inizio pagina">
       <img src="img/logo.svg" alt="" width="47" height="21">
       <span>Inkasa</span>
@@ -27,15 +27,21 @@
   </header>
 
   <main>
-    <!-- Hero: la parola "casa" è una fotografia -->
+    <!-- Hero: una casa vera a tutto schermo, la vostra frase come titolo -->
     <section class="hero" aria-labelledby="titolo">
-      <h1 id="titolo" class="hero-line">
-        <span class="w">La tua</span>
-        <span class="strip"><span class="sr">casa</span><img src="https://inkasa.casa/villa-quercia.jpg" alt="" width="1600" height="320" fetchpriority="high"></span>
-        <span class="w">lavora</span>
-      </h1>
-      <p class="hero-sub">Inkasa Property Management gestisce il tuo affitto breve dall'annuncio al bonifico. Tu incassi, senza pensieri.</p>
-      <a class="btn" href="#contatti">Richiedi una valutazione</a>
+      <div class="hero-photo"><img src="https://inkasa.casa/villa-quercia.jpg" alt="Piscina e giardino di Villa Quercia a Lignano Sabbiadoro" width="1920" height="1280" fetchpriority="high"></div>
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="hero-body">
+        <h1 id="titolo">Il tuo immobile, gestito come se fosse nostro.</h1>
+        <div class="hero-foot">
+          <p class="hero-sub">Gestione completa di affitti brevi per proprietari, in tutta Italia: annunci, ospiti, pulizie e pagamenti.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#contatti">Richiedi una valutazione</a>
+            <a class="hero-link" href="#case">Guarda le case</a>
+          </div>
+          <p class="hero-caption">Villa Quercia, Lignano Sabbiadoro. Gestita da Inkasa.</p>
+        </div>
+      </div>
     </section>
 
     <!-- Case gestite -->
