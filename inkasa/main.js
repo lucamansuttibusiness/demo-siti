@@ -147,7 +147,7 @@
   // ---------- Effetti WebGL: caricati quando servono, fermi fuori schermo ----------
   let fxModule = null
   const pageLoaded = new Promise(r => document.readyState === 'complete' ? r() : addEventListener('load', r))
-  const loadFx = () => fxModule || (fxModule = pageLoaded.then(() => import('./fx/fx.js?v=11')))
+  const loadFx = () => fxModule || (fxModule = pageLoaded.then(() => import('./fx/fx.js?v=12')))
   const scene = (el, start) => {
     let inst = null, visible = false, loading = false
     const sync = () => inst && inst.setAnimate(visible && !document.hidden)
@@ -174,7 +174,7 @@
   })
   scene(document.querySelector('.svc-mark'), liquid(document.querySelector('.svc-mark'), document.getElementById('fx-logo')))
   scene(document.querySelector('.nav-mark'), liquid(document.querySelector('.nav-mark'), document.getElementById('fx-logo-nav'), { res: 320 }))
-  scene(document.querySelector('.f-word'), liquid(document.querySelector('.f-word'), document.getElementById('fx-word'), { res: 1400, speed: 0.22, fill: 1.5 },
+  scene(document.querySelector('.f-word-in'), liquid(document.querySelector('.f-word-in'), document.getElementById('fx-word'), { res: 1400, speed: 0.22, fill: 1.5 },
     m => m.textMask('INKASA', '600 360px "Barlow Condensed"')))
   const glow = document.getElementById('fx-hero-glow')
   scene(hero, m => {

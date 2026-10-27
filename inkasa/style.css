@@ -32,7 +32,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scrollbar-color: var(--muted) var(--bg); overflow-x: clip; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scrollbar-color: var(--muted) var(--bg); overflow-x: clip; background: var(--field); overscroll-behavior-y: none; }
 /* la pagina non deve mai scorrere di lato: niente sporge oltre lo schermo */
 body { overflow-x: clip; max-width: 100%; position: relative; }
 @supports not (overflow: clip) { html, body { overflow-x: hidden; } }
@@ -433,8 +433,9 @@ html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bo
 .c-photo img { will-change: transform; }
 
 /* Footer: the name returns at full width, in liquid gold (Liquid Logo) */
-.f-word { grid-column: 1 / -1; position: relative; aspect-ratio: 4.2 / 1; margin: 0 max(var(--margin), env(safe-area-inset-right, 0px)) 24px; }
-.f-word canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.f-word { grid-column: 1 / -1; min-width: 0; width: 100%; box-sizing: border-box; padding: 0 max(var(--margin), env(safe-area-inset-right, 0px)) 24px max(var(--margin), env(safe-area-inset-left, 0px)); overflow: hidden; }
+.f-word-in { position: relative; display: block; width: 100%; max-width: 100%; aspect-ratio: 3.3 / 1; }
+.f-word canvas { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
 .f-word-fallback { position: absolute; inset: 0; display: grid; place-items: center; font: 600 22vw/1 var(--display); color: var(--accent); opacity: 0; }
-.f-word.no-gl .f-word-fallback { opacity: 1; }
+.f-word-in.no-gl .f-word-fallback { opacity: 1; }
 .f-photo img { will-change: transform; transform: scale(1.12) translateY(var(--fy, 0px)); }
