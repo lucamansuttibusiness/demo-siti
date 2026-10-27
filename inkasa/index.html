@@ -8,7 +8,7 @@
   <meta name="description" content="Inkasa gestisce il tuo affitto breve dall'annuncio al bonifico: annunci, ospiti, pulizie e pagamenti. Oltre 40 immobili in tutta Italia.">
   <link rel="icon" href="img/logo.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/barlow-condensed-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
   <a class="skip" href="#case">Vai al contenuto</a>
@@ -103,52 +103,47 @@
       </div>
     </section>
 
-    <!-- Servizi: una scena ferma, le frasi scorrono -->
-    <section id="servizi" class="svc" aria-labelledby="servizi-h">
-      <div class="svc-pin">
-        <img class="svc-bg" src="https://inkasa.casa/hero-poster.jpg" alt="Interno di un immobile durante un sopralluogo Inkasa" width="1600" height="1000" loading="lazy">
-        <div class="svc-scrim" aria-hidden="true"></div>
-        <ol class="steps-list">
-          <li class="is-active" data-i="0">
-            <h2 id="servizi-h" class="s-title">Pensiamo a tutto noi</h2>
-            <p>Tu decidi quando la casa è libera per te. Il resto lo gestiamo noi, ogni giorno.</p>
+    <!-- Servizi: foto ferma a sinistra, i servizi scorrono a destra -->
+    <section id="servizi" class="svc wrap" aria-labelledby="servizi-h">
+      <div class="svc-head">
+        <h2 id="servizi-h" class="h2">Pensiamo a tutto noi</h2>
+        <p class="lead">Tu decidi quando la casa è libera per te. Il resto lo gestiamo noi, ogni giorno, dall'annuncio al bonifico.</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-stage" aria-hidden="true">
+          <figure class="svc-shot on" data-shot="0"><img src="https://inkasa.casa/villa-quercia.jpg" alt="Villa Quercia, Lignano Sabbiadoro" width="900" height="1125" loading="lazy"><figcaption>Villa Quercia, Lignano Sabbiadoro</figcaption></figure>
+          <figure class="svc-shot" data-shot="1"><img src="https://inkasa.casa/appartamento-neve4.jpg" alt="Appartamento Neve 4, Sauze d'Oulx" width="900" height="1125" loading="lazy"><figcaption>Appartamento Neve 4, Sauze d'Oulx</figcaption></figure>
+          <figure class="svc-shot" data-shot="2"><img src="https://inkasa.casa/soggiorno-montagna.jpg" alt="Soggiorno in montagna, Sauze d'Oulx" width="900" height="1125" loading="lazy"><figcaption>Soggiorno in montagna, Sauze d'Oulx</figcaption></figure>
+          <figure class="svc-shot" data-shot="3"><img src="https://inkasa.casa/villa-tamerici.jpg" alt="Villa Tamerici, Lignano Sabbiadoro" width="900" height="1125" loading="lazy"><figcaption>Villa Tamerici, Lignano Sabbiadoro</figcaption></figure>
+          <figure class="svc-shot" data-shot="4"><img src="https://inkasa.casa/appartamento-neve5.jpg" alt="Appartamento Neve 5, Sauze d'Oulx" width="900" height="1125" loading="lazy"><figcaption>Appartamento Neve 5, Sauze d'Oulx</figcaption></figure>
+        </div>
+        <ol class="svc-list">
+          <li class="svc-item is-active" data-i="0">
+            <img class="svc-inline" src="https://inkasa.casa/villa-quercia.jpg" alt="Villa Quercia, Lignano Sabbiadoro" width="900" height="600" loading="lazy">
+            <h3>Annunci sulle piattaforme</h3>
+            <p>Creiamo l'annuncio, lo pubblichiamo sulle principali piattaforme e teniamo il calendario sempre aggiornato. Foto, testi e regole della casa li curiamo noi.</p>
           </li>
-          <li data-i="1">
-            <h3 class="s-title">Annunci sulle piattaforme</h3>
-            <p>Creiamo e curiamo l'annuncio sulle principali piattaforme, con calendario sempre aggiornato.</p>
+          <li class="svc-item" data-i="1">
+            <img class="svc-inline" src="https://inkasa.casa/appartamento-neve4.jpg" alt="Appartamento Neve 4, Sauze d'Oulx" width="900" height="600" loading="lazy">
+            <h3>Prezzi che seguono la stagione</h3>
+            <p>Il prezzo cambia con la domanda: agosto al mare non vale come novembre, e una settimana bianca non vale come un weekend di aprile.</p>
           </li>
-          <li data-i="2">
-            <h3 class="s-title">Prezzi che seguono la stagione</h3>
-            <p>Il prezzo cambia con la domanda: agosto al mare non vale come novembre.</p>
+          <li class="svc-item" data-i="2">
+            <img class="svc-inline" src="https://inkasa.casa/soggiorno-montagna.jpg" alt="Soggiorno in montagna, Sauze d'Oulx" width="900" height="600" loading="lazy">
+            <h3>Ospiti seguiti di persona</h3>
+            <p>Check-in, check-out e assistenza durante tutto il soggiorno. Gli ospiti hanno sempre qualcuno da chiamare, e tu non devi esserci.</p>
           </li>
-          <li data-i="3">
-            <h3 class="s-title">Ospiti seguiti di persona</h3>
-            <p>Check-in, check-out e assistenza durante il soggiorno.</p>
+          <li class="svc-item" data-i="3">
+            <img class="svc-inline" src="https://inkasa.casa/villa-tamerici.jpg" alt="Villa Tamerici, Lignano Sabbiadoro" width="900" height="600" loading="lazy">
+            <h3>Pulizie tra un soggiorno e l'altro</h3>
+            <p>Coordiniamo pulizie professionali a ogni cambio e teniamo d'occhio la manutenzione, prima che un piccolo guasto diventi una recensione.</p>
           </li>
-          <li data-i="4">
-            <h3 class="s-title">Pulizie tra un soggiorno e l'altro</h3>
-            <p>Coordiniamo pulizie professionali e teniamo d'occhio la manutenzione.</p>
-          </li>
-          <li data-i="5">
-            <h3 class="s-title">Report chiari, ogni mese</h3>
-            <p>Prenotazioni, occupazione e incassi, scritti in modo che si capiscano.</p>
+          <li class="svc-item" data-i="4">
+            <img class="svc-inline" src="https://inkasa.casa/appartamento-neve5.jpg" alt="Appartamento Neve 5, Sauze d'Oulx" width="900" height="600" loading="lazy">
+            <h3>Report chiari, ogni mese</h3>
+            <p>Prenotazioni, occupazione e incassi, scritti in modo che si capiscano. I pagamenti arrivano direttamente a te.</p>
           </li>
         </ol>
-        <div class="pair" aria-hidden="true">
-          <img data-for="1" class="pl" src="https://inkasa.casa/villa-tamerici.jpg" alt="" width="240" height="300" loading="lazy">
-          <img data-for="1" class="pr" src="https://inkasa.casa/appartamento-neve4.jpg" alt="" width="200" height="140" loading="lazy">
-          <img data-for="2" class="pl" src="https://inkasa.casa/villa-quercia.jpg" alt="" width="200" height="140" loading="lazy">
-          <img data-for="2" class="pr" src="https://inkasa.casa/soggiorno-montagna.jpg" alt="" width="240" height="300" loading="lazy">
-          <img data-for="3" class="pl" src="https://inkasa.casa/appartamento-neve5.jpg" alt="" width="240" height="300" loading="lazy">
-          <img data-for="3" class="pr" src="https://inkasa.casa/villa-tamerici.jpg" alt="" width="200" height="140" loading="lazy">
-          <img data-for="4" class="pl" src="https://inkasa.casa/soggiorno-montagna.jpg" alt="" width="200" height="140" loading="lazy">
-          <img data-for="4" class="pr" src="https://inkasa.casa/villa-quercia.jpg" alt="" width="240" height="300" loading="lazy">
-          <img data-for="5" class="pl" src="https://inkasa.casa/appartamento-neve4.jpg" alt="" width="240" height="300" loading="lazy">
-          <img data-for="5" class="pr" src="https://inkasa.casa/appartamento-neve5.jpg" alt="" width="200" height="140" loading="lazy">
-        </div>
-      </div>
-      <div class="markers" aria-hidden="true">
-        <span data-m="0"></span><span data-m="1"></span><span data-m="2"></span><span data-m="3"></span><span data-m="4"></span><span data-m="5"></span>
       </div>
     </section>
 
@@ -300,6 +295,6 @@
     </div>
   </footer>
 
-  <script src="main.js?v=4" defer></script>
+  <script src="main.js?v=5" defer></script>
 </body>
 </html>

@@ -28,22 +28,22 @@
     row.scrollBy({ left: (+b.dataset.row) * 312 * 2, behavior: reduce ? 'auto' : 'smooth' })
   }))
 
-  // Scena dei servizi: la frase attiva scende con lo scroll
-  const items = [...document.querySelectorAll('.steps-list li')]
-  const pics = [...document.querySelectorAll('.pair img')]
+  // Servizi: il servizio a metà schermo accende la sua foto
+  const items = [...document.querySelectorAll('.svc-item')]
+  const shots = [...document.querySelectorAll('.svc-shot')]
   const setActive = i => {
     items.forEach((li, k) => li.classList.toggle('is-active', k === i))
-    pics.forEach(img => img.classList.toggle('on', +img.dataset.for === i))
+    shots.forEach((f, k) => f.classList.toggle('on', k === i))
   }
   const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) setActive(+e.target.dataset.m) })
+    entries.forEach(e => { if (e.isIntersecting) setActive(+e.target.dataset.i) })
   }, { rootMargin: '-45% 0px -45% 0px' })
-  document.querySelectorAll('.markers span').forEach(m => io.observe(m))
+  items.forEach(li => io.observe(li))
 
   // Entrate: titolo, testo, immagine, scaglionati
   if (!reduce) {
     const groups = [
-      '.work-head', '.film-nav', '.how-head', '.about', '.mosaic', '.card', '.f-side'
+      '.work-head', '.film-nav', '.svc-head', '.how-head', '.about', '.mosaic', '.card', '.f-side'
     ]
     const targets = []
     groups.forEach(sel => document.querySelectorAll(sel).forEach(g => {
