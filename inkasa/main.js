@@ -40,10 +40,34 @@
   }, { rootMargin: '-45% 0px -45% 0px' })
   items.forEach(li => io.observe(li))
 
+  // Effetti (ShaderGradient + Liquid Logo): caricati solo quando la sezione servizi si avvicina
+  const svc = document.getElementById('servizi')
+  const mark = document.querySelector('.svc-mark')
+  let fx = null, near = false
+  const syncFx = () => { if (fx) fx.forEach(f => f && f.setAnimate(near && !reduce && !document.hidden)) }
+  const loadFx = () => {
+    if (fx) return
+    fx = []
+    import('./fx/fx.js?v=6').then(async m => {
+      const grad = m.mountGradient(document.getElementById('fx-gradient'))
+      let logo = null
+      try { logo = await m.mountLiquidLogo(document.getElementById('fx-logo'), new URL('img/logo-mask.svg', document.baseURI).href) } catch (e) { console.warn(e) }
+      if (!logo) mark.classList.add('no-gl')
+      fx = [grad, logo]
+      syncFx()
+    }).catch(() => mark.classList.add('no-gl'))
+  }
+  new IntersectionObserver(([e]) => {
+    near = e.isIntersecting
+    if (near) loadFx()
+    syncFx()
+  }, { rootMargin: '600px 0px' }).observe(svc)
+  document.addEventListener('visibilitychange', syncFx)
+
   // Entrate: titolo, testo, immagine, scaglionati
   if (!reduce) {
     const groups = [
-      '.work-head', '.film-nav', '.svc-head', '.how-head', '.about', '.mosaic', '.card', '.f-side'
+      '.work-head', '.film-nav', '.svc-intro', '.how-head', '.about', '.mosaic', '.card', '.f-side'
     ]
     const targets = []
     groups.forEach(sel => document.querySelectorAll(sel).forEach(g => {

@@ -8,7 +8,7 @@
   <meta name="description" content="Inkasa gestisce il tuo affitto breve dall'annuncio al bonifico: annunci, ospiti, pulizie e pagamenti. Oltre 40 immobili in tutta Italia.">
   <link rel="icon" href="img/logo.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/barlow-condensed-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <a class="skip" href="#case">Vai al contenuto</a>
@@ -104,10 +104,15 @@
     </section>
 
     <!-- Servizi: foto ferma a sinistra, i servizi scorrono a destra -->
-    <section id="servizi" class="svc wrap" aria-labelledby="servizi-h">
+    <section id="servizi" class="svc" aria-labelledby="servizi-h">
+      <div class="svc-bg" aria-hidden="true"><div class="svc-bg-pin" id="fx-gradient"></div></div>
+      <div class="svc-inner wrap">
       <div class="svc-head">
-        <h2 id="servizi-h" class="h2">Pensiamo a tutto noi</h2>
-        <p class="lead">Tu decidi quando la casa è libera per te. Il resto lo gestiamo noi, ogni giorno, dall'annuncio al bonifico.</p>
+        <div class="svc-mark"><canvas id="fx-logo" width="1600" height="900" aria-label="Logo Inkasa in oro liquido" role="img"></canvas><img class="svc-mark-fallback" src="img/logo.svg" alt="" width="469" height="206"></div>
+        <div class="svc-intro">
+          <h2 id="servizi-h" class="h2">Pensiamo a tutto noi</h2>
+          <p class="lead">Tu decidi quando la casa è libera per te. Il resto lo gestiamo noi, ogni giorno, dall'annuncio al bonifico.</p>
+        </div>
       </div>
       <div class="svc-grid">
         <div class="svc-stage" aria-hidden="true">
@@ -144,6 +149,7 @@
             <p>Prenotazioni, occupazione e incassi, scritti in modo che si capiscano. I pagamenti arrivano direttamente a te.</p>
           </li>
         </ol>
+      </div>
       </div>
     </section>
 
@@ -295,6 +301,6 @@
     </div>
   </footer>
 
-  <script src="main.js?v=5" defer></script>
+  <script src="main.js?v=6" defer></script>
 </body>
 </html>
