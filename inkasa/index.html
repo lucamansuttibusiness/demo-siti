@@ -8,7 +8,8 @@
   <meta name="description" content="Inkasa gestisce il tuo affitto breve dall'annuncio al bonifico: annunci, ospiti, pulizie e pagamenti. Oltre 40 immobili in tutta Italia.">
   <link rel="icon" href="img/logo.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/barlow-condensed-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="glass/glass.css">
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
   <a class="skip" href="#case">Vai al contenuto</a>
@@ -46,13 +47,14 @@
 
     <!-- Case gestite -->
     <section id="case" class="work" aria-labelledby="case-h">
+      <div class="work-pin">
       <div class="wrap work-head">
         <h2 id="case-h" class="h2">Case che gestiamo</h2>
         <p class="lead">Oltre 40 immobili in tutta Italia, dal mare di Lignano Sabbiadoro alle piste di Sauze d'Oulx. Qui sotto alcune delle case che seguiamo oggi, con il voto che gli ospiti hanno lasciato.</p>
       </div>
       <div class="film" tabindex="0" aria-label="Case gestite, scorri in orizzontale">
         <figure class="slide">
-          <img src="https://inkasa.casa/villa-quercia.jpg" alt="Villa Quercia con piscina e giardino a Lignano Sabbiadoro" width="1046" height="600" loading="lazy">
+          <div class="slide-media"><img src="https://inkasa.casa/villa-quercia.jpg" alt="Villa Quercia con piscina e giardino a Lignano Sabbiadoro" width="1046" height="600" loading="lazy"><span class="slide-score" aria-hidden="true">4,86</span></div>
           <figcaption class="facts">
             <span class="f-name">Villa Quercia <em>Lignano Sabbiadoro</em></span>
             <span>Voto ospiti 4,86</span>
@@ -61,7 +63,7 @@
           </figcaption>
         </figure>
         <figure class="slide">
-          <img src="https://inkasa.casa/villa-tamerici.jpg" alt="Villa Tamerici con giardino a Lignano Sabbiadoro" width="1046" height="600" loading="lazy">
+          <div class="slide-media"><img src="https://inkasa.casa/villa-tamerici.jpg" alt="Villa Tamerici con giardino a Lignano Sabbiadoro" width="1046" height="600" loading="lazy"><span class="slide-score" aria-hidden="true">4,89</span></div>
           <figcaption class="facts">
             <span class="f-name">Villa Tamerici <em>Lignano Sabbiadoro</em></span>
             <span>Voto ospiti 4,89</span>
@@ -70,7 +72,7 @@
           </figcaption>
         </figure>
         <figure class="slide">
-          <img src="https://inkasa.casa/appartamento-neve4.jpg" alt="Appartamento Neve 4 a Sauze d'Oulx" width="1046" height="600" loading="lazy">
+          <div class="slide-media"><img src="https://inkasa.casa/appartamento-neve4.jpg" alt="Appartamento Neve 4 a Sauze d'Oulx" width="1046" height="600" loading="lazy"><span class="slide-score" aria-hidden="true">5,0</span></div>
           <figcaption class="facts">
             <span class="f-name">Appartamento Neve 4 <em>Sauze d'Oulx</em></span>
             <span>Voto ospiti 5,0</span>
@@ -79,7 +81,7 @@
           </figcaption>
         </figure>
         <figure class="slide">
-          <img src="https://inkasa.casa/appartamento-neve5.jpg" alt="Appartamento Neve 5 a Sauze d'Oulx" width="1046" height="600" loading="lazy">
+          <div class="slide-media"><img src="https://inkasa.casa/appartamento-neve5.jpg" alt="Appartamento Neve 5 a Sauze d'Oulx" width="1046" height="600" loading="lazy"><span class="slide-score" aria-hidden="true">4,75</span></div>
           <figcaption class="facts">
             <span class="f-name">Appartamento Neve 5 <em>Sauze d'Oulx</em></span>
             <span>Voto ospiti 4,75</span>
@@ -88,7 +90,7 @@
           </figcaption>
         </figure>
         <figure class="slide">
-          <img src="https://inkasa.casa/soggiorno-montagna.jpg" alt="Soggiorno tranquillo in montagna a Sauze d'Oulx" width="1046" height="600" loading="lazy">
+          <div class="slide-media"><img src="https://inkasa.casa/soggiorno-montagna.jpg" alt="Soggiorno tranquillo in montagna a Sauze d'Oulx" width="1046" height="600" loading="lazy"><span class="slide-score" aria-hidden="true">4,55</span></div>
           <figcaption class="facts">
             <span class="f-name">Soggiorno in montagna <em>Sauze d'Oulx</em></span>
             <span>Voto ospiti 4,55</span>
@@ -97,9 +99,11 @@
           </figcaption>
         </figure>
       </div>
+      <div class="wrap"><div class="work-bar" aria-hidden="true"><span></span></div></div>
       <div class="wrap film-nav">
         <button class="sq" type="button" data-film="-1" aria-label="Casa precedente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" /></svg></button>
         <button class="sq" type="button" data-film="1" aria-label="Casa successiva"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></button>
+      </div>
       </div>
     </section>
 
@@ -153,62 +157,26 @@
       </div>
     </section>
 
-    <!-- Come funziona: dalla chiamata al bonifico -->
-    <section id="come" class="how" aria-labelledby="come-h">
-      <div class="wrap how-head">
-        <h2 id="come-h" class="h2">Dalla chiamata al bonifico</h2>
-        <div class="how-btns">
-          <button class="sq" type="button" data-row="-1" aria-label="Indietro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" /></svg></button>
-          <button class="sq" type="button" data-row="1" aria-label="Avanti"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></button>
+    <!-- Come funziona: l'edificio Inkasa si costruisce un piano per passaggio -->
+    <section id="come" class="build" aria-labelledby="come-h" style="--steps:8">
+      <div class="build-pin">
+        <div class="build-canvas" id="fx-terraces" aria-hidden="true"><img class="build-fallback" src="img/logo.svg" alt="" width="469" height="206"></div>
+        <div class="build-ui wrap">
+          <h2 id="come-h" class="h2">Dalla chiamata al bonifico</h2>
+          <ol class="b-steps" aria-label="Le otto fasi della gestione">
+          <li class="b-step is-on" data-s="0"><h3>Prima ci sentiamo</h3><p>Una telefonata per conoscere te e l'immobile: dove si trova, com'è, cosa ti aspetti.</p></li>
+          <li class="b-step" data-s="1"><h3>Poi veniamo a vederlo</h3><p>Il sopralluogo: spazi, arredi e quello che serve per accogliere gli ospiti.</p></li>
+          <li class="b-step" data-s="2"><h3>Ti diamo i numeri</h3><p>Una proiezione di quanto può rendere, in base a zona, stagione e posti letto.</p></li>
+          <li class="b-step" data-s="3"><h3>Mettiamo tutto per iscritto</h3><p>Un contratto chiaro: cosa facciamo noi e cosa resta a te.</p></li>
+          <li class="b-step" data-s="4"><h3>Arriva il fotografo</h3><p>Foto professionali: sono la prima cosa che l'ospite guarda.</p></li>
+          <li class="b-step" data-s="5"><h3>L'annuncio va online</h3><p>Lo scriviamo, lo pubblichiamo e lo ottimizziamo sulle principali piattaforme.</p></li>
+          <li class="b-step" data-s="6"><h3>Arrivano gli ospiti</h3><p>Check-in, assistenza, pulizie e check-out. Tu non devi esserci.</p></li>
+          <li class="b-step" data-s="7"><h3>Tu incassi</h3><p>I pagamenti arrivano direttamente a te, con il report delle prenotazioni.</p></li>
+          </ol>
+          <div class="b-count" aria-hidden="true"><span class="b-now">1</span> di 8</div>
+          <div class="b-bar" aria-hidden="true"><span></span></div>
         </div>
       </div>
-      <div class="wrap"><div class="bar" aria-hidden="true"><span></span></div></div>
-      <ol class="row" tabindex="0" aria-label="Le fasi della gestione, scorri in orizzontale">
-        <li class="moment" style="--gap:96px">
-          <h3>Prima ci sentiamo</h3>
-          <p>Una telefonata per conoscere te e l'immobile: dove si trova, com'è, cosa ti aspetti.</p>
-          <div class="panel p-call" aria-hidden="true"><span>Luca</span><b>331 941 9162</b><span>Andrea</span><b>351 908 0306</b></div>
-        </li>
-        <li class="moment" style="--gap:40px">
-          <h3>Poi veniamo a vederlo</h3>
-          <p>Il sopralluogo: spazi, arredi e quello che serve per accogliere gli ospiti.</p>
-          <img src="https://inkasa.casa/hero-poster.jpg" alt="Un interno visto durante il sopralluogo" width="280" height="350" loading="lazy">
-        </li>
-        <li class="moment" style="--gap:136px">
-          <h3>Ti diamo i numeri</h3>
-          <p>Una proiezione di quanto può rendere, in base a zona, stagione e posti letto.</p>
-          <div class="panel p-season" aria-hidden="true">
-            <span class="m">G</span><span class="m">F</span><span class="m">M</span><span class="m">A</span><span class="m">M</span><span class="m">G</span><span class="m">L</span><span class="m">A</span><span class="m">S</span><span class="m">O</span><span class="m">N</span><span class="m">D</span>
-            <i class="snow"></i><i class="sea"></i>
-            <em class="l-snow">Neve</em><em class="l-sea">Mare</em>
-          </div>
-        </li>
-        <li class="moment" style="--gap:64px">
-          <h3>Mettiamo tutto per iscritto</h3>
-          <p>Un contratto chiaro: cosa facciamo noi e cosa resta a te.</p>
-          <div class="panel p-doc" aria-hidden="true"><b>Contratto di gestione</b><span>Proprietario</span><span>Immobile</span><span>Servizi inclusi</span><span>Durata</span><i></i></div>
-        </li>
-        <li class="moment" style="--gap:112px">
-          <h3>Arriva il fotografo</h3>
-          <p>Foto professionali: sono la prima cosa che l'ospite guarda.</p>
-          <img src="https://inkasa.casa/appartamento-neve4.jpg" alt="Foto professionale dell'Appartamento Neve 4" width="280" height="350" loading="lazy">
-        </li>
-        <li class="moment" style="--gap:48px">
-          <h3>L'annuncio va online</h3>
-          <p>Lo scriviamo, lo pubblichiamo e lo ottimizziamo sulle principali piattaforme.</p>
-          <img src="https://inkasa.casa/villa-tamerici.jpg" alt="Villa Tamerici, una delle case pubblicate" width="280" height="350" loading="lazy">
-        </li>
-        <li class="moment" style="--gap:128px">
-          <h3>Arrivano gli ospiti</h3>
-          <p>Check-in, assistenza, pulizie e check-out. Tu non devi esserci.</p>
-          <img src="https://inkasa.casa/soggiorno-montagna.jpg" alt="Soggiorno in montagna pronto per gli ospiti" width="280" height="350" loading="lazy">
-        </li>
-        <li class="moment" style="--gap:72px">
-          <h3>Tu incassi</h3>
-          <p>I pagamenti arrivano direttamente a te, con il report delle prenotazioni.</p>
-          <div class="panel p-pay" aria-hidden="true"><span>Bonifico</span><b>Al proprietario</b><span>Causale</span><b>Incassi del mese</b></div>
-        </li>
-      </ol>
     </section>
 
     <!-- Chi siamo -->
@@ -229,6 +197,7 @@
               <text x="233.8" y="73.6" class="lbl">Lignano</text>
               <text x="8" y="122" class="lbl" text-anchor="end">Sauze d'Oulx</text>
             </svg>
+            <div class="m-glass" aria-hidden="true"></div>
           </div>
           <dl class="m-facts">
             <div><dt>Immobili gestiti</dt><dd>Oltre 40</dd></div>
@@ -285,7 +254,7 @@
   <footer class="foot">
     <div class="f-photo"><img src="https://inkasa.casa/villa-quercia.jpg" alt="La piscina di Villa Quercia" width="900" height="1000" loading="lazy"></div>
     <div class="f-side">
-      <a class="brand on-dark" href="#"><img src="img/logo.svg" alt="" width="47" height="21"><span>Inkasa</span></a>
+      <a class="f-mark" href="#" aria-label="Inkasa, torna all'inizio"><canvas id="fx-logo-foot" width="1600" height="900"></canvas><img class="f-mark-fallback" src="img/logo.svg" alt="" width="469" height="206"></a>
       <nav class="f-menu" aria-label="Menu in fondo">
         <a href="#case">Case</a>
         <a href="#servizi">Servizi</a>
@@ -301,6 +270,9 @@
     </div>
   </footer>
 
-  <script src="main.js?v=6" defer></script>
+  <script src="glass/html2canvas.min.js" defer></script>
+  <script src="glass/container.js" defer></script>
+  <script src="glass/expose.js" defer></script>
+  <script src="main.js?v=8" defer></script>
 </body>
 </html>

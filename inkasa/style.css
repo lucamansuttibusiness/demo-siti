@@ -140,6 +140,29 @@ ol { padding: 0; list-style: none; }
   .film-nav { justify-content: flex-start; }
 }
 
+
+/* Houses, pinned: vertical scroll drives the strip sideways */
+.work-pin { display: flex; flex-direction: column; }
+.slide-media { position: relative; overflow: hidden; background: var(--surface); }
+.slide-media img { transform: scale(1.12) translateX(var(--px, 0px)); will-change: transform; }
+.slide-score { position: absolute; left: 20px; bottom: 12px; font: 600 clamp(3rem, 2rem + 4vw, 6rem)/1 var(--display); color: #fff; letter-spacing: -0.02em; text-shadow: 0 2px 24px rgba(0,0,0,0.35); }
+.f-name { font: 600 var(--step-lead)/1.1 var(--display); }
+.f-name em { font: 400 var(--step-body)/1.4 var(--text); }
+.work.is-pinned { height: var(--pin-h, 400vh); }
+.work.is-pinned .work-pin { position: sticky; top: 0; height: 100svh; justify-content: center; overflow: hidden; }
+.work.is-pinned .work-head { margin-bottom: 28px; }
+.work.is-pinned .work-head .h2 { font-size: clamp(2.75rem, 1rem + 4vw, 4.5rem); }
+.work.is-pinned .facts { margin-top: 16px; }
+.work.is-pinned .film { padding: 0 calc((100vw - min(62vw, calc((100svh - 400px) * 16 / 9))) / 2); }
+.work.is-pinned .film { overflow: hidden; scroll-snap-type: none; }
+.work.is-pinned .slide { flex-basis: min(62vw, calc((100svh - 400px) * 16 / 9)); }
+.work.is-pinned .slide-media { aspect-ratio: 16 / 9; }
+.work.is-pinned .slide-media img { aspect-ratio: auto; width: 100%; height: 100%; }
+.work.is-pinned .film-nav { display: none; }
+.work-bar { height: 6px; margin-top: 32px; background: var(--surface); position: relative; overflow: hidden; display: none; }
+.work.is-pinned .work-bar { display: block; }
+.work-bar span { position: absolute; inset: 0; background: var(--ink); transform-origin: left; transform: scaleX(0); }
+
 /* Services: the one dark moment. Moving gold field (ShaderGradient), the mark in liquid gold (Liquid Logo) */
 .svc { position: relative; margin-top: var(--gap-section); background: var(--field); color: var(--on-field); isolation: isolate; }
 .svc-bg { position: absolute; inset: 0; z-index: -1; }
@@ -180,45 +203,32 @@ ol { padding: 0; list-style: none; }
   .svc-inline { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; margin-bottom: 20px; background: #222; }
 }
 
-/* How it works: a row of moments, dragged sideways */
-.how { padding-top: var(--gap-section); }
-.how-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; }
-.how-btns { display: flex; gap: 10px; }
-.bar { margin-top: 28px; height: 6px; background: var(--surface); position: relative; overflow: hidden; }
-.bar span { position: absolute; inset: 0; background: var(--ink); transform-origin: left; transform: scaleX(0.15); }
-.row {
-  margin-top: 40px; display: flex; gap: 32px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none;
-  padding: 8px max(var(--margin), env(safe-area-inset-right, 0px)) 8px max(var(--margin), env(safe-area-inset-left, 0px));
-  scroll-padding: 0 var(--margin);
-}
-.row::-webkit-scrollbar { display: none; }
-.moment { flex: 0 0 280px; scroll-snap-align: start; display: flex; flex-direction: column; }
-.moment h3 { font: 500 var(--step-body)/1.3 var(--text); }
-.moment p { margin-top: 8px; color: var(--muted); font-size: var(--step-body); line-height: 1.5; min-height: 4.5em; }
-.moment img, .panel { margin-top: var(--gap); width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--surface); }
-.panel { display: grid; align-content: center; padding: 28px; font-size: var(--step-small); }
-.p-call { background: var(--ink); color: var(--on-field); gap: 4px; }
-.p-call span { color: var(--on-field-muted); }
-.p-call b { font: 600 var(--step-lead)/1.1 var(--display); color: var(--accent); margin-bottom: 18px; font-variant-numeric: tabular-nums; }
-.p-season { grid-template-columns: repeat(12, 1fr); align-content: end; gap: 0; position: relative; background: var(--surface); padding: 28px 20px; }
-.p-season .m { text-align: center; font: 700 var(--step-small)/1 var(--display); color: var(--muted); padding-top: 10px; }
-.p-season i { position: absolute; bottom: 64px; }
-.p-season .snow { left: 20px; width: calc((100% - 40px) / 12 * 3); height: 58%; background: var(--ink); }
-.p-season .sea { left: calc(20px + (100% - 40px) / 12 * 5); width: calc((100% - 40px) / 12 * 4); height: 70%; background: var(--accent); }
-.p-season em { position: absolute; top: 28px; font: 600 var(--step-small)/1 var(--display); font-style: normal; }
-.p-season .l-snow { left: 20px; }
-.p-season .l-sea { left: calc(20px + (100% - 40px) / 12 * 5); }
-.p-doc { background: #faf9f6; align-content: start; gap: 8px; }
-.p-doc b { font: 600 var(--step-lead)/1.05 var(--display); margin-bottom: 10px; }
-.p-doc span { color: var(--muted); padding: 8px 10px; background: var(--surface); }
-.p-doc i { width: 64px; height: 64px; margin-top: auto; justify-self: end; background: var(--accent); clip-path: polygon(0 40%, 100% 0, 100% 60%, 0 100%); }
-.p-pay { background: var(--accent); color: var(--ink); gap: 4px; }
-.p-pay b { font: 600 var(--step-lead)/1.1 var(--display); margin-bottom: 18px; }
-@media (max-width: 760px) {
-  .how-btns { display: none; }
-  .row { gap: 16px; }
-  .moment { flex-basis: 72vw; }
-  .moment img, .panel { margin-top: calc(var(--gap) * 0.45); }
+/* How it works: pinned stage, the Inkasa building rises one floor per step (React Three Fiber) */
+.build { position: relative; height: calc(var(--steps) * 70vh + 100vh); margin-top: var(--gap-section); }
+.build-pin { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.build-canvas { position: absolute; inset: 0 0 0 30%; }
+.build-canvas canvas { display: block; }
+.build-fallback { position: absolute; inset: 30% 10%; width: 80%; height: 40%; object-fit: contain; opacity: 0; }
+.build-canvas.no-gl .build-fallback { opacity: 1; }
+.build-ui { position: relative; z-index: 1; height: 100%; display: grid; grid-template-rows: auto 1fr auto auto; padding-block: clamp(72px, 12vh, 120px) clamp(28px, 6vh, 56px); pointer-events: none; }
+.build-ui .h2 { max-width: 9ch; }
+.b-steps { position: relative; align-self: end; max-width: 30rem; min-height: 9.5em; }
+.b-step { position: absolute; inset: auto 0 0 0; opacity: 0; transform: translateY(18px); transition: opacity 450ms ease, transform 600ms var(--ease-out); }
+.b-step.is-on { opacity: 1; transform: none; }
+.b-step h3 { font: 600 var(--step-lead)/1.15 var(--display); font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.75rem); }
+.b-step p { margin-top: 12px; color: var(--muted); max-width: 36ch; }
+.b-count { margin-top: 28px; font: 600 var(--step-body)/1 var(--display); font-variant-numeric: tabular-nums; }
+.b-now { color: var(--accent); }
+.b-bar { margin-top: 14px; height: 6px; background: var(--surface); position: relative; overflow: hidden; }
+.b-bar span { position: absolute; inset: 0; background: var(--ink); transform-origin: left; transform: scaleX(0.125); transition: transform 500ms var(--ease-out); }
+html:not(.js) .build { height: auto; }
+html:not(.js) .build-pin { position: static; height: auto; }
+html:not(.js) .b-steps { min-height: 0; }
+html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bottom: 24px; }
+@media (max-width: 900px) {
+  .build-canvas { inset: 18% 0 34% 0; }
+  .build-ui .h2 { max-width: none; }
+  .b-steps { max-width: none; }
 }
 
 /* About: wide photo, gold tile, facts */
@@ -242,6 +252,28 @@ ol { padding: 0; list-style: none; }
   .m-note { position: static; width: auto; padding: 20px 0 0; }
   .m-tile { aspect-ratio: 3 / 2; }
 }
+
+
+/* About: Liquid Glass cards refract the gold map */
+.mosaic { grid-template-columns: 7fr 5fr; }
+.m-tile { position: relative; aspect-ratio: 4 / 5; }
+.m-glass { position: absolute; left: 18px; right: 18px; bottom: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.m-glass .glass-container { display: block; padding: 0; isolation: isolate; }
+.m-glass .g-in { padding: 16px 18px; color: var(--ink); }
+.m-glass .g-in span { display: block; font-size: var(--step-small); }
+.m-glass .g-in b { display: block; font: 600 var(--step-lead)/1.1 var(--display); margin-top: 4px; }
+.m-side.glass-ready .m-facts { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media (max-width: 900px) { .mosaic { grid-template-columns: 1fr; } .m-tile { aspect-ratio: 1; } .m-glass { display: none; } }
+
+/* Footer: the mark in liquid gold */
+.f-mark { display: block; position: relative; width: min(420px, 100%); aspect-ratio: 16 / 9; margin-left: -4%; }
+.f-mark canvas, .f-mark-fallback { position: absolute; inset: 0; width: 100%; height: 100%; }
+.f-mark-fallback { object-fit: contain; padding: 8%; opacity: 0; }
+.f-mark.no-gl .f-mark-fallback { opacity: 1; }
+.f-menu { margin-top: 24px; }
+
+/* Hero: the photograph drifts slower than the page */
+.hero-photo img { will-change: transform; }
 
 /* Contact: one card on a photograph */
 .contact { position: relative; margin-top: var(--gap-section); min-height: 100svh; display: flex; justify-content: flex-end; align-items: flex-start; padding: 60px max(60px, env(safe-area-inset-right, 0px)) 60px var(--margin); overflow: hidden; }
@@ -303,7 +335,8 @@ ol { padding: 0; list-style: none; }
 .js .hero-photo { clip-path: inset(0 0 100% 0); }
 .js .hero-photo img { transform: scale(1.12); }
 .js.loaded .hero-photo { clip-path: inset(0 0 0 0); transition: clip-path 1100ms var(--ease-in-out); }
-.js.loaded .hero-photo img { transform: none; transition: transform 1800ms var(--ease-out); }
+.js.loaded .hero-photo img { transform: translateY(var(--hy, 0px)) scale(var(--hs, 1)); transition: transform 1800ms var(--ease-out); }
+.js.loaded.scrolled .hero-photo img { transition: none; }
 .js .hero h1, .js .hero-foot > * { opacity: 0; transform: translateY(24px); }
 .js .hero-foot > * { display: block; }
 .js.loaded .hero h1, .js.loaded .hero-foot > * { opacity: 1; transform: none; transition: opacity 800ms var(--ease-out), transform 1000ms var(--ease-out); }
@@ -327,4 +360,5 @@ ol { padding: 0; list-style: none; }
   .c-photo img { animation: none; }
   .svc-shot img, .svc-shot.on img { transition: none; transform: none; clip-path: none; }
   .svc-item h3 { transition: color 200ms ease; transform: none !important; }
+  .b-step { transition: opacity 150ms ease; transform: none; }
 }
