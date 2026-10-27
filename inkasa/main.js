@@ -147,7 +147,7 @@
   // ---------- Effetti WebGL: caricati quando servono, fermi fuori schermo ----------
   let fxModule = null
   const pageLoaded = new Promise(r => document.readyState === 'complete' ? r() : addEventListener('load', r))
-  const loadFx = () => fxModule || (fxModule = pageLoaded.then(() => import('./fx/fx.js?v=12')))
+  const loadFx = () => fxModule || (fxModule = pageLoaded.then(() => import('./fx/fx.js?v=13')))
   const scene = (el, start) => {
     let inst = null, visible = false, loading = false
     const sync = () => inst && inst.setAnimate(visible && !document.hidden)
@@ -183,7 +183,7 @@
     return { setAnimate: on => g.setAnimate(on && !reduce) }
   })
   scene(build, m => {
-    terraces = m.mountTerraces(document.getElementById('fx-terraces'), { reduce })
+    terraces = m.mountBuilding(document.getElementById('fx-terraces'), { reduce })
     terraces.setStep(Math.max(0, step))
     return terraces
   })
