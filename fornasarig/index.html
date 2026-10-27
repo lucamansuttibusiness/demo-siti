@@ -4,569 +4,119 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fornasarig · Sedute contract dal 1878</title>
+<meta name="description" content="Fornasarig, Manzano: sedie, poltrone, sgabelli e tavoli contract dal 1878. Prodotti in Italia, testati CATAS, garantiti 10 anni.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Fornasarig, Manzano (UD): sedie, poltrone, sgabelli e tavoli per hotel, ristoranti, sale conferenze e università. Prodotti in Italia dal 1878, testati CATAS, garantiti 10 anni.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-/* Impostazione: sito istituzionale chiaro, una sola famiglia di caratteri, contrasti AA/AAA ovunque. */
-:root{
-  --bg:#f7f6f3;        /* fondo */
-  --surface:#ecebe6;   /* fasce secondarie */
-  --ink:#171512;       /* testo principale  (17:1 sul fondo) */
-  --ink-2:#4a463f;     /* testo secondario  (8.9:1 sul fondo, 8:1 su surface) */
-  --accent:#5a3d22;    /* rovere scuro: pulsanti e link (9.6:1 sul fondo) */
-  --on-accent:#ffffff;
-  --dark:#1c1915;      /* fascia scura */
-  --on-dark:#f3f1ec;   /* 16:1 */
-  --on-dark-2:#c2bcb1; /* 9.3:1 */
-  --font:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --s-sm:.9375rem; --s-body:1.0625rem; --s-lead:clamp(1.125rem,1rem + .4vw,1.3125rem);
-  --s-h3:clamp(1.25rem,1.1rem + .5vw,1.5rem); --s-h2:clamp(2rem,1.4rem + 2.4vw,3.25rem); --s-h1:clamp(2.6rem,1.6rem + 4vw,5rem);
-  --max:1320px; --gutter:max(20px,min(4vw,48px));
-  color-scheme:light;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:var(--s-body);line-height:1.55;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%;height:auto;background:var(--surface)}
-a{color:var(--accent);text-underline-offset:3px}
-a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-h1,h2,h3{font-weight:500;letter-spacing:-.02em;line-height:1.08;margin:0;text-wrap:balance}
-h1{font-size:var(--s-h1)} h2{font-size:var(--s-h2)} h3{font-size:var(--s-h3);letter-spacing:-.01em;line-height:1.2}
-p{margin:0}
-.wrap{max-width:var(--max);margin-inline:auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
-section{padding-block:clamp(80px,10vw,140px)}
-.lead{font-size:var(--s-lead);color:var(--ink-2);max-width:60ch;line-height:1.5}
-.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
-.btn{display:inline-flex;align-items:center;gap:.6em;background:var(--accent);color:var(--on-accent);text-decoration:none;font-weight:500;font-size:var(--s-sm);padding:.95em 1.5em;border-radius:0;transition:background .2s}
-.btn:hover{background:var(--ink)}
-.btn.ghost{background:transparent;color:var(--ink);padding-inline:0}
-.btn.ghost:hover{color:var(--accent)}
-.more{font-weight:500;font-size:var(--s-sm);text-decoration:none;display:inline-flex;gap:.4em}
-.more:hover{text-decoration:underline}
-
-/* header */
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--bg);transition:box-shadow .2s}
-.top.scrolled{box-shadow:0 1px 0 rgba(23,21,18,.08)}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
-.mark{font-weight:600;font-size:1.25rem;letter-spacing:.18em;text-decoration:none;color:var(--ink)}
-.menu{display:flex;align-items:center;gap:clamp(16px,2vw,30px);font-size:var(--s-sm)}
-.menu a{color:var(--ink);text-decoration:none}
-.menu a:hover{color:var(--accent);text-decoration:underline}
-.menu .lang{color:var(--ink-2)}
-.menu .lang b{color:var(--ink);font-weight:600}
-.burger{display:none;background:none;border:0;font:inherit;font-weight:500;color:var(--ink);padding:10px 0;cursor:pointer}
-
-/* hero */
-.hero{padding-block:clamp(32px,4vw,56px) 0}
-.hero-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,72px);align-items:center}
-.hero h1{max-width:11ch}
-.hero .lead{margin-top:28px}
-.hero .ctas{display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin-top:36px}
-.hero figure{margin:0}
-.hero figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.facts{background:var(--surface);margin-top:clamp(48px,6vw,88px)}
-.facts .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-block:40px}
-.facts b{display:block;font-size:clamp(1.75rem,1.3rem + 1.6vw,2.5rem);font-weight:500;letter-spacing:-.02em;line-height:1.1}
-.facts span{color:var(--ink-2);font-size:var(--s-sm)}
-
-/* link 60x */
-.feature{background:var(--dark);color:var(--on-dark)}
-.feature a{color:var(--on-dark)}
-.feature-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:center}
-.feature figure{margin:0}
-.feature figure{background:#fff;display:flex;align-items:center;justify-content:center;padding:clamp(16px,3vw,40px)}
-.feature figure img{width:100%;height:auto;max-height:78vh;object-fit:contain;background:#fff}
-.feature .lead{color:var(--on-dark-2);margin-top:20px}
-.feature .by{color:var(--on-dark-2);font-size:var(--s-sm);margin-top:12px}
-.spec{display:grid;grid-template-columns:auto 1fr;gap:12px 24px;margin:32px 0;font-size:var(--s-sm)}
-.spec dt{color:var(--on-dark-2)}
-.spec dd{margin:0}
-.feature .btn{background:var(--on-dark);color:var(--dark)}
-.feature .btn:hover{background:#d8d2c7}
-
-/* ambienti */
-.envs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px 32px}
-.env{display:flex;flex-direction:column;gap:14px}
-.env .ph{overflow:hidden}
-.env img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .6s ease}
-.env:hover img{transform:scale(1.03)}
-.env p{color:var(--ink-2)}
-
-/* collezioni */
-.coll{background:var(--surface)}
-.featured{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-bottom:64px}
-.prod{text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:12px}
-.prod img{width:100%;aspect-ratio:4/5;object-fit:contain;background:#fff;padding:12px;transition:opacity .2s}
-.prod:hover img{opacity:.88}
-.prod b{font-weight:500;font-size:var(--s-h3)}
-.prod span{color:var(--ink-2);font-size:var(--s-sm);margin-top:-8px}
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:var(--s-body);min-width:620px}
-caption{text-align:left;font-size:var(--s-h3);font-weight:500;padding-bottom:16px}
-th{text-align:left;font-weight:500;font-size:var(--s-sm);color:var(--ink-2);padding:12px 16px;background:var(--bg)}
-td{padding:14px 16px;border-top:1px solid #d6d3cb;vertical-align:top}
-td:first-child{font-weight:500}
-td a{font-size:var(--s-sm);font-weight:500;white-space:nowrap}
-tbody tr:hover{background:#e3e1da}
-.grp td{background:transparent;font-size:var(--s-sm);color:var(--ink-2);font-weight:600;letter-spacing:.04em;padding-top:28px;border-top:0}
-
-/* finiture */
-.finish-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:start}
-.swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:32px}
-.sw{background:none;border:0;padding:0;cursor:pointer;text-align:left;font:inherit;color:var(--ink);font-size:var(--s-sm)}
-.sw img{width:100%;aspect-ratio:1;object-fit:cover;outline:3px solid transparent;outline-offset:2px;transition:outline-color .15s}
-.sw span{display:block;margin-top:6px}
-.sw[aria-pressed="true"] img{outline-color:var(--accent)}
-.sw[aria-pressed="true"] span{font-weight:600}
-.big-sw{margin:0}
-.big-sw img{width:100%;aspect-ratio:16/10;object-fit:cover}
-.big-sw figcaption{margin-top:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.big-sw figcaption b{font-weight:500;font-size:var(--s-h3)}
-.big-sw figcaption span{color:var(--ink-2);font-size:var(--s-sm)}
-.material-notes{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
-.material-notes h3{margin-bottom:10px}
-.material-notes p{color:var(--ink-2)}
-
-/* test */
-.tests{background:var(--surface)}
-.test-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
-.test-row figure{margin:0;display:flex;flex-direction:column;gap:14px}
-.test-row img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--bg)}
-.test-row figcaption b{display:block;font-weight:500;font-size:var(--s-h3);margin-bottom:4px}
-.test-row figcaption span{color:var(--ink-2)}
-
-/* progetti */
-.refs{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:48px 32px}
-.ref{grid-column:span 4;display:flex;flex-direction:column;gap:12px;margin:0}
-.ref.wide{grid-column:span 6}
-.ref img{width:100%;aspect-ratio:3/2;object-fit:cover}
-.ref.wide img{aspect-ratio:16/10}
-.ref .where{color:var(--ink-2);font-size:var(--s-sm)}
-.ref .what{font-size:var(--s-sm)}
-
-/* designer */
-.designers{background:var(--dark);color:var(--on-dark)}
-.designers .lead{color:var(--on-dark-2)}
-.d-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:20px}
-.d{display:flex;flex-direction:column;gap:10px;margin:0}
-.d img{width:100%;aspect-ratio:3/4;object-fit:cover;background:#2a2620;filter:grayscale(1)}
-.d b{font-weight:500;line-height:1.3}
-.d span{color:var(--on-dark-2);font-size:var(--s-sm)}
-.d-others{margin-top:48px;color:var(--on-dark-2);max-width:90ch}
-.d-others b{color:var(--on-dark);font-weight:500}
-.designers a{color:var(--on-dark)}
-
-/* azienda */
-.story-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(32px,5vw,80px);align-items:start}
-.story-imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.story-imgs img{width:100%;aspect-ratio:3/4;object-fit:cover}
-.story-imgs img:last-child{margin-top:64px}
-.timeline{list-style:none;margin:40px 0 0;padding:0;display:flex;flex-direction:column;gap:28px}
-.timeline li{display:grid;grid-template-columns:7.5rem 1fr;gap:20px}
-.timeline b{font-weight:600;font-size:var(--s-h3);line-height:1.3}
-.timeline p{color:var(--ink-2)}
-
-/* contatti */
-.contact{background:var(--surface)}
-.c-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px)}
-.phone{font-size:clamp(2rem,1.4rem + 2.6vw,3.5rem);font-weight:500;letter-spacing:-.02em;color:var(--ink);text-decoration:none;display:inline-block;margin-top:28px}
-.phone:hover{color:var(--accent)}
-.places{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.place{background:var(--bg);padding:28px;display:flex;flex-direction:column;gap:8px}
-.place h3{margin-bottom:6px}
-.place p{color:var(--ink-2)}
-.place .more{margin-top:auto;padding-top:12px}
-.write{grid-column:1/-1;background:var(--accent);color:var(--on-accent);padding:28px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-.write p{max-width:52ch}
-.write .btn{background:var(--on-accent);color:var(--accent)}
-.write .btn:hover{background:var(--surface)}
-
-/* footer */
-footer{background:var(--dark);color:var(--on-dark-2);font-size:var(--s-sm);padding-block:64px 40px}
-footer a{color:var(--on-dark)}
-.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
-.f-grid .mark{color:var(--on-dark);display:inline-block;margin-bottom:16px}
-.f-grid h3{font-size:var(--s-sm);font-weight:600;color:var(--on-dark);margin-bottom:12px;letter-spacing:.02em}
-.f-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-.f-grid ul a{text-decoration:none}
-.f-grid ul a:hover{text-decoration:underline}
-.funds{margin-top:56px;padding-top:32px;border-top:1px solid #3a352e}
-.funds p{margin-bottom:16px;color:var(--on-dark)}
-.funds .logos{display:flex;flex-wrap:wrap;gap:16px}
-.funds .logos a{display:block;background:#fff;padding:8px;text-decoration:none;color:#171512}
-.funds .logos img{height:56px;width:auto;background:#fff}
-.legal{margin-top:40px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
-/* entrate leggere */
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.js .fade{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-.js .fade.in{opacity:1;transform:none}
-
-@media (max-width:1100px){
-  .d-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .featured{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .envs{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .f-grid{grid-template-columns:1fr 1fr}
-}
-@media (max-width:860px){
-  .burger{display:block}
-  .menu{display:none;position:absolute;top:76px;left:0;right:0;background:var(--bg);flex-direction:column;align-items:flex-start;gap:0;padding:8px max(var(--gutter),env(safe-area-inset-left,0px)) 24px;box-shadow:0 12px 24px rgba(23,21,18,.12)}
-  .menu.open{display:flex}
-  .menu a{padding:12px 0;font-size:var(--s-body)}
-  .hero-grid,.feature-grid,.finish-grid,.story-grid,.c-grid,.sec-head{grid-template-columns:1fr}
-  .hero h1{max-width:none}
-  .facts .wrap{grid-template-columns:1fr 1fr}
-  .test-row{grid-template-columns:1fr}
-  .ref,.ref.wide{grid-column:span 12}
-  .places{grid-template-columns:1fr}
-  .material-notes{grid-template-columns:1fr}
-}
-@media (max-width:560px){
-  .envs,.featured{grid-template-columns:1fr}
-  .d-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .swatches{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-  .timeline li{grid-template-columns:1fr;gap:4px}
-  .f-grid{grid-template-columns:1fr}
-  .story-imgs img:last-child{margin-top:32px}
-}
-@media (prefers-reduced-motion:reduce){
-  *{transition:none!important;scroll-behavior:auto!important}
-  .js .fade{opacity:1;transform:none}
-}
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-
+<a class="skip" href="#main">Vai al contenuto</a>
 <header class="top" id="top">
-  <div class="wrap">
-    <a class="mark" href="#">FORNASARIG</a>
-    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
-    <nav class="menu" id="menu" aria-label="Principale">
-      <a href="#collezioni">Prodotti</a>
-      <a href="#ambienti">Ambienti</a>
-      <a href="#progetti">Progetti</a>
-      <a href="#designer">Designer</a>
-      <a href="#azienda">Azienda</a>
-      <a href="#contatti">Contatti</a>
-      <span class="lang"><b>IT</b> · <a href="https://www.fornasarig.com" target="_blank" rel="noopener">EN</a></span>
-      <a href="https://www.fornasarig.it/registrazione/" target="_blank" rel="noopener">Area professionisti</a>
-    </nav>
-  </div>
+ <div class="wrap bar">
+  <a class="mark" href="">FORNASARIG</a>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
+  <nav class="menu" id="menu" aria-label="Principale"><a href="prodotti/">Prodotti</a><a href="ambienti/">Ambienti</a><a href="finiture/">Finiture e tessuti</a><a href="progetti/">Progetti</a><a href="designer/">Designer</a><a href="azienda/">Azienda</a><a href="contatti/">Contatti</a></nav>
+ </div>
 </header>
+<main id="main">
 
-<main>
-<section class="hero" aria-labelledby="h1">
-  <div class="wrap hero-grid">
-    <div>
-      <h1 id="h1">Sedute contract dal 1878</h1>
-      <p class="lead">Sedie, poltrone, sgabelli e tavoli per hotel, ristoranti, sale conferenze, università e uffici. Progettati con designer internazionali e prodotti nel nostro stabilimento di Manzano.</p>
-      <div class="ctas">
-        <a class="btn" href="#collezioni">Scopri i prodotti</a>
-        <a class="btn ghost" href="#contatti">Contattaci →</a>
-      </div>
-    </div>
-    <figure><img src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_15.jpg" alt="Sedute Fornasarig in un ambiente contract" width="1600" height="1200"></figure>
+<section class="hero">
+ <div class="wrap hero-grid">
+  <div>
+   <h1>Sedute contract dal 1878</h1>
+   <p class="lead">Fornasarig progetta e produce sedie, poltrone, sgabelli e tavoli per hotel, ristoranti, sale conferenze, università e uffici. Collezioni firmate da designer internazionali, prodotte al 100% nel nostro stabilimento di Manzano.</p>
+   <div class="ctas"><a class="btn" href="prodotti/">Scopri i prodotti</a><a class="btn ghost" href="contatti/">Richiedi un preventivo</a></div>
   </div>
-  <div class="facts" aria-label="Fornasarig in breve">
-    <div class="wrap">
-      <p><b>1878</b><span>Azienda di famiglia, quarta generazione</span></p>
-      <p><b>100%</b><span>Prodotto in Italia, a Manzano (UD)</span></p>
-      <p><b>10 anni</b><span>Di garanzia per l'uso contract</span></p>
-      <p><b>CATAS</b><span>Test EN 1728 e ANSI/BIFMA X5.1</span></p>
-    </div>
-  </div>
+  <figure class="hero-img"><img src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_15.jpg" alt="Sedute Fornasarig in un ambiente contract"></figure>
+ </div>
+ <div class="facts"><div class="wrap">
+  <p><b>1878</b><span>Azienda di famiglia, quarta generazione</span></p>
+  <p><b>100%</b><span>Prodotto nello stabilimento di Manzano (UD)</span></p>
+  <p><b>10 anni</b><span>Di garanzia per l’uso contract</span></p>
+  <p><b>CATAS</b><span>Test EN 1728 e ANSI/BIFMA X5.1</span></p>
+ </div></div>
 </section>
 
-<section class="feature" aria-labelledby="link60">
-  <div class="wrap feature-grid">
-    <figure class="fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/10/LINK60_34_2.jpg" alt="Sedia Link 60X" width="1500" height="1200"></figure>
-    <div class="fade">
-      <h2 id="link60">Link 60X. 60 sedie in meno di 2 metri.</h2>
-      <p class="by">Design Luca Fornasarig</p>
-      <p class="lead">La sedia super-impilabile che detiene il record mondiale di impilabilità. Leggera e sottile, si aggancia in file e si ritira in pochi minuti: pensata per sale che cambiano allestimento ogni giorno.</p>
-      <dl class="spec">
-        <dt>Seduta e schienale</dt><dd>Resina poliolefinica rinforzata, 100% riciclabile</dd>
-        <dt>Telaio</dt><dd>Acciaio pieno Ø 11 mm, verniciato o cromato</dd>
-        <dt>Impilabilità</dt><dd>Fino a 60 pezzi; 45 nella versione con seduta imbottita</dd>
-        <dt>Movimentazione</dt><dd>Carrello dedicato da 60 sedie</dd>
-        <dt>Colori</dt><dd>Grigio, grigio beige, rosso corallo, blu grigio, nero, bianco</dd>
-      </dl>
-      <a class="btn" href="https://www.fornasarig.it/prodotto/link-60x-sedia-impilabile/" target="_blank" rel="noopener">Scheda tecnica Link 60X</a>
-    </div>
+<section class="band dark">
+ <div class="wrap split">
+  <figure class="white"><button class="zoom " data-src="https://www.fornasarig.it/wp-content/uploads/2019/10/LINK60_34_2.jpg" data-cap="Link 60X" aria-label="Ingrandisci: Link 60X"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/10/LINK60_34_2.jpg" alt="Link 60X"></button></figure>
+  <div>
+   <h2>60 sedie impilate in meno di 2 metri</h2>
+   <p class="lead">Un record mondiale firmato Fornasarig. Link 60X è la sedia super-impilabile in acciaio e resina poliolefinica riciclabile al 100%, con carrello dedicato per 60 sedie.</p>
+   <a class="btn light" href="prodotti/link-60x-sedia-impilabile/">Scheda Link 60X</a>
   </div>
+ </div>
 </section>
 
-<section id="ambienti" aria-labelledby="amb-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="amb-h">Per ogni ambiente</h2>
-      <p class="lead">Soluzioni impilabili, collegabili e facili da spostare, per spazi che devono funzionare tutti i giorni e cambiare forma quando serve.</p>
-    </div>
-    <div class="envs">
-      <article class="env fade"><div class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_conference_event.jpg" alt="Sala conferenze con sedute Fornasarig" width="900" height="600"></div><h3>Sale conferenze ed eventi</h3><p>Comfort per incontri lunghi e massima libertà di allestimento, con sedute che si collegano in file e si impilano a fine evento.</p><a class="more" href="https://www.fornasarig.it/prodotti/sedie-per-conferenze/" target="_blank" rel="noopener">Sedie per conferenze →</a></article>
-      <article class="env fade"><div class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_multipurpose_educational.jpg" alt="Aula polifunzionale con sedie e tavoli Fornasarig" width="900" height="600"></div><h3>Aule e formazione</h3><p>Sedute e tavoli da lavoro per seminari, corsi e didattica, facili da riconfigurare tra un'attività e l'altra.</p><a class="more" href="https://www.fornasarig.it/prodottti/sedie-multifunzionali/" target="_blank" rel="noopener">Sedie multifunzionali →</a></article>
-      <article class="env fade"><div class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_cafeteria_dining.jpg" alt="Caffetteria con sedute Fornasarig" width="900" height="600"></div><h3>Caffetterie e ristoranti</h3><p>Arredi durevoli e adattabili, dal bar informale alla sala da pranzo d'albergo.</p><a class="more" href="https://www.fornasarig.it/prodotti/sedie-bar/" target="_blank" rel="noopener">Sedie e sgabelli bar →</a></article>
-      <article class="env fade"><div class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_2.jpg" alt="Sala riunioni con sedie Fornasarig" width="900" height="600"></div><h3>Uffici e sale riunioni</h3><p>Sedie leggere e impilabili in diverse finiture, per riunioni, lavoro collaborativo e incontri formali.</p><a class="more" href="https://www.fornasarig.it/prodotti/sedie-da-ufficio/" target="_blank" rel="noopener">Sedie da ufficio →</a></article>
-      <article class="env fade"><div class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_1.jpg" alt="Area lounge con poltrone Fornasarig" width="900" height="600"></div><h3>Lounge e sale d'attesa</h3><p>Poltrone e divani per hall, lounge e aree d'attesa, dove comfort e conversazione contano di più.</p><a class="more" href="https://www.fornasarig.it/prodotti/sedie-per-sale-attesa/" target="_blank" rel="noopener">Sedute per sale d'attesa →</a></article>
-      <article class="env fade"><div class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_3.jpg" alt="Sedute Link Outdoor in esterno" width="900" height="600"></div><h3>Indoor e outdoor</h3><p>La collezione Link Outdoor porta la stessa linea dalla sala alla terrazza: sedia, sgabello e poltrona.</p><a class="more" href="https://www.fornasarig.it/prodotti/sedie-da-esterno/" target="_blank" rel="noopener">Sedie da esterno →</a></article>
-    </div>
-  </div>
+<section>
+ <div class="wrap">
+  <div class="sec-head"><h2>Prodotti in evidenza</h2><a class="more" href="prodotti/">Tutti i 37 prodotti →</a></div>
+  <div class="pgrid"><a class="pcard" href="prodotti/link-60x-sedia-impilabile/" data-tipo="sedie" data-coll="link" data-flags="impilabile riciclabile"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/cover_link_60x__.png" alt="Link 60X"></span><b>Link 60X</b><span>Sedia impilabile</span></a><a class="pcard" href="prodotti/wolfgang-wood-sedia/" data-tipo="sedie" data-coll="wolfgang" data-flags=""><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/12/cover_wolfagnag_wood_chair_2.png" alt="Wolfgang Wood"></span><b>Wolfgang Wood</b><span>Sedia in rovere</span></a><a class="pcard" href="prodotti/wolfgang-lounge-poltrona-metal/" data-tipo="poltrone" data-coll="wolfgang" data-flags=""><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/FORNASARIG_wolfgang_lounge_metal_principale.png" alt="Wolfgang Lounge Metal"></span><b>Wolfgang Lounge Metal</b><span>Poltrona</span></a><a class="pcard" href="prodotti/cato-sedia-imbottita/" data-tipo="sedie" data-coll="cato" data-flags=""><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2021/02/Tavola-da-disegno-1-min.png" alt="Cato Chair"></span><b>Cato Chair</b><span>Sedia imbottita</span></a><a class="pcard" href="prodotti/wolfgang-50x-sedia-a-slitta/" data-tipo="sedie" data-coll="wolfgang" data-flags="impilabile riciclabile"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/FORNASARIG_wolfgang_50X_sled26.png" alt="Wolfgang 50X slitta"></span><b>Wolfgang 50X slitta</b><span>Sedia impilabile</span></a><a class="pcard" href="prodotti/link-edu-desk-tavolo-leggero-e-impilabile/" data-tipo="tavoli" data-coll="link" data-flags="impilabile"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/09/cover_link_edu_desk_2-1.png" alt="Link Edu Desk"></span><b>Link Edu Desk</b><span>Tavolo leggero e impilabile</span></a><a class="pcard" href="prodotti/kite-lounge-poltrona/" data-tipo="poltrone" data-coll="altre" data-flags=""><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/12/cover_kite_lounge.png" alt="Kite Lounge"></span><b>Kite Lounge</b><span>Poltrona</span></a><a class="pcard" href="prodotti/link-outdoor-sedia-per-esterni/" data-tipo="sedie" data-coll="link" data-flags="impilabile esterni"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/12/link-outdoor-chair-1.png" alt="Link Outdoor Chair"></span><b>Link Outdoor Chair</b><span>Sedia per esterni</span></a></div>
+ </div>
 </section>
 
-<section class="coll" id="collezioni" aria-labelledby="coll-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="coll-h">Le collezioni</h2>
-      <p class="lead">Ogni prodotto è progettato, realizzato e testato per l'uso contract. Legno, metallo e imbottiti, con tessuti Kvadrat e Gabriel.</p>
-    </div>
-    <div class="featured">
-      <a class="prod fade" href="https://www.fornasarig.it/prodotto/link-60x-sedia-impilabile/" target="_blank" rel="noopener"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/10/link60_3-4.jpg" alt="Link 60X" width="800" height="1000"><b>Link 60X</b><span>Sedia impilabile · Luca Fornasarig</span></a>
-      <a class="prod fade" href="https://www.fornasarig.it/prodotto/wolfgang-wood-sedia/" target="_blank" rel="noopener"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/12/Fornasarig_wolfgang_wood_chair_hight_back_01_Landing-min.jpg" alt="Wolfgang Wood" width="800" height="1000"><b>Wolfgang Wood</b><span>Sedia in rovere · Luca Nichetto</span></a>
-      <a class="prod fade" href="https://www.fornasarig.it/prodotto/cato-sedia-imbottita/" target="_blank" rel="noopener"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2021/02/Cato-chair_2.jpg" alt="Cato" width="800" height="1000"><b>Cato</b><span>Sedia imbottita</span></a>
-      <a class="prod fade" href="https://www.fornasarig.it/prodotto/giubileo-sedia-in-legno/" target="_blank" rel="noopener"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/12/Fornasarig_giubileo_01_Landing_.jpg" alt="Giubileo" width="800" height="1000"><b>Giubileo</b><span>Sedia in faggio</span></a>
-    </div>
-
-    <div class="table-wrap">
-      <table>
-        <caption>Catalogo completo</caption>
-        <thead><tr><th scope="col">Prodotto</th><th scope="col">Tipologia</th><th scope="col">Design</th><th scope="col"><span class="sr">Scheda</span></th></tr></thead>
-        <tbody>
-          <tr class="grp"><td colspan="4">LINK</td></tr>
-          <tr><td>Link 60X</td><td>Sedia impilabile</td><td>Luca Fornasarig</td><td><a href="https://www.fornasarig.it/prodotto/link-60x-sedia-impilabile/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Link 60X Wood</td><td>Sedia in legno</td><td>Luca Fornasarig</td><td><a href="https://www.fornasarig.it/prodotto/link-60x-wood-sedia-in-legno/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Link 60X Fabric</td><td>Sedia impilabile imbottita</td><td>Luca Fornasarig</td><td><a href="https://www.fornasarig.it/prodotto/link-60x-fabric-sedia-impilabile/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Link Shell</td><td>Sedia impilabile</td><td></td><td><a href="https://www.fornasarig.it/prodotto/link-shell-sedia-impilabile/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Link Counter 65</td><td>Sgabello</td><td></td><td><a href="https://www.fornasarig.it/prodotto/link-counter-65-sgabello/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Link Outdoor Chair</td><td>Sedia per esterni</td><td></td><td><a href="https://www.fornasarig.it/prodotto/link-outdoor-sedia-per-esterni/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Link Outdoor Counter</td><td>Sgabello per esterni</td><td></td><td><a href="https://www.fornasarig.it/prodotto/link-outdoor-counter-sgabello-per-esterni/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Link Outdoor Lounge</td><td>Poltrona per esterni</td><td></td><td><a href="https://www.fornasarig.it/prodotto/link-outdoor-lounge-poltrona-per-esterni/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Link Edu Desk</td><td>Tavolo leggero e impilabile</td><td></td><td><a href="https://www.fornasarig.it/prodotto/link-edu-desk-tavolo-leggero-e-impilabile/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Link Compas Desk</td><td>Tavolo per ufficio</td><td></td><td><a href="https://www.fornasarig.it/prodotto/link-compas-desk-tavolo-per-ufficio/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr class="grp"><td colspan="4">WOLFGANG</td></tr>
-          <tr><td>Wolfgang Wood</td><td>Sedia</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-wood-sedia/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Wolfgang Wood Armchair</td><td>Sedia con braccioli</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-wood-sedia-con-braccioli/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Wolfgang Wood</td><td>Sgabello</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-wood-sgabello/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Wolfgang Wood 54</td><td>Poltroncina dining lounge</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-wood-54/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Wolfgang High Back Lounge</td><td>Poltrona</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-high-back-lounge-poltrona/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Wolfgang 70</td><td>Poltroncina lounge</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-70-poltroncina-lounge/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Wolfgang Lounge Metal</td><td>Poltrona, anche schienale alto</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-lounge-poltrona-metal/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Wolfgang Metal</td><td>Sedia</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-metal-sedia/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Wolfgang Metal 54</td><td>Sedia con braccioli</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-metal-54-sedia-con-braccioli/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Wolfgang 50X</td><td>Sedia 4 gambe o a slitta</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-50x-sedia-4-gambe/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Wolfgang Counter 65</td><td>Sgabello in metallo</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-counter-65-sgabello-in-metallo/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Wolfgang Coffee Table</td><td>Tavolino</td><td>Luca Nichetto</td><td><a href="https://www.fornasarig.it/prodotto/wolfgang-coffee-table-tavolino-da-salotto/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr class="grp"><td colspan="4">ALTRE COLLEZIONI</td></tr>
-          <tr><td>Cato</td><td>Sedia imbottita, office, sgabello</td><td>Luca Fornasarig</td><td><a href="https://www.fornasarig.it/prodotto/cato-sedia-imbottita/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Giubileo</td><td>Sedia in legno</td><td>Luca Fornasarig</td><td><a href="https://www.fornasarig.it/prodotto/giubileo-sedia-in-legno/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Data</td><td>Sedia da ufficio</td><td>Graziella &amp; Renzo Fauciglietti</td><td><a href="https://www.fornasarig.it/prodotto/data-sedia-da-ufficio/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Allround</td><td>Poltroncina</td><td>Claesson Koivisto Rune</td><td><a href="https://www.fornasarig.it/prodotto/allround-poltroncina/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Moka</td><td>Sedia in legno e sgabello bar</td><td>Thibault Desombre</td><td><a href="https://www.fornasarig.it/prodotto/moka-sedia-in-legno/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Kite Lounge</td><td>Poltrona</td><td>Shin Azumi</td><td><a href="https://www.fornasarig.it/prodotto/kite-lounge-poltrona/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Eos Lounge</td><td>Poltrona</td><td>Edi &amp; Paolo Ciani</td><td><a href="https://www.fornasarig.it/prodotto/eos-lounge-poltrona/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Camilla</td><td>Sedia in legno</td><td></td><td><a href="https://www.fornasarig.it/prodotto/camilla-sedia-in-legno/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Deore</td><td>Sedia in legno</td><td></td><td><a href="https://www.fornasarig.it/prodotto/deore-sedia-in-legno/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-          <tr><td>Marcelo</td><td>Poltrona</td><td></td><td><a href="https://www.fornasarig.it/prodotto/marcelo-poltrona/" target="_blank" rel="noopener">Scheda →</a></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<section class="band soft">
+ <div class="wrap">
+  <div class="sec-head"><h2>Per ogni ambiente</h2><p class="lead">Il design funzionale delle sedute Fornasarig favorisce il movimento, supportando in modo fluido il lavoro, l’apprendimento e la collaborazione.</p></div>
+  <div class="ambs"><a class="amb" href="ambienti/sale-conferenze-eventi/"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_conference_event.jpg" alt=""></span><h3>Sale conferenze e spazi per eventi</h3><p>Un evento di successo inizia con sedute che offrono comfort e flessibilità.</p></a><a class="amb" href="ambienti/aule-spazi-educativi/"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_multipurpose_educational.jpg" alt=""></span><h3>Aule polifunzionali e spazi educativi</h3><p>Progettate per versatilità e apprendimento.</p></a><a class="amb" href="ambienti/caffetterie-sale-da-pranzo/"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_cafeteria_dining.jpg" alt=""></span><h3>Caffetterie e sale da pranzo</h3><p>Soluzioni d’arredo versatili e resistenti per bar e ristoranti.</p></a><a class="amb" href="ambienti/spazi-di-lavoro-sale-riunioni/"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_2.jpg" alt=""></span><h3>Spazi di lavoro e sale riunioni</h3><p>Uffici e sale riunioni eleganti.</p></a><a class="amb" href="ambienti/aree-lounge-sale-attesa/"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_1.jpg" alt=""></span><h3>Aree lounge e sale d’attesa</h3><p>Dove il comfort incontra la collaborazione.</p></a><a class="amb" href="ambienti/indoor-outdoor/"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_3.jpg" alt=""></span><h3>Indoor e outdoor</h3><p>Versatili, resistenti ed eleganti.</p></a></div>
+ </div>
 </section>
 
-<section id="materiali" aria-labelledby="mat-h">
-  <div class="wrap finish-grid">
-    <div>
-      <h2 id="mat-h">Legno e finiture</h2>
-      <p class="lead" style="margin-top:20px">Il legno resta il nostro materiale di riferimento. Faggio e rovere arrivano solo da foreste europee gestite in modo sostenibile. Scegli una finitura del rovere della collezione Wolfgang.</p>
-      <div class="swatches" role="group" aria-label="Finiture del rovere">
-        <button class="sw" type="button" aria-pressed="false" data-img="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_OAK_L.png" data-name="Rovere sbiancato" data-code="L"><img src="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_OAK_L.png" alt="" width="200" height="200"><span>Sbiancato</span></button>
-        <button class="sw" type="button" aria-pressed="true" data-img="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_OAK_N.png" data-name="Rovere naturale" data-code="N"><img src="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_OAK_N.png" alt="" width="200" height="200"><span>Naturale</span></button>
-        <button class="sw" type="button" aria-pressed="false" data-img="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_OAK_N_def_oil.png" data-name="Rovere oliato" data-code="O"><img src="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_OAK_N_def_oil.png" alt="" width="200" height="200"><span>Oliato</span></button>
-        <button class="sw" type="button" aria-pressed="false" data-img="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_Z_def-1.jpg" data-name="Tinta ciliegio" data-code="Z"><img src="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_Z_def-1.jpg" alt="" width="200" height="200"><span>Ciliegio</span></button>
-        <button class="sw" type="button" aria-pressed="false" data-img="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_M_def-1.jpg" data-name="Tinta noce" data-code="M"><img src="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_M_def-1.jpg" alt="" width="200" height="200"><span>Noce</span></button>
-        <button class="sw" type="button" aria-pressed="false" data-img="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_T_def-1.jpg" data-name="Tinta tabacco" data-code="T"><img src="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_T_def-1.jpg" alt="" width="200" height="200"><span>Tabacco</span></button>
-        <button class="sw" type="button" aria-pressed="false" data-img="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_R-1.jpg" data-name="Tinta mogano" data-code="R"><img src="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_R-1.jpg" alt="" width="200" height="200"><span>Mogano</span></button>
-        <button class="sw" type="button" aria-pressed="false" data-img="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_W_def-1.jpg" data-name="Tinta wengé" data-code="W"><img src="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_W_def-1.jpg" alt="" width="200" height="200"><span>Wengé</span></button>
-      </div>
-    </div>
-    <div>
-      <figure class="big-sw">
-        <img id="sw-big" src="https://www.fornasarig.it/wp-content/uploads/2019/12/fornasarig_legno_OAK_N.png" alt="Campione di rovere naturale" width="1000" height="625">
-        <figcaption><b id="sw-name">Rovere naturale</b><span id="sw-code">Codice finitura N · collezione Wolfgang</span></figcaption>
-      </figure>
-      <div class="material-notes">
-        <div><h3>Tessuti</h3><p>Per i rivestimenti collaboriamo esclusivamente con Kvadrat e Gabriel e utilizziamo direttamente tutti i loro modelli, oltre a ecopelle e pelle.</p></div>
-        <div><h3>Ambiente</h3><p>Uso consapevole delle materie prime e prodotti fatti per durare. Molte sedute, come Link 60X, sono in materiali riciclabili al 100%.</p></div>
-      </div>
-    </div>
-  </div>
+<section>
+ <div class="wrap three">
+  <div><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_13.jpg" alt="Sedie Fornasarig impilate"><h3>Impilabilità e design funzionale</h3><p>Le nostre sedute ad alte prestazioni si impilano, si collegano e si muovono con facilità, adattandosi a spazi diversi.</p></div>
+  <div><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_16.jpg" alt="Dettaglio di comfort di una seduta Fornasarig"><h3>Comfort</h3><p>Design ergonomico per un sostegno duraturo, anche nelle sessioni più lunghe.</p></div>
+  <div><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_6.jpg" alt="Seduta Fornasarig in materiali riciclabili"><h3>Durevole e riciclabile</h3><p>Progettato per durare, con materiali resistenti e 100% riciclabili.</p></div>
+ </div>
 </section>
 
-<section class="tests" aria-labelledby="test-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="test-h">Testate per l'uso intensivo</h2>
-      <p class="lead">Tutti i prodotti sono progettati, realizzati e testati da CATAS secondo le norme di fatica e statiche EN 1728 e ANSI/BIFMA X5.1. Per questo offriamo una garanzia di 10 anni.</p>
-    </div>
-    <div class="test-row">
-      <figure class="fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/10/drop-test.jpg" alt="Prova di caduta dinamica su sedia Link 60X" width="800" height="600"><figcaption><b>Caduta dinamica</b><span>ANSI/BIFMA X5.1-2017/7</span></figcaption></figure>
-      <figure class="fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/10/strength-test.jpg" alt="Prova di resistenza laterale delle gambe" width="800" height="600"><figcaption><b>Resistenza delle gambe</b><span>ANSI/BIFMA X5.1-2017/17, carico laterale</span></figcaption></figure>
-      <figure class="fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/10/fatigue-test.jpg" alt="Prova di fatica su seduta e schienale" width="800" height="600"><figcaption><b>Fatica di seduta e schienale</b><span>EN 1728:2012+AC:2013</span></figcaption></figure>
-    </div>
-  </div>
+<section class="band soft">
+ <div class="wrap">
+  <div class="sec-head"><h2>Progetti nel mondo</h2><a class="more" href="progetti/">Tutti i progetti →</a></div>
+  <div class="refs4"><figure class="ref"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig_reference_wolfgang_novotel.jpg" alt="Suite Novotel"></span><figcaption><b>Suite Novotel</b><span>L’Aia, Paesi Bassi</span></figcaption></figure><figure class="ref"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig_reference_moka_lounge.jpg" alt="Andaz Hotel"></span><figcaption><b>Andaz Hotel</b><span>Ottawa, Canada</span></figcaption></figure><figure class="ref"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig_reference_data.jpg" alt="Atahotel The One"></span><figcaption><b>Atahotel The One</b><span>San Donato Milanese, Italia</span></figcaption></figure><figure class="ref"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig_reference_wolfgang_stirling_2.jpg" alt="The Stirling Grill"></span><figcaption><b>The Stirling Grill</b><span>Adelaide, Australia</span></figcaption></figure></div>
+ </div>
 </section>
 
-<section id="progetti" aria-labelledby="ref-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="ref-h">Progetti nel mondo</h2>
-      <p class="lead">Le nostre sedute sono scelte ogni giorno in hotel, ristoranti e spazi pubblici, dall'Europa all'Australia, dal Canada all'Estremo Oriente.</p>
-    </div>
-    <div class="refs">
-      <figure class="ref wide fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig_reference_wolfgang_novotel.jpg" alt="Suite Novotel, L'Aia" width="1200" height="750"><figcaption><h3>Suite Novotel</h3><p class="where">L'Aia, Paesi Bassi</p><p class="what">Wolfgang 70</p></figcaption></figure>
-      <figure class="ref wide fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig_reference_moka_lounge.jpg" alt="Andaz Hotel, Ottawa" width="1200" height="750"><figcaption><h3>Andaz Hotel</h3><p class="where">Ottawa, Canada</p><p class="what">Moka lounge</p></figcaption></figure>
-      <figure class="ref fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig_reference_data.jpg" alt="Atahotel The One, San Donato Milanese" width="900" height="600"><figcaption><h3>Atahotel The One</h3><p class="where">San Donato Milanese</p><p class="what">Data</p></figcaption></figure>
-      <figure class="ref fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig_reference_wolfgang_stirling_2.jpg" alt="The Stirling Grill, Adelaide" width="900" height="600"><figcaption><h3>The Stirling Grill</h3><p class="where">Adelaide, Australia</p><p class="what">Wolfgang 54</p></figcaption></figure>
-      <figure class="ref fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig_reference_wolfgang_masterchef.jpg" alt="Set di Masterchef Italia" width="900" height="600"><figcaption><h3>Masterchef</h3><p class="where">Programma TV, Italia</p><p class="what">Wolfgang Metal, sgabello Line</p></figcaption></figure>
-      <figure class="ref wide fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig_reference_link_brasserie.jpg" alt="Brasserie Sir John Brewing Co., Lachute" width="1200" height="750"><figcaption><h3>Brasserie Sir John Brewing Co.</h3><p class="where">Lachute, Canada</p><p class="what">Link Outdoor, Wolfgang Wood</p></figcaption></figure>
-      <figure class="ref wide fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/12/Fornasarig_reference_camilla.jpg" alt="Arnguli Grill &amp; Restaurant, Yulara" width="1200" height="750"><figcaption><h3>Arnguli Grill &amp; Restaurant</h3><p class="where">Yulara, Australia</p><p class="what">Wolfgang Wood, Camilla</p></figcaption></figure>
-    </div>
-    <p style="margin-top:40px"><a class="more" href="https://www.fornasarig.it/referenze/" target="_blank" rel="noopener">Tutte le referenze →</a></p>
+<section>
+ <div class="wrap split">
+  <div>
+   <h2>Maestria superiore dal 1878</h2>
+   <p class="lead">Da oltre 15 decenni realizziamo sedie secondo i più alti standard di funzionalità, artigianalità e design. Un’azienda a conduzione familiare da quattro generazioni, con una delle più lunghe tradizioni nel mondo della produzione di sedute.</p>
+   <a class="btn" href="azienda/">La nostra storia</a>
   </div>
+  <figure><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/fornasarig_ourstory_02_slider_1.jpg" alt="Fornasarig, la storia dell’azienda"></figure>
+ </div>
 </section>
 
-<section class="designers" id="designer" aria-labelledby="des-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="des-h">I designer</h2>
-      <p class="lead">Le collezioni nascono dal lavoro con architetti e designer internazionali, dalla Scandinavia al Giappone.</p>
-    </div>
-    <div class="d-grid">
-      <figure class="d fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2024/12/Luca-Fornasarig_ok.jpg" alt="Luca Fornasarig" width="300" height="400"><figcaption><b>Luca Fornasarig</b><br><span>Link 60X</span></figcaption></figure>
-      <figure class="d fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2024/12/luca-nichetto-designer.jpg" alt="Luca Nichetto" width="300" height="400"><figcaption><b>Luca Nichetto</b><br><span>Wolfgang</span></figcaption></figure>
-      <figure class="d fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/12/03_Designer-1.jpg" alt="Shin Azumi" width="300" height="400"><figcaption><b>Shin Azumi</b><br><span>Kite</span></figcaption></figure>
-      <figure class="d fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/12/Fornasarig_Allround_03_Designer.jpg" alt="Claesson Koivisto Rune" width="300" height="400"><figcaption><b>Claesson Koivisto Rune</b><br><span>Allround</span></figcaption></figure>
-      <figure class="d fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig_Thibault-Desombre.jpg" alt="Thibault Desombre" width="300" height="400"><figcaption><b>Thibault Desombre</b><br><span>Moka</span></figcaption></figure>
-      <figure class="d fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/Fornasarig-Edi-Paolo-Ciani_3.jpg" alt="Edi e Paolo Ciani" width="300" height="400"><figcaption><b>Edi &amp; Paolo Ciani</b><br><span>Eos</span></figcaption></figure>
-      <figure class="d fade"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2019/12/Fornasarig_Amati_03_Designer.jpg" alt="Graziella e Renzo Fauciglietti" width="300" height="400"><figcaption><b>Graziella &amp; Renzo Fauciglietti</b><br><span>Data</span></figcaption></figure>
-    </div>
-    <p class="d-others">Hanno collaborato con Fornasarig anche <b>Christophe Pillet, Werner Aisslinger, Setsu &amp; Shinobu Ito, Riccardo Blumer &amp; Matteo Borghi, Luca Scacchetti, Sebastian Bergne, Antonio Minervini, Jakob Wagner, Pia Wallén, Harri Koskinen, Ilkka Suppanen, Motomi Kawakami</b> e <b>Chiaramonte &amp; Marin</b>. <a href="https://www.fornasarig.it/designers/" target="_blank" rel="noopener">Profili completi →</a></p>
-  </div>
+<section class="band soft">
+ <div class="wrap">
+  <div class="sec-head"><h2>News</h2><a class="more" href="news/">Tutte le news →</a></div>
+  <div class="ncards"><a class="ncard" href="news/sedie-di-design-contract-milano/"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2026/05/sedie-di-design-contract-Milano_Linkedin-Fornasarig.jpg" alt=""></span><h3>Sedie di design contract Milano: soluzioni per un mercato esigente</h3><p>Le sedie di design contract Milano si misurano con un mercato che non lascia margine all’approssimazione.</p></a><a class="ncard" href="news/sedia-cato-x-contract-configurazione-completa/"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2026/04/Sedia-Cato-X-uso-contract-Fornasarig-Linkedin.jpg" alt=""></span><h3>Sedia Cato X: la forma compiuta di una collezione contract</h3><p>Presentata a Milano nella sua configurazione definitiva, la nuova seduta firmata Luca Fornasarig porta a maturazione il linguaggio della Cato attraverso una scocca in resina poliolefinica, tre tipologie di sedile e quattro basi intercambiabili.</p></a><a class="ncard" href="news/sedie-design-per-hotel-wolfgang/"><span class="ph"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2026/04/Wolfgang-sedie-design-per-hotel-Fornasarig_Linkedin.jpg" alt=""></span><h3>Sedie design per hotel: la collezione Wolfgang</h3><p>Una sedia, in un hotel, lavora molto. Sostiene migliaia di ospiti diversi, deve restare bella per anni, deve dialogare con tessuti e luci che cambiano da una stagione all’altra.</p></a></div>
+ </div>
 </section>
 
-<section id="azienda" aria-labelledby="az-h">
-  <div class="wrap story-grid">
-    <div class="story-imgs">
-      <img loading="lazy" class="fade" src="https://www.fornasarig.it/wp-content/uploads/2020/01/fornasarig_ourstory_02_slider_1.jpg" alt="Fornasarig, la storia dell'azienda" width="600" height="800">
-      <img loading="lazy" class="fade" src="https://www.fornasarig.it/wp-content/uploads/2020/01/fornasarig_ourstory_02_slider_3.jpg" alt="Fornasarig, la storia dell'azienda" width="600" height="800">
-    </div>
-    <div>
-      <h2 id="az-h">Un'azienda di famiglia dal 1878</h2>
-      <p class="lead" style="margin-top:20px">Quattro generazioni e una delle tradizioni più lunghe nella produzione di sedute. Produciamo per persone attente al design e per ambienti collettivi: hotel, ristoranti, bar, sale riunioni e congressi, università, banche, navi da crociera, lounge e sale d'attesa.</p>
-      <ol class="timeline">
-        <li><b>1878</b><p>Nasce Fornasarig a Manzano, nel distretto friulano della sedia.</p></li>
-        <li><b>1959</b><p>Giovanni, con i fratelli e la moglie Anna, fonda la Fabbrica Sedie Friuli e si rivolge al mercato italiano, europeo e internazionale.</p></li>
-        <li><b>Anni '80</b><p>Entra la quarta generazione e nasce il mercato contract internazionale, inizialmente rivolto a ristorazione e ospitalità.</p></li>
-        <li><b>Anni '90</b><p>Riorganizzazione aziendale e nuove strategie commerciali rendono Fornasarig l'azienda di oggi, guidata dalla stessa famiglia.</p></li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contatti" aria-labelledby="cont-h">
-  <div class="wrap c-grid">
-    <div>
-      <h2 id="cont-h">Contatti</h2>
-      <p class="lead" style="margin-top:20px">Per cataloghi, campioni, preventivi e progetti contract.</p>
-      <a class="phone" href="tel:+390432750057">+39 0432 750057</a>
-    </div>
-    <div class="places">
-      <div class="place">
-        <h3>Produzione e magazzino</h3>
-        <p>Via San Giovanni 106/C<br>33044 Manzano (UD), Italia</p>
-        <a class="more" href="https://www.google.com/maps/search/?api=1&amp;query=Via+San+Giovanni+106%2FC+33044+Manzano+UD" target="_blank" rel="noopener">Apri in Maps →</a>
-      </div>
-      <div class="place">
-        <h3>Showroom</h3>
-        <p>Via San Giovanni 45<br>33044 Manzano (UD), Italia</p>
-        <a class="more" href="https://www.google.com/maps/search/?api=1&amp;query=Via+San+Giovanni+45+33044+Manzano+UD" target="_blank" rel="noopener">Apri in Maps →</a>
-      </div>
-      <div class="write">
-        <p>Architetti, interior designer, rivenditori e distributori: scriveteci indicando il vostro progetto, vi risponde il nostro ufficio commerciale.</p>
-        <a class="btn" href="https://www.fornasarig.it/contatti/" target="_blank" rel="noopener">Scrivi a Fornasarig</a>
-      </div>
-    </div>
-  </div>
-</section>
 </main>
-
-<footer>
-  <div class="wrap">
-    <div class="f-grid">
-      <div>
-        <a class="mark" href="#">FORNASARIG</a>
-        <p>Via San Giovanni 106/C, 33044 Manzano (UD)<br>T +39 0432 750057<br>P.IVA IT00513750307</p>
-      </div>
-      <div>
-        <h3>Prodotti</h3>
-        <ul><li><a href="#collezioni">Collezioni</a></li><li><a href="#ambienti">Ambienti</a></li><li><a href="#materiali">Finiture</a></li><li><a href="https://www.fornasarig.it/domande-piu-frequenti/" target="_blank" rel="noopener">FAQ</a></li></ul>
-      </div>
-      <div>
-        <h3>Azienda</h3>
-        <ul><li><a href="#azienda">Storia</a></li><li><a href="#designer">Designer</a></li><li><a href="#progetti">Progetti</a></li><li><a href="https://www.fornasarig.it/news/" target="_blank" rel="noopener">News</a></li></ul>
-      </div>
-      <div>
-        <h3>Seguici</h3>
-        <ul><li><a href="https://www.instagram.com/fornasarig_official/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://it-it.facebook.com/fornasarig.official/" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.fornasarig.it/registrazione/" target="_blank" rel="noopener">Area professionisti</a></li></ul>
-      </div>
-    </div>
-    <div class="funds">
-      <p>Con il patrocinio di</p>
-      <div class="logos">
-        <a href="https://fornasarig.com/wp-content/uploads/2024/09/comunicazione-recentre-sito.pdf" target="_blank" rel="noopener"><img loading="lazy" src="https://fornasarig.com/wp-content/uploads/2024/09/aude_project.jpg" alt="Progetto Re-Centre"></a>
-        <a href="https://fornasarig.com/wp-content/uploads/2024/04/ALLEGATO-LOGO_A3_BLU_COMPILATO.pdf" target="_blank" rel="noopener"><img loading="lazy" src="https://fornasarig.com/wp-content/uploads/2024/04/por-fesr-btn.jpg" alt="Coesione Italia"></a>
-        <a href="https://fornasarig.com/wp-content/uploads/2021/12/POR-FESR-2014-2020_Fornasarig.pdf" target="_blank" rel="noopener"><img loading="lazy" src="https://fornasarig.com/wp-content/uploads/2021/12/por-fesr-btn.jpg" alt="POR FESR 2014-2020"></a>
-        <a href="https://fornasarig.com/wp-content/uploads/2025/07/FORNASARIG_SILEO.pdf" target="_blank" rel="noopener"><img loading="lazy" src="https://fornasarig.com/wp-content/uploads/2025/07/Fornasarig_sileo3.jpg" alt="Progetto SILEO"></a>
-      </div>
-    </div>
-    <div class="legal">
-      <p>© 2026 Fornasarig. Tutti i diritti riservati. · <a href="https://www.iubenda.com/privacy-policy/52462298" target="_blank" rel="noopener">Privacy policy</a> · <a href="https://www.iubenda.com/privacy-policy/52462298/cookie-policy" target="_blank" rel="noopener">Cookie policy</a></p>
-      <p>Concept di redesign, non è il sito ufficiale.</p>
-    </div>
+<footer class="foot">
+ <div class="wrap">
+  <div class="f-grid">
+   <div><a class="mark" href="">FORNASARIG</a>
+    <p>Sedute contract dal 1878.<br>Progettate, prodotte e testate a Manzano.</p></div>
+   <div><h2>Produzione e magazzino</h2><p>Via San Giovanni 106/C<br>33044 Manzano (UD), Italia<br><a href="tel:+390432750057">T +39 0432 750057</a></p></div>
+   <div><h2>Showroom</h2><p>Via San Giovanni 45<br>33044 Manzano (UD), Italia</p></div>
+   <div><h2>Esplora</h2><ul>
+    <li><a href="prodotti/">Prodotti</a></li><li><a href="ambienti/">Ambienti</a></li><li><a href="finiture/">Finiture e tessuti</a></li>
+    <li><a href="progetti/">Progetti</a></li><li><a href="designer/">Designer</a></li><li><a href="azienda/">Azienda</a></li>
+    <li><a href="news/">News</a></li><li><a href="faq/">Domande frequenti</a></li><li><a href="contatti/">Contatti</a></li></ul></div>
+   <div><h2>Seguici</h2><ul><li><a href="https://www.instagram.com/fornasarig_official/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://it-it.facebook.com/fornasarig.official/" target="_blank" rel="noopener">Facebook</a></li></ul></div>
   </div>
+  <div class="funds"><p>Con il patrocinio di</p><div class="logos"><a href="https://fornasarig.com/wp-content/uploads/2024/09/comunicazione-recentre-sito.pdf" target="_blank" rel="noopener" title="Progetto Re-Centre"><img loading="lazy" src="https://fornasarig.com/wp-content/uploads/2024/09/aude_project.jpg" alt="Progetto Re-Centre"></a><a href="https://fornasarig.com/wp-content/uploads/2024/04/ALLEGATO-LOGO_A3_BLU_COMPILATO.pdf" target="_blank" rel="noopener" title="Coesione Italia"><img loading="lazy" src="https://fornasarig.com/wp-content/uploads/2024/04/por-fesr-btn.jpg" alt="Coesione Italia"></a><a href="https://fornasarig.com/wp-content/uploads/2021/12/POR-FESR-2014-2020_Fornasarig.pdf" target="_blank" rel="noopener" title="POR FESR 2014-2020"><img loading="lazy" src="https://fornasarig.com/wp-content/uploads/2021/12/por-fesr-btn.jpg" alt="POR FESR 2014-2020"></a><a href="https://fornasarig.com/wp-content/uploads/2025/07/FORNASARIG_SILEO.pdf" target="_blank" rel="noopener" title="Progetto SILEO"><img loading="lazy" src="https://fornasarig.com/wp-content/uploads/2025/07/Fornasarig_sileo3.jpg" alt="Progetto SILEO"></a></div></div>
+  <div class="legal"><p>© 2026 Fornasarig · P.IVA IT00513750307 · <a href="https://www.iubenda.com/privacy-policy/52462298" target="_blank" rel="noopener">Privacy policy</a> · <a href="https://www.iubenda.com/privacy-policy/52462298/cookie-policy" target="_blank" rel="noopener">Cookie policy</a></p>
+  <p>Concept di redesign, non è il sito ufficiale.</p></div>
+ </div>
 </footer>
-
-<script>
-(function(){
-  document.documentElement.classList.add('js');
-  var top = document.getElementById('top');
-  function sc(){ top.classList.toggle('scrolled', window.scrollY > 8); }
-  window.addEventListener('scroll', sc, {passive:true}); sc();
-
-  var b = document.getElementById('burger'), m = document.getElementById('menu');
-  b.addEventListener('click', function(){ var o = m.classList.toggle('open'); b.setAttribute('aria-expanded', o); b.textContent = o ? 'Chiudi' : 'Menu'; });
-  m.addEventListener('click', function(e){ if(e.target.tagName==='A' && m.classList.contains('open')){ m.classList.remove('open'); b.setAttribute('aria-expanded', false); b.textContent='Menu'; } });
-
-  var els = document.querySelectorAll('.fade');
-  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
-    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
-    els.forEach(function(el){ io.observe(el); });
-  } else { els.forEach(function(el){ el.classList.add('in'); }); }
-
-  var big = document.getElementById('sw-big'), nm = document.getElementById('sw-name'), cd = document.getElementById('sw-code');
-  document.querySelectorAll('.sw').forEach(function(s){
-    s.addEventListener('click', function(){
-      document.querySelectorAll('.sw').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
-      s.setAttribute('aria-pressed','true');
-      big.src = s.dataset.img; big.alt = 'Campione di ' + s.dataset.name.toLowerCase();
-      nm.textContent = s.dataset.name; cd.textContent = 'Codice finitura ' + s.dataset.code + ' · collezione Wolfgang';
-    });
-  });
-})();
-</script>
+<div class="lb" id="lb" hidden><button class="lb-x" id="lbx" aria-label="Chiudi">Chiudi</button><figure><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure></div>
+<script src="assets/site.js"></script>
 </body>
 </html>
