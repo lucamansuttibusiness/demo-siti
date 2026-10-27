@@ -206,7 +206,7 @@ ol { padding: 0; list-style: none; }
 /* How it works: pinned stage, the Inkasa building rises one floor per step (React Three Fiber) */
 .build { position: relative; height: calc(var(--steps) * 70vh + 100vh); margin-top: var(--gap-section); }
 .build-pin { position: sticky; top: 0; height: 100svh; overflow: hidden; }
-.build-canvas { position: absolute; inset: 0 0 0 30%; }
+.build-canvas { position: absolute; top: 4vh; right: 0; bottom: clamp(120px, 17vh, 160px); left: 32%; }
 .build-canvas canvas { display: block; }
 .build-fallback { position: absolute; inset: 30% 10%; width: 80%; height: 40%; object-fit: contain; opacity: 0; }
 .build-canvas.no-gl .build-fallback { opacity: 1; }
@@ -219,14 +219,14 @@ ol { padding: 0; list-style: none; }
 .b-step p { margin-top: 12px; color: var(--muted); max-width: 36ch; }
 .b-count { margin-top: 28px; font: 600 var(--step-body)/1 var(--display); font-variant-numeric: tabular-nums; }
 .b-now { color: var(--accent); }
-.b-bar { margin-top: 14px; height: 6px; background: var(--surface); position: relative; overflow: hidden; }
+.b-bar { margin-top: 14px; height: 6px; width: min(100%, 30rem); background: var(--surface); position: relative; overflow: hidden; }
 .b-bar span { position: absolute; inset: 0; background: var(--ink); transform-origin: left; transform: scaleX(0.125); transition: transform 500ms var(--ease-out); }
 html:not(.js) .build { height: auto; }
 html:not(.js) .build-pin { position: static; height: auto; }
 html:not(.js) .b-steps { min-height: 0; }
 html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bottom: 24px; }
 @media (max-width: 900px) {
-  .build-canvas { inset: 18% 0 34% 0; }
+  .build-canvas { top: 22%; right: 0; bottom: 38%; left: 0; }
   .build-ui .h2 { max-width: none; }
   .b-steps { max-width: none; }
 }

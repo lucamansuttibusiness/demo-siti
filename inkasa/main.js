@@ -94,7 +94,7 @@
 
   // ---------- Effetti WebGL: caricati quando servono, fermi fuori schermo ----------
   let fxModule = null
-  const loadFx = () => fxModule || (fxModule = import('./fx/fx.js?v=8'))
+  const loadFx = () => fxModule || (fxModule = import('./fx/fx.js?v=9'))
   const scene = (el, start) => {
     let inst = null, visible = false, loading = false
     const sync = () => inst && inst.setAnimate(visible && !document.hidden)
