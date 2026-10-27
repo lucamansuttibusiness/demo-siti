@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fornasarig · Sedute contract dal 1878</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Fornasarig, Manzano: sedie, poltrone e tavoli per hotel, aule, sale conferenze e ristoranti. Progettati, costruiti e testati in Italia dal 1878, garantiti 10 anni.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: una pila di sedie come manifesto fisso — titoli che restano fermi mentre gli spazi scorrono sotto. */
+:root{
+  --bg:#2b2216; --surface:#382d1e; --ink:#e4e2da; --muted:#a39a8b;
+  --accent:#bda38b; --accent-ink:#2b2216; --field-1:#bda38b; --field-1-ink:#1c150d;
+  --field-2:#d9ccb8; --field-3:#8a6d50; --field-4:#46382a;
+  --display:"Bebas Neue","Oswald","Arial Narrow",Impact,sans-serif;
+  --text:"EB Garamond",Garamond,"Times New Roman",serif;
+  --step-small:clamp(.875rem,.84rem + .1vw,.9375rem);
+  --step-body:clamp(1.0625rem,1rem + .25vw,1.1875rem);
+  --step-lead:clamp(1.25rem,1.1rem + .7vw,1.625rem);
+  --step-head:clamp(2.75rem,1.2rem + 5vw,5.5rem);
+  --margin:max(16px,min(4vw,40px));
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--text);font-size:var(--step-body);line-height:1.45;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto;background:var(--surface)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+.wrap{padding-left:max(var(--margin),env(safe-area-inset-left,0px));padding-right:max(var(--margin),env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:-.01em;line-height:.88;margin:0;text-wrap:balance}
+p{margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;background:var(--accent);color:var(--accent-ink);font-family:var(--text);font-size:var(--step-small);font-weight:500;text-decoration:none;padding:.8em 1.3em;border:0;border-radius:0;cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.btn:hover{background:var(--ink)}
+.btn:active{transform:scale(.97)}
+
+/* ---------- header ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+.top{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:18px;transition:background .3s}
+.top.solid{background:var(--bg)}
+.mark{font-family:var(--display);font-size:1.9rem;letter-spacing:.02em;text-decoration:none;line-height:1}
+.top nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,32px);font-size:var(--step-small)}
+.top nav a:not(.btn){text-decoration:none;position:relative}
+.top nav a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.top nav a:not(.btn):hover::after{transform:scaleX(1)}
+
+/* ---------- hero ---------- */
+.hero{height:230svh;position:relative}
+.hero-stage{position:sticky;top:0;height:100svh;overflow:hidden}
+.hero h1{position:absolute;inset:0;pointer-events:none;z-index:3;font-size:clamp(3.4rem,9.4vw,10rem)}
+.hero h1 span{position:absolute;top:50%;transform:translateY(-50%)}
+.hero h1 .l{left:var(--margin)}
+.hero h1 .r{right:var(--margin);text-align:right}
+.reel{position:absolute;left:50%;top:50%;width:33vw;transform:translate(-50%,0);z-index:2}
+.reel-track{display:flex;flex-direction:column;gap:24px;will-change:transform}
+.reel figure{margin:0;aspect-ratio:16/10;overflow:hidden;background:var(--surface);border-radius:4px}
+.reel img{width:100%;height:100%;object-fit:cover}
+.hero-foot{position:absolute;left:var(--margin);bottom:32px;max-width:30ch;font-size:var(--step-lead);line-height:1.3;z-index:3}
+.hero-foot .btn{margin-top:20px}
+.hero-cap{position:absolute;right:var(--margin);bottom:32px;font-size:var(--step-small);color:var(--muted);text-align:right;z-index:3}
+
+/* ---------- record ---------- */
+.record{position:relative;height:250svh}
+.record-pin{position:sticky;top:0;height:100svh;display:grid;place-items:center;z-index:2;pointer-events:none}
+.record-pin div{text-align:center;max-width:min(62vw,880px)}
+.record h2{font-size:clamp(3.6rem,11vw,12rem);color:var(--ink)}
+.record-pin p{margin-top:24px;font-size:var(--step-lead);line-height:1.3;font-style:italic;color:var(--ink)}
+.record-photos{position:absolute;inset:0;z-index:1}
+.record-photos figure{position:absolute;margin:0}
+.record-photos figcaption{font-size:var(--step-small);color:var(--muted);margin-top:10px}
+.rp1{left:var(--margin);top:40svh;width:20vw}
+.rp1 img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.rp2{right:var(--margin);top:105svh;width:22vw}
+.rp2 img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.rp3{left:calc(var(--margin) + 4vw);top:170svh;width:18vw}
+.rp3 img{aspect-ratio:1;object-fit:cover;width:100%}
+
+/* ---------- calcolatore ---------- */
+.calc{background:var(--field-1);color:var(--field-1-ink);padding-block:clamp(96px,14vh,180px)}
+.calc-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:end}
+.calc h2{font-size:var(--step-head)}
+.calc .lead{margin-top:20px;font-size:var(--step-lead);line-height:1.3;max-width:28ch}
+.calc label{display:block;margin-top:40px;font-size:var(--step-body)}
+.calc output{font-family:var(--display);font-size:clamp(2.6rem,5vw,4.5rem);line-height:1;display:block;margin-top:6px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;margin-top:10px;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:10px;background:var(--field-1-ink)}
+input[type=range]::-moz-range-track{height:10px;background:var(--field-1-ink)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;margin-top:-10px;background:var(--bg);border:4px solid var(--field-2);border-radius:50%}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;background:var(--bg);border:4px solid var(--field-2);border-radius:50%}
+.stacks{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px;min-height:230px}
+.stack{width:34px;height:210px;display:flex;flex-direction:column-reverse;gap:1px;transition:opacity .3s}
+.stack i{display:block;height:2.5px;background:var(--field-1-ink);transform-origin:bottom;animation:grow .4s var(--ease) both}
+@keyframes grow{from{transform:scaleY(0);opacity:0}}
+.calc-result{margin-top:28px;font-size:var(--step-lead);line-height:1.3;max-width:34ch}
+.calc-result b{font-family:var(--display);font-weight:400;font-size:1.5em;letter-spacing:.01em}
+.calc small{display:block;margin-top:14px;font-size:var(--step-small);opacity:.8;max-width:46ch}
+
+/* ---------- showcase ---------- */
+.show{position:relative;height:100svh;min-height:620px;overflow:hidden}
+.show > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.6s var(--ease)}
+.show.in > img{transform:scale(1)}
+.card{position:absolute;top:50%;transform:translateY(-50%);width:clamp(260px,23vw,340px);background:var(--bg);color:var(--ink);padding:28px;display:flex;flex-direction:column;gap:10px;border-radius:0}
+.show-a .card{left:calc(var(--margin) + 23vw)}
+.show-b .card{left:calc(var(--margin) + 48vw)}
+.card h2{font-size:clamp(2.4rem,3.4vw,3.4rem)}
+.card .var{font-style:italic;color:var(--muted)}
+.card .fact{font-size:var(--step-body)}
+.card img{aspect-ratio:3/2;object-fit:cover;width:100%;margin-block:8px}
+.card .btn{width:100%}
+
+/* ---------- spazi (fogli) ---------- */
+.spaces{padding-top:clamp(120px,18vh,220px)}
+.spaces > .wrap h2{font-size:var(--step-head);margin-bottom:48px}
+.sheet{position:sticky;min-height:86svh;border-radius:0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:72px 1fr;overflow:hidden}
+.sheet:nth-of-type(1){top:0;background:var(--field-1);color:var(--field-1-ink)}
+.sheet:nth-of-type(2){top:72px;background:var(--field-2);color:var(--field-1-ink)}
+.sheet:nth-of-type(3){top:144px;background:var(--field-3);color:var(--ink)}
+.sheet:nth-of-type(4){top:216px;background:var(--field-4);color:var(--ink)}
+.sheet:nth-of-type(5){top:288px;background:var(--surface);color:var(--ink)}
+.sheet h3{grid-column:1/-1;align-self:center;font-size:clamp(1.9rem,3vw,2.75rem);padding-inline:var(--margin)}
+.sheet .txt{grid-column:1;align-self:end;padding:0 var(--margin) clamp(32px,6vh,72px);display:flex;flex-direction:column;gap:18px;max-width:42ch}
+.sheet .txt a{font-weight:500;text-underline-offset:4px}
+.sheet .txt a:hover{text-decoration-thickness:2px}
+.sheet figure{grid-column:2;grid-row:2;margin:0;overflow:hidden}
+.sheet figure img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- collezioni ---------- */
+.list{background:var(--field-2);color:var(--field-1-ink);padding-block:clamp(120px,16vh,200px)}
+.list h2{font-size:var(--step-head);margin-bottom:24px}
+.list .intro{font-size:var(--step-lead);max-width:40ch;line-height:1.3}
+.group{margin-top:72px}
+.group h3{position:sticky;top:calc(env(safe-area-inset-top,0px) + 68px);background:var(--field-2);color:var(--field-3);font-family:var(--display);font-size:clamp(1.6rem,2.4vw,2.4rem);padding-block:8px 18px;z-index:2}
+.row{display:grid;grid-template-columns:34% 32% 1fr auto;align-items:baseline;font-size:clamp(1.15rem,1.8vw,1.75rem);line-height:1.5;text-decoration:none;transition:color .2s,transform .25s var(--ease)}
+.row span:last-child{font-size:var(--step-small);text-align:right}
+.row .muted{color:#6a5640}
+.row:hover{color:var(--field-3);transform:translateX(10px)}
+
+/* ---------- storia ---------- */
+.story{position:relative;padding-bottom:30svh}
+.story-pin{position:sticky;top:0;height:100svh;display:grid;place-items:center;z-index:1;pointer-events:none}
+.story-pin h2{font-size:clamp(5rem,16vw,15rem);color:var(--surface);text-align:center}
+.story-items{position:relative;z-index:2;margin-top:-70svh;display:flex;flex-direction:column;gap:22svh}
+.moment{width:min(30vw,420px);display:flex;flex-direction:column;gap:10px}
+.moment:nth-child(odd){margin-left:calc(var(--margin) + 6vw)}
+.moment:nth-child(even){margin-left:auto;margin-right:calc(var(--margin) + 6vw)}
+.moment img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.moment .yr{font-family:var(--display);font-size:clamp(2rem,3vw,2.8rem);line-height:1;margin-top:10px;color:var(--accent)}
+.moment p{max-width:36ch}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,3vw,48px);padding-block:clamp(96px,14vh,160px) 0}
+.facts div{display:flex;flex-direction:column;gap:8px}
+.facts b{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,4.6vw,4.4rem);line-height:.9;color:var(--accent)}
+
+/* ---------- contatti ---------- */
+.contact{background:var(--ink);color:var(--bg);min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;padding-block:clamp(56px,10vh,110px) 36px;gap:32px}
+.contact h2{font-size:var(--step-head)}
+.contact .lead{font-size:var(--step-lead);max-width:30ch;line-height:1.3;margin-top:16px}
+.phone{align-self:end;font-family:var(--display);font-size:clamp(3.6rem,15.6vw,17rem);line-height:.85;letter-spacing:-.01em;text-decoration:none;display:block;transition:color .25s;white-space:nowrap}
+.phone:hover{color:var(--field-3)}
+.contact-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;font-size:var(--step-small)}
+.contact-foot .links{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+.copy{background:transparent;border:2px solid var(--bg);color:var(--bg);font:inherit;padding:.5em 1em;cursor:pointer;transition:background .2s,color .2s}
+.copy:hover{background:var(--bg);color:var(--ink)}
+
+/* ---------- footer ---------- */
+footer{display:grid;grid-template-columns:1fr 1fr;min-height:100svh;background:var(--surface)}
+footer > img{width:100%;height:100%;object-fit:cover}
+.foot-menu{padding:80px max(var(--margin),env(safe-area-inset-right,0px)) 32px clamp(32px,6vw,96px);display:flex;flex-direction:column;gap:40px}
+.foot-menu .mark{font-size:1.6rem}
+.foot-menu ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.foot-menu ul a{font-family:var(--display);font-size:clamp(2.2rem,3.6vw,3.6rem);line-height:1;text-decoration:none;display:inline-block;transition:transform .25s var(--ease),color .25s}
+.foot-menu ul:hover a{color:var(--muted)}
+.foot-menu ul a:hover{color:var(--ink);transform:translateX(12px)}
+.foot-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:var(--step-small);color:var(--muted)}
+.foot-cols b{color:var(--ink);font-weight:500;display:block;margin-bottom:4px}
+.legal{margin-top:auto;font-size:var(--step-small);color:var(--muted)}
+
+/* ---------- entrate ---------- */
+.js .rise{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0) * 80ms)}
+.js .rise.in{opacity:1;transform:none}
+
+/* ---------- telefono ---------- */
+@media (max-width:760px){
+  .top nav a.hide-s{display:none}
+  .hero{height:200svh}
+  .hero h1{font-size:15vw}
+  .hero h1 span{transform:none}
+  .hero h1 .l{top:calc(env(safe-area-inset-top,0px) + 92px)}
+  .hero h1 .r{top:auto;bottom:210px}
+  .reel{width:calc(100vw - 32px);top:36%}
+  .reel figure{aspect-ratio:4/3}
+  .hero-foot{font-size:var(--step-body);max-width:none;right:var(--margin);bottom:24px}
+  .hero-cap{display:none}
+  .record{height:auto;padding-block:120px 80px}
+  .record-pin{position:relative;height:auto;padding-inline:var(--margin)}
+  .record-pin div{max-width:none}
+  .record h2{font-size:17vw}
+  .record-photos{position:relative;display:flex;flex-direction:column;gap:48px;margin-top:64px;padding-inline:var(--margin)}
+  .record-photos figure{position:static;width:72%}
+  .record-photos figure:nth-child(2){margin-left:auto}
+  .calc-grid{grid-template-columns:1fr}
+  .stack{width:22px;height:150px}
+  .stack i{height:1.5px}
+  .stacks{min-height:160px}
+  .show{height:auto;min-height:0}
+  .show > img{position:relative;height:62svh}
+  .card,.show-a .card,.show-b .card{position:relative;left:auto;top:auto;transform:none;width:auto;margin:0}
+  .sheet{grid-template-columns:1fr;grid-template-rows:52px auto auto;min-height:70svh}
+  .sheet:nth-of-type(2){top:52px}.sheet:nth-of-type(3){top:104px}.sheet:nth-of-type(4){top:156px}.sheet:nth-of-type(5){top:208px}
+  .sheet h3{font-size:1.5rem}
+  .sheet figure{grid-column:1;grid-row:2;aspect-ratio:4/3}
+  .sheet .txt{grid-row:3;padding-top:20px}
+  .row{grid-template-columns:1fr auto;font-size:1.35rem;padding-block:6px}
+  .row .muted{grid-column:1;grid-row:2;font-size:.9rem}
+  .row .muted + .muted{display:none}
+  .row span:last-child{grid-row:1/3;grid-column:2;align-self:center}
+  .story-pin h2{font-size:24vw;align-self:start;margin-top:24px}
+  .story-items{margin-top:-60svh;gap:72px}
+  .moment,.moment:nth-child(odd),.moment:nth-child(even){width:78%;margin-left:var(--margin);margin-right:var(--margin)}
+  .moment:nth-child(even){margin-left:auto}
+  .facts{grid-template-columns:1fr 1fr}
+  .phone{font-size:17.5vw}
+  footer{grid-template-columns:1fr}
+  footer > img{height:50svh}
+  .foot-menu{padding-left:var(--margin);padding-top:48px}
+  .foot-cols{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .rise{opacity:1;transform:none}
+  .show > img{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top wrap" id="top">
+  <a class="mark" href="#top" aria-label="Fornasarig, inizio pagina">Fornasarig</a>
+  <nav aria-label="Principale">
+    <a class="hide-s" href="#collezioni">Collezioni</a>
+    <a class="hide-s" href="#spazi">Spazi</a>
+    <a class="hide-s" href="#storia">Azienda</a>
+    <a class="btn" href="#contatti">Richiedi il catalogo</a>
+  </nav>
+</header>
+
+<main>
+<!-- HERO: la frase divisa da una pellicola di ambienti -->
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-stage">
+    <h1 id="h1"><span class="l">Sedute contract</span> <span class="r">dal 1878</span></h1>
+    <div class="reel" aria-hidden="true">
+      <div class="reel-track" id="reel">
+        <figure><img src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_15.jpg" alt="" width="1600" height="1000"></figure>
+        <figure><img src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_conference_event.jpg" alt="" width="1600" height="1000"></figure>
+        <figure><img src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_cafeteria_dining.jpg" alt="" width="1600" height="1000"></figure>
+        <figure><img src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_multipurpose_educational.jpg" alt="" width="1600" height="1000"></figure>
+        <figure><img src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_3.jpg" alt="" width="1600" height="1000"></figure>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <p>Sedie, poltrone e tavoli per hotel, aule, sale congressi e ristoranti. Fatti a Manzano, garantiti 10 anni.</p>
+      <a class="btn" href="#collezioni">Guarda le collezioni</a>
+    </div>
+    <p class="hero-cap">Via San Giovanni 106/C<br>Manzano, Udine</p>
+  </div>
+</section>
+
+<!-- RECORD: la frase ferma, le foto passano -->
+<section class="record" aria-labelledby="rec">
+  <div class="record-pin">
+    <div>
+      <h2 id="rec">60 sedie in meno di 2 metri</h2>
+      <p>Il record mondiale di impilabilità porta la firma di Fornasarig. Una sala da 600 posti si svuota in dieci pile.</p>
+    </div>
+  </div>
+  <div class="record-photos">
+    <figure class="rise"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_13.jpg" alt="Sedie Fornasarig impilate" width="1200" height="1500"><figcaption>Impilabili e leggere</figcaption></figure>
+    <figure class="rise"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_16.jpg" alt="Seduta Fornasarig, dettaglio del comfort" width="1200" height="1500"><figcaption>Ergonomiche per le giornate lunghe</figcaption></figure>
+    <figure class="rise"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_6.jpg" alt="Sedia Fornasarig in materiali riciclabili" width="1200" height="1200"><figcaption>Materiali 100% riciclabili</figcaption></figure>
+  </div>
+</section>
+
+<!-- LA COSA VIVA: calcolatore delle pile -->
+<section class="calc" aria-labelledby="calc-h">
+  <div class="wrap calc-grid">
+    <div>
+      <h2 id="calc-h" class="rise">Quanto spazio libera la vostra sala?</h2>
+      <p class="lead rise" style="--i:1">Spostate il cursore sul numero di posti e guardate quante pile restano a fine evento.</p>
+      <label for="seats" class="rise" style="--i:2">Posti a sedere
+        <output id="seats-out" for="seats">600</output>
+      </label>
+      <input id="seats" type="range" min="60" max="1500" step="20" value="600" aria-describedby="calc-res">
+    </div>
+    <div>
+      <div class="stacks" id="stacks" aria-hidden="true"></div>
+      <p class="calc-result" id="calc-res" aria-live="polite"><b>10 pile</b>, ognuna sotto i 2 metri. A terra occupano il posto di 10 sedie.</p>
+      <small>Calcolo su pile da 60 sedie, il massimo dichiarato per la collezione Link 60X.</small>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE: due prodotti di punta -->
+<section class="show show-a" aria-labelledby="p1">
+  <img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_2.jpg" alt="Sala riunioni arredata con sedie Link 60X" width="2400" height="1350">
+  <div class="card rise">
+    <h2 id="p1">Link 60X</h2>
+    <p class="var">Legno, tessuto o versione outdoor</p>
+    <p class="fact">La sedia del record: leggera, sottile, si impila a 60.</p>
+    <img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_13.jpg" alt="Link 60X impilate" width="600" height="400">
+    <a class="btn" href="https://www.fornasarig.it/prodotto/link-60x-sedia-impilabile/" target="_blank" rel="noopener">Scheda prodotto</a>
+  </div>
+</section>
+<section class="show show-b" aria-labelledby="p2">
+  <img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_1.jpg" alt="Area lounge con poltrone Wolfgang" width="2400" height="1350">
+  <div class="card rise">
+    <h2 id="p2">Wolfgang Lounge</h2>
+    <p class="var">Struttura in metallo o in rovere</p>
+    <p class="fact">Linea scandinava per lounge, sale d'attesa e hall d'albergo.</p>
+    <img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_1.jpg" alt="Poltrona Wolfgang Lounge" width="600" height="400">
+    <a class="btn" href="https://www.fornasarig.it/prodotto/wolfgang-lounge-poltrona-metal/" target="_blank" rel="noopener">Scheda prodotto</a>
+  </div>
+</section>
+
+<!-- SPAZI: fogli che si impilano come le sedie -->
+<section class="spaces" id="spazi" aria-labelledby="spazi-h">
+  <div class="wrap"><h2 id="spazi-h" class="rise">Uno spazio, una pila</h2></div>
+  <article class="sheet">
+    <h3>Sale conferenze ed eventi</h3>
+    <div class="txt"><p>Sale formali che restano accoglienti. File ordinate per il congresso, sala libera mezz'ora dopo: le sedie si agganciano tra loro e si ritirano in poche pile.</p><a href="https://www.fornasarig.it/prodotti/sedie-per-conferenze/" target="_blank" rel="noopener">Sedie per conferenze →</a></div>
+    <figure><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_conference_event.jpg" alt="Sala conferenze con sedute Fornasarig" width="1400" height="1000"></figure>
+  </article>
+  <article class="sheet">
+    <h3>Aule e spazi per la formazione</h3>
+    <div class="txt"><p>Sedie e banchi che si riconfigurano tra una lezione e l'altra. Dal seminario al lavoro di gruppo senza chiamare il facchinaggio.</p><a href="https://www.fornasarig.it/prodottti/sedie-multifunzionali/" target="_blank" rel="noopener">Sedie multifunzionali →</a></div>
+    <figure><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_multipurpose_educational.jpg" alt="Aula polifunzionale con sedie e tavoli Fornasarig" width="1400" height="1000"></figure>
+  </article>
+  <article class="sheet">
+    <h3>Caffetterie e sale da pranzo</h3>
+    <div class="txt"><p>Dal bar informale al ristorante d'albergo. Superfici che reggono il servizio di ogni giorno e una linea che non stanca.</p><a href="https://www.fornasarig.it/prodotti/sedie-bar/" target="_blank" rel="noopener">Sedie e sgabelli bar →</a></div>
+    <figure><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_cafeteria_dining.jpg" alt="Caffetteria arredata con sedute Fornasarig" width="1400" height="1000"></figure>
+  </article>
+  <article class="sheet">
+    <h3>Uffici e sale riunioni</h3>
+    <div class="txt"><p>Leggere, impilabili, in molte finiture. Pensate per riunioni lunghe e per open space che cambiano forma con il team.</p><a href="https://www.fornasarig.it/prodotti/sedie-da-ufficio/" target="_blank" rel="noopener">Sedie da ufficio →</a></div>
+    <figure><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_2.jpg" alt="Sala riunioni con sedie Fornasarig" width="1400" height="1000"></figure>
+  </article>
+  <article class="sheet">
+    <h3>Indoor e outdoor</h3>
+    <div class="txt"><p>La nuova Link Outdoor porta la stessa sedia dalla sala alla terrazza. Stessa linea dentro e fuori, impilabile anche all'aperto.</p><a href="https://www.fornasarig.it/prodotti/sedie-da-esterno/" target="_blank" rel="noopener">Sedie da esterno →</a></div>
+    <figure><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_3.jpg" alt="Sedute Link Outdoor in uno spazio esterno" width="1400" height="1000"></figure>
+  </article>
+</section>
+
+<!-- COLLEZIONI: elenco a una sola misura -->
+<section class="list" id="collezioni" aria-labelledby="coll-h">
+  <div class="wrap">
+    <h2 id="coll-h" class="rise">Le collezioni</h2>
+    <p class="intro rise" style="--i:1">Oltre trenta sedute e tavoli, disegnati da designer internazionali e prodotti tutti nello stabilimento di Manzano.</p>
+
+    <div class="group">
+      <h3>Link</h3>
+      <a class="row" href="https://www.fornasarig.it/prodotto/link-60x-sedia-impilabile/" target="_blank" rel="noopener"><span>Link 60X</span><span class="muted">Sedia impilabile</span><span class="muted">Metallo</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/link-60x-wood-sedia-in-legno/" target="_blank" rel="noopener"><span>Link 60X Wood</span><span class="muted">Sedia impilabile</span><span class="muted">Legno</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/link-60x-fabric-sedia-impilabile/" target="_blank" rel="noopener"><span>Link 60X Fabric</span><span class="muted">Sedia imbottita</span><span class="muted">Tessuto</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/link-shell-sedia-impilabile/" target="_blank" rel="noopener"><span>Link Shell</span><span class="muted">Sedia impilabile</span><span class="muted">Scocca</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/link-counter-65-sgabello/" target="_blank" rel="noopener"><span>Link Counter 65</span><span class="muted">Sgabello</span><span class="muted">Impilabile</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/link-outdoor-sedia-per-esterni/" target="_blank" rel="noopener"><span>Link Outdoor</span><span class="muted">Sedia, counter, lounge</span><span class="muted">Esterni</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/link-edu-desk-tavolo-leggero-e-impilabile/" target="_blank" rel="noopener"><span>Link Edu Desk</span><span class="muted">Banco</span><span class="muted">Impilabile</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/link-compas-desk-tavolo-per-ufficio/" target="_blank" rel="noopener"><span>Link Compas Desk</span><span class="muted">Scrivania</span><span class="muted">Compatta</span><span>Scheda →</span></a>
+    </div>
+
+    <div class="group">
+      <h3>Wolfgang</h3>
+      <a class="row" href="https://www.fornasarig.it/prodotto/wolfgang-wood-sedia/" target="_blank" rel="noopener"><span>Wolfgang Wood</span><span class="muted">Sedia, poltroncina, sgabello</span><span class="muted">Rovere</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/wolfgang-metal-sedia/" target="_blank" rel="noopener"><span>Wolfgang Metal</span><span class="muted">Sedia e poltroncina 54</span><span class="muted">Metallo</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/wolfgang-50x-sedia-4-gambe/" target="_blank" rel="noopener"><span>Wolfgang 50X</span><span class="muted">Sedia 4 gambe o slitta</span><span class="muted">Impilabile</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/wolfgang-lounge-poltrona-metal/" target="_blank" rel="noopener"><span>Wolfgang Lounge</span><span class="muted">Poltrona, anche schienale alto</span><span class="muted">Lounge</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/wolfgang-70-poltroncina-lounge/" target="_blank" rel="noopener"><span>Wolfgang 70</span><span class="muted">Poltroncina lounge</span><span class="muted">Imbottita</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/wolfgang-coffee-table-tavolino-da-salotto/" target="_blank" rel="noopener"><span>Wolfgang Coffee Table</span><span class="muted">Tavolino</span><span class="muted">Rovere</span><span>Scheda →</span></a>
+    </div>
+
+    <div class="group">
+      <h3>Cato e le altre</h3>
+      <a class="row" href="https://www.fornasarig.it/prodotto/cato-sedia-imbottita/" target="_blank" rel="noopener"><span>Cato</span><span class="muted">Sedia, office, sgabello</span><span class="muted">Imbottita</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/giubileo-sedia-in-legno/" target="_blank" rel="noopener"><span>Giubileo</span><span class="muted">Sedia</span><span class="muted">Legno</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/moka-sedia-in-legno/" target="_blank" rel="noopener"><span>Moka</span><span class="muted">Sedia e sgabello bar</span><span class="muted">Legno</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/camilla-sedia-in-legno/" target="_blank" rel="noopener"><span>Camilla</span><span class="muted">Sedia</span><span class="muted">Legno curvato</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/deore-sedia-in-legno/" target="_blank" rel="noopener"><span>Deore</span><span class="muted">Sedia</span><span class="muted">Legno</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/data-sedia-da-ufficio/" target="_blank" rel="noopener"><span>Data</span><span class="muted">Sedia da ufficio</span><span class="muted">Impilabile</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/allround-poltroncina/" target="_blank" rel="noopener"><span>Allround</span><span class="muted">Sistema di sedute</span><span class="muted">Modulare</span><span>Scheda →</span></a>
+      <a class="row" href="https://www.fornasarig.it/prodotto/marcelo-poltrona/" target="_blank" rel="noopener"><span>Marcelo, Kite, Eos</span><span class="muted">Poltrone lounge</span><span class="muted">Imbottite</span><span>Scheda →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- STORIA: titolo fermo, le immagini passano -->
+<section class="story wrap" id="storia" aria-labelledby="storia-h">
+  <div class="story-pin"><h2 id="storia-h">Dal 1878</h2></div>
+  <div class="story-items">
+    <article class="moment rise"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/fornasarig_ourstory_02_slider_1.jpg" alt="La storia di Fornasarig" width="800" height="1000"><p class="yr">1878</p><p>Nasce Fornasarig, a Manzano, nel cuore del distretto friulano della sedia. Oggi l'azienda è alla quarta generazione della stessa famiglia.</p></article>
+    <article class="moment rise"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/fornasarig_ourstory_02_slider_2_.jpg" alt="La storia di Fornasarig" width="800" height="1000"><p class="yr">1959</p><p>Giovanni, con i fratelli e la moglie Anna, fonda la Fabbrica Sedie Friuli e porta le sedute sui mercati europei e internazionali.</p></article>
+    <article class="moment rise"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/fornasarig_ourstory_02_slider_3.jpg" alt="La storia di Fornasarig" width="800" height="1000"><p class="yr">Anni '80</p><p>Entra la quarta generazione e nasce il mercato contract: prima ristoranti e ospitalità, poi hotel, università, banche e navi da crociera.</p></article>
+    <article class="moment rise"><img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2020/01/fornasarig_ourstory_02_slider_4.jpg" alt="La storia di Fornasarig" width="800" height="1000"><p class="yr">Oggi</p><p>Faggio e rovere solo da foreste europee gestite in modo sostenibile, tessuti Kvadrat e Gabriel, ogni prodotto testato da Catas secondo EN 1728 e ANSI/BIFMA X5.1.</p></article>
+  </div>
+  <div class="facts">
+    <div class="rise"><b>4</b><p>generazioni della stessa famiglia</p></div>
+    <div class="rise" style="--i:1"><b>100%</b><p>prodotto nello stabilimento di Manzano</p></div>
+    <div class="rise" style="--i:2"><b>10 anni</b><p>di garanzia per l'uso contract</p></div>
+    <div class="rise" style="--i:3"><b>60</b><p>sedie in una pila sotto i 2 metri</p></div>
+  </div>
+</section>
+
+<!-- CONTATTI: il numero come titolo -->
+<section class="contact wrap" id="contatti" aria-labelledby="cont-h">
+  <div>
+    <h2 id="cont-h">Parliamo del vostro progetto</h2>
+    <p class="lead">Cataloghi, campioni di finiture e preventivi per forniture contract. Rispondono direttamente dallo stabilimento.</p>
+  </div>
+  <a class="phone" id="phone" href="tel:+390432750057">0432 750057</a>
+  <div class="contact-foot">
+    <p>Via San Giovanni 106/C, 33044 Manzano (UD)<br>+39 0432 750057 · <button class="copy" id="copy" type="button">Copia il numero</button></p>
+    <p class="links"><a href="https://www.instagram.com/fornasarig_official/" target="_blank" rel="noopener">Instagram</a><a href="https://it-it.facebook.com/fornasarig.official/" target="_blank" rel="noopener">Facebook</a><a href="https://www.fornasarig.com" target="_blank" rel="noopener">English</a></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <img loading="lazy" src="https://www.fornasarig.it/wp-content/uploads/2025/06/Fornasarig_home_15.jpg" alt="Sedute Fornasarig in un ambiente contract" width="1200" height="1600">
+  <div class="foot-menu">
+    <a class="mark" href="#top">Fornasarig</a>
+    <ul>
+      <li><a href="#collezioni">Collezioni</a></li>
+      <li><a href="#spazi">Spazi</a></li>
+      <li><a href="https://www.fornasarig.it/designers/" target="_blank" rel="noopener">Designer</a></li>
+      <li><a href="https://www.fornasarig.it/referenze/" target="_blank" rel="noopener">Referenze</a></li>
+      <li><a href="#storia">Azienda</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <div class="foot-cols">
+      <p><b>Produzione e magazzino</b>Via San Giovanni 106/C<br>33044 Manzano (UD)<br>+39 0432 750057</p>
+      <p><b>Area professionisti</b><a href="https://www.fornasarig.it/registrazione/" target="_blank" rel="noopener">Registrati</a> per scaricare schede tecniche e file 3D.</p>
+    </div>
+    <p class="legal">© 2026 Fornasarig · P.IVA IT00513750307 · <a href="https://www.iubenda.com/privacy-policy/52462298" target="_blank" rel="noopener">Privacy</a> · Concept di redesign, non è il sito ufficiale.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
+
+  // header pieno dopo l'hero
+  var top = document.getElementById('top');
+  // pellicola dell'hero
+  var hero = document.querySelector('.hero'), track = document.getElementById('reel');
+  function onScroll(){
+    var y = window.scrollY;
+    top.classList.toggle('solid', y > hero.offsetHeight - window.innerHeight);
+    if(!reduce && track){
+      var max = hero.offsetHeight - window.innerHeight;
+      var p = Math.min(1, Math.max(0, (y - hero.offsetTop) / max));
+      var f = track.children[0], step = f.offsetHeight + 24, n = track.children.length - 1;
+      track.style.transform = 'translateY(' + (-(f.offsetHeight/2) - p * n * step) + 'px)';
+    }
+  }
+  if(track){ track.style.transform = 'translateY(-50%)'; }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', onScroll);
+  onScroll();
+
+  // entrate
+  var els = document.querySelectorAll('.rise, .show');
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -10% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('in'); }); }
+
+  // calcolatore pile
+  var r = document.getElementById('seats'), out = document.getElementById('seats-out'),
+      st = document.getElementById('stacks'), res = document.getElementById('calc-res');
+  function draw(){
+    var n = +r.value, piles = Math.ceil(n/60);
+    out.textContent = n.toLocaleString('it-IT');
+    st.innerHTML = '';
+    for(var i=0;i<piles;i++){
+      var s = document.createElement('div'); s.className = 'stack';
+      var c = Math.min(60, n - i*60);
+      for(var j=0;j<c;j++){ var b = document.createElement('i'); b.style.animationDelay = (j*4)+'ms'; s.appendChild(b); }
+      st.appendChild(s);
+    }
+    res.innerHTML = '<b>' + piles + (piles===1?' pila':' pile') + '</b>, ognuna sotto i 2 metri. A terra occupano il posto di ' + piles + (piles===1?' sedia.':' sedie.');
+  }
+  r.addEventListener('input', draw); draw();
+
+  // copia numero
+  var cb = document.getElementById('copy');
+  cb.addEventListener('click', function(){
+    var t = '+39 0432 750057';
+    function done(){ cb.textContent = 'Copiato'; setTimeout(function(){ cb.textContent = 'Copia il numero'; }, 1800); }
+    if(navigator.clipboard){ navigator.clipboard.writeText(t).then(done, function(){ window.getSelection().selectAllChildren(document.getElementById('phone')); }); }
+    else { window.getSelection().selectAllChildren(document.getElementById('phone')); }
+  });
+})();
+</script>
+</body>
+</html>
