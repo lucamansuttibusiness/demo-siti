@@ -93,7 +93,9 @@ ol { padding: 0; list-style: none; }
 /* Hero: one real house, full screen; the tagline reads like a film title */
 .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: var(--field); color: #fff; }
 .hero-photo { position: absolute; inset: 0; }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+.hero-photo img, .hero-photo video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block; }
+@media (max-width: 760px) { .hero-photo video { object-position: 50% 40%; } }
+@media (prefers-reduced-motion: reduce) { .hero-photo video { animation: none; } }
 .hero-scrim { position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(to bottom, rgba(8,8,8,0.45) 0, rgba(8,8,8,0) 18%, rgba(8,8,8,0.08) 38%, rgba(8,8,8,0.8) 100%); } /* taste-skill-ignore: neutral scrim under text on a photograph */
 .hero-body { position: relative; width: 100%; padding: 0 max(var(--margin), env(safe-area-inset-right, 0px)) clamp(28px, 5vh, 56px) max(var(--margin), env(safe-area-inset-left, 0px)); }
@@ -278,7 +280,7 @@ html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bo
 .f-menu { margin-top: 24px; }
 
 /* Hero: the photograph drifts slower than the page */
-.hero-photo img { will-change: transform; }
+.hero-photo img, .hero-photo video { will-change: transform; }
 
 /* Contact: one card on a photograph */
 .contact { position: relative; margin-top: var(--gap-section); min-height: 100svh; display: flex; justify-content: flex-end; align-items: flex-start; padding: 60px max(60px, env(safe-area-inset-right, 0px)) 60px var(--margin); overflow: hidden; }
@@ -338,10 +340,10 @@ html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bo
 .reveal { opacity: 0; transform: translateY(24px); }
 .reveal.in { opacity: 1; transform: none; transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-out); transition-delay: var(--d, 0ms); }
 .js .hero-photo { clip-path: inset(0 0 100% 0); }
-.js .hero-photo img { transform: scale(1.12); }
+.js .hero-photo img, .js .hero-photo video { transform: scale(1.12); }
 .js.loaded .hero-photo { clip-path: inset(0 0 0 0); transition: clip-path 1100ms var(--ease-in-out); }
-.js.loaded .hero-photo img { transform: translateY(var(--hy, 0px)) scale(var(--hs, 1)); transition: transform 1800ms var(--ease-out); }
-.js.loaded.scrolled .hero-photo img { transition: none; }
+.js.loaded .hero-photo img, .js.loaded .hero-photo video { transform: translateY(var(--hy, 0px)) scale(var(--hs, 1)); transition: transform 1800ms var(--ease-out); }
+.js.loaded.scrolled .hero-photo img, .js.loaded.scrolled .hero-photo video { transition: none; }
 .js .hero-foot > * { opacity: 0; transform: translateY(24px); }
 .js .hero-foot > * { display: block; }
 .js.loaded .hero-foot > * { opacity: 1; transform: none; transition: opacity 800ms var(--ease-out), transform 1000ms var(--ease-out); }
@@ -359,7 +361,7 @@ html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bo
   html { scroll-behavior: auto; }
   .reveal, .reveal.in { opacity: 1; transform: none; transition: none; }
   .js .hero-photo, .js.loaded .hero-photo { clip-path: none; transition: none; }
-  .js .hero-photo img, .js.loaded .hero-photo img { transform: none; transition: none; }
+  .js .hero-photo img, .js.loaded .hero-photo img, .js .hero-photo video, .js.loaded .hero-photo video { transform: none; transition: none; }
   .js .hero-foot > * { opacity: 1; transform: none; transition: none; }
   .split .wi, .split.in .wi { transform: none !important; transition: none !important; }
   .hero h1.split .wi { filter: none !important; opacity: 1 !important; }

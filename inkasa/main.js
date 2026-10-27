@@ -2,6 +2,7 @@
   const root = document.documentElement
   root.classList.add('js')
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (reduce) document.querySelector('.hero-photo video')?.pause()
   const wide = () => matchMedia('(min-width: 901px)').matches
   // Liquid Glass fotografa la pagina all'avvio: deve partire dall'alto
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
