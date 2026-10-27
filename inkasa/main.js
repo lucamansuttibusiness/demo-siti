@@ -17,6 +17,30 @@
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(tick) } }, { passive: true })
   addEventListener('resize', () => requestAnimationFrame(tick))
 
+  // ---------- Barra d'avanzamento della pagina ----------
+  const prog = document.querySelector('.progress span')
+  onScroll.push(() => {
+    const max = document.documentElement.scrollHeight - innerHeight
+    prog.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`
+  })
+
+  // ---------- Titoli: ogni parola sale dalla sua riga ----------
+  const splitWords = el => {
+    const words = el.textContent.trim().split(/\s+/)
+    el.setAttribute('aria-label', el.textContent.trim())
+    el.innerHTML = words.map((w, i) => `<span class="w" aria-hidden="true"><span class="wi" style="--i:${i}">${w}</span></span>`).join(' ')
+    el.classList.add('split')
+  }
+  if (!reduce) {
+    splitWords(document.querySelector('.hero h1'))
+    const heads = [...document.querySelectorAll('.h2')]
+    heads.forEach(splitWords)
+    const hio = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); hio.unobserve(e.target) }
+    }), { rootMargin: '0px 0px -12% 0px' })
+    heads.forEach(h => hio.observe(h))
+  }
+
   // ---------- Apertura: la foto scorre più lenta della pagina ----------
   const hero = document.querySelector('.hero')
   if (!reduce) onScroll.push(() => {
@@ -50,9 +74,37 @@
     const mid = innerWidth / 2
     slides.forEach(sl => {
       const b = sl.getBoundingClientRect()
-      sl.querySelector('img').style.setProperty('--px', `${((b.left + b.width / 2) - mid) * -0.08}px`)
+      const off = (b.left + b.width / 2) - mid
+      sl.querySelector('img').style.setProperty('--px', `${off * -0.08}px`)
+      const centre = Math.abs(off) < b.width / 2
+      sl.classList.toggle('is-center', centre)
+      if (centre && r.top < innerHeight * 0.5) countScore(sl)
     })
   }
+  // il voto degli ospiti conta da zero la prima volta che la casa arriva davanti
+  const countScore = sl => {
+    const el = sl.querySelector('.slide-score')
+    if (!el || el.dataset.done || !el.dataset.v) return
+    el.dataset.done = 1
+    const target = el.dataset.v, dec = (target.split(',')[1] || '').length, end = parseFloat(target.replace(',', '.'))
+    const t0 = performance.now(), dur = 1300
+    const step = now => {
+      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 4)
+      el.textContent = (end * e).toFixed(dec).replace('.', ',')
+      if (k < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }
+  if (!reduce) slides.forEach(sl => {
+    const el = sl.querySelector('.slide-score')
+    el.dataset.v = el.textContent
+    el.textContent = el.textContent.replace(/\d/g, '0')
+  })
+  const sio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting || work.classList.contains('is-pinned')) return
+    e.target.classList.add('in'); countScore(e.target)
+  }), { threshold: 0.35 })
+  if (!reduce) slides.forEach(sl => sio.observe(sl))
   setupWork()
   addEventListener('resize', setupWork)
   onScroll.push(syncWork)
@@ -94,7 +146,8 @@
 
   // ---------- Effetti WebGL: caricati quando servono, fermi fuori schermo ----------
   let fxModule = null
-  const loadFx = () => fxModule || (fxModule = import('./fx/fx.js?v=9'))
+  const pageLoaded = new Promise(r => document.readyState === 'complete' ? r() : addEventListener('load', r))
+  const loadFx = () => fxModule || (fxModule = pageLoaded.then(() => import('./fx/fx.js?v=10')))
   const scene = (el, start) => {
     let inst = null, visible = false, loading = false
     const sync = () => inst && inst.setAnimate(visible && !document.hidden)
@@ -109,8 +162,9 @@
     document.addEventListener('visibilitychange', sync)
   }
   const mask = new URL('img/logo-mask.svg', document.baseURI).href
-  const liquid = (wrap, canvas) => async m => {
-    const l = await m.mountLiquidLogo(canvas, mask).catch(() => null)
+  const liquid = (wrap, canvas, opts, src) => async m => {
+    const url = src ? await src(m) : mask
+    const l = await m.mountLiquidLogo(canvas, url, opts).catch(() => null)
     if (!l) { wrap.classList.add('no-gl'); return null }
     return { setAnimate: on => l.setAnimate(on && !reduce) }
   }
@@ -119,7 +173,15 @@
     return { setAnimate: on => g.setAnimate(on && !reduce) }
   })
   scene(document.querySelector('.svc-mark'), liquid(document.querySelector('.svc-mark'), document.getElementById('fx-logo')))
-  scene(document.querySelector('.f-mark'), liquid(document.querySelector('.f-mark'), document.getElementById('fx-logo-foot')))
+  scene(document.querySelector('.nav-mark'), liquid(document.querySelector('.nav-mark'), document.getElementById('fx-logo-nav'), { res: 320 }))
+  scene(document.querySelector('.f-word'), liquid(document.querySelector('.f-word'), document.getElementById('fx-word'), { res: 1400, speed: 0.22, fill: 1.5 },
+    m => m.textMask('INKASA', '600 360px "Barlow Condensed"')))
+  const glow = document.getElementById('fx-hero-glow')
+  scene(hero, m => {
+    const g = m.mountGradient(glow, { color1: '#f0b45a', color2: '#000000', color3: '#5a3a10', uSpeed: 0.1, brightness: 1.3, grain: 'off', cameraZoom: 6 })
+    requestAnimationFrame(() => glow.classList.add('on'))
+    return { setAnimate: on => g.setAnimate(on && !reduce) }
+  })
   scene(build, m => {
     terraces = m.mountTerraces(document.getElementById('fx-terraces'), { reduce })
     terraces.setStep(Math.max(0, step))
@@ -147,7 +209,7 @@
   if (!reduce) {
     const targets = []
     ;['.svc-intro', '.about > .h2', '.about > .lead', '.card', '.f-side'].forEach(sel => document.querySelectorAll(sel).forEach(g => {
-      const kids = g.matches('.about > *') ? [g] : [...g.children]
+      const kids = (g.matches('.about > *') ? [g] : [...g.children]).filter(c => !c.classList.contains('h2'))
       kids.forEach((c, k) => {
         if (c.getBoundingClientRect().top < innerHeight) return
         c.classList.add('reveal'); c.style.setProperty('--d', `${k * 75}ms`); targets.push(c)
@@ -158,6 +220,28 @@
     }), { rootMargin: '0px 0px -8% 0px' })
     targets.forEach(t => rio.observe(t))
   }
+
+  // ---------- Chi siamo: la mappa si disegna, la foto si apre ----------
+  const tile = document.querySelector('.m-tile')
+  const italy = tile.querySelector('.it')
+  try { tile.style.setProperty('--len', Math.ceil(italy.getTotalLength())) } catch (e) {}
+  const mphoto = document.querySelector('.m-photo')
+  if (reduce) { tile.classList.add('drawn'); mphoto.classList.add('in') }
+  else {
+    const mio = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return
+      e.target.classList.add(e.target === tile ? 'drawn' : 'in'); mio.unobserve(e.target)
+    }), { threshold: 0.3 })
+    mio.observe(tile); mio.observe(mphoto)
+  }
+
+  // ---------- Footer: la foto scorre più lenta ----------
+  const fphoto = document.querySelector('.f-photo img')
+  if (!reduce) onScroll.push(() => {
+    const b = fphoto.parentElement.getBoundingClientRect()
+    if (b.bottom < 0 || b.top > innerHeight) return
+    fphoto.style.setProperty('--fy', `${(b.top + b.height / 2 - innerHeight / 2) * -0.12}px`)
+  })
 
   // ---------- Scheda immobile: compone il messaggio WhatsApp ----------
   const f = document.getElementById('scheda')
@@ -170,7 +254,11 @@
     const dove = f.dove.value.trim()
     const cam = f.camere.value === '1' ? '1 camera' : `${f.camere.value} camere`
     const txt = `Ciao, ho ${article[f.tipo.value]} con ${cam}${dove ? ` a ${dove}` : ''}. ${libera[f.quando.value]} Mi fate una valutazione?`
-    out.textContent = txt
+    if (out.textContent !== txt) {
+      if (reduce || !out.dataset.ready) out.textContent = txt
+      else { out.classList.add('swap'); clearTimeout(out._t); out._t = setTimeout(() => { out.textContent = txt; out.classList.remove('swap') }, 180) }
+    }
+    out.dataset.ready = 1
     const q = '?text=' + encodeURIComponent(txt)
     luca.href = 'https://wa.me/393319419162' + q
     andrea.href = 'https://wa.me/393519080306' + q

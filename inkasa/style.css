@@ -337,10 +337,9 @@ html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bo
 .js.loaded .hero-photo { clip-path: inset(0 0 0 0); transition: clip-path 1100ms var(--ease-in-out); }
 .js.loaded .hero-photo img { transform: translateY(var(--hy, 0px)) scale(var(--hs, 1)); transition: transform 1800ms var(--ease-out); }
 .js.loaded.scrolled .hero-photo img { transition: none; }
-.js .hero h1, .js .hero-foot > * { opacity: 0; transform: translateY(24px); }
+.js .hero-foot > * { opacity: 0; transform: translateY(24px); }
 .js .hero-foot > * { display: block; }
-.js.loaded .hero h1, .js.loaded .hero-foot > * { opacity: 1; transform: none; transition: opacity 800ms var(--ease-out), transform 1000ms var(--ease-out); }
-.js.loaded .hero h1 { transition-delay: 650ms; }
+.js.loaded .hero-foot > * { opacity: 1; transform: none; transition: opacity 800ms var(--ease-out), transform 1000ms var(--ease-out); }
 .js.loaded .hero-foot > :nth-child(1) { transition-delay: 880ms; }
 .js.loaded .hero-foot > :nth-child(2) { transition-delay: 950ms; }
 .js.loaded .hero-foot > :nth-child(3) { transition-delay: 1020ms; }
@@ -356,9 +355,81 @@ html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bo
   .reveal, .reveal.in { opacity: 1; transform: none; transition: none; }
   .js .hero-photo, .js.loaded .hero-photo { clip-path: none; transition: none; }
   .js .hero-photo img, .js.loaded .hero-photo img { transform: none; transition: none; }
-  .js .hero h1, .js .hero-foot > * { opacity: 1; transform: none; transition: none; }
+  .js .hero-foot > * { opacity: 1; transform: none; transition: none; }
+  .split .wi, .split.in .wi { transform: none !important; transition: none !important; }
+  .hero h1.split .wi { filter: none !important; opacity: 1 !important; }
+  .m-tile.drawn .it, .m-tile .it { fill-opacity: 1; stroke-dashoffset: 0; transition: none; }
+  .m-tile .ring { animation: none; opacity: 0; }
+  .js .m-tile.drawn .route { animation: none; }
+  .c-preview.swap { filter: none; opacity: 1; }
   .c-photo img { animation: none; }
   .svc-shot img, .svc-shot.on img { transition: none; transform: none; clip-path: none; }
   .svc-item h3 { transition: color 200ms ease; transform: none !important; }
   .b-step { transition: opacity 150ms ease; transform: none; }
 }
+
+/* ===== Motion layer, whole site ===== */
+/* Page progress, gold */
+.progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 30; pointer-events: none; }
+.progress span { display: block; height: 100%; background: var(--accent); transform-origin: left; transform: scaleX(0); }
+
+/* Nav mark in liquid gold */
+.nav-mark { position: relative; display: block; width: 64px; height: 28px; }
+.nav-mark canvas, .nav-mark img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.nav-mark img { object-fit: contain; opacity: 0; transition: opacity 300ms ease; }
+.nav-mark.no-gl img, html:not(.js) .nav-mark img { opacity: 1; }
+.top nav a { position: relative; text-decoration: none !important; }
+.top nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: right; transition: transform 300ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .top nav a:hover::after { transform: scaleX(1); transform-origin: left; } }
+
+/* Hero: moving golden light over the photograph (ShaderGradient, screen blend) */
+.hero-glow { position: absolute; inset: 0; mix-blend-mode: screen; opacity: 0; transition: opacity 1600ms ease 600ms; pointer-events: none; }
+.hero-glow.on { opacity: 0.5; }
+
+/* Headings: each word rises from its own line */
+.split .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.split .wi { display: inline-block; transform: translateY(105%); transition: transform 900ms var(--ease-out); transition-delay: calc(var(--i) * 55ms); }
+.split.in .wi { transform: none; }
+.hero h1.split .wi { transform: translateY(40%); opacity: 0; filter: blur(10px); transition: transform 1100ms var(--ease-out), opacity 900ms ease, filter 900ms ease; transition-delay: calc(700ms + var(--i) * 70ms); }
+.loaded .hero h1.split .wi { transform: none; opacity: 1; filter: none; }
+.hero h1.split .w { overflow: visible; }
+
+/* Houses: the slide in front is the one you read */
+.slide .facts { transition: opacity 500ms ease; }
+.work.is-pinned .slide:not(.is-center) .facts { opacity: 0.35; }
+.slide-score { transition: transform 700ms var(--ease-out), opacity 500ms ease; }
+.work.is-pinned .slide:not(.is-center) .slide-score { transform: translateY(16px); opacity: 0.6; }
+.js .work:not(.is-pinned) .slide-media { clip-path: inset(0 0 100% 0); transition: clip-path 1000ms var(--ease-in-out); }
+.js .work:not(.is-pinned) .slide.in .slide-media { clip-path: inset(0 0 0 0); }
+
+/* About: the map draws itself, a gold route links the two places */
+.m-tile .it { stroke: var(--ink); stroke-width: 1.4; }
+.js .m-tile .it { fill-opacity: 0; stroke-dasharray: var(--len, 3000); stroke-dashoffset: var(--len, 3000); }
+.js .m-tile.drawn .it { fill-opacity: 1; stroke-dashoffset: 0; transition: stroke-dashoffset 2200ms var(--ease-in-out), fill-opacity 900ms ease 1700ms; }
+.m-tile .route { fill: none; stroke: var(--bg); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 10; }
+.js .m-tile .route { opacity: 0; }
+.js .m-tile.drawn .route { opacity: 1; transition: opacity 600ms ease 2200ms; animation: route 1.6s linear infinite; }
+@keyframes route { to { stroke-dashoffset: -24; } }
+.m-tile .ring { fill: none; stroke: var(--bg); stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: ring 2.4s var(--ease-out) infinite; }
+.m-tile .ring.r2 { animation-delay: 1.2s; }
+@keyframes ring { from { transform: scale(1); opacity: 0.9; } to { transform: scale(3.2); opacity: 0; } }
+.js .m-photo img { clip-path: inset(0 100% 0 0); transform: scale(1.1); }
+.js .m-photo.in img { clip-path: inset(0 0 0 0); transform: none; transition: clip-path 1200ms var(--ease-in-out), transform 1800ms var(--ease-out); }
+.snapshot .m-tile .it { fill-opacity: 1 !important; stroke-dashoffset: 0 !important; }
+.snapshot .m-tile .route { opacity: 1 !important; }
+
+/* Contact: fields come alive, the message re-writes itself */
+.card input, .card select { transition: border-color 200ms ease, background-color 200ms ease; }
+.card input:focus, .card select:focus { background-color: #fff; }
+.c-preview { transition: filter 260ms ease, opacity 260ms ease; }
+.c-preview.swap { filter: blur(4px); opacity: 0.4; }
+.c-btn { transition: transform 160ms var(--ease-out), background-color 200ms ease; }
+.c-btn:active { transform: scale(0.97); }
+.c-photo img { will-change: transform; }
+
+/* Footer: the name returns at full width, in liquid gold (Liquid Logo) */
+.f-word { grid-column: 1 / -1; position: relative; aspect-ratio: 4.2 / 1; margin: 0 max(var(--margin), env(safe-area-inset-right, 0px)) 24px; }
+.f-word canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.f-word-fallback { position: absolute; inset: 0; display: grid; place-items: center; font: 600 22vw/1 var(--display); color: var(--accent); opacity: 0; }
+.f-word.no-gl .f-word-fallback { opacity: 1; }
+.f-photo img { will-change: transform; transform: scale(1.12) translateY(var(--fy, 0px)); }

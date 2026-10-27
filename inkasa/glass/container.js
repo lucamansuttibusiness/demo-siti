@@ -208,6 +208,7 @@ class Container {
       scale: 1,
       useCORS: true,
       allowTaint: false,
+      onclone: d => d.documentElement.classList.add('snapshot'),
       backgroundColor: null,
       ignoreElements: function (element) {
         // Ignore all glass elements

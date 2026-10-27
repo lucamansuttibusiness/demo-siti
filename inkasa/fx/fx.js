@@ -37567,7 +37567,7 @@ function mC(e, { reduce: t = !1 } = {}) {
 	};
 }
 // fx.jsx
-function hC({ animate: e }) {
+function hC({ animate: e, o: t = {} }) {
 	return /* @__PURE__ */ (0, y.jsx)(vS, {
 		style: {
 			position: "absolute",
@@ -37602,36 +37602,40 @@ function hC({ animate: e }) {
 			lightType: "3d",
 			brightness: .95,
 			grain: "on",
-			grainBlending: .06
+			grainBlending: .06,
+			...t
 		})
 	});
 }
-function gC(e) {
-	let t = (0, se.createRoot)(e), n = (e) => t.render(/* @__PURE__ */ (0, y.jsx)(hC, { animate: e }));
-	return n(!1), { setAnimate: n };
+function gC(e, t) {
+	let n = (0, se.createRoot)(e), r = (e) => n.render(/* @__PURE__ */ (0, y.jsx)(hC, {
+		animate: e,
+		o: t
+	}));
+	return r(!1), { setAnimate: r };
 }
 var _C = "#version 300 es\nprecision mediump float;\nin vec2 a_position;\nout vec2 vUv;\nvoid main() { vUv = .5 * (a_position + 1.); gl_Position = vec4(a_position, 0.0, 1.0); }";
-async function vC(e, t) {
-	let n = e.getContext("webgl2", {
+async function vC(e, t, { res: n = 1100, speed: r = .3, fill: i = 0 } = {}) {
+	let a = e.getContext("webgl2", {
 		antialias: !0,
 		alpha: !0,
 		premultipliedAlpha: !0
 	});
-	if (!n) return null;
-	let r = (e, t) => {
-		let r = n.createShader(t);
-		return n.shaderSource(r, e), n.compileShader(r), n.getShaderParameter(r, n.COMPILE_STATUS) ? r : (console.error(n.getShaderInfoLog(r)), null);
-	}, i = r(_C, n.VERTEX_SHADER), a = r($S, n.FRAGMENT_SHADER);
-	if (!i || !a) return null;
-	let o = n.createProgram();
-	n.attachShader(o, i), n.attachShader(o, a), n.linkProgram(o), n.useProgram(o);
-	let s = {};
-	for (let e = 0; e < n.getProgramParameter(o, n.ACTIVE_UNIFORMS); e++) {
-		let t = n.getActiveUniform(o, e).name;
-		s[t] = n.getUniformLocation(o, t);
+	if (!a) return null;
+	let o = (e, t) => {
+		let n = a.createShader(t);
+		return a.shaderSource(n, e), a.compileShader(n), a.getShaderParameter(n, a.COMPILE_STATUS) ? n : (console.error(a.getShaderInfoLog(n)), null);
+	}, s = o(_C, a.VERTEX_SHADER), c = o($S, a.FRAGMENT_SHADER);
+	if (!s || !c) return null;
+	let l = a.createProgram();
+	a.attachShader(l, s), a.attachShader(l, c), a.linkProgram(l), a.useProgram(l);
+	let u = {};
+	for (let e = 0; e < a.getProgramParameter(l, a.ACTIVE_UNIFORMS); e++) {
+		let t = a.getActiveUniform(l, e).name;
+		u[t] = a.getUniformLocation(l, t);
 	}
-	let c = n.createBuffer();
-	n.bindBuffer(n.ARRAY_BUFFER, c), n.bufferData(n.ARRAY_BUFFER, new Float32Array([
+	let d = a.createBuffer();
+	a.bindBuffer(a.ARRAY_BUFFER, d), a.bufferData(a.ARRAY_BUFFER, new Float32Array([
 		-1,
 		-1,
 		1,
@@ -37640,25 +37644,32 @@ async function vC(e, t) {
 		1,
 		1,
 		1
-	]), n.STATIC_DRAW);
-	let l = n.getAttribLocation(o, "a_position");
-	n.enableVertexAttribArray(l), n.vertexAttribPointer(l, 2, n.FLOAT, !1, 0, 0), n.uniform1f(s.u_edge, .28), n.uniform1f(s.u_patternBlur, .005), n.uniform1f(s.u_patternScale, 2), n.uniform1f(s.u_refraction, .015), n.uniform1f(s.u_liquid, .07), n.uniform1f(s.u_ratio, 1);
-	let { imageData: u } = await eC(t), d = n.createTexture();
-	n.activeTexture(n.TEXTURE0), n.bindTexture(n.TEXTURE_2D, d), [
-		[n.TEXTURE_MIN_FILTER, n.LINEAR],
-		[n.TEXTURE_MAG_FILTER, n.LINEAR],
-		[n.TEXTURE_WRAP_S, n.CLAMP_TO_EDGE],
-		[n.TEXTURE_WRAP_T, n.CLAMP_TO_EDGE]
-	].forEach(([e, t]) => n.texParameteri(n.TEXTURE_2D, e, t)), n.pixelStorei(n.UNPACK_ALIGNMENT, 1), n.texImage2D(n.TEXTURE_2D, 0, n.RGBA, u.width, u.height, 0, n.RGBA, n.UNSIGNED_BYTE, u.data), n.uniform1i(s.u_image_texture, 0), n.uniform1f(s.u_img_ratio, u.width / u.height);
-	let f = (e.clientWidth || 16) / (e.clientHeight || 9), p = Math.round(1100 * Math.min(devicePixelRatio || 1, 2)), m = Math.round(p / f);
-	e.width = p, e.height = m, n.viewport(0, 0, p, m), n.uniform1f(s.u_ratio, f);
-	let h = 0, g = 0, _ = 0, v = !1, y = () => {
-		n.uniform1f(s.u_time, h), n.drawArrays(n.TRIANGLE_STRIP, 0, 4);
-	}, b = (e) => {
-		h += (e - g) * .3, g = e, y(), _ = requestAnimationFrame(b);
+	]), a.STATIC_DRAW);
+	let f = a.getAttribLocation(l, "a_position");
+	a.enableVertexAttribArray(f), a.vertexAttribPointer(f, 2, a.FLOAT, !1, 0, 0), a.uniform1f(u.u_edge, .28), a.uniform1f(u.u_patternBlur, .005), a.uniform1f(u.u_patternScale, 2), a.uniform1f(u.u_refraction, .015), a.uniform1f(u.u_liquid, .07), a.uniform1f(u.u_ratio, 1);
+	let { imageData: p } = await eC(t), m = a.createTexture();
+	a.activeTexture(a.TEXTURE0), a.bindTexture(a.TEXTURE_2D, m), [
+		[a.TEXTURE_MIN_FILTER, a.LINEAR],
+		[a.TEXTURE_MAG_FILTER, a.LINEAR],
+		[a.TEXTURE_WRAP_S, a.CLAMP_TO_EDGE],
+		[a.TEXTURE_WRAP_T, a.CLAMP_TO_EDGE]
+	].forEach(([e, t]) => a.texParameteri(a.TEXTURE_2D, e, t)), a.pixelStorei(a.UNPACK_ALIGNMENT, 1), a.texImage2D(a.TEXTURE_2D, 0, a.RGBA, p.width, p.height, 0, a.RGBA, a.UNSIGNED_BYTE, p.data), a.uniform1i(u.u_image_texture, 0), a.uniform1f(u.u_img_ratio, p.width / p.height), i && (e.parentElement.style.aspectRatio = `${p.width} / ${p.height}`);
+	let h = (e.clientWidth || 16) / (e.clientHeight || 9), g = Math.round(n * Math.min(devicePixelRatio || 1, 2)), _ = Math.round(g / h);
+	e.width = g, e.height = _, a.viewport(0, 0, g, _), a.uniform1f(u.u_ratio, i || h), i && a.uniform1f(u.u_img_ratio, i);
+	let v = 0, y = 0, b = 0, x = !1, S = () => {
+		a.uniform1f(u.u_time, v), a.drawArrays(a.TRIANGLE_STRIP, 0, 4);
+	}, C = (e) => {
+		v += (e - y) * r, y = e, S(), b = requestAnimationFrame(C);
 	};
-	return y(), { setAnimate(e) {
-		e !== v && (v = e, e ? (g = performance.now(), _ = requestAnimationFrame(b)) : (cancelAnimationFrame(_), y()));
+	return S(), { setAnimate(e) {
+		e !== x && (x = e, e ? (y = performance.now(), b = requestAnimationFrame(C)) : (cancelAnimationFrame(b), S()));
 	} };
 }
-export { gC as mountGradient, vC as mountLiquidLogo, mC as mountTerraces };
+async function yC(e, t) {
+	document.fonts && await document.fonts.load(t);
+	let n = document.createElement("canvas"), r = n.getContext("2d");
+	r.font = t;
+	let i = r.measureText(e), a = Math.ceil(i.actualBoundingBoxAscent + i.actualBoundingBoxDescent), o = Math.round(a * .12);
+	return n.width = Math.ceil(i.width) + o * 2, n.height = a + o * 2, r.font = t, r.fillStyle = "#000", r.fillText(e, o, o + i.actualBoundingBoxAscent), n.toDataURL("image/png");
+}
+export { gC as mountGradient, vC as mountLiquidLogo, mC as mountTerraces, yC as textMask };
