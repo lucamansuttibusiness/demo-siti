@@ -117,7 +117,7 @@ ol { padding: 0; list-style: none; }
 .work-head { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 48px; align-items: end; margin-bottom: 72px; }
 .work-head .lead { justify-self: end; }
 .film {
-  display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  display: flex; gap: 20px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none;
   padding: 0 calc((100vw - min(73vw, 1046px)) / 2);
   overscroll-behavior-x: contain;
 }
@@ -178,8 +178,8 @@ ol { padding: 0; list-style: none; }
 .bar { margin-top: 28px; height: 6px; background: var(--surface); position: relative; overflow: hidden; }
 .bar span { position: absolute; inset: 0; background: var(--ink); transform-origin: left; transform: scaleX(0.15); }
 .row {
-  margin-top: 48px; display: flex; gap: 32px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-  padding: 0 max(var(--margin), env(safe-area-inset-right, 0px)) 8px max(var(--margin), env(safe-area-inset-left, 0px));
+  margin-top: 40px; display: flex; gap: 32px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none;
+  padding: 8px max(var(--margin), env(safe-area-inset-right, 0px)) 8px max(var(--margin), env(safe-area-inset-left, 0px));
   scroll-padding: 0 var(--margin);
 }
 .row::-webkit-scrollbar { display: none; }
