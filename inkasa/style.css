@@ -90,9 +90,10 @@ ol { padding: 0; list-style: none; }
 @media (max-width: 760px) { .hero-photo video { object-position: 50% 40%; } }
 @media (prefers-reduced-motion: reduce) { .hero-photo video { animation: none; } }
 .hero-scrim { position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to bottom, rgba(8,8,8,0.45) 0, rgba(8,8,8,0) 18%, rgba(8,8,8,0.08) 38%, rgba(8,8,8,0.8) 100%); } /* taste-skill-ignore: neutral scrim under text on a photograph */
+  background: linear-gradient(to bottom, rgba(8,8,8,0.5) 0, rgba(8,8,8,0.08) 18%, rgba(8,8,8,0.18) 40%, rgba(8,8,8,0.85) 100%); } /* taste-skill-ignore: neutral scrim under text on a photograph */
 .hero-body { position: relative; width: 100%; padding: 0 max(var(--margin), env(safe-area-inset-right, 0px)) clamp(28px, 5vh, 56px) max(var(--margin), env(safe-area-inset-left, 0px)); }
 .hero h1 { font: 500 var(--step-hero)/0.98 var(--display); letter-spacing: -0.012em; text-wrap: balance; }
+.hero h1, .hero-sub, .hero-link, .hero-caption { text-shadow: 0 1px 18px rgba(0,0,0,0.35); }
 .hero-foot { margin-top: clamp(28px, 4vh, 44px); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3fr); gap: 24px 48px; align-items: end; }
 .hero-sub { font-size: var(--step-lead); line-height: 1.4; max-width: 34ch; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
@@ -110,6 +111,10 @@ ol { padding: 0; list-style: none; }
   .hero { min-height: 92svh; }
   .hero h1 { font-size: 8.4vw; }
   .hero-sub { font-size: var(--step-body); }
+  /* l'interno del video è chiaro: su telefono il testo occupa metà schermo, il velo scuro sale fin lì */
+  .hero-scrim { background: linear-gradient(to bottom, rgba(8,8,8,0.55) 0, rgba(8,8,8,0.15) 14%, rgba(8,8,8,0.35) 34%, rgba(8,8,8,0.82) 56%, rgba(8,8,8,0.92) 100%); }
+  .hero-glow { display: none; }
+  .hero-caption { display: none !important; }
 }
 
 /* Services: the one dark moment. Moving gold field (ShaderGradient), the mark in liquid gold (Liquid Logo) */
