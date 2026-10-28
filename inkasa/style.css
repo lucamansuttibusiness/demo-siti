@@ -17,12 +17,13 @@
 
   --display: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif;
   --text: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+  --serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
 
   --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
   --step-body: 1.125rem;
   --step-lead: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
   --step-head: clamp(2.75rem, 1.2rem + 5vw, 5.5rem);
-  --step-hero: clamp(2.2rem, 8vw, 8.75rem);
+  --step-hero: clamp(2.6rem, 8.6vw, 9.5rem);
 
   --margin: clamp(16px, 2.2vw, 32px);
   --gap-section: clamp(120px, 14vw, 220px);
@@ -92,7 +93,7 @@ ol { padding: 0; list-style: none; }
 .hero-scrim { position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(to bottom, rgba(8,8,8,0.5) 0, rgba(8,8,8,0.08) 18%, rgba(8,8,8,0.18) 40%, rgba(8,8,8,0.85) 100%); } /* taste-skill-ignore: neutral scrim under text on a photograph */
 .hero-body { position: relative; width: 100%; padding: 0 max(var(--margin), env(safe-area-inset-right, 0px)) clamp(28px, 5vh, 56px) max(var(--margin), env(safe-area-inset-left, 0px)); }
-.hero h1 { font: 500 var(--step-hero)/0.98 var(--display); letter-spacing: -0.012em; text-wrap: balance; }
+.hero h1 { font: 400 var(--step-hero)/0.96 var(--serif); letter-spacing: -0.015em; text-wrap: balance; }
 .hero h1, .hero-sub, .hero-link, .hero-caption { text-shadow: 0 1px 18px rgba(0,0,0,0.35); }
 .hero-foot { margin-top: clamp(28px, 4vh, 44px); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3fr); gap: 24px 48px; align-items: end; }
 .hero-sub { font-size: var(--step-lead); line-height: 1.4; max-width: 34ch; }
@@ -109,7 +110,7 @@ ol { padding: 0; list-style: none; }
 @media (max-width: 760px) {
   .top nav a:not(:last-child) { display: none; }
   .hero { min-height: 92svh; }
-  .hero h1 { font-size: 8.4vw; }
+  .hero h1 { font-size: 11.5vw; }
   .hero-sub { font-size: var(--step-body); }
   /* l'interno del video è chiaro: su telefono il testo occupa metà schermo, il velo scuro sale fin lì */
   .hero-scrim { background: linear-gradient(to bottom, rgba(8,8,8,0.55) 0, rgba(8,8,8,0.15) 14%, rgba(8,8,8,0.35) 34%, rgba(8,8,8,0.82) 56%, rgba(8,8,8,0.92) 100%); }
@@ -159,32 +160,30 @@ ol { padding: 0; list-style: none; }
   .svc-inline { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; margin-bottom: 20px; background: #222; }
 }
 
-/* How it works: pinned stage, the Inkasa building rises one floor per step (React Three Fiber) */
-.build { position: relative; height: calc(var(--steps) * 70vh + 100vh); margin-top: var(--gap-section); }
-.build-pin { position: sticky; top: 0; height: 100svh; overflow: hidden; }
-.build-canvas { position: absolute; top: 4vh; right: 0; bottom: clamp(120px, 17vh, 160px); left: 32%; }
+/* How it works: all eight steps in view; beside them the Inkasa mark assembles one piece per step (React Three Fiber) */
+.build { position: relative; margin-top: var(--gap-section); }
+.build-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 48px clamp(40px, 6vw, 112px); align-items: start; }
+.build-side { position: sticky; top: clamp(72px, 10vh, 112px); }
+.build-side .h2 { max-width: 9ch; }
+.build-lead { margin-top: 20px; color: var(--muted); font-size: var(--step-lead); line-height: 1.4; max-width: 28ch; }
+.build-canvas { position: relative; margin-top: clamp(8px, 2vh, 24px); height: min(44vh, 420px); }
 .build-canvas canvas { display: block; }
-.build-fallback { position: absolute; inset: 30% 10%; width: 80%; height: 40%; object-fit: contain; opacity: 0; }
-.build-canvas.no-gl .build-fallback { opacity: 1; }
-.build-ui { position: relative; z-index: 1; height: 100%; display: grid; grid-template-rows: auto 1fr auto auto; padding-block: clamp(72px, 12vh, 120px) clamp(28px, 6vh, 56px); pointer-events: none; }
-.build-ui .h2 { max-width: 9ch; }
-.b-steps { position: relative; align-self: end; max-width: 30rem; min-height: 9.5em; }
-.b-step { position: absolute; inset: auto 0 0 0; opacity: 0; transform: translateY(18px); transition: opacity 450ms ease, transform 600ms var(--ease-out); }
-.b-step.is-on { opacity: 1; transform: none; }
-.b-step h3 { font: 600 var(--step-lead)/1.15 var(--display); font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.75rem); }
-.b-step p { margin-top: 12px; color: var(--muted); max-width: 36ch; }
-.b-count { margin-top: 28px; font: 600 var(--step-body)/1 var(--display); font-variant-numeric: tabular-nums; }
-.b-now { color: var(--accent); }
-.b-bar { margin-top: 14px; height: 6px; width: min(100%, 30rem); background: var(--surface); position: relative; overflow: hidden; }
-.b-bar span { position: absolute; inset: 0; background: var(--ink); transform-origin: left; transform: scaleX(0.125); transition: transform 500ms var(--ease-out); }
-html:not(.js) .build { height: auto; }
-html:not(.js) .build-pin { position: static; height: auto; }
-html:not(.js) .b-steps { min-height: 0; }
-html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bottom: 24px; }
+.build-fallback { position: absolute; inset: 25% 10%; width: 80%; height: 50%; object-fit: contain; opacity: 0; }
+.build-canvas.no-gl .build-fallback, html:not(.js) .build-fallback { opacity: 1; }
+.b-steps { border-top: 1px solid rgba(17, 17, 17, 0.14); }
+.b-step { position: relative; display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); gap: 0 16px; padding: clamp(20px, 3vh, 30px) 0; border-bottom: 1px solid rgba(17, 17, 17, 0.14); }
+.b-step::before { content: ""; position: absolute; left: 0; top: -1px; height: 2px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 600ms var(--ease-out); }
+.b-num { font: 600 var(--step-lead)/1.15 var(--display); color: rgba(17, 17, 17, 0.38); font-variant-numeric: tabular-nums; transition: color 400ms ease; }
+.b-step h3 { font: 600 clamp(1.5rem, 1.1rem + 1vw, 2.125rem)/1.1 var(--display); letter-spacing: -0.005em; }
+.b-step p { margin-top: 8px; color: var(--muted); max-width: 40ch; }
+.b-step.is-on .b-num { color: var(--accent); }
+.b-step.is-on::before { transform: scaleX(1); }
 @media (max-width: 900px) {
-  .build-canvas { top: 22%; right: 0; bottom: 38%; left: 0; }
-  .build-ui .h2 { max-width: none; }
-  .b-steps { max-width: none; }
+  .build-grid { grid-template-columns: 1fr; gap: 8px; }
+  .build-side { position: static; }
+  .build-side .h2 { max-width: none; }
+  .build-canvas { height: min(58vw, 340px); margin-top: 8px; }
+  .b-step { grid-template-columns: 2.5rem minmax(0, 1fr); gap: 0 12px; }
 }
 
 /* About: wide photo, gold tile, facts */
@@ -321,7 +320,7 @@ html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bo
   .c-photo img { animation: none; }
   .svc-shot img, .svc-shot.on img { transition: none; transform: none; clip-path: none; }
   .svc-item h3 { transition: color 200ms ease; transform: none !important; }
-  .b-step { transition: opacity 150ms ease; transform: none; }
+  .b-step::before, .b-num { transition: none; }
 }
 
 /* ===== Motion layer, whole site ===== */

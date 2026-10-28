@@ -8,8 +8,11 @@
   <meta name="description" content="Inkasa gestisce il tuo affitto breve dall'annuncio al bonifico: annunci, ospiti, pulizie e pagamenti. Oltre 40 immobili in tutta Italia.">
   <link rel="icon" href="img/logo.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/barlow-condensed-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap">
   <link rel="stylesheet" href="glass/glass.css">
-  <link rel="stylesheet" href="style.css?v=18">
+  <link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
   <a class="skip" href="#servizi">Vai al contenuto</a>
@@ -97,25 +100,24 @@
       </div>
     </section>
 
-    <!-- Come funziona: l'edificio Inkasa si costruisce un piano per passaggio -->
-    <section id="come" class="build" aria-labelledby="come-h" style="--steps:8">
-      <div class="build-pin">
-        <div class="build-canvas" id="fx-terraces" aria-hidden="true"><img class="build-fallback" src="img/logo.svg" alt="" width="469" height="206"></div>
-        <div class="build-ui wrap">
+    <!-- Come funziona: gli otto passaggi tutti in vista; accanto il logo Inkasa si compone un pezzo per passaggio -->
+    <section id="come" class="build" aria-labelledby="come-h">
+      <div class="wrap build-grid">
+        <div class="build-side">
           <h2 id="come-h" class="h2">Dalla chiamata al bonifico</h2>
-          <ol class="b-steps" aria-label="Le otto fasi della gestione">
-          <li class="b-step is-on" data-s="0"><h3>Prima ci sentiamo</h3><p>Una telefonata per conoscere te e l'immobile: dove si trova, com'è, cosa ti aspetti.</p></li>
-          <li class="b-step" data-s="1"><h3>Poi veniamo a vederlo</h3><p>Il sopralluogo: spazi, arredi e quello che serve per accogliere gli ospiti.</p></li>
-          <li class="b-step" data-s="2"><h3>Ti diamo i numeri</h3><p>Una proiezione di quanto può rendere, in base a zona, stagione e posti letto.</p></li>
-          <li class="b-step" data-s="3"><h3>Mettiamo tutto per iscritto</h3><p>Un contratto chiaro: cosa facciamo noi e cosa resta a te.</p></li>
-          <li class="b-step" data-s="4"><h3>Arriva il fotografo</h3><p>Foto professionali: sono la prima cosa che l'ospite guarda.</p></li>
-          <li class="b-step" data-s="5"><h3>L'annuncio va online</h3><p>Lo scriviamo, lo pubblichiamo e lo ottimizziamo sulle principali piattaforme.</p></li>
-          <li class="b-step" data-s="6"><h3>Arrivano gli ospiti</h3><p>Check-in, assistenza, pulizie e check-out. Tu non devi esserci.</p></li>
-          <li class="b-step" data-s="7"><h3>Tu incassi</h3><p>I pagamenti arrivano direttamente a te, con il report delle prenotazioni.</p></li>
-          </ol>
-          <div class="b-count" aria-hidden="true"><span class="b-now">1</span> di 8</div>
-          <div class="b-bar" aria-hidden="true"><span></span></div>
+          <p class="build-lead">Otto passaggi, dalla prima telefonata al primo incasso.</p>
+          <div class="build-canvas" id="fx-terraces" aria-hidden="true"><img class="build-fallback" src="img/logo.svg" alt="" width="469" height="206"></div>
         </div>
+        <ol class="b-steps" aria-label="Le otto fasi della gestione">
+          <li class="b-step is-on" data-s="0"><span class="b-num" aria-hidden="true">01</span><div><h3>Prima ci sentiamo</h3><p>Una telefonata per conoscere te e l'immobile: dove si trova, com'è, cosa ti aspetti.</p></div></li>
+          <li class="b-step" data-s="1"><span class="b-num" aria-hidden="true">02</span><div><h3>Poi veniamo a vederlo</h3><p>Il sopralluogo: spazi, arredi e quello che serve per accogliere gli ospiti.</p></div></li>
+          <li class="b-step" data-s="2"><span class="b-num" aria-hidden="true">03</span><div><h3>Ti diamo i numeri</h3><p>Una proiezione di quanto può rendere, in base a zona, stagione e posti letto.</p></div></li>
+          <li class="b-step" data-s="3"><span class="b-num" aria-hidden="true">04</span><div><h3>Mettiamo tutto per iscritto</h3><p>Un contratto chiaro: cosa facciamo noi e cosa resta a te.</p></div></li>
+          <li class="b-step" data-s="4"><span class="b-num" aria-hidden="true">05</span><div><h3>Arriva il fotografo</h3><p>Foto professionali: sono la prima cosa che l'ospite guarda.</p></div></li>
+          <li class="b-step" data-s="5"><span class="b-num" aria-hidden="true">06</span><div><h3>L'annuncio va online</h3><p>Lo scriviamo, lo pubblichiamo e lo ottimizziamo sulle principali piattaforme.</p></div></li>
+          <li class="b-step" data-s="6"><span class="b-num" aria-hidden="true">07</span><div><h3>Arrivano gli ospiti</h3><p>Check-in, assistenza, pulizie e check-out. Tu non devi esserci.</p></div></li>
+          <li class="b-step" data-s="7"><span class="b-num" aria-hidden="true">08</span><div><h3>Tu incassi</h3><p>I pagamenti arrivano direttamente a te, con il report delle prenotazioni.</p></div></li>
+        </ol>
       </div>
     </section>
 
@@ -216,6 +218,6 @@
   <script src="glass/html2canvas.min.js" defer></script>
   <script src="glass/container.js" defer></script>
   <script src="glass/expose.js" defer></script>
-  <script src="main.js?v=14" defer></script>
+  <script src="main.js?v=16" defer></script>
 </body>
 </html>

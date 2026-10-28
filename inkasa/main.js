@@ -63,25 +63,37 @@
   }), { rootMargin: '-45% 0px -45% 0px' })
   items.forEach(li => io.observe(li))
 
-  // ---------- Come funziona: un passaggio ogni tratto di scroll ----------
+  // ---------- Come funziona: tutti i passaggi in vista, il logo si compone mentre li leggi ----------
+  // Da desktop il passaggio acceso è quello che attraversa la metà dello schermo.
+  // Da telefono il logo sta sopra la lista: si compone da solo, un pezzo alla volta, appena entra in vista.
   const build = document.querySelector('.build')
   const steps = [...build.querySelectorAll('.b-step')]
-  const now = build.querySelector('.b-now')
-  const bBar = build.querySelector('.b-bar span')
-  let step = -1, terraces = null
-  const syncBuild = () => {
-    const r = build.getBoundingClientRect()
-    const total = build.offsetHeight - innerHeight
-    const p = Math.min(0.999, Math.max(0, -r.top / total))
-    const i = Math.floor(p * steps.length)
+  let step = 0, terraces = null, autoBuilt = false
+  const setStep = i => {
     if (i === step) return
     step = i
-    steps.forEach((s, k) => s.classList.toggle('is-on', k === i))
-    now.textContent = i + 1
-    bBar.style.transform = `scaleX(${(i + 1) / steps.length})`
+    steps.forEach((s, k) => s.classList.toggle('is-on', wide() && k === i))
     if (terraces) terraces.setStep(i)
   }
+  const syncBuild = () => {
+    if (!wide()) return
+    // si accende il passaggio che supera il 62% dello schermo; a fine lista l'ultimo, così il logo si chiude prima che la colonna scorra via
+    const line = innerHeight * 0.62
+    let i = 0
+    steps.forEach((s, k) => { if (s.getBoundingClientRect().top < line) i = k })
+    if (steps[steps.length - 1].getBoundingClientRect().bottom < innerHeight * 0.8) i = steps.length - 1
+    setStep(i)
+  }
   onScroll.push(syncBuild)
+  const autoBuild = () => {
+    if (autoBuilt || wide()) return
+    autoBuilt = true
+    if (reduce) { setStep(steps.length - 1); return }
+    let k = 0
+    const t = setInterval(() => { k++; setStep(k); if (k >= steps.length - 1) clearInterval(t) }, 420)
+  }
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) autoBuild() }, { threshold: 0.5 })
+    .observe(document.getElementById('fx-terraces'))
   syncBuild()
 
   // ---------- Effetti WebGL: caricati quando servono, fermi fuori schermo ----------
@@ -122,9 +134,9 @@
     requestAnimationFrame(() => glow.classList.add('on'))
     return { setAnimate: on => g.setAnimate(on && !reduce) }
   })
-  scene(build, m => {
+  scene(document.getElementById('fx-terraces'), m => {
     terraces = m.mountBuilding(document.getElementById('fx-terraces'), { reduce })
-    terraces.setStep(Math.max(0, step))
+    terraces.setStep(step)
     return terraces
   })
 
