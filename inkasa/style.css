@@ -58,7 +58,7 @@ ol { padding: 0; list-style: none; }
 .skip:focus { top: 12px; }
 
 .wrap { padding-left: max(var(--margin), env(safe-area-inset-left, 0px)); padding-right: max(var(--margin), env(safe-area-inset-right, 0px)); }
-.h2 { font: 600 var(--step-head)/0.95 var(--display); letter-spacing: -0.015em; text-wrap: balance; }
+.h2 { font: 400 var(--step-head)/0.98 var(--serif); letter-spacing: -0.015em; text-wrap: balance; }
 .lead { font-size: var(--step-lead); line-height: 1.4; max-width: 34ch; }
 
 /* Buttons: square corners, one fill, ink on gold */
@@ -143,7 +143,7 @@ ol { padding: 0; list-style: none; }
 .svc-list { display: grid; }
 .svc-item { min-height: 62vh; display: flex; flex-direction: column; justify-content: center; padding-block: 24px; }
 .svc-item:last-child { min-height: 70vh; }
-.svc-item h3 { font: 600 clamp(2.25rem, 1.4rem + 2.2vw, 3.5rem)/1 var(--display); letter-spacing: -0.01em; color: rgba(239, 238, 235, 0.42); transition: color 500ms ease, transform 700ms var(--ease-out); text-wrap: balance; transform: translateX(0); }
+.svc-item h3 { font: 400 clamp(2.4rem, 1.5rem + 2.4vw, 3.75rem)/1.02 var(--serif); letter-spacing: -0.01em; color: rgba(239, 238, 235, 0.42); transition: color 500ms ease, transform 700ms var(--ease-out); text-wrap: balance; transform: translateX(0); }
 .svc-item.is-active h3 { color: var(--accent); transform: translateX(10px); }
 .svc-item p { margin-top: 18px; max-width: 40ch; color: var(--on-field); opacity: 0.55; transition: opacity 500ms ease; }
 .svc-item.is-active p { opacity: 1; }
@@ -235,7 +235,7 @@ ol { padding: 0; list-style: none; }
 .c-photo { position: absolute; inset: 0; overflow: hidden; }
 .c-photo img { width: 100%; height: 100%; object-fit: cover; }
 .card { position: relative; width: 420px; max-width: 100%; background: var(--bg); padding: 32px 32px 0; display: flex; flex-direction: column; }
-.c-title { font: 600 var(--step-lead)/1.05 var(--display); letter-spacing: 0; }
+.c-title { font: 400 clamp(1.6rem, 1.3rem + 1vw, 2.1rem)/1.05 var(--serif); letter-spacing: -0.005em; }
 .c-intro { margin-top: 12px; color: var(--muted); font-size: var(--step-body); }
 .card label { margin-top: 18px; font-size: var(--step-small); font-weight: 500; }
 .card input, .card select {
