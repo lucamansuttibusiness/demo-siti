@@ -52,67 +52,6 @@
     root.style.setProperty('--hs', `${1 + y / hero.offsetHeight * 0.08}`)
   })
 
-  // ---------- Case: lo scroll verticale fa scorrere le case di lato ----------
-  const work = document.querySelector('.work')
-  const film = document.querySelector('.film')
-  const slides = [...film.querySelectorAll('.slide')]
-  const workBar = document.querySelector('.work-bar span')
-  const setupWork = () => {
-    const pin = wide() && !reduce
-    work.classList.toggle('is-pinned', pin)
-    if (pin) {
-      const travel = film.scrollWidth - film.clientWidth
-      work.style.setProperty('--pin-h', `${innerHeight + travel * 1.15}px`)
-    } else work.style.removeProperty('--pin-h')
-  }
-  const syncWork = () => {
-    if (!work.classList.contains('is-pinned')) return
-    const r = work.getBoundingClientRect()
-    const total = work.offsetHeight - innerHeight
-    const p = Math.min(1, Math.max(0, -r.top / total))
-    film.scrollLeft = p * (film.scrollWidth - film.clientWidth)
-    workBar.style.transform = `scaleX(${p})`
-    const mid = innerWidth / 2
-    slides.forEach(sl => {
-      const b = sl.getBoundingClientRect()
-      const off = (b.left + b.width / 2) - mid
-      sl.querySelector('img').style.setProperty('--px', `${off * -0.08}px`)
-      const centre = Math.abs(off) < b.width / 2
-      sl.classList.toggle('is-center', centre)
-      if (centre && r.top < innerHeight * 0.5) countScore(sl)
-    })
-  }
-  // il voto degli ospiti conta da zero la prima volta che la casa arriva davanti
-  const countScore = sl => {
-    const el = sl.querySelector('.slide-score')
-    if (!el || el.dataset.done || !el.dataset.v) return
-    el.dataset.done = 1
-    const target = el.dataset.v, dec = (target.split(',')[1] || '').length, end = parseFloat(target.replace(',', '.'))
-    const t0 = performance.now(), dur = 1300
-    const step = now => {
-      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 4)
-      el.textContent = (end * e).toFixed(dec).replace('.', ',')
-      if (k < 1) requestAnimationFrame(step)
-    }
-    requestAnimationFrame(step)
-  }
-  if (!reduce) slides.forEach(sl => {
-    const el = sl.querySelector('.slide-score')
-    el.dataset.v = el.textContent
-    el.textContent = el.textContent.replace(/\d/g, '0')
-  })
-  const sio = new IntersectionObserver(es => es.forEach(e => {
-    if (!e.isIntersecting || work.classList.contains('is-pinned')) return
-    e.target.classList.add('in'); countScore(e.target)
-  }), { threshold: 0.35 })
-  if (!reduce) slides.forEach(sl => sio.observe(sl))
-  setupWork()
-  addEventListener('resize', setupWork)
-  onScroll.push(syncWork)
-  document.querySelectorAll('[data-film]').forEach(b => b.addEventListener('click', () => {
-    film.scrollBy({ left: (+b.dataset.film) * (slides[0].offsetWidth + 20), behavior: reduce ? 'auto' : 'smooth' })
-  }))
-
   // ---------- Servizi: il servizio a metà schermo accende la sua foto ----------
   const items = [...document.querySelectorAll('.svc-item')]
   const shots = [...document.querySelectorAll('.svc-shot')]

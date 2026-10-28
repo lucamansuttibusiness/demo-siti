@@ -70,13 +70,6 @@ ol { padding: 0; list-style: none; }
 }
 .btn:active { transform: scale(0.97); }
 @media (hover: hover) and (pointer: fine) { .btn:hover { background: #c9974a; } }
-.sq {
-  width: 48px; height: 48px; display: grid; place-items: center; border: 0; padding: 0; cursor: pointer;
-  background: var(--ink); color: var(--bg); transition: transform 160ms var(--ease-out), background-color 200ms ease;
-}
-.sq svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; }
-.sq:active { transform: scale(0.94); }
-@media (hover: hover) and (pointer: fine) { .sq:hover { background: var(--accent); color: var(--ink); } }
 
 /* Top bar: wordmark left, plain links right */
 .top {
@@ -118,57 +111,6 @@ ol { padding: 0; list-style: none; }
   .hero h1 { font-size: 8.4vw; }
   .hero-sub { font-size: var(--step-body); }
 }
-
-/* Work: one filmstrip, slides snap to the centre */
-.work { padding-top: clamp(120px, 11vw, 160px); }
-.work-head { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 48px; align-items: end; margin-bottom: 72px; }
-.work-head .lead { justify-self: end; }
-.film {
-  display: flex; gap: 20px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none;
-  padding: 0 calc((100vw - min(73vw, 1046px)) / 2);
-  overscroll-behavior-x: contain;
-}
-.film::-webkit-scrollbar { display: none; }
-.slide { flex: 0 0 min(73vw, 1046px); scroll-snap-align: center; }
-.slide img { width: 100%; aspect-ratio: 1046 / 600; object-fit: cover; background: var(--surface); }
-.facts { display: grid; grid-template-columns: 3fr 2fr 2fr 3fr; gap: 8px 20px; margin-top: 26px; font-size: var(--step-body); }
-.f-name { font-weight: 500; }
-.f-name em { font-style: normal; font-weight: 400; color: var(--muted); margin-left: 8px; }
-.facts span:not(.f-name) { color: var(--muted); font-variant-numeric: tabular-nums; }
-.film-nav { display: flex; justify-content: flex-end; gap: 12px; margin-top: 32px; }
-@media (max-width: 1000px) { .facts { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 760px) {
-  .work-head { grid-template-columns: 1fr; margin-bottom: 40px; }
-  .work-head .lead { justify-self: start; }
-  .film { gap: 10px; padding: 0 11vw; }
-  .slide { flex-basis: 78vw; }
-  .slide img { aspect-ratio: 4 / 5; }
-  .facts { grid-template-columns: 1fr 1fr; }
-  .film-nav { justify-content: flex-start; }
-}
-
-
-/* Houses, pinned: vertical scroll drives the strip sideways */
-.work-pin { display: flex; flex-direction: column; }
-.slide-media { position: relative; overflow: hidden; background: var(--surface); }
-.slide-media img { transform: scale(1.12) translateX(var(--px, 0px)); will-change: transform; }
-.slide-score { position: absolute; left: 20px; bottom: 12px; font: 600 clamp(3rem, 2rem + 4vw, 6rem)/1 var(--display); color: #fff; letter-spacing: -0.02em; text-shadow: 0 2px 24px rgba(0,0,0,0.35); }
-.f-name { font: 600 var(--step-lead)/1.1 var(--display); }
-.f-name em { font: 400 var(--step-body)/1.4 var(--text); }
-.work.is-pinned { height: var(--pin-h, 400vh); }
-.work.is-pinned .work-pin { position: sticky; top: 0; height: 100svh; justify-content: center; overflow: hidden; }
-.work.is-pinned .work-head { margin-bottom: 28px; }
-.work.is-pinned .work-head .h2 { font-size: clamp(2.75rem, 1rem + 4vw, 4.5rem); }
-.work.is-pinned .facts { margin-top: 16px; }
-.work.is-pinned .film { padding: 0 calc((100vw - min(62vw, calc((100svh - 400px) * 16 / 9))) / 2); }
-.work.is-pinned .film { overflow: hidden; scroll-snap-type: none; }
-.work.is-pinned .slide { flex-basis: min(62vw, calc((100svh - 400px) * 16 / 9)); }
-.work.is-pinned .slide-media { aspect-ratio: 16 / 9; }
-.work.is-pinned .slide-media img { aspect-ratio: auto; width: 100%; height: 100%; }
-.work.is-pinned .film-nav { display: none; }
-.work-bar { height: 6px; margin-top: 32px; background: var(--surface); position: relative; overflow: hidden; display: none; }
-.work.is-pinned .work-bar { display: block; }
-.work-bar span { position: absolute; inset: 0; background: var(--ink); transform-origin: left; transform: scaleX(0); }
 
 /* Services: the one dark moment. Moving gold field (ShaderGradient), the mark in liquid gold (Liquid Logo) */
 .svc { position: relative; margin-top: var(--gap-section); background: var(--field); color: var(--on-field); isolation: isolate; }
@@ -354,8 +296,8 @@ html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bo
 .c-photo img { animation: drift 28s ease-in-out infinite alternate; }
 @keyframes drift { from { transform: scale(1.02); } to { transform: scale(1.1) translate(-1.5%, -1%); } }
 @media (hover: hover) and (pointer: fine) {
-  .slide img, .moment img { transition: transform 600ms var(--ease-out); }
-  .slide:hover img, .moment:hover img { transform: scale(1.015); }
+  .moment img { transition: transform 600ms var(--ease-out); }
+  .moment:hover img { transform: scale(1.015); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -400,14 +342,6 @@ html:not(.js) .b-step { position: static; opacity: 1; transform: none; margin-bo
 .hero h1.split .wi { transform: translateY(40%); opacity: 0; filter: blur(10px); transition: transform 1100ms var(--ease-out), opacity 900ms ease, filter 900ms ease; transition-delay: calc(700ms + var(--i) * 70ms); }
 .loaded .hero h1.split .wi { transform: none; opacity: 1; filter: none; }
 .hero h1.split .w { overflow: visible; }
-
-/* Houses: the slide in front is the one you read */
-.slide .facts { transition: opacity 500ms ease; }
-.work.is-pinned .slide:not(.is-center) .facts { opacity: 0.35; }
-.slide-score { transition: transform 700ms var(--ease-out), opacity 500ms ease; }
-.work.is-pinned .slide:not(.is-center) .slide-score { transform: translateY(16px); opacity: 0.6; }
-.js .work:not(.is-pinned) .slide-media { clip-path: inset(0 0 100% 0); transition: clip-path 1000ms var(--ease-in-out); }
-.js .work:not(.is-pinned) .slide.in .slide-media { clip-path: inset(0 0 0 0); }
 
 /* About: the map draws itself, a gold route links the two places */
 .m-tile .it { stroke: var(--ink); stroke-width: 1.4; }
