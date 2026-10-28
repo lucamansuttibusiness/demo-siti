@@ -4,18 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>:root{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}[hidden]{display:none!important}</style>
-<title>Soglia Affitti Brevi</title>
+<title>Inkasa Boutique</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Soglia gestisce il tuo immobile in affitto breve con standard da boutique hotel: referente personale, incassi diretti sul tuo conto, ospiti, pulizie e adempimenti. Sito dimostrativo.">
+<meta name="description" content="Inkasa gestisce il tuo affitto breve con standard da boutique hotel: annunci, ospiti, pulizie e pagamenti, dall'annuncio al bonifico. Proposta grafica.">
 <meta name="robots" content="noindex">
-<meta property="og:title" content="Soglia · Gestione affitti brevi">
+<meta property="og:title" content="Inkasa Property Management">
 <meta property="og:description" content="La tua casa rende. Il tempo resta tuo.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="photos/hero-suite.jpg">
 <meta name="theme-color" content="#15110D">
+<link rel="icon" href="photos/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Hanken+Grotesk:wght@300..600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Barlow:wght@300;400;500;600&display=swap">
 <link rel="preload" as="image" href="photos/hero-suite.jpg">
 <style>
 /* Layout: boutique hotel. Fotografia a tutto campo, sezioni che alternano espresso scuro e avorio, testo che respira, oro solo nei dettagli. Look unico, deliberatamente caldo e scuro. */
@@ -26,13 +27,14 @@
   --ivory:#F3EDE3;
   --linen:#E9E0D1;
   --sand:#B9A68A;
-  --gold:#C6A570;
-  --gold-ink:#86663A;
+  --gold:#C9974A;
+  --logo-gold:#B8863A;
+  --gold-ink:#8A6428;
   --ink:#1C1712;
   --ink-muted:#6A5E50;
   --cream-muted:rgba(243,237,227,.68);
   --f-display:"Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
-  --f-body:"Hanken Grotesk", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --f-body:"Barlow", "Helvetica Neue", Arial, system-ui, sans-serif;
   --fs-hero:clamp(3rem, 6.9vw, 7.2rem);
   --fs-h2:clamp(2.3rem, 4.8vw, 4.6rem);
   --fs-h3:clamp(1.35rem, 1.9vw, 1.75rem);
@@ -100,12 +102,13 @@ strong{font-weight:500}
 .site-header.on-light .nav-bar::before{box-shadow:inset 0 0 0 1px rgba(28,23,18,.1)}
 .site-header.on-light .nav-links a{color:rgba(28,23,18,.8)}
 .site-header.on-light .nav-links a:hover,.site-header.on-light .nav-links a[aria-current="true"]{color:var(--gold-ink)}
-.site-header.on-light .brand svg{color:var(--gold-ink)}
+.site-header.on-light .brand .mark{color:var(--ink)}
 .site-header.on-light .menu-toggle{color:var(--ink);border-color:rgba(28,23,18,.3)}
 .site-header.on-light .nav-cta{background:var(--ink);border-color:var(--ink);color:var(--ivory)}
 .nav-bar,.nav-bar::before,.nav-links a,.brand svg{transition:height .6s var(--ease),background .5s,color .5s,box-shadow .5s}
 .brand{display:inline-flex;align-items:center;gap:.7rem;text-decoration:none;justify-self:start}
-.brand svg{width:20px;height:24px;color:var(--gold)}
+.brand .mark{width:46px;height:20px;color:var(--ivory)}
+.mark .g{fill:var(--logo-gold)}.mark .d{fill:currentColor}
 .brand span{font-family:var(--f-display);font-size:1.55rem;letter-spacing:.04em;line-height:1}
 .nav-links{display:flex;gap:2.4rem}
 .nav-links a{text-decoration:none;font-size:.7rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;position:relative;padding:.4rem 0;color:rgba(243,237,227,.86);transition:color .3s}
@@ -154,7 +157,8 @@ strong{font-weight:500}
 @media (max-width:960px){
   .hero-copy,.form-card{grid-column:1 / -1}
   .hero-inner{padding-top:130px}
-  .hero-bg{background-position:30% 40%}
+  .hero-bg{background-position:62% 40%}
+  .hero::after{background:linear-gradient(180deg, rgba(21,17,13,.78) 0%, rgba(21,17,13,.62) 45%, rgba(21,17,13,.9) 100%)}
   .scroll-cue{display:none}
 }
 
@@ -339,6 +343,7 @@ strong{font-weight:500}
 .contact-lines div{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.85rem 0;border-bottom:1px solid rgba(243,237,227,.16)}
 .contact-lines span:first-child{font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);padding-top:.2rem}
 .contact-lines span:last-child{user-select:all}
+.contact-lines a{text-decoration:none;border-bottom:1px solid rgba(201,151,74,.5)}
 .lead-form-wrap{--glass-scrim:rgba(21,17,13,.5);grid-column:7 / span 6;border-radius:30px;padding:clamp(1.5rem,3vw,2.6rem);min-width:0}
 .prefill-note{font-size:.86rem;border:1px solid rgba(198,165,112,.45);border-radius:12px;padding:.75rem .95rem;margin-bottom:1.3rem;display:flex;gap:.7rem;align-items:flex-start;color:var(--ivory)}
 .prefill-note svg{flex:none;width:16px;height:16px;margin-top:3px;stroke:var(--gold);fill:none;stroke-width:1.5}
@@ -440,9 +445,9 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
 
 <header class="site-header" id="siteHeader">
   <div class="nav-bar glassy" id="navBar" data-glass-ignore>
-    <a class="brand" href="#top" aria-label="Soglia, torna all'inizio">
-      <svg viewBox="0 0 22 26" aria-hidden="true"><path d="M1.5 25V11a9.5 9.5 0 0 1 19 0v14" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 25V12a4.5 4.5 0 0 1 9 0v13" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M0 25.3h22" stroke="currentColor" stroke-width="1.2"/></svg>
-      <span>Soglia</span>
+    <a class="brand" href="#top" aria-label="Inkasa, torna all'inizio">
+      <svg class="mark" viewBox="0 0 469 206" aria-hidden="true"><g class="g"><polygon points="286,0 288,18 216,40 216,34"/><polygon points="339,10 339,62 200,102 200,61"/><polygon points="178,22 178,74 62,114 62,88"/><polygon points="385,82 385,130 257,154 257,116"/><polygon points="239,106 239,146 32,190 32,170"/><polygon points="363,156 363,206 0,206"/></g><g class="d"><polygon points="288,4 297,11 297,16 288,18"/><polygon points="339,10 372,42 372,84 339,62"/><polygon points="178,22 219,54 219,96 178,74"/><polygon points="385,82 436,124 436,158 385,130"/><polygon points="239,106 256,118 256,156 239,146"/><polygon points="363,158 458,200 458,206 363,206"/></g></svg>
+      <span>Inkasa</span>
     </a>
     <nav class="nav-links" aria-label="Sezioni principali">
       <a href="#servizi">Servizi</a><a href="#metodo">Metodo</a><a href="#immobili">Immobili</a><a href="#faq">FAQ</a>
@@ -454,7 +459,7 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
 
 <div class="mobile-menu" id="mobileMenu" hidden data-glass-ignore role="dialog" aria-modal="true" aria-label="Menu">
   <div class="mm-top">
-    <a class="brand" href="#top" data-close><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M1.5 25V11a9.5 9.5 0 0 1 19 0v14" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 25V12a4.5 4.5 0 0 1 9 0v13" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M0 25.3h22" stroke="currentColor" stroke-width="1.2"/></svg><span>Soglia</span></a>
+    <a class="brand" href="#top" data-close><svg class="mark" viewBox="0 0 469 206" aria-hidden="true"><g class="g"><polygon points="286,0 288,18 216,40 216,34"/><polygon points="339,10 339,62 200,102 200,61"/><polygon points="178,22 178,74 62,114 62,88"/><polygon points="385,82 385,130 257,154 257,116"/><polygon points="239,106 239,146 32,190 32,170"/><polygon points="363,156 363,206 0,206"/></g><g class="d"><polygon points="288,4 297,11 297,16 288,18"/><polygon points="339,10 372,42 372,84 339,62"/><polygon points="178,22 219,54 219,96 178,74"/><polygon points="385,82 436,124 436,158 385,130"/><polygon points="239,106 256,118 256,156 239,146"/><polygon points="363,158 458,200 458,206 363,206"/></g></svg><span>Inkasa</span></a>
     <button class="menu-toggle" type="button" id="menuClose" style="display:inline-flex">Chiudi</button>
   </div>
   <nav aria-label="Sezioni (mobile)">
@@ -473,9 +478,9 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
   <div class="hero-bg" role="img" aria-label="Suite con poltrone in velluto, scrivania in legno e luce calda delle lampade"></div>
   <div class="wrap hero-inner">
     <div class="hero-copy">
-      <p class="label rise" style="--d:.2s">Gestione affitti brevi · Italia</p>
+      <p class="label rise" style="--d:.2s">Inkasa · Property Management</p>
       <h1 id="hero-title" class="rise" style="--d:.35s">La tua casa rende. <span class="l2">Il tempo resta <em>tuo.</em></span></h1>
-      <p class="lead rise" style="--d:.55s">Gestiamo il tuo immobile come un piccolo hotel: un referente personale che conosce la casa, ospiti seguiti uno per uno, incassi che arrivano direttamente sul tuo conto.</p>
+      <p class="lead rise" style="--d:.55s">Gestiamo il tuo affitto breve come un piccolo hotel, dall'annuncio al bonifico: annunci, ospiti, pulizie e pagamenti. Hai sempre una persona da chiamare e gli incassi arrivano direttamente a te.</p>
     </div>
     <div class="form-card glassy" id="formCard" data-glass-ignore>
       <span class="label">Stima gratuita</span>
@@ -484,8 +489,8 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
       <form class="quick-form" id="quickForm" novalidate>
         <div class="q-field">
           <label for="q-city">Città</label>
-          <input id="q-city" name="city" list="cities" autocomplete="address-level2" placeholder="Es. Firenze" required>
-          <datalist id="cities"><option value="Venezia"><option value="Firenze"><option value="Milano"><option value="Bologna"><option value="Roma"><option value="Lago di Como"><option value="Lecce"><option value="Napoli"></datalist>
+          <input id="q-city" name="city" list="cities" autocomplete="address-level2" placeholder="Es. Lignano" required>
+          <datalist id="cities"><option value="Lignano Sabbiadoro"><option value="Sauze d'Oulx"><option value="Bibione"><option value="Grado"><option value="Sestriere"><option value="Udine"><option value="Torino"></datalist>
         </div>
         <div class="q-field">
           <label for="q-rooms">Camere</label>
@@ -498,7 +503,7 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
   </div>
   <div class="wrap">
     <div class="hero-foot">
-      <ul class="cities" aria-label="Dove lavoriamo (esempi)"><li>Venezia</li><li>Firenze</li><li>Lago di Como</li><li>Bologna</li><li>Milano</li><li>Lecce</li></ul>
+      <ul class="cities" aria-label="Dove lavoriamo"><li>Lignano Sabbiadoro</li><li>Sauze d'Oulx</li><li>Tutta Italia</li></ul>
       <a class="scroll-cue" href="#intro"><i aria-hidden="true"></i>Scopri</a>
     </div>
   </div>
@@ -508,11 +513,11 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
 <section class="section light" id="intro" aria-label="Il nostro approccio">
   <div class="wrap intro-grid">
     <div class="intro-side" data-rise><span class="rule"></span><p class="label">Il nostro approccio</p></div>
-    <p class="intro-text" data-rise>Trattiamo ogni casa come una piccola struttura d'albergo: <em>standard da hotel</em>, una persona che la segue dall'inizio alla fine e conti sempre in chiaro. Tu ricevi gli incassi. Noi ci occupiamo di tutto il resto.</p>
+    <p class="intro-text" data-rise>Gestiamo il tuo immobile <em>come se fosse nostro</em>, con la cura di un piccolo hotel. Tu decidi quando la casa è libera per te. Il resto lo gestiamo noi, ogni giorno, dall'annuncio al bonifico.</p>
     <div class="intro-meta" data-rise>
-      <div><strong>Una persona</strong><span>Lo stesso referente per la tua casa, dal sopralluogo al rendiconto.</span></div>
-      <div><strong>Standard da hotel</strong><span>Biancheria, pulizie e accoglienza curate come in albergo.</span></div>
-      <div><strong>Conti in chiaro</strong><span>Incassi sul tuo conto, commissione fatturata a parte.</span></div>
+      <div><strong>Oltre 40 immobili</strong><span>Case al mare e in montagna gestite ogni giorno.</span></div>
+      <div><strong>Mare e montagna</strong><span>L'Adriatico d'estate, la neve delle Alpi d'inverno.</span></div>
+      <div><strong>Incassi diretti</strong><span>I pagamenti arrivano a te, con un report chiaro ogni mese.</span></div>
     </div>
   </div>
 </section>
@@ -528,7 +533,7 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
       <figure class="g1"><div class="frame r45" data-reveal><img src="photos/testiera.jpg" alt="Testiera capitonné illuminata da una lampada da lettura" decoding="async" data-parallax></div><figcaption class="cap"><span>La camera</span><span>Lino e luce calda</span></figcaption></figure>
       <figure class="g2"><div class="frame r169" data-reveal><img src="photos/lounge-colonne.jpg" alt="Soggiorno ampio con colonne rivestite, divano in pelle e tappeto in juta" decoding="async" data-parallax></div><figcaption class="cap"><span>Il soggiorno</span><span>Spazi da vivere</span></figcaption></figure>
       <figure class="g3"><div class="frame r34" data-reveal><img src="photos/bagno-pietra.jpg" alt="Bagno in pietra con vasca in rame e finestre a doghe" decoding="async" data-parallax></div><figcaption class="cap"><span>Il bagno</span><span>Pietra e legno</span></figcaption></figure>
-      <figure class="g4"><div class="frame r23" data-reveal><img src="photos/finestra-colline.jpg" alt="Camera con finestra aperta sulle colline con cipressi" decoding="async" data-parallax></div><figcaption class="cap"><span>La vista</span><span>Colline toscane</span></figcaption></figure>
+      <figure class="g4"><div class="frame r23" data-reveal><img src="photos/finestra-colline.jpg" alt="Camera con finestra aperta sulle colline con cipressi" decoding="async" data-parallax></div><figcaption class="cap"><span>La vista</span><span>Aprire e respirare</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -538,11 +543,11 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
   <div class="wrap">
     <div class="values-head">
       <div style="grid-column:1 / span 7;display:flex;flex-direction:column;gap:1.5rem"><p class="label">Tre promesse</p><h2 class="h2" id="val-title">Tre cose che <em>non cambiano mai.</em></h2></div>
-      <p class="lead">Il modo di lavorare con te resta lo stesso, che la casa sia un monolocale in centro o una villa sul lago.</p>
+      <p class="lead">Il modo di lavorare con te resta lo stesso, che la casa sia un bilocale a Lignano o uno chalet a Sauze d'Oulx.</p>
     </div>
     <div class="values">
-      <article class="value" data-rise><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="14" r="6"/><path d="M8 34c1.8-6.5 6.5-10 12-10s10.2 3.5 12 10"/></svg><h3>Referente personale</h3><p>Una persona segue la tua casa dall'inizio. Ha il tuo numero, conosce l'immobile e risponde a te.</p></article>
-      <article class="value" data-rise><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="11" width="30" height="20" rx="1"/><path d="M5 17h30M10 25h7"/></svg><h3>Incassi diretti sul conto</h3><p>Le piattaforme pagano le prenotazioni direttamente a te. La nostra commissione viene fatturata a parte.</p></article>
+      <article class="value" data-rise><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="14" r="6"/><path d="M8 34c1.8-6.5 6.5-10 12-10s10.2 3.5 12 10"/></svg><h3>Referente personale</h3><p>Hai sempre una persona da chiamare: conosce la tua casa e ti risponde direttamente.</p></article>
+      <article class="value" data-rise><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="11" width="30" height="20" rx="1"/><path d="M5 17h30M10 25h7"/></svg><h3>Incassi diretti sul conto</h3><p>I pagamenti delle prenotazioni arrivano direttamente a te, insieme al report delle prenotazioni.</p></article>
       <article class="value" data-rise><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14"/><path d="M20 11v9l6 4"/></svg><h3>Assistenza continua</h3><p>Ospiti, imprevisti, manutenzioni. Ce ne occupiamo noi e ti chiamiamo solo quando serve una tua decisione.</p></article>
     </div>
   </div>
@@ -553,9 +558,9 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
   <div class="wrap person-grid">
     <div class="person-media"><div class="frame r45" data-reveal><img src="photos/comodino-lino.jpg" alt="Comodino in legno chiaro con lampada e fiori secchi accanto a un letto in lino" decoding="async" data-parallax></div></div>
     <div class="person-copy">
-      <p class="label">Il nostro modello</p>
-      <h2 class="h2" id="per-title">Una persona, <em>la tua casa.</em></h2>
-      <p>Ogni referente segue un numero limitato di immobili. Conosce la caldaia che fa i capricci, il vicino da avvisare, le settimane in cui la casa ti serve libera. Prezzi e calendario li decidete insieme.</p>
+      <p class="label">Chi siamo</p>
+      <h2 class="h2" id="per-title">Due soci, <em>una persona da chiamare.</em></h2>
+      <p>Inkasa Property Management è di Andrea Amaduzzi e Luca Mansutti. Gestiamo il tuo immobile come se fosse nostro: conosciamo la casa, gli ospiti e le stagioni, e hai sempre qualcuno che ti risponde.</p>
       <div class="compare">
         <table class="compare-table">
           <caption class="sr-only">Confronto tra gestione tradizionale e servizio dedicato</caption>
@@ -579,7 +584,7 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
   <div class="wrap">
     <div class="flow-head">
       <div><p class="label">Trasparenza degli incassi</p><h2 class="h2" id="flow-title">I soldi fanno <em>la strada più corta.</em></h2></div>
-      <p class="lead">Non tratteniamo i tuoi incassi. La piattaforma paga te, noi emettiamo una fattura separata per il servizio.</p>
+      <p class="lead">I pagamenti delle prenotazioni arrivano direttamente a te. Ogni mese ricevi un report chiaro con prenotazioni, occupazione e incassi.</p>
     </div>
     <div class="flow" role="list" aria-label="Percorso di una prenotazione">
       <div class="node" role="listitem" data-rise><span class="label">01 · Ospite</span><h3>Prenota e paga</h3><p>L'ospite sceglie le date e paga sulla piattaforma, con le sue garanzie.</p></div>
@@ -591,8 +596,8 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
     <div class="flow-foot">
       <ul class="flow-points">
         <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l3.8 3.8L14 4"/></svg><span><strong>Nessun passaggio intermedio.</strong> Il conto di incasso sulla piattaforma è intestato a te.</span></li>
-        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l3.8 3.8L14 4"/></svg><span><strong>Fattura separata.</strong> La commissione del servizio è chiara e concordata nel contratto.</span></li>
-        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l3.8 3.8L14 4"/></svg><span><strong>Rendiconto voce per voce.</strong> Pulizie, biancheria, imposta di soggiorno: ogni costo ha la sua riga.</span></li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l3.8 3.8L14 4"/></svg><span><strong>Tutto per iscritto.</strong> Un contratto chiaro: cosa facciamo noi e cosa resta a te.</span></li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l3.8 3.8L14 4"/></svg><span><strong>Report chiari, ogni mese.</strong> Prenotazioni, occupazione e incassi, scritti in modo che si capiscano.</span></li>
       </ul>
       <article class="statement" aria-label="Esempio di rendiconto">
         <header><strong>Rendiconto di esempio</strong><span class="tag">Cifre dimostrative</span></header>
@@ -602,7 +607,7 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
           <dt>Imposta di soggiorno, versata al Comune</dt><dd>− € 18,00</dd>
           <dt class="total">Accreditato sul tuo conto</dt><dd class="total">€ 441,00</dd>
         </dl>
-        <small>Esempio illustrativo con importi inventati. La commissione del servizio viene fatturata separatamente.</small>
+        <small>Esempio illustrativo con importi inventati.</small>
       </article>
     </div>
   </div>
@@ -613,23 +618,23 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
   <div class="wrap">
     <div class="services-head">
       <div><p class="label">Servizi</p><h2 class="h2" id="svc-title">Tutto quello che serve, <em>niente di più.</em></h2></div>
-      <p class="lead">Quattro aree di lavoro, un'unica persona che le coordina per te.</p>
+      <p class="lead">Pensiamo a tutto noi. Tu decidi quando la casa è libera per te.</p>
     </div>
     <article class="service">
       <div class="frame r45" data-reveal><img src="photos/camera-velluto.jpg" alt="Camera con testiera in velluto, boiserie e tende in damasco" decoding="async" data-parallax></div>
-      <div class="svc-copy" data-rise><p class="label">Valorizzazione</p><h3>Prima di pubblicare, prepariamo.</h3><p>Allestimento, piccoli interventi, servizio fotografico professionale e annunci scritti per chi cerca proprio quella casa.</p><ul class="svc-list"><li>Home staging</li><li>Servizio fotografico</li><li>Annunci in più lingue</li></ul></div>
+      <div class="svc-copy" data-rise><p class="label">Annunci</p><h3>La prima cosa che l'ospite guarda.</h3><p>Creiamo l'annuncio, lo pubblichiamo sulle principali piattaforme e teniamo il calendario sempre aggiornato. Foto professionali, testi e regole della casa li curiamo noi.</p><ul class="svc-list"><li>Foto professionali</li><li>Principali piattaforme</li><li>Calendario aggiornato</li></ul></div>
     </article>
     <article class="service">
       <div class="frame r45" data-reveal><img src="photos/lounge-divano.jpg" alt="Salotto con divano curvo, cuscini ocra e lampada da terra" decoding="async" data-parallax></div>
-      <div class="svc-copy" data-rise><p class="label">Ospiti</p><h3>Ogni arrivo, seguito da vicino.</h3><p>Messaggi prima, durante e dopo il soggiorno, check-in, registrazione degli ospiti sul portale Alloggiati Web e assistenza per tutta la permanenza.</p><ul class="svc-list"><li>Check-in</li><li>Alloggiati Web</li><li>Assistenza in soggiorno</li></ul></div>
+      <div class="svc-copy" data-rise><p class="label">Ospiti</p><h3>Seguiti di persona, sempre.</h3><p>Check-in, check-out e assistenza durante tutto il soggiorno. Gli ospiti hanno sempre qualcuno da chiamare, e tu non devi esserci.</p><ul class="svc-list"><li>Check-in e check-out</li><li>Assistenza in soggiorno</li><li>Tu non devi esserci</li></ul></div>
     </article>
     <article class="service">
       <div class="frame r45" data-reveal><img src="photos/marmo-verde.jpg" alt="Lavabo in marmo verde con rubinetteria in acciaio su parete in legno" decoding="async" data-parallax></div>
-      <div class="svc-copy" data-rise><p class="label">Amministrazione</p><h3>Le carte in ordine, ogni mese.</h3><p>Imposta di soggiorno, comunicazioni obbligatorie, codice identificativo nazionale (CIN) e un rendiconto mensile da girare al tuo commercialista.</p><ul class="svc-list"><li>Imposta di soggiorno</li><li>CIN</li><li>Rendiconto mensile</li></ul></div>
+      <div class="svc-copy" data-rise><p class="label">Prezzi e report</p><h3>Il prezzo segue la stagione.</h3><p>Agosto al mare non vale come novembre, e una settimana bianca non vale come un weekend di aprile. Ogni mese ricevi un report con prenotazioni, occupazione e incassi.</p><ul class="svc-list"><li>Prezzi stagionali</li><li>Report mensile</li><li>Pagamenti diretti</li></ul></div>
     </article>
     <article class="service">
       <div class="frame r45" data-reveal><img src="photos/luce-testiera.jpg" alt="Luce del tramonto su una testiera imbottita e lenzuola bianche" decoding="async" data-parallax></div>
-      <div class="svc-copy" data-rise><p class="label">Cura della casa</p><h3>Come la lasceresti tu.</h3><p>Pulizie tra un soggiorno e l'altro, biancheria di qualità alberghiera, controlli periodici e manutenzioni con artigiani di fiducia.</p><ul class="svc-list"><li>Pulizie</li><li>Biancheria</li><li>Manutenzioni</li></ul></div>
+      <div class="svc-copy" data-rise><p class="label">Pulizie e manutenzione</p><h3>Come la lasceresti tu.</h3><p>Coordiniamo pulizie professionali a ogni cambio e teniamo d'occhio la manutenzione, prima che un piccolo guasto diventi una recensione.</p><ul class="svc-list"><li>Pulizie a ogni cambio</li><li>Biancheria</li><li>Manutenzione</li></ul></div>
     </article>
   </div>
 </section>
@@ -638,14 +643,14 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
 <section class="section dark" id="metodo" aria-labelledby="met-title">
   <div class="wrap">
     <div class="method-head">
-      <div><p class="label">Metodo</p><h2 class="h2" id="met-title">Dal primo colloquio <em>al primo ospite.</em></h2></div>
-      <p class="lead">Quattro fasi, sempre nello stesso ordine. Sai in ogni momento a che punto siamo.</p>
+      <div><p class="label">Metodo</p><h2 class="h2" id="met-title">Dalla chiamata <em>al bonifico.</em></h2></div>
+      <p class="lead">Dalla prima telefonata al primo incasso, sempre nello stesso ordine.</p>
     </div>
     <ol class="steps">
-      <li class="step" data-rise><span class="step-num" aria-hidden="true">01</span><h3>Analisi del rendimento</h3><p>Studiamo zona, stagionalità e immobili simili per stimare cosa può rendere la tua casa.</p></li>
-      <li class="step" data-rise><span class="step-num" aria-hidden="true">02</span><h3>Sopralluogo</h3><p>Il tuo referente visita la casa, verifica impianti e dotazioni e prepara una lista di interventi.</p></li>
-      <li class="step" data-rise><span class="step-num" aria-hidden="true">03</span><h3>Preparazione</h3><p>Allestimento, servizio fotografico, documenti e CIN. La casa è pronta quando lo è davvero.</p></li>
-      <li class="step" data-rise><span class="step-num" aria-hidden="true">04</span><h3>Pubblicazione e gestione</h3><p>Pubblichiamo gli annunci e seguiamo ogni soggiorno. Tu ricevi incassi e rendiconto.</p></li>
+      <li class="step" data-rise><span class="step-num" aria-hidden="true">01</span><h3>Ci sentiamo e veniamo a vederla</h3><p>Una telefonata per conoscere te e l'immobile, poi il sopralluogo: spazi, arredi e quello che serve agli ospiti.</p></li>
+      <li class="step" data-rise><span class="step-num" aria-hidden="true">02</span><h3>Ti diamo i numeri</h3><p>Una proiezione di quanto può rendere, in base a zona, stagione e posti letto. Poi un contratto chiaro.</p></li>
+      <li class="step" data-rise><span class="step-num" aria-hidden="true">03</span><h3>Foto e annuncio online</h3><p>Arriva il fotografo, scriviamo l'annuncio e lo pubblichiamo sulle principali piattaforme.</p></li>
+      <li class="step" data-rise><span class="step-num" aria-hidden="true">04</span><h3>Arrivano gli ospiti, tu incassi</h3><p>Check-in, assistenza, pulizie e check-out. I pagamenti arrivano a te, con il report delle prenotazioni.</p></li>
     </ol>
   </div>
 </section>
@@ -654,8 +659,8 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
 <section class="section light" id="immobili" aria-labelledby="imm-title">
   <div class="wrap">
     <div class="props-head">
-      <div><p class="label">Immobili gestiti · esempi</p><h2 class="h2" id="imm-title">Alcune case <em>che seguiamo.</em></h2></div>
-      <p class="lead">Schede dimostrative: nomi delle case, località e codici sono inventati per mostrare il formato.</p>
+      <div><p class="label">Immobili · esempi di scheda</p><h2 class="h2" id="imm-title">Al mare <em>e in montagna.</em></h2></div>
+      <p class="lead">Schede di esempio per mostrare il formato: nomi, dettagli e foto sono dimostrativi.</p>
     </div>
     <div class="props" id="propsGrid"></div>
   </div>
@@ -667,7 +672,7 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
     <div class="faq-side">
       <p class="label">FAQ</p>
       <h2 class="h2" id="faq-title">Domande <em>frequenti.</em></h2>
-      <p>Non trovi la risposta? Scrivici dal modulo qui sotto e il referente della tua zona ti ricontatta.</p>
+      <p>Non trovi la risposta? Chiama o scrivi a Luca o ad Andrea, oppure usa il modulo qui sotto.</p>
       <a class="link" href="#stima">Fai una domanda <svg viewBox="0 0 18 10" aria-hidden="true"><path d="M0 5h17M12.5 .5 17 5l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.1"/></svg></a>
     </div>
     <div class="faq-list" id="faqList"></div>
@@ -681,11 +686,11 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
     <div class="convert-copy">
       <p class="label">Stima gratuita</p>
       <h2 class="h2" id="conv-title">Scopri quanto può rendere <em>la tua casa.</em></h2>
-      <p>Lasciaci qualche dato. Il referente della tua zona ti chiama per un primo colloquio senza impegno e prepara una stima basata su immobili simili.</p>
+      <p>Lasciaci qualche dato. Ti chiamiamo per conoscere te e l'immobile e prepariamo una proiezione di quanto può rendere, in base a zona, stagione e posti letto.</p>
       <div class="contact-lines">
-        <div><span>Email</span><span>ciao@soglia.example</span></div>
-        <div><span>Telefono</span><span>+39 000 000 0000</span></div>
-        <div><span>Orari</span><span>Lun–Ven, 9:00–18:00</span></div>
+        <div><span>Luca Mansutti</span><a href="https://wa.me/393319419162" target="_blank" rel="noopener">+39 331 941 9162</a></div>
+        <div><span>Andrea Amaduzzi</span><a href="https://wa.me/393519080306" target="_blank" rel="noopener">+39 351 908 0306</a></div>
+        <div><span>Sito</span><span>inkasa.casa</span></div>
       </div>
     </div>
     <div class="lead-form-wrap glassy" id="leadWrap" data-glass-ignore>
@@ -707,7 +712,7 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
         <div class="field full"><label for="f-note">Note <span class="opt">(facoltativo)</span></label><textarea id="f-note" name="note" placeholder="Disponibilità per la chiamata, stato della casa, domande…"></textarea></div>
         <div class="consent"><input type="checkbox" id="f-privacy" name="privacy" required aria-describedby="e-privacy"><label for="f-privacy">Ho letto l'<button type="button" data-legal="privacy">informativa privacy</button> e acconsento a essere ricontattato per questa richiesta.</label><span class="err" id="e-privacy"></span></div>
         <p class="form-summary" id="formSummary" role="alert"></p>
-        <div class="form-actions"><button class="btn btn-gold" type="submit">Invia la richiesta <svg viewBox="0 0 18 10" aria-hidden="true"><path d="M0 5h17M12.5 .5 17 5l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.1"/></svg></button><small>Sito dimostrativo: i dati restano nel tuo browser.</small></div>
+        <div class="form-actions"><button class="btn btn-gold" type="submit">Invia la richiesta <svg viewBox="0 0 18 10" aria-hidden="true"><path d="M0 5h17M12.5 .5 17 5l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.1"/></svg></button><small>Proposta grafica: il modulo non invia ancora i dati.</small></div>
       </form>
       <div class="success" id="formSuccess" hidden tabindex="-1">
         <div class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
@@ -726,15 +731,15 @@ dialog[open]{animation:dialogIn .6s var(--slow)}
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a class="brand" href="#top" aria-label="Soglia, torna all'inizio"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M1.5 25V11a9.5 9.5 0 0 1 19 0v14" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 25V12a4.5 4.5 0 0 1 9 0v13" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M0 25.3h22" stroke="currentColor" stroke-width="1.2"/></svg><span>Soglia</span></a>
-        <p>Gestione di affitti brevi e immobili turistici per conto dei proprietari, con standard da boutique hotel.</p>
+        <a class="brand" href="#top" aria-label="Inkasa, torna all'inizio"><svg class="mark" viewBox="0 0 469 206" aria-hidden="true"><g class="g"><polygon points="286,0 288,18 216,40 216,34"/><polygon points="339,10 339,62 200,102 200,61"/><polygon points="178,22 178,74 62,114 62,88"/><polygon points="385,82 385,130 257,154 257,116"/><polygon points="239,106 239,146 32,190 32,170"/><polygon points="363,156 363,206 0,206"/></g><g class="d"><polygon points="288,4 297,11 297,16 288,18"/><polygon points="339,10 372,42 372,84 339,62"/><polygon points="178,22 219,54 219,96 178,74"/><polygon points="385,82 436,124 436,158 385,130"/><polygon points="239,106 256,118 256,156 239,146"/><polygon points="363,158 458,200 458,206 363,206"/></g></svg><span>Inkasa</span></a>
+        <p>Gestione completa di affitti brevi per proprietari, in tutta Italia: annunci, ospiti, pulizie e pagamenti.</p>
       </div>
       <div class="foot-col"><h4>Sezioni</h4><a href="#servizi">Servizi</a><a href="#metodo">Metodo</a><a href="#immobili">Immobili</a><a href="#faq">FAQ</a><a href="#stima">Richiedi una stima</a></div>
-      <div class="foot-col"><h4>Contatti</h4><span>ciao@soglia.example</span><span>+39 000 000 0000</span><span>Lun–Ven, 9:00–18:00</span></div>
+      <div class="foot-col"><h4>Contatti</h4><a href="https://wa.me/393319419162" target="_blank" rel="noopener">Luca · +39 331 941 9162</a><a href="https://wa.me/393519080306" target="_blank" rel="noopener">Andrea · +39 351 908 0306</a><span>inkasa.casa</span></div>
       <div class="foot-col"><h4>Legale</h4><button type="button" data-legal="privacy">Privacy</button><button type="button" data-legal="cookie">Cookie</button><button type="button" data-legal="note">Note legali</button></div>
     </div>
-    <div class="foot-word" aria-hidden="true">Soglia</div>
-    <div class="foot-bottom"><span>Soglia S.r.l. · società dimostrativa · P.IVA 00000000000</span><span>Fotografie: <a href="https://unsplash.com/license" target="_blank" rel="noopener">Unsplash</a> · Sito dimostrativo</span></div>
+    <div class="foot-word" aria-hidden="true">Inkasa</div>
+    <div class="foot-bottom"><span>© 2026 Inkasa Property Management · inkasa.casa</span><span>Fotografie: <a href="https://unsplash.com/license" target="_blank" rel="noopener">Unsplash</a> · Proposta grafica</span></div>
   </div>
 </footer>
 
@@ -1201,7 +1206,7 @@ class Container {
         vec3 bottomColor = vec3(0.0);
         
         float sampleCount = 0.0;
-        for(float x = 0.0; x < 1.0; x += 0.05) {
+        for(float x = 0.0; x < 1.0; x += 0.2) {
           for(float yOffset = -5.0; yOffset <= 5.0; yOffset += 1.0) {
             vec2 topSample = vec2(x, topY + yOffset * texelSize.y);
             vec2 midSample = vec2(x, midY + yOffset * texelSize.y);
@@ -1481,12 +1486,12 @@ document.head.insertAdjacentHTML('beforeend','<style>.frame img[data-parallax]{t
 
 /* ---------- Immobili e FAQ (dati dimostrativi) ---------- */
 const PROPS=[
-  {id:'casa-cannaregio',name:'Casa Cannaregio',loc:'Venezia · Cannaregio',guests:4,rooms:2,baths:1,type:'Appartamento in palazzo storico',img:'suite-classica',cin:'IT000DEMO0001',desc:'Stucchi, tessuti damascati e lampade calde. Due camere affacciate su un rio laterale, arrivo dei bagagli via acqua organizzato su richiesta.'},
-  {id:'villa-dei-cipressi',name:'Villa dei Cipressi',loc:'Val d\'Orcia · Toscana',guests:6,rooms:3,baths:2,type:'Casale con vista sulle colline',img:'finestra-colline',cin:'IT000DEMO0002',desc:'Travi a vista, finestre sulle colline e silenzio. Tre camere, cucina di campagna e un portico per le sere d\'estate.'},
-  {id:'attico-brera',name:'Attico Brera',loc:'Milano · Brera',guests:3,rooms:2,baths:2,type:'Attico con bagni in travertino',img:'bagno-travertino',cin:'IT000DEMO0003',desc:'Ultimo piano con ascensore, bagni rivestiti in travertino e postazione di lavoro. Check-in autonomo con codice.'},
-  {id:'corte-santo-stefano',name:'Corte Santo Stefano',loc:'Bologna · Santo Stefano',guests:2,rooms:1,baths:1,type:'Suite in corte interna',img:'testiera',cin:'IT000DEMO0004',desc:'Una suite silenziosa affacciata sulla corte, letto con testiera capitonné e luci regolabili. Pensata per soggiorni di lavoro.'},
-  {id:'loggia-sul-lago',name:'Loggia sul Lago',loc:'Tremezzina · Lago di Como',guests:6,rooms:3,baths:2,type:'Villa con living open space',img:'lounge-colonne',cin:'IT000DEMO0005',desc:'Un grande living con colonne rivestite, cucina a vista e vetrate. Parcheggio privato e accesso al pontile condiviso.'},
-  {id:'dimora-di-pietra',name:'Dimora di Pietra',loc:'Lecce · Salento',guests:5,rooms:3,baths:2,type:'Casa a corte in pietra',img:'bagno-pietra',cin:'IT000DEMO0006',desc:'Muri in pietra, una vasca in rame sotto il lucernario e un piccolo cortile privato. Tre camere su due livelli.'}
+  {id:'pineta',name:'Appartamento Pineta',loc:'Lignano Pineta · Mare',guests:4,rooms:2,baths:1,type:'Appartamento a due passi dalla spiaggia',img:'comodino-lino',cin:'Esempio',desc:'Due camere, balcone verso la pineta e la spiaggia a pochi minuti a piedi. Pensato per famiglie in estate.'},
+  {id:'riviera',name:'Villa Riviera',loc:'Lignano Riviera · Mare',guests:8,rooms:4,baths:3,type:'Villa con giardino',img:'lounge-colonne',cin:'Esempio',desc:'Un grande living, giardino privato e quattro camere. Ideale per gruppi e soggiorni di una o due settimane.'},
+  {id:'sabbiadoro',name:'Suite Sabbiadoro',loc:'Lignano Sabbiadoro · Mare',guests:2,rooms:1,baths:1,type:'Suite in centro',img:'testiera',cin:'Esempio',desc:'Una suite per due vicino al centro e al lungomare, con testiera imbottita e luci calde regolabili.'},
+  {id:'chalet-clotes',name:'Chalet Clotes',loc:'Sauze d\'Oulx · Montagna',guests:6,rooms:3,baths:2,type:'Chalet vicino agli impianti',img:'suite-classica',cin:'Esempio',desc:'Tre camere, salotto con lampade calde e deposito sci. Pensato per la settimana bianca.'},
+  {id:'baita-jouvenceaux',name:'Baita Jouvenceaux',loc:'Sauze d\'Oulx · Montagna',guests:5,rooms:2,baths:2,type:'Baita in pietra',img:'bagno-pietra',cin:'Esempio',desc:'Muri in pietra, bagno con vasca sotto il lucernario e silenzio della frazione. Per chi cerca la montagna vera.'},
+  {id:'attico-sportinia',name:'Attico Sportinia',loc:'Sauze d\'Oulx · Montagna',guests:4,rooms:2,baths:2,type:'Attico con vista sulle piste',img:'bagno-travertino',cin:'Esempio',desc:'Ultimo piano con vista, bagni rivestiti in pietra chiara e un living dove rientrare dopo lo sci.'}
 ];
 const arrow='<svg viewBox="0 0 18 10" aria-hidden="true"><path d="M0 5h17M12.5 .5 17 5l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>';
 $('#propsGrid').innerHTML=PROPS.map(p=>`
@@ -1499,13 +1504,13 @@ $('#propsGrid').innerHTML=PROPS.map(p=>`
   </article>`).join('');
 
 const FAQ=[
-  ['Quanto costa il servizio?','Lavoriamo con una commissione percentuale sugli incassi delle prenotazioni, concordata nel contratto in base all\'immobile e ai servizi scelti. La fatturiamo separatamente, così vedi sempre quanto incassi e quanto paghi per la gestione.'],
-  ['Gli incassi passano da voi?','No. Il conto di incasso sulle piattaforme è intestato a te e i versamenti arrivano direttamente sul tuo conto. Noi riceviamo solo il pagamento della nostra fattura.'],
-  ['Posso usare la casa quando voglio?','Sì. Blocchi le date nel calendario condiviso o le comunichi al tuo referente, e quelle notti non vengono messe in vendita.'],
-  ['Vi occupate di CIN, Alloggiati Web e imposta di soggiorno?','Sì. Ti aiutiamo a ottenere ed esporre il codice identificativo nazionale, registriamo gli ospiti sul portale Alloggiati Web e gestiamo riscossione e versamento dell\'imposta di soggiorno dove prevista.'],
-  ['Come funziona la tassazione degli affitti brevi?','Dipende dalla tua situazione, ad esempio se scegli la cedolare secca e quanti immobili affitti. Ti forniamo un rendiconto completo da condividere con il tuo commercialista, che resta il riferimento per le scelte fiscali.'],
-  ['Cosa succede se un ospite danneggia qualcosa?','Il referente documenta il danno con foto, apre la richiesta di rimborso sulla piattaforma e organizza la riparazione. Ti teniamo aggiornato a ogni passaggio.'],
-  ['Posso interrompere il contratto?','Sì, con il preavviso indicato nel contratto. Le prenotazioni già confermate vengono gestite fino alla fine o trasferite a te, come preferisci.']
+  ['Dove gestite gli immobili?','Gestiamo case al mare e in montagna, in tutta Italia: l\'Adriatico d\'estate, a partire da Lignano Sabbiadoro, e la neve delle Alpi d\'inverno, a partire da Sauze d\'Oulx.'],
+  ['I pagamenti passano da voi?','No. I pagamenti delle prenotazioni arrivano direttamente a te, insieme al report delle prenotazioni.'],
+  ['Posso usare la casa quando voglio?','Sì. Tu decidi quando la casa è libera per te e quelle date non vengono messe in vendita.'],
+  ['Quanto può rendere la mia casa?','Dopo la telefonata e il sopralluogo ti diamo una proiezione basata su zona, stagione e posti letto. È il terzo passaggio del nostro metodo.'],
+  ['Devo essere presente quando arrivano gli ospiti?','No. Ci occupiamo noi di check-in, assistenza, pulizie e check-out. Gli ospiti hanno sempre qualcuno da chiamare.'],
+  ['Come vengono decisi i prezzi?','Il prezzo segue la domanda: agosto al mare non vale come novembre, e una settimana bianca non vale come un weekend di aprile. Lo aggiorniamo noi stagione per stagione.'],
+  ['Cosa c\'è scritto nel contratto?','Cosa facciamo noi e cosa resta a te, in modo chiaro. Lo mettiamo per iscritto prima di pubblicare l\'annuncio.']
 ];
 $('#faqList').innerHTML=FAQ.map((f,i)=>`
   <div class="faq-item"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-${i}" id="faq-q-${i}">${f[0]}<span class="pm" aria-hidden="true"></span></button></h3>
@@ -1610,7 +1615,7 @@ $('#formReset').addEventListener('click',()=>resetLead());
 const pd=$('#propDialog'),lg=$('#legalDialog');
 function openProp(id){const p=PROPS.find(x=>x.id===id);if(!p)return;
   $('#pd-title').textContent=p.name;$('#pd-loc').textContent=p.loc+' · '+p.type;$('#pd-desc').textContent=p.desc;
-  $('#pd-specs').innerHTML=`<dt>Ospiti</dt><dd>${p.guests}</dd><dt>Camere</dt><dd>${p.rooms}</dd><dt>Bagni</dt><dd>${p.baths}</dd><dt>CIN</dt><dd>${p.cin} (dimostrativo)</dd><dt>Gestione</dt><dd>Referente dedicato, pulizie, check-in, rendiconto mensile</dd>`;
+  $('#pd-specs').innerHTML=`<dt>Ospiti</dt><dd>${p.guests}</dd><dt>Camere</dt><dd>${p.rooms}</dd><dt>Bagni</dt><dd>${p.baths}</dd><dt>Gestione</dt><dd>Annunci, ospiti, pulizie, report mensile</dd>`;
   const im=$('#pd-img');im.src=`photos/${p.img}.jpg`;im.alt=p.name;
   if(!pd.open)pd.showModal();
 }
@@ -1621,9 +1626,9 @@ $('#pd-cta').addEventListener('click',()=>{const p=PROPS.find(x=>x.name===$('#pd
 $$('[data-dlg-close]').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
 [pd,lg].forEach(d=>d.addEventListener('click',e=>{if(e.target===d)d.close()}));
 const LEGAL={
-  privacy:['Informativa privacy','<p>Questo è un sito dimostrativo: i dati inseriti nei moduli non vengono inviati né salvati su alcun server e restano solo nel tuo browser finché la pagina è aperta.</p><p>Su un sito reale qui troveresti titolare del trattamento, finalità, base giuridica, tempi di conservazione e i tuoi diritti ai sensi del GDPR.</p>'],
+  privacy:['Informativa privacy','<p>Questa è una proposta grafica: i dati inseriti nei moduli non vengono inviati né salvati su alcun server e restano solo nel tuo browser finché la pagina è aperta.</p><p>Su un sito reale qui troveresti titolare del trattamento, finalità, base giuridica, tempi di conservazione e i tuoi diritti ai sensi del GDPR.</p>'],
   cookie:['Cookie','<p>Questa pagina non usa cookie di profilazione né strumenti di analisi. Su un sito reale qui troveresti l\'elenco dei cookie tecnici e di terze parti con le relative scelte.</p>'],
-  note:['Note legali','<p>Soglia S.r.l. è una società di fantasia creata per questo esempio. Nomi degli immobili, codici CIN, recapiti e cifre sono dimostrativi. Le fotografie provengono da Unsplash e sono usate secondo la sua licenza.</p>']
+  note:['Note legali','<p>Questa pagina è una proposta grafica per Inkasa Property Management. Le schede degli immobili e le cifre del rendiconto sono esempi. Le fotografie provengono da Unsplash e sono usate secondo la sua licenza.</p>']
 };
 document.addEventListener('click',e=>{const b=e.target.closest('[data-legal]');if(!b)return;e.preventDefault();const t=LEGAL[b.dataset.legal];$('#lg-title').textContent=t[0];$('#lg-body').innerHTML=t[1];lg.showModal()});
 
