@@ -1,0 +1,1643 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}[hidden]{display:none!important}</style>
+<title>Soglia Affitti Brevi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Soglia gestisce il tuo immobile in affitto breve con standard da boutique hotel: referente personale, incassi diretti sul tuo conto, ospiti, pulizie e adempimenti. Sito dimostrativo.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Soglia · Gestione affitti brevi">
+<meta property="og:description" content="La tua casa rende. Il tempo resta tuo.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="photos/hero-suite.jpg">
+<meta name="theme-color" content="#15110D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Hanken+Grotesk:wght@300..600&display=swap">
+<link rel="preload" as="image" href="photos/hero-suite.jpg">
+<style>
+/* Layout: boutique hotel. Fotografia a tutto campo, sezioni che alternano espresso scuro e avorio, testo che respira, oro solo nei dettagli. Look unico, deliberatamente caldo e scuro. */
+:root{
+  color-scheme:dark;
+  --espresso:#15110D;
+  --umber:#1F1913;
+  --ivory:#F3EDE3;
+  --linen:#E9E0D1;
+  --sand:#B9A68A;
+  --gold:#C6A570;
+  --gold-ink:#86663A;
+  --ink:#1C1712;
+  --ink-muted:#6A5E50;
+  --cream-muted:rgba(243,237,227,.68);
+  --f-display:"Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --f-body:"Hanken Grotesk", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --fs-hero:clamp(3rem, 6.9vw, 7.2rem);
+  --fs-h2:clamp(2.3rem, 4.8vw, 4.6rem);
+  --fs-h3:clamp(1.35rem, 1.9vw, 1.75rem);
+  --fs-lead:clamp(1.05rem, 1.25vw, 1.2rem);
+  --gutter:max(clamp(16px, 4.5vw, 72px), env(safe-area-inset-left, 0px));
+  --gutter-r:max(clamp(16px, 4.5vw, 72px), env(safe-area-inset-right, 0px));
+  --section:clamp(5.5rem, 12vw, 11rem);
+  --ease:cubic-bezier(.22,.8,.2,1);
+  --slow:cubic-bezier(.16,.84,.24,1);
+}
+.dark{--bg:var(--espresso);--fg:var(--ivory);--muted:var(--cream-muted);--line:rgba(243,237,227,.14);--line-2:rgba(243,237,227,.3);--accent:var(--gold);background:var(--bg);color:var(--fg)}
+.umber{--bg:var(--umber);background:var(--bg)}
+.light{--bg:var(--ivory);--fg:var(--ink);--muted:var(--ink-muted);--line:rgba(28,23,18,.13);--line-2:rgba(28,23,18,.3);--accent:var(--gold-ink);background:var(--bg);color:var(--fg);color-scheme:light}
+.linen{--bg:var(--linen);background:var(--bg)}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--espresso);color:var(--ivory);font-family:var(--f-body);font-weight:300;font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--espresso)}
+*,*::before,*::after{box-sizing:border-box}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;font-weight:400;text-wrap:balance}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+button,input,select,textarea{font:inherit;color:inherit}
+strong{font-weight:500}
+:focus-visible{outline:1px solid var(--accent,var(--gold));outline-offset:4px}
+.skip{position:absolute;left:-9999px;top:0}
+.skip:focus{left:16px;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:100;background:var(--ivory);color:var(--ink);padding:.6rem 1rem}
+.wrap{max-width:1360px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.section{padding-block:var(--section)}
+.label{font-size:.7rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--accent)}
+.h2{font-family:var(--f-display);font-size:var(--fs-h2);line-height:1.04;letter-spacing:-.012em}
+.h2 em,.hero h1 em{font-style:italic;color:var(--accent)}
+.lead{font-size:var(--fs-lead);color:var(--muted);max-width:34rem}
+.rule{display:block;width:56px;height:1px;background:var(--accent)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Pulsanti */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.75rem;padding:1.05rem 1.9rem;border:1px solid currentColor;background:transparent;text-decoration:none;font-size:.74rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease);white-space:nowrap;border-radius:0}
+.btn svg{width:18px;height:10px;transition:transform .5s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn-gold{background:var(--gold);border-color:var(--gold);color:var(--espresso)}
+.btn-gold:hover{background:transparent;color:var(--gold)}
+.btn-ink{background:var(--ink);border-color:var(--ink);color:var(--ivory)}
+.btn-ink:hover{background:transparent;color:var(--ink)}
+.btn-ghost:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.link{display:inline-flex;align-items:center;gap:.7rem;text-decoration:none;font-size:.72rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;padding-bottom:.4rem;border-bottom:1px solid var(--line-2);transition:border-color .4s,color .4s;width:fit-content}
+.link:hover{border-color:var(--accent);color:var(--accent)}
+.link svg{width:16px;height:9px}
+
+/* Vetro liquido */
+.glass-container{position:relative;isolation:isolate;box-sizing:border-box}
+.glass-container>*:not(canvas){position:relative;z-index:1}
+.glassy::before{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--glass-scrim,rgba(21,17,13,.42));box-shadow:inset 0 0 0 1px rgba(243,237,227,.16), inset 0 1px 0 rgba(255,255,255,.12);z-index:0;pointer-events:none}
+.glassy{background:rgba(21,17,13,.55);-webkit-backdrop-filter:blur(22px) saturate(1.2);backdrop-filter:blur(22px) saturate(1.2)}
+.glassy.glass-live{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+
+/* Header */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:calc(env(safe-area-inset-top,0px) + 16px);padding-left:var(--gutter);padding-right:var(--gutter-r);pointer-events:none;color:var(--ivory)}
+.nav-bar{--glass-scrim:rgba(21,17,13,.34);pointer-events:auto;max-width:1300px;margin:0 auto;height:68px;border-radius:999px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;padding:0 .6rem 0 1.6rem;transition:height .6s var(--ease)}
+.site-header.compact .nav-bar{height:58px}
+.site-header.on-light{color:var(--ink)}
+.site-header.on-light .nav-bar{--glass-scrim:rgba(243,237,227,.62)}
+.site-header.on-light .nav-bar::before{box-shadow:inset 0 0 0 1px rgba(28,23,18,.1)}
+.site-header.on-light .nav-links a{color:rgba(28,23,18,.8)}
+.site-header.on-light .nav-links a:hover,.site-header.on-light .nav-links a[aria-current="true"]{color:var(--gold-ink)}
+.site-header.on-light .brand svg{color:var(--gold-ink)}
+.site-header.on-light .menu-toggle{color:var(--ink);border-color:rgba(28,23,18,.3)}
+.site-header.on-light .nav-cta{background:var(--ink);border-color:var(--ink);color:var(--ivory)}
+.nav-bar,.nav-bar::before,.nav-links a,.brand svg{transition:height .6s var(--ease),background .5s,color .5s,box-shadow .5s}
+.brand{display:inline-flex;align-items:center;gap:.7rem;text-decoration:none;justify-self:start}
+.brand svg{width:20px;height:24px;color:var(--gold)}
+.brand span{font-family:var(--f-display);font-size:1.55rem;letter-spacing:.04em;line-height:1}
+.nav-links{display:flex;gap:2.4rem}
+.nav-links a{text-decoration:none;font-size:.7rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;position:relative;padding:.4rem 0;color:rgba(243,237,227,.86);transition:color .3s}
+.nav-links a:hover,.nav-links a[aria-current="true"]{color:var(--gold)}
+.nav-cta{justify-self:end;border-radius:999px;padding:.85rem 1.4rem}
+.menu-toggle{display:none;justify-self:end;align-items:center;gap:.6rem;border:1px solid rgba(243,237,227,.35);background:transparent;border-radius:999px;padding:.6rem 1.1rem;cursor:pointer;font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ivory)}
+.menu-toggle span{display:block;width:16px;height:1px;background:currentColor;box-shadow:0 5px 0 currentColor;transform:translateY(-2.5px)}
+@media (max-width:960px){.nav-links,.nav-cta{display:none}.menu-toggle{display:inline-flex}.nav-bar{grid-template-columns:1fr auto;height:60px;padding-left:1.25rem}}
+.mobile-menu{position:fixed;inset:0;z-index:80;background:var(--espresso);color:var(--ivory);display:flex;flex-direction:column;padding-top:calc(env(safe-area-inset-top,0px) + 20px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 28px);padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.mobile-menu .mm-top{display:flex;justify-content:space-between;align-items:center;height:60px}
+.mobile-menu nav{display:flex;flex-direction:column;margin-top:3rem}
+.mobile-menu nav a{font-family:var(--f-display);font-size:2.6rem;text-decoration:none;padding:.55rem 0;border-bottom:1px solid rgba(243,237,227,.12)}
+.mobile-menu nav a em{color:var(--gold)}
+.mobile-menu .btn{margin-top:auto}
+.mobile-menu:not([hidden]){animation:fade .45s var(--ease)}
+
+/* Hero */
+.hero{position:relative;min-height:clamp(640px, 96svh, 980px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:0;background:var(--umber) url("photos/hero-suite.jpg") center 42%/cover no-repeat;transform-origin:60% 50%;animation:kenburns 3.2s var(--slow) both}
+.hero>.wrap{position:relative;z-index:2;width:100%}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg, rgba(21,17,13,.55) 0%, rgba(21,17,13,.08) 26%, rgba(21,17,13,.18) 52%, rgba(21,17,13,.86) 100%), linear-gradient(90deg, rgba(21,17,13,.55) 0%, rgba(21,17,13,0) 60%)}
+.hero-inner{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;align-items:end;padding-top:150px;padding-bottom:clamp(2.2rem,4vw,3.4rem)}
+.hero-copy{grid-column:1 / span 7;display:flex;flex-direction:column;gap:1.8rem;min-width:0}
+.hero h1{font-family:var(--f-display);font-size:var(--fs-hero);line-height:.94;letter-spacing:-.03em}
+.hero h1 .l2{display:block;padding-left:clamp(0rem,6vw,6.5rem)}
+.hero .lead{color:rgba(243,237,227,.82);max-width:31rem}
+.form-card{--glass-scrim:rgba(21,17,13,.36);grid-column:9 / span 4;border-radius:28px;padding:1.8rem 1.7rem 1.6rem;min-width:0}
+.form-card h2{font-family:var(--f-display);font-size:1.6rem;line-height:1.12;margin:.6rem 0 .35rem}
+.form-card .hint{font-size:.86rem;color:rgba(243,237,227,.72);margin-bottom:1.3rem}
+.quick-form{display:grid;grid-template-columns:1fr 6.8rem;gap:.8rem}
+.quick-form .btn{grid-column:1 / -1;margin-top:.35rem;border-radius:999px}
+.q-field label{display:block;font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(243,237,227,.7);margin-bottom:.4rem}
+.q-field input,.q-field select{width:100%;height:48px;border-radius:14px;border:1px solid rgba(243,237,227,.28);background:rgba(21,17,13,.35);color:var(--ivory);padding:0 .9rem;font-size:.95rem;transition:border-color .3s}
+.q-field input::placeholder{color:rgba(243,237,227,.45)}
+.q-field select option{color:#1C1712}
+.q-field input:focus,.q-field select:focus{outline:none;border-color:var(--gold)}
+.q-error{grid-column:1 / -1;font-size:.82rem;color:#F0B39F}
+.q-error:empty{display:none}
+.hero-foot{border-top:1px solid rgba(243,237,227,.16);display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:1.1rem calc(1.1rem + env(safe-area-inset-bottom,0px))}
+.cities{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.66rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(243,237,227,.72)}
+.cities{gap:.4rem 0}
+.cities li{display:flex;align-items:center}
+.cities li+li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold);margin:0 1.1rem}
+.scroll-cue{display:flex;align-items:center;gap:.8rem;font-size:.64rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(243,237,227,.72);text-decoration:none}
+.scroll-cue i{display:block;width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:cue 2.4s var(--ease) infinite}
+@media (max-width:960px){
+  .hero-copy,.form-card{grid-column:1 / -1}
+  .hero-inner{padding-top:130px}
+  .hero-bg{background-position:30% 40%}
+  .scroll-cue{display:none}
+}
+
+/* Intro */
+.intro-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;align-items:start}
+.intro-side{grid-column:1 / span 3;display:flex;flex-direction:column;gap:1.4rem;padding-top:.8rem}
+.intro-text{grid-column:5 / span 8;font-family:var(--f-display);font-size:clamp(1.75rem,3.3vw,3.1rem);line-height:1.18;letter-spacing:-.01em}
+.intro-text em{font-style:italic;color:var(--accent)}
+.intro-meta{grid-column:5 / span 8;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem;margin-top:clamp(2.5rem,5vw,4rem);border-top:1px solid var(--line);padding-top:1.6rem}
+.intro-meta div{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.intro-meta strong{font-family:var(--f-display);font-weight:400;font-size:1.35rem}
+.intro-meta span{font-size:.92rem;color:var(--muted)}
+@media (max-width:900px){.intro-side,.intro-text,.intro-meta{grid-column:1 / -1}.intro-meta{grid-template-columns:1fr}}
+
+/* Foto con cornice e parallasse */
+.frame{position:relative;overflow:hidden;margin:0;background:var(--umber);max-width:100%}
+.frame img{width:100%;height:116%;object-fit:cover;position:absolute;left:0;top:-8%;will-change:transform;transition:transform 1.6s var(--slow)}
+.frame.r45{aspect-ratio:4/5}.frame.r23{aspect-ratio:2/3}.frame.r32{aspect-ratio:3/2}.frame.r34{aspect-ratio:3/4}.frame.r11{aspect-ratio:1/1}.frame.r169{aspect-ratio:16/10}
+.cap{display:flex;justify-content:space-between;gap:1rem;margin-top:.9rem;font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.cap span:first-child{color:var(--fg)}
+[data-reveal]{transition:clip-path 1.6s var(--slow), transform 1.4s var(--slow)}
+.js [data-reveal].pre{clip-path:inset(0 0 10% 0);transform:translateY(24px)}
+.js [data-rise].pre{transform:translateY(22px)}
+[data-rise]{transition:transform 1.2s var(--slow)}
+
+/* Galleria */
+.gallery{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(1rem,2vw,2rem);align-items:start}
+.gallery figure{margin:0;min-width:0}
+.g1{grid-column:1 / span 5}
+.g2{grid-column:7 / span 6;margin-top:clamp(0rem,12vw,11rem)!important}
+.g3{grid-column:2 / span 4;margin-top:clamp(1rem,4vw,3rem)!important}
+.g4{grid-column:7 / span 4;margin-top:clamp(1rem,-2vw,0rem)!important}
+.gallery-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;margin-bottom:clamp(3rem,6vw,5.5rem);align-items:end}
+.gallery-head .h2{grid-column:1 / span 7}
+.gallery-head .lead{grid-column:9 / span 4}
+@media (max-width:760px){
+  .gallery-head .h2,.gallery-head .lead{grid-column:1 / -1}
+  .g1{grid-column:1 / span 10}.g2{grid-column:3 / -1;margin-top:0!important}.g3{grid-column:1 / span 8}.g4{grid-column:4 / -1}
+}
+
+/* Valori */
+.values-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;margin-bottom:clamp(3rem,6vw,5rem)}
+.values-head .lead{grid-column:9 / span 4;align-self:end}
+.values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.value{padding:2.2rem clamp(1.2rem,2.5vw,2.6rem) 2.4rem;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:1.1rem;min-width:0}
+.value:first-child{border-left:0;padding-left:0}
+.value svg{width:34px;height:34px;stroke:var(--gold);stroke-width:1;fill:none}
+.value h3{font-family:var(--f-display);font-size:var(--fs-h3);line-height:1.15}
+.value p{color:var(--muted);max-width:22rem}
+@media (max-width:860px){.values-head>div,.values-head .lead{grid-column:1 / -1!important}.values{grid-template-columns:1fr}.value{border-left:0;padding-left:0;border-top:1px solid var(--line)}}
+
+/* Persona */
+.person-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(1.5rem,3vw,3rem);align-items:start}
+.person-media{grid-column:1 / span 5;position:sticky;top:110px}
+.person-copy{grid-column:7 / span 6;display:flex;flex-direction:column;gap:1.6rem;min-width:0}
+.person-copy>p{color:var(--muted);max-width:34rem}
+.compare{margin-top:1.4rem}
+.compare-table{width:100%;border-collapse:collapse;font-size:.95rem}
+.compare-table th,.compare-table td{text-align:left;padding:1.15rem .8rem;border-bottom:1px solid var(--line);vertical-align:top}
+.compare-table thead th{font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line-2)}
+.compare-table thead th.us{color:var(--accent)}
+.compare-table tbody th{font-weight:500;width:30%;padding-left:0}
+.compare-table td.them{color:var(--muted)}
+.compare-table td.us{font-family:var(--f-display);font-size:1.05rem}
+.compare-note{margin-top:1rem;font-size:.8rem;color:var(--muted)}
+@media (max-width:900px){.person-media{grid-column:1 / span 10;position:static}.person-copy{grid-column:1 / -1}}
+@media (max-width:560px){
+  .compare-table thead{display:none}
+  .compare-table,.compare-table tbody,.compare-table tr,.compare-table th,.compare-table td{display:block;width:100%}
+  .compare-table tr{border-bottom:1px solid var(--line);padding:1rem 0}
+  .compare-table th,.compare-table td{border:0;padding:.3rem 0}
+  .compare-table td::before{content:attr(data-label);display:block;font-family:var(--f-body);font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+}
+
+/* Trasparenza */
+.flow-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;margin-bottom:clamp(3rem,6vw,5rem)}
+.flow-head>div{grid-column:1 / span 7;display:flex;flex-direction:column;gap:1.5rem}
+.flow-head .lead{grid-column:9 / span 4;align-self:end}
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch}
+.node{border:1px solid var(--line);padding:2rem 1.8rem;display:flex;flex-direction:column;gap:.9rem;min-width:0}
+.node .label{color:var(--muted)}
+.node h3{font-family:var(--f-display);font-size:1.85rem;line-height:1.08}
+.node p{color:var(--muted);font-size:.95rem}
+.node.owner{border-color:var(--gold);background:linear-gradient(180deg, rgba(198,165,112,.12), rgba(198,165,112,0))}
+.node.owner .label{color:var(--gold)}
+.arrow{display:flex;align-items:center;justify-content:center;width:clamp(36px,5vw,84px);color:var(--gold)}
+.arrow svg{width:100%;height:12px}
+.flow-foot{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;margin-top:clamp(3rem,5vw,4.5rem);align-items:start}
+.flow-points{grid-column:1 / span 5;display:flex;flex-direction:column;gap:1.3rem}
+.flow-points li{display:grid;grid-template-columns:22px 1fr;gap:.9rem;color:var(--muted)}
+.flow-points strong{color:var(--fg)}
+.flow-points svg{width:16px;height:16px;margin-top:5px;stroke:var(--gold);fill:none;stroke-width:1.3}
+.statement{grid-column:7 / span 6;border:1px solid var(--line);padding:1.8rem 1.9rem;min-width:0}
+.statement header{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.1rem;align-items:baseline}
+.statement header strong{font-family:var(--f-display);font-weight:400;font-size:1.3rem}
+.tag{font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--line-2);border-radius:999px;padding:.3rem .7rem;color:var(--muted)}
+.statement dl{margin:0;display:grid;grid-template-columns:1fr auto;font-variant-numeric:tabular-nums}
+.statement dt,.statement dd{margin:0;padding:.8rem 0;border-bottom:1px solid var(--line)}
+.statement dt{color:var(--muted)}
+.statement dd{text-align:right}
+.statement .total{border-bottom:0;color:var(--gold);font-family:var(--f-display);font-size:1.25rem;padding-top:1.1rem}
+.statement small{display:block;margin-top:.9rem;color:var(--muted);font-size:.78rem}
+@media (max-width:900px){.flow-head>div,.flow-head .lead,.flow-points,.statement{grid-column:1 / -1}.flow{grid-template-columns:1fr}.arrow{width:auto;height:46px}.arrow svg{transform:rotate(90deg);width:46px}}
+
+/* Servizi */
+.services-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;margin-bottom:clamp(2rem,5vw,4rem)}
+.services-head>div{grid-column:1 / span 7;display:flex;flex-direction:column;gap:1.5rem}
+.services-head .lead{grid-column:9 / span 4;align-self:end}
+.service{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(1.25rem,3vw,3rem);align-items:center;padding-block:clamp(2.5rem,5vw,4.5rem)}
+.service .frame{grid-column:1 / span 6}
+.service .svc-copy{grid-column:8 / span 4;display:flex;flex-direction:column;gap:1.2rem;min-width:0}
+.service:nth-of-type(even) .frame{grid-column:7 / span 6;order:2}
+.service:nth-of-type(even) .svc-copy{grid-column:2 / span 4;order:1}
+.svc-copy h3{font-family:var(--f-display);font-size:clamp(2rem,3.3vw,3rem);line-height:1.04}
+.svc-copy p{color:var(--muted)}
+.svc-list{display:flex;flex-direction:column;border-top:1px solid var(--line);margin-top:.4rem}
+.svc-list li{font-size:.9rem;padding:.7rem 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.svc-list li::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);align-self:center}
+@media (max-width:860px){.services-head>div,.services-head .lead{grid-column:1 / -1}.service .frame,.service .svc-copy,.service:nth-of-type(even) .frame,.service:nth-of-type(even) .svc-copy{grid-column:1 / -1;order:0}}
+
+/* Metodo */
+.method-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem}
+.method-head>div{grid-column:1 / span 7;display:flex;flex-direction:column;gap:1.5rem}
+.method-head .lead{grid-column:9 / span 4;align-self:end}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(3rem,6vw,5rem);border-top:1px solid var(--line)}
+.step{padding:2rem clamp(1rem,2vw,2rem) 0 0;display:flex;flex-direction:column;gap:1rem;min-width:0;position:relative}
+.step::before{content:"";position:absolute;top:-4px;left:0;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.step-num{font-family:var(--f-display);font-style:italic;font-size:clamp(3.4rem,5.4vw,5.4rem);line-height:.9;color:var(--gold)}
+.step h3{font-family:var(--f-display);font-size:var(--fs-h3);line-height:1.15}
+.step p{color:var(--muted);font-size:.95rem}
+@media (max-width:900px){.method-head>div,.method-head .lead{grid-column:1 / -1}.steps{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:2.5rem}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* Immobili */
+.props-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(3rem,5vw,4.5rem)}
+.props-head>div{display:flex;flex-direction:column;gap:1.5rem}
+.props-head .lead{max-width:24rem}
+.props{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(2.5rem,4vw,3.5rem) clamp(1rem,2vw,2rem)}
+.prop{display:flex;flex-direction:column;gap:1rem;min-width:0}
+.prop .frame{aspect-ratio:4/5}
+.prop .frame img{top:0;height:100%}
+.prop:hover .frame img{transform:scale(1.04)}
+.prop .frame::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 55%,rgba(21,17,13,.6));opacity:0;transition:opacity .5s}
+.prop .frame::after{content:"Scopri la casa";position:absolute;left:1.2rem;bottom:1.1rem;z-index:2;font-size:.62rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--ivory);opacity:0;transform:translateY(8px);transition:opacity .5s, transform .5s var(--ease)}
+.prop:hover .frame::before,.prop:hover .frame::after{opacity:1;transform:none}
+.prop-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.prop h3{font-family:var(--f-display);font-size:1.6rem;line-height:1.1}
+.prop .loc{font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.prop-meta{display:flex;gap:1.4rem;font-size:.86rem;color:var(--muted);border-top:1px solid var(--line);padding-top:.9rem}
+.prop a.ph-link{display:block;text-decoration:none;color:inherit}
+@media (max-width:980px){.props{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.props{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem}
+.faq-side{grid-column:1 / span 4;display:flex;flex-direction:column;gap:1.5rem;min-width:0}
+.faq-side p{color:var(--muted)}
+.faq-list{grid-column:6 / span 7;border-top:1px solid var(--line-2);min-width:0}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;padding:1.6rem 0;background:none;border:0;cursor:pointer;text-align:left;font-family:var(--f-display);font-size:clamp(1.2rem,1.7vw,1.5rem);line-height:1.25}
+.faq-q .pm{flex:none;width:32px;height:32px;border:1px solid var(--line-2);border-radius:50%;position:relative;transition:background .4s,border-color .4s}
+.faq-q .pm::before,.faq-q .pm::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1px;background:currentColor;transform:translate(-50%,-50%)}
+.faq-q .pm::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .5s var(--ease)}
+.faq-q[aria-expanded="true"] .pm{border-color:var(--accent)}
+.faq-q[aria-expanded="true"] .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.faq-a>div{overflow:hidden}
+.faq-a p{color:var(--muted);padding:0 3.5rem 1.8rem 0;max-width:42rem}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+@media (max-width:900px){.faq-side,.faq-list{grid-column:1 / -1}.faq-a p{padding-right:0}}
+
+/* Conversione */
+.convert{position:relative;overflow:hidden;isolation:isolate}
+.convert-bg{position:absolute;inset:0;z-index:0;background:var(--umber) url("photos/salone-palazzo.jpg") center 30%/cover no-repeat}
+.convert>.wrap{position:relative;z-index:2}
+.convert::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg, rgba(21,17,13,.9) 0%, rgba(21,17,13,.55) 45%, rgba(21,17,13,.35) 100%)}
+.convert-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(1.5rem,3vw,3rem);align-items:start}
+.convert-copy{grid-column:1 / span 5;display:flex;flex-direction:column;gap:1.7rem;min-width:0}
+.convert-copy .h2{font-size:clamp(2.5rem,5vw,4.8rem)}
+.convert-copy>p{color:rgba(243,237,227,.78);max-width:28rem}
+.contact-lines{display:flex;flex-direction:column;border-top:1px solid rgba(243,237,227,.16)}
+.contact-lines div{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.85rem 0;border-bottom:1px solid rgba(243,237,227,.16)}
+.contact-lines span:first-child{font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);padding-top:.2rem}
+.contact-lines span:last-child{user-select:all}
+.lead-form-wrap{--glass-scrim:rgba(21,17,13,.5);grid-column:7 / span 6;border-radius:30px;padding:clamp(1.5rem,3vw,2.6rem);min-width:0}
+.prefill-note{font-size:.86rem;border:1px solid rgba(198,165,112,.45);border-radius:12px;padding:.75rem .95rem;margin-bottom:1.3rem;display:flex;gap:.7rem;align-items:flex-start;color:var(--ivory)}
+.prefill-note svg{flex:none;width:16px;height:16px;margin-top:3px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.lead-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem 1rem}
+.field{display:flex;flex-direction:column;gap:.45rem;min-width:0}
+.field.full{grid-column:1 / -1}
+.field label,.field legend{font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(243,237,227,.75)}
+.field label .opt{letter-spacing:.1em;text-transform:none;color:rgba(243,237,227,.5)}
+.field input,.field select,.field textarea{width:100%;border:0;border-bottom:1px solid rgba(243,237,227,.32);background:transparent;color:var(--ivory);border-radius:0;padding:.65rem 0;font-size:1.02rem;transition:border-color .3s}
+.field select option{color:#1C1712}
+.field textarea{min-height:80px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:rgba(243,237,227,.4)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
+.field [aria-invalid="true"]{border-color:#F0B39F}
+.err{font-size:.8rem;color:#F0B39F}
+.err:empty{display:none}
+.choice{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.2rem}
+.choice label{position:relative;cursor:pointer;letter-spacing:0;text-transform:none;font-weight:400}
+.choice input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.choice span{display:inline-block;border:1px solid rgba(243,237,227,.3);border-radius:999px;padding:.5rem 1rem;font-size:.86rem;color:var(--ivory);transition:background .3s,color .3s,border-color .3s}
+.choice input:checked+span{background:var(--gold);color:var(--espresso);border-color:var(--gold)}
+.choice input:focus-visible+span{outline:1px solid var(--gold);outline-offset:3px}
+fieldset.field{border:0;margin:0;padding:0}
+.consent{grid-column:1 / -1;display:grid;grid-template-columns:20px 1fr;gap:.75rem;font-size:.86rem;color:rgba(243,237,227,.75);align-items:start}
+.consent input{width:17px;height:17px;margin:3px 0 0;accent-color:var(--gold)}
+.consent .err{grid-column:2}
+.consent button{background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;color:var(--ivory)}
+.form-actions{grid-column:1 / -1;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-top:.4rem}
+.form-actions .btn{border-radius:999px}
+.form-actions small{color:rgba(243,237,227,.6);font-size:.78rem}
+.form-summary{grid-column:1 / -1;font-size:.86rem;color:#F0B39F}
+.form-summary:empty{display:none}
+.success{display:flex;flex-direction:column;gap:1rem;align-items:flex-start}
+.success .check{width:54px;height:54px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold)}
+.success .check svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.4}
+.success h3{font-family:var(--f-display);font-size:2.2rem;line-height:1.1}
+.success p{color:rgba(243,237,227,.75)}
+.success dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1.4rem;margin:0;font-size:.92rem}
+.success dt{color:rgba(243,237,227,.6)}.success dd{margin:0}
+.success .btn{border-radius:999px}
+@media (max-width:900px){.convert-copy,.lead-form-wrap{grid-column:1 / -1}}
+@media (max-width:520px){.lead-form{grid-template-columns:1fr}}
+
+/* Footer */
+.site-footer{padding-block:clamp(4rem,8vw,7rem) calc(env(safe-area-inset-bottom,0px) + 2rem)}
+.foot-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem}
+.foot-brand{grid-column:1 / span 4;display:flex;flex-direction:column;gap:1.1rem;min-width:0}
+.foot-brand p{color:var(--muted);font-size:.92rem;max-width:22rem}
+.foot-col{grid-column:span 2;display:flex;flex-direction:column;gap:.65rem;font-size:.92rem;min-width:0}
+.foot-col:nth-of-type(2){grid-column:7 / span 2}
+.foot-col h4{font-size:.62rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.foot-col a,.foot-col button{text-decoration:none;background:none;border:0;padding:0;text-align:left;cursor:pointer;width:fit-content;color:var(--muted);transition:color .3s}
+.foot-col a:hover,.foot-col button:hover{color:var(--ivory)}
+.foot-col span{user-select:all;color:var(--muted)}
+.foot-word{font-family:var(--f-display);font-style:italic;font-size:clamp(5rem,21vw,19rem);line-height:.78;letter-spacing:-.04em;margin-top:clamp(3rem,7vw,6rem);color:transparent;-webkit-text-stroke:1px rgba(198,165,112,.45)}
+.foot-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.76rem;color:var(--muted)}
+.foot-bottom a{color:var(--muted)}
+@media (max-width:900px){.foot-brand{grid-column:1 / -1}.foot-col,.foot-col:nth-of-type(2){grid-column:span 6}}
+
+/* Dialog */
+dialog{border:0;padding:0;background:var(--ivory);color:var(--ink);width:min(980px,calc(100% - 32px));max-height:calc(100% - 48px);box-shadow:0 50px 100px -30px rgba(0,0,0,.7);color-scheme:light}
+dialog::backdrop{background:rgba(12,10,8,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+dialog[open]{animation:dialogIn .6s var(--slow)}
+.dlg-prop{display:grid;grid-template-columns:1fr 1fr}
+.dlg-prop .frame{height:100%;min-height:420px}
+.dlg-prop .frame img{top:0;height:100%}
+.dlg-body{padding:clamp(1.6rem,3.5vw,2.8rem);display:flex;flex-direction:column;gap:1.2rem;min-width:0;--fg:var(--ink);--muted:var(--ink-muted);--line:rgba(28,23,18,.13);--accent:var(--gold-ink)}
+.dlg-body h2{font-family:var(--f-display);font-size:clamp(2.1rem,3.6vw,3rem);line-height:1.02}
+.dlg-body p{color:var(--ink-muted)}
+.dlg-body dl{display:grid;grid-template-columns:auto 1fr;gap:.6rem 1.6rem;margin:0;font-size:.94rem;border-block:1px solid var(--line);padding-block:1.1rem}
+.dlg-body dt{color:var(--ink-muted);font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding-top:.25rem}
+.dlg-body dd{margin:0}
+.dlg-body .btn{align-self:flex-start;border-radius:999px}
+.dlg-close{position:absolute;top:14px;right:14px;z-index:3;width:42px;height:42px;border-radius:50%;border:1px solid rgba(28,23,18,.25);background:var(--ivory);color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.dlg-close svg{width:13px;height:13px;stroke:currentColor;stroke-width:1.4}
+.demo-flag{font-size:.6rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-ink)}
+.dlg-legal{padding:clamp(1.8rem,4vw,3rem);max-width:660px}
+.dlg-legal h2{font-family:var(--f-display);font-size:2.1rem;margin:.4rem 0 1rem}
+.dlg-legal p{color:var(--ink-muted);margin-bottom:.9rem}
+@media (max-width:720px){.dlg-prop{grid-template-columns:1fr}.dlg-prop .frame{min-height:0;aspect-ratio:16/10;height:auto}}
+
+/* Movimento */
+@keyframes kenburns{from{transform:scale(1.09)}to{transform:scale(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes dialogIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.rise{animation:rise 1.3s var(--slow) both;animation-delay:var(--d,0s)}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+  .js [data-reveal].pre,.js [data-rise].pre{clip-path:none;transform:none}
+}
+</style>
+</head>
+<body>
+
+
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="nav-bar glassy" id="navBar" data-glass-ignore>
+    <a class="brand" href="#top" aria-label="Soglia, torna all'inizio">
+      <svg viewBox="0 0 22 26" aria-hidden="true"><path d="M1.5 25V11a9.5 9.5 0 0 1 19 0v14" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 25V12a4.5 4.5 0 0 1 9 0v13" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M0 25.3h22" stroke="currentColor" stroke-width="1.2"/></svg>
+      <span>Soglia</span>
+    </a>
+    <nav class="nav-links" aria-label="Sezioni principali">
+      <a href="#servizi">Servizi</a><a href="#metodo">Metodo</a><a href="#immobili">Immobili</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-gold nav-cta" href="#stima">Richiedi una stima</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu" id="menuOpen"><span aria-hidden="true"></span>Menu</button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" hidden data-glass-ignore role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mm-top">
+    <a class="brand" href="#top" data-close><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M1.5 25V11a9.5 9.5 0 0 1 19 0v14" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 25V12a4.5 4.5 0 0 1 9 0v13" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M0 25.3h22" stroke="currentColor" stroke-width="1.2"/></svg><span>Soglia</span></a>
+    <button class="menu-toggle" type="button" id="menuClose" style="display:inline-flex">Chiudi</button>
+  </div>
+  <nav aria-label="Sezioni (mobile)">
+    <a href="#servizi" data-close>Servizi</a>
+    <a href="#metodo" data-close>Metodo</a>
+    <a href="#immobili" data-close>Immobili</a>
+    <a href="#faq" data-close><em>Domande</em></a>
+  </nav>
+  <a class="btn btn-gold" href="#stima" data-close>Richiedi una stima</a>
+</div>
+
+<main id="contenuto">
+
+<!-- HERO -->
+<section class="hero dark" id="top" aria-labelledby="hero-title">
+  <div class="hero-bg" role="img" aria-label="Suite con poltrone in velluto, scrivania in legno e luce calda delle lampade"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="label rise" style="--d:.2s">Gestione affitti brevi · Italia</p>
+      <h1 id="hero-title" class="rise" style="--d:.35s">La tua casa rende. <span class="l2">Il tempo resta <em>tuo.</em></span></h1>
+      <p class="lead rise" style="--d:.55s">Gestiamo il tuo immobile come un piccolo hotel: un referente personale che conosce la casa, ospiti seguiti uno per uno, incassi che arrivano direttamente sul tuo conto.</p>
+    </div>
+    <div class="form-card glassy" id="formCard" data-glass-ignore>
+      <span class="label">Stima gratuita</span>
+      <h2>Quanto può rendere la tua casa?</h2>
+      <p class="hint">Due dati per iniziare. Il resto lo vediamo insieme.</p>
+      <form class="quick-form" id="quickForm" novalidate>
+        <div class="q-field">
+          <label for="q-city">Città</label>
+          <input id="q-city" name="city" list="cities" autocomplete="address-level2" placeholder="Es. Firenze" required>
+          <datalist id="cities"><option value="Venezia"><option value="Firenze"><option value="Milano"><option value="Bologna"><option value="Roma"><option value="Lago di Como"><option value="Lecce"><option value="Napoli"></datalist>
+        </div>
+        <div class="q-field">
+          <label for="q-rooms">Camere</label>
+          <select id="q-rooms" name="rooms" required><option value="">—</option><option>1</option><option>2</option><option>3</option><option>4</option><option value="5+">5+</option></select>
+        </div>
+        <p class="q-error" id="q-error" role="alert"></p>
+        <button class="btn btn-gold" type="submit">Richiedi la stima <svg viewBox="0 0 18 10" aria-hidden="true"><path d="M0 5h17M12.5 .5 17 5l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.1"/></svg></button>
+      </form>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="hero-foot">
+      <ul class="cities" aria-label="Dove lavoriamo (esempi)"><li>Venezia</li><li>Firenze</li><li>Lago di Como</li><li>Bologna</li><li>Milano</li><li>Lecce</li></ul>
+      <a class="scroll-cue" href="#intro"><i aria-hidden="true"></i>Scopri</a>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="section light" id="intro" aria-label="Il nostro approccio">
+  <div class="wrap intro-grid">
+    <div class="intro-side" data-rise><span class="rule"></span><p class="label">Il nostro approccio</p></div>
+    <p class="intro-text" data-rise>Trattiamo ogni casa come una piccola struttura d'albergo: <em>standard da hotel</em>, una persona che la segue dall'inizio alla fine e conti sempre in chiaro. Tu ricevi gli incassi. Noi ci occupiamo di tutto il resto.</p>
+    <div class="intro-meta" data-rise>
+      <div><strong>Una persona</strong><span>Lo stesso referente per la tua casa, dal sopralluogo al rendiconto.</span></div>
+      <div><strong>Standard da hotel</strong><span>Biancheria, pulizie e accoglienza curate come in albergo.</span></div>
+      <div><strong>Conti in chiaro</strong><span>Incassi sul tuo conto, commissione fatturata a parte.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERIA -->
+<section class="section light" aria-labelledby="gal-title" style="padding-top:0">
+  <div class="wrap">
+    <div class="gallery-head">
+      <h2 class="h2" id="gal-title">Case preparate <em>una stanza</em> alla volta.</h2>
+      <p class="lead">Luce calda, materiali veri, nessun dettaglio lasciato al caso. Ogni immobile viene preparato come lo vorremmo trovare noi da ospiti.</p>
+    </div>
+    <div class="gallery">
+      <figure class="g1"><div class="frame r45" data-reveal><img src="photos/testiera.jpg" alt="Testiera capitonné illuminata da una lampada da lettura" decoding="async" data-parallax></div><figcaption class="cap"><span>La camera</span><span>Lino e luce calda</span></figcaption></figure>
+      <figure class="g2"><div class="frame r169" data-reveal><img src="photos/lounge-colonne.jpg" alt="Soggiorno ampio con colonne rivestite, divano in pelle e tappeto in juta" decoding="async" data-parallax></div><figcaption class="cap"><span>Il soggiorno</span><span>Spazi da vivere</span></figcaption></figure>
+      <figure class="g3"><div class="frame r34" data-reveal><img src="photos/bagno-pietra.jpg" alt="Bagno in pietra con vasca in rame e finestre a doghe" decoding="async" data-parallax></div><figcaption class="cap"><span>Il bagno</span><span>Pietra e legno</span></figcaption></figure>
+      <figure class="g4"><div class="frame r23" data-reveal><img src="photos/finestra-colline.jpg" alt="Camera con finestra aperta sulle colline con cipressi" decoding="async" data-parallax></div><figcaption class="cap"><span>La vista</span><span>Colline toscane</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- VALORI -->
+<section class="section dark" aria-labelledby="val-title">
+  <div class="wrap">
+    <div class="values-head">
+      <div style="grid-column:1 / span 7;display:flex;flex-direction:column;gap:1.5rem"><p class="label">Tre promesse</p><h2 class="h2" id="val-title">Tre cose che <em>non cambiano mai.</em></h2></div>
+      <p class="lead">Il modo di lavorare con te resta lo stesso, che la casa sia un monolocale in centro o una villa sul lago.</p>
+    </div>
+    <div class="values">
+      <article class="value" data-rise><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="14" r="6"/><path d="M8 34c1.8-6.5 6.5-10 12-10s10.2 3.5 12 10"/></svg><h3>Referente personale</h3><p>Una persona segue la tua casa dall'inizio. Ha il tuo numero, conosce l'immobile e risponde a te.</p></article>
+      <article class="value" data-rise><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="11" width="30" height="20" rx="1"/><path d="M5 17h30M10 25h7"/></svg><h3>Incassi diretti sul conto</h3><p>Le piattaforme pagano le prenotazioni direttamente a te. La nostra commissione viene fatturata a parte.</p></article>
+      <article class="value" data-rise><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14"/><path d="M20 11v9l6 4"/></svg><h3>Assistenza continua</h3><p>Ospiti, imprevisti, manutenzioni. Ce ne occupiamo noi e ti chiamiamo solo quando serve una tua decisione.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- UNA PERSONA -->
+<section class="section light linen" aria-labelledby="per-title">
+  <div class="wrap person-grid">
+    <div class="person-media"><div class="frame r45" data-reveal><img src="photos/comodino-lino.jpg" alt="Comodino in legno chiaro con lampada e fiori secchi accanto a un letto in lino" decoding="async" data-parallax></div></div>
+    <div class="person-copy">
+      <p class="label">Il nostro modello</p>
+      <h2 class="h2" id="per-title">Una persona, <em>la tua casa.</em></h2>
+      <p>Ogni referente segue un numero limitato di immobili. Conosce la caldaia che fa i capricci, il vicino da avvisare, le settimane in cui la casa ti serve libera. Prezzi e calendario li decidete insieme.</p>
+      <div class="compare">
+        <table class="compare-table">
+          <caption class="sr-only">Confronto tra gestione tradizionale e servizio dedicato</caption>
+          <thead><tr><th scope="col"><span class="sr-only">Aspetto</span></th><th scope="col">Gestione tradizionale</th><th scope="col" class="us">Servizio dedicato</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Chi ti risponde</th><td class="them" data-label="Gestione tradizionale">Un centralino o un ticket</td><td class="us" data-label="Servizio dedicato">Il tuo referente, sempre lo stesso</td></tr>
+            <tr><th scope="row">Conoscenza della casa</th><td class="them" data-label="Gestione tradizionale">Scheda standard</td><td class="us" data-label="Servizio dedicato">Sopralluogo e note aggiornate a ogni soggiorno</td></tr>
+            <tr><th scope="row">Incassi</th><td class="them" data-label="Gestione tradizionale">Passano dal gestore</td><td class="us" data-label="Servizio dedicato">Arrivano sul tuo conto</td></tr>
+            <tr><th scope="row">Prezzi e calendario</th><td class="them" data-label="Gestione tradizionale">Decisi in automatico</td><td class="us" data-label="Servizio dedicato">Concordati con te</td></tr>
+            <tr><th scope="row">Rendiconto</th><td class="them" data-label="Gestione tradizionale">Totale netto</td><td class="us" data-label="Servizio dedicato">Voce per voce</td></tr>
+          </tbody>
+        </table>
+        <p class="compare-note">Confronto tra due modelli di gestione, non riferito a operatori specifici.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRASPARENZA -->
+<section class="section dark umber" aria-labelledby="flow-title">
+  <div class="wrap">
+    <div class="flow-head">
+      <div><p class="label">Trasparenza degli incassi</p><h2 class="h2" id="flow-title">I soldi fanno <em>la strada più corta.</em></h2></div>
+      <p class="lead">Non tratteniamo i tuoi incassi. La piattaforma paga te, noi emettiamo una fattura separata per il servizio.</p>
+    </div>
+    <div class="flow" role="list" aria-label="Percorso di una prenotazione">
+      <div class="node" role="listitem" data-rise><span class="label">01 · Ospite</span><h3>Prenota e paga</h3><p>L'ospite sceglie le date e paga sulla piattaforma, con le sue garanzie.</p></div>
+      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 80 12" preserveAspectRatio="none"><path d="M0 6h77M72 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1"/></svg></div>
+      <div class="node" role="listitem" data-rise><span class="label">02 · Piattaforma</span><h3>Trattiene la sua quota</h3><p>Airbnb, Booking.com o altri portali applicano la propria commissione e versano il resto.</p></div>
+      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 80 12" preserveAspectRatio="none"><path d="M0 6h77M72 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1"/></svg></div>
+      <div class="node owner" role="listitem" data-rise><span class="label">03 · Proprietario</span><h3>Incassa sul suo conto</h3><p>Il versamento arriva a te. Ogni movimento è nel rendiconto mensile.</p></div>
+    </div>
+    <div class="flow-foot">
+      <ul class="flow-points">
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l3.8 3.8L14 4"/></svg><span><strong>Nessun passaggio intermedio.</strong> Il conto di incasso sulla piattaforma è intestato a te.</span></li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l3.8 3.8L14 4"/></svg><span><strong>Fattura separata.</strong> La commissione del servizio è chiara e concordata nel contratto.</span></li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l3.8 3.8L14 4"/></svg><span><strong>Rendiconto voce per voce.</strong> Pulizie, biancheria, imposta di soggiorno: ogni costo ha la sua riga.</span></li>
+      </ul>
+      <article class="statement" aria-label="Esempio di rendiconto">
+        <header><strong>Rendiconto di esempio</strong><span class="tag">Cifre dimostrative</span></header>
+        <dl>
+          <dt>Pagato dall'ospite · 3 notti</dt><dd>€ 540,00</dd>
+          <dt>Commissione della piattaforma</dt><dd>− € 81,00</dd>
+          <dt>Imposta di soggiorno, versata al Comune</dt><dd>− € 18,00</dd>
+          <dt class="total">Accreditato sul tuo conto</dt><dd class="total">€ 441,00</dd>
+        </dl>
+        <small>Esempio illustrativo con importi inventati. La commissione del servizio viene fatturata separatamente.</small>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section class="section light" id="servizi" aria-labelledby="svc-title">
+  <div class="wrap">
+    <div class="services-head">
+      <div><p class="label">Servizi</p><h2 class="h2" id="svc-title">Tutto quello che serve, <em>niente di più.</em></h2></div>
+      <p class="lead">Quattro aree di lavoro, un'unica persona che le coordina per te.</p>
+    </div>
+    <article class="service">
+      <div class="frame r45" data-reveal><img src="photos/camera-velluto.jpg" alt="Camera con testiera in velluto, boiserie e tende in damasco" decoding="async" data-parallax></div>
+      <div class="svc-copy" data-rise><p class="label">Valorizzazione</p><h3>Prima di pubblicare, prepariamo.</h3><p>Allestimento, piccoli interventi, servizio fotografico professionale e annunci scritti per chi cerca proprio quella casa.</p><ul class="svc-list"><li>Home staging</li><li>Servizio fotografico</li><li>Annunci in più lingue</li></ul></div>
+    </article>
+    <article class="service">
+      <div class="frame r45" data-reveal><img src="photos/lounge-divano.jpg" alt="Salotto con divano curvo, cuscini ocra e lampada da terra" decoding="async" data-parallax></div>
+      <div class="svc-copy" data-rise><p class="label">Ospiti</p><h3>Ogni arrivo, seguito da vicino.</h3><p>Messaggi prima, durante e dopo il soggiorno, check-in, registrazione degli ospiti sul portale Alloggiati Web e assistenza per tutta la permanenza.</p><ul class="svc-list"><li>Check-in</li><li>Alloggiati Web</li><li>Assistenza in soggiorno</li></ul></div>
+    </article>
+    <article class="service">
+      <div class="frame r45" data-reveal><img src="photos/marmo-verde.jpg" alt="Lavabo in marmo verde con rubinetteria in acciaio su parete in legno" decoding="async" data-parallax></div>
+      <div class="svc-copy" data-rise><p class="label">Amministrazione</p><h3>Le carte in ordine, ogni mese.</h3><p>Imposta di soggiorno, comunicazioni obbligatorie, codice identificativo nazionale (CIN) e un rendiconto mensile da girare al tuo commercialista.</p><ul class="svc-list"><li>Imposta di soggiorno</li><li>CIN</li><li>Rendiconto mensile</li></ul></div>
+    </article>
+    <article class="service">
+      <div class="frame r45" data-reveal><img src="photos/luce-testiera.jpg" alt="Luce del tramonto su una testiera imbottita e lenzuola bianche" decoding="async" data-parallax></div>
+      <div class="svc-copy" data-rise><p class="label">Cura della casa</p><h3>Come la lasceresti tu.</h3><p>Pulizie tra un soggiorno e l'altro, biancheria di qualità alberghiera, controlli periodici e manutenzioni con artigiani di fiducia.</p><ul class="svc-list"><li>Pulizie</li><li>Biancheria</li><li>Manutenzioni</li></ul></div>
+    </article>
+  </div>
+</section>
+
+<!-- METODO -->
+<section class="section dark" id="metodo" aria-labelledby="met-title">
+  <div class="wrap">
+    <div class="method-head">
+      <div><p class="label">Metodo</p><h2 class="h2" id="met-title">Dal primo colloquio <em>al primo ospite.</em></h2></div>
+      <p class="lead">Quattro fasi, sempre nello stesso ordine. Sai in ogni momento a che punto siamo.</p>
+    </div>
+    <ol class="steps">
+      <li class="step" data-rise><span class="step-num" aria-hidden="true">01</span><h3>Analisi del rendimento</h3><p>Studiamo zona, stagionalità e immobili simili per stimare cosa può rendere la tua casa.</p></li>
+      <li class="step" data-rise><span class="step-num" aria-hidden="true">02</span><h3>Sopralluogo</h3><p>Il tuo referente visita la casa, verifica impianti e dotazioni e prepara una lista di interventi.</p></li>
+      <li class="step" data-rise><span class="step-num" aria-hidden="true">03</span><h3>Preparazione</h3><p>Allestimento, servizio fotografico, documenti e CIN. La casa è pronta quando lo è davvero.</p></li>
+      <li class="step" data-rise><span class="step-num" aria-hidden="true">04</span><h3>Pubblicazione e gestione</h3><p>Pubblichiamo gli annunci e seguiamo ogni soggiorno. Tu ricevi incassi e rendiconto.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- IMMOBILI -->
+<section class="section light" id="immobili" aria-labelledby="imm-title">
+  <div class="wrap">
+    <div class="props-head">
+      <div><p class="label">Immobili gestiti · esempi</p><h2 class="h2" id="imm-title">Alcune case <em>che seguiamo.</em></h2></div>
+      <p class="lead">Schede dimostrative: nomi delle case, località e codici sono inventati per mostrare il formato.</p>
+    </div>
+    <div class="props" id="propsGrid"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section light linen" id="faq" aria-labelledby="faq-title">
+  <div class="wrap faq-grid">
+    <div class="faq-side">
+      <p class="label">FAQ</p>
+      <h2 class="h2" id="faq-title">Domande <em>frequenti.</em></h2>
+      <p>Non trovi la risposta? Scrivici dal modulo qui sotto e il referente della tua zona ti ricontatta.</p>
+      <a class="link" href="#stima">Fai una domanda <svg viewBox="0 0 18 10" aria-hidden="true"><path d="M0 5h17M12.5 .5 17 5l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.1"/></svg></a>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- CONVERSIONE -->
+<section class="section dark convert" id="stima" aria-labelledby="conv-title">
+  <div class="convert-bg" aria-hidden="true"></div>
+  <div class="wrap convert-grid">
+    <div class="convert-copy">
+      <p class="label">Stima gratuita</p>
+      <h2 class="h2" id="conv-title">Scopri quanto può rendere <em>la tua casa.</em></h2>
+      <p>Lasciaci qualche dato. Il referente della tua zona ti chiama per un primo colloquio senza impegno e prepara una stima basata su immobili simili.</p>
+      <div class="contact-lines">
+        <div><span>Email</span><span>ciao@soglia.example</span></div>
+        <div><span>Telefono</span><span>+39 000 000 0000</span></div>
+        <div><span>Orari</span><span>Lun–Ven, 9:00–18:00</span></div>
+      </div>
+    </div>
+    <div class="lead-form-wrap glassy" id="leadWrap" data-glass-ignore>
+      <div class="prefill-note" id="prefillNote" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M8 7v4M8 4.6v.1"/></svg><span id="prefillText"></span></div>
+      <form class="lead-form" id="leadForm" novalidate>
+        <div class="field"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="nome" autocomplete="name" required aria-describedby="e-nome"><span class="err" id="e-nome"></span></div>
+        <div class="field"><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" placeholder="+39 …" required aria-describedby="e-tel"><span class="err" id="e-tel"></span></div>
+        <div class="field full"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email"><span class="err" id="e-email"></span></div>
+        <div class="field"><label for="f-loc">Località dell'immobile</label><input id="f-loc" name="localita" list="cities" autocomplete="address-level2" required aria-describedby="e-loc"><span class="err" id="e-loc"></span></div>
+        <div class="field"><label for="f-camere">Camere</label><select id="f-camere" name="camere" required aria-describedby="e-camere"><option value="">Seleziona</option><option>1</option><option>2</option><option>3</option><option>4</option><option value="5+">5 o più</option></select><span class="err" id="e-camere"></span></div>
+        <fieldset class="field full" aria-describedby="e-tipo"><legend>Tipologia di richiesta</legend>
+          <div class="choice">
+            <label><input type="radio" name="tipo" id="t-stima" value="Stima del rendimento"><span>Stima del rendimento</span></label>
+            <label><input type="radio" name="tipo" id="t-gestione" value="Gestione completa"><span>Gestione completa</span></label>
+            <label><input type="radio" name="tipo" id="t-info" value="Informazioni generali"><span>Informazioni</span></label>
+          </div>
+          <span class="err" id="e-tipo"></span>
+        </fieldset>
+        <div class="field full"><label for="f-note">Note <span class="opt">(facoltativo)</span></label><textarea id="f-note" name="note" placeholder="Disponibilità per la chiamata, stato della casa, domande…"></textarea></div>
+        <div class="consent"><input type="checkbox" id="f-privacy" name="privacy" required aria-describedby="e-privacy"><label for="f-privacy">Ho letto l'<button type="button" data-legal="privacy">informativa privacy</button> e acconsento a essere ricontattato per questa richiesta.</label><span class="err" id="e-privacy"></span></div>
+        <p class="form-summary" id="formSummary" role="alert"></p>
+        <div class="form-actions"><button class="btn btn-gold" type="submit">Invia la richiesta <svg viewBox="0 0 18 10" aria-hidden="true"><path d="M0 5h17M12.5 .5 17 5l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.1"/></svg></button><small>Sito dimostrativo: i dati restano nel tuo browser.</small></div>
+      </form>
+      <div class="success" id="formSuccess" hidden tabindex="-1">
+        <div class="check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+        <h3 id="successTitle">Richiesta pronta.</h3>
+        <p>Questa è una demo, quindi nessun dato è stato inviato. Su un sito reale il referente ti ricontatterebbe per fissare il primo colloquio.</p>
+        <dl id="successRecap"></dl>
+        <button class="btn btn-ghost" type="button" id="formReset">Compila una nuova richiesta</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer dark">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top" aria-label="Soglia, torna all'inizio"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M1.5 25V11a9.5 9.5 0 0 1 19 0v14" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 25V12a4.5 4.5 0 0 1 9 0v13" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M0 25.3h22" stroke="currentColor" stroke-width="1.2"/></svg><span>Soglia</span></a>
+        <p>Gestione di affitti brevi e immobili turistici per conto dei proprietari, con standard da boutique hotel.</p>
+      </div>
+      <div class="foot-col"><h4>Sezioni</h4><a href="#servizi">Servizi</a><a href="#metodo">Metodo</a><a href="#immobili">Immobili</a><a href="#faq">FAQ</a><a href="#stima">Richiedi una stima</a></div>
+      <div class="foot-col"><h4>Contatti</h4><span>ciao@soglia.example</span><span>+39 000 000 0000</span><span>Lun–Ven, 9:00–18:00</span></div>
+      <div class="foot-col"><h4>Legale</h4><button type="button" data-legal="privacy">Privacy</button><button type="button" data-legal="cookie">Cookie</button><button type="button" data-legal="note">Note legali</button></div>
+    </div>
+    <div class="foot-word" aria-hidden="true">Soglia</div>
+    <div class="foot-bottom"><span>Soglia S.r.l. · società dimostrativa · P.IVA 00000000000</span><span>Fotografie: <a href="https://unsplash.com/license" target="_blank" rel="noopener">Unsplash</a> · Sito dimostrativo</span></div>
+  </div>
+</footer>
+
+<dialog id="propDialog" aria-labelledby="pd-title" data-glass-ignore>
+  <button class="dlg-close" type="button" data-dlg-close aria-label="Chiudi la scheda"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
+  <div class="dlg-prop">
+    <div class="frame"><img id="pd-img" src="photos/testiera.jpg" alt=""></div>
+    <div class="dlg-body">
+      <span class="demo-flag">Scheda dimostrativa</span>
+      <h2 id="pd-title"></h2>
+      <p id="pd-loc"></p>
+      <dl id="pd-specs"></dl>
+      <p id="pd-desc"></p>
+      <a class="btn btn-ink" href="#stima" id="pd-cta">Stima per una casa simile</a>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="legalDialog" aria-labelledby="lg-title" data-glass-ignore>
+  <button class="dlg-close" type="button" data-dlg-close aria-label="Chiudi"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
+  <div class="dlg-legal"><span class="demo-flag">Testo dimostrativo</span><h2 id="lg-title"></h2><div id="lg-body"></div></div>
+</dialog>
+
+<script>document.documentElement.classList.add('js')</script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+/* Liquid Glass JS · https://github.com/dashersw/liquid-glass-js
+   MIT License · Copyright (c) 2025 Armagan Amcalar
+   Incluso qui con piccole modifiche: snapshot scalato, aggiornamento texture, render limitato alla vista. */
+class Container {
+  static instances = []
+  static pageSnapshot = null
+  static isCapturing = false
+  static waitingForSnapshot = []
+
+  constructor(options = {}) {
+    this.width = 0 // Will be set from DOM
+    this.height = 0 // Will be set from DOM
+    this.borderRadius = options.borderRadius || 48
+    this.type = options.type || 'rounded' // "rounded", "circle", or "pill"
+    this.tintOpacity = options.tintOpacity !== undefined ? options.tintOpacity : 0.2
+
+    this.canvas = null
+    this.element = null
+    this.gl = null
+    this.gl_refs = {}
+    this.webglInitialized = false
+    this.children = [] // Child buttons/components
+
+    // Add to instances
+    Container.instances.push(this)
+
+    // Initialize
+    this.init()
+  }
+
+  addChild(child) {
+    this.children.push(child)
+    child.parent = this
+
+    // Add child's element to container
+    if (child.element && this.element) {
+      this.element.appendChild(child.element)
+    }
+
+    // If child is a button, set up nested glass
+    if (child instanceof Button) {
+      child.setupAsNestedGlass()
+    }
+
+    // Update container size based on actual DOM size
+    this.updateSizeFromDOM()
+
+    return child
+  }
+
+  removeChild(child) {
+    const index = this.children.indexOf(child)
+    if (index > -1) {
+      this.children.splice(index, 1)
+      child.parent = null
+
+      if (child.element && this.element.contains(child.element)) {
+        this.element.removeChild(child.element)
+      }
+
+      // Update container size after removing child
+      this.updateSizeFromDOM()
+    }
+  }
+
+  updateSizeFromDOM() {
+    // Wait for next frame to ensure DOM layout is complete
+    requestAnimationFrame(() => {
+      const rect = this.element.getBoundingClientRect()
+      let newWidth = Math.ceil(rect.width)
+      let newHeight = Math.ceil(rect.height)
+
+      // Apply type-specific sizing logic
+      if (this.type === 'circle') {
+        // For circles, ensure perfect square
+        const size = Math.max(newWidth, newHeight)
+        newWidth = size
+        newHeight = size
+        this.borderRadius = size / 2 // 50% for perfect circle
+
+        // Force exact square dimensions
+        this.element.style.width = size + 'px'
+        this.element.style.height = size + 'px'
+        this.element.style.borderRadius = this.borderRadius + 'px'
+      } else if (this.type === 'pill') {
+        // For pills, border radius is half the height
+        this.borderRadius = newHeight / 2
+        this.element.style.borderRadius = this.borderRadius + 'px'
+      }
+
+      if (newWidth !== this.width || newHeight !== this.height) {
+        this.width = newWidth
+        this.height = newHeight
+
+        // Update canvas size to match actual DOM size
+        this.canvas.width = newWidth
+        this.canvas.height = newHeight
+        this.canvas.style.width = newWidth + 'px'
+        this.canvas.style.height = newHeight + 'px'
+        this.canvas.style.borderRadius = this.borderRadius + 'px'
+
+        // Update WebGL viewport if initialized
+        if (this.gl_refs.gl) {
+          this.gl_refs.gl.viewport(0, 0, newWidth, newHeight)
+          this.gl_refs.gl.uniform2f(this.gl_refs.resolutionLoc, newWidth, newHeight)
+          this.gl_refs.gl.uniform1f(this.gl_refs.borderRadiusLoc, this.borderRadius)
+        }
+
+        // Update any nested glass children when container size changes
+        this.children.forEach(child => {
+          if (child instanceof Button && child.isNestedGlass && child.gl_refs.gl) {
+            const gl = child.gl_refs.gl
+
+            // Update child's texture to match new container size
+            gl.bindTexture(gl.TEXTURE_2D, child.gl_refs.texture)
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, newWidth, newHeight, 0, gl.RGBA, gl.UNSIGNED_BYTE, null)
+
+            // Update child's uniforms
+            gl.uniform2f(child.gl_refs.textureSizeLoc, newWidth, newHeight)
+            if (child.gl_refs.containerSizeLoc) {
+              gl.uniform2f(child.gl_refs.containerSizeLoc, newWidth, newHeight)
+            }
+          }
+        })
+      }
+      if (this.render) this.render()
+    })
+  }
+
+  init() {
+    this.createElement()
+    this.setupCanvas()
+
+    // Get initial size from DOM
+    this.updateSizeFromDOM()
+
+    // Handle page snapshot
+    if (Container.pageSnapshot) {
+      // Snapshot already exists, initialize immediately
+      this.initWebGL()
+    } else if (Container.isCapturing) {
+      // Snapshot in progress, add to waiting queue
+      Container.waitingForSnapshot.push(this)
+    } else {
+      // Start snapshot process
+      Container.isCapturing = true
+      Container.waitingForSnapshot.push(this)
+      this.capturePageSnapshot()
+    }
+  }
+
+  createElement() {
+    // Create wrapper element with CSS class
+    this.element = document.createElement('div')
+    this.element.className = 'glass-container'
+
+    // Add type-specific classes
+    if (this.type === 'circle') {
+      this.element.classList.add('glass-container-circle')
+    } else if (this.type === 'pill') {
+      this.element.classList.add('glass-container-pill')
+    }
+
+    this.element.style.borderRadius = this.borderRadius + 'px'
+
+    // Create canvas (will be sized after DOM layout)
+    this.canvas = document.createElement('canvas')
+    this.canvas.style.borderRadius = this.borderRadius + 'px'
+    this.canvas.style.position = 'absolute'
+    this.canvas.style.top = '0'
+    this.canvas.style.left = '0'
+    this.canvas.style.width = '100%'
+    this.canvas.style.height = '100%'
+    this.canvas.style.boxShadow = 'none'
+    this.canvas.style.zIndex = '-1' // Canvas behind children
+
+    this.element.appendChild(this.canvas)
+  }
+
+  setupCanvas() {
+    this.gl = this.canvas.getContext('webgl', { preserveDrawingBuffer: true })
+    if (!this.gl) {
+      console.error('WebGL not supported')
+      return
+    }
+  }
+
+  getPosition() {
+    // Get actual screen position using getBoundingClientRect
+    const rect = this.canvas.getBoundingClientRect()
+    return {
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2
+    }
+  }
+
+  capturePageSnapshot() {
+    Container.takeSnapshot()
+      .then(snapshot => {
+        Container.pageSnapshot = snapshot
+        Container.isCapturing = false
+        const waiting = Container.waitingForSnapshot.slice()
+        Container.waitingForSnapshot = []
+        waiting.forEach(c => { if (!c.webglInitialized) c.initWebGL() })
+      })
+      .catch(() => { Container.isCapturing = false; Container.waitingForSnapshot = [] })
+  }
+
+  initWebGL() {
+    if (!Container.pageSnapshot || !this.gl) return
+    this.setupShader(Container.pageSnapshot)
+    this.webglInitialized = true
+    this.element.classList.add('glass-live')
+  }
+
+  setupShader(image) {
+    const gl = this.gl
+
+    const vsSource = `
+    attribute vec2 a_position;
+    attribute vec2 a_texcoord;
+    varying vec2 v_texcoord;
+
+    void main() {
+      gl_Position = vec4(a_position, 0, 1);
+      v_texcoord = a_texcoord;
+    }
+  `
+
+    const fsSource = `
+    precision mediump float;
+    uniform sampler2D u_image;
+    uniform vec2 u_resolution;
+      uniform vec2 u_textureSize;
+      uniform float u_scrollY;
+      uniform float u_pageHeight;
+      uniform float u_viewportHeight;
+      uniform float u_blurRadius;
+      uniform float u_borderRadius;
+      uniform vec2 u_containerPosition;
+      uniform float u_warp;
+      uniform float u_edgeIntensity;
+      uniform float u_rimIntensity;
+      uniform float u_baseIntensity;
+      uniform float u_edgeDistance;
+      uniform float u_rimDistance;
+      uniform float u_baseDistance;
+      uniform float u_cornerBoost;
+      uniform float u_rippleEffect;
+      uniform float u_tintOpacity;
+    varying vec2 v_texcoord;
+
+      // Function to calculate distance from rounded rectangle edge
+      float roundedRectDistance(vec2 coord, vec2 size, float radius) {
+        vec2 center = size * 0.5;
+        vec2 pixelCoord = coord * size;
+        vec2 toCorner = abs(pixelCoord - center) - (center - radius);
+        float outsideCorner = length(max(toCorner, 0.0));
+        float insideCorner = min(max(toCorner.x, toCorner.y), 0.0);
+        return (outsideCorner + insideCorner - radius);
+      }
+      
+      // Function to calculate distance from circle edge (negative inside, positive outside)
+      float circleDistance(vec2 coord, vec2 size, float radius) {
+        vec2 center = vec2(0.5, 0.5);
+        vec2 pixelCoord = coord * size;
+        vec2 centerPixel = center * size;
+        float distFromCenter = length(pixelCoord - centerPixel);
+        return distFromCenter - radius;
+      }
+      
+      // Check if this is a pill (border radius is approximately 50% of height AND width > height)
+      bool isPill(vec2 size, float radius) {
+        float heightRatioDiff = abs(radius - size.y * 0.5);
+        bool radiusMatchesHeight = heightRatioDiff < 2.0;
+        bool isWiderThanTall = size.x > size.y + 4.0; // Must be significantly wider
+        return radiusMatchesHeight && isWiderThanTall;
+      }
+      
+      // Check if this is a circle (border radius is approximately 50% of smaller dimension AND roughly square)
+      bool isCircle(vec2 size, float radius) {
+        float minDim = min(size.x, size.y);
+        bool radiusMatchesMinDim = abs(radius - minDim * 0.5) < 1.0;
+        bool isRoughlySquare = abs(size.x - size.y) < 4.0; // Width and height are similar
+        return radiusMatchesMinDim && isRoughlySquare;
+      }
+      
+      // Function to calculate distance from pill edge (capsule shape)
+      float pillDistance(vec2 coord, vec2 size, float radius) {
+        vec2 center = size * 0.5;
+        vec2 pixelCoord = coord * size;
+        
+        // Proper capsule: line segment with radius
+        // The capsule axis runs horizontally from (radius, center.y) to (size.x - radius, center.y)
+        vec2 capsuleStart = vec2(radius, center.y);
+        vec2 capsuleEnd = vec2(size.x - radius, center.y);
+        
+        // Project point onto the capsule axis (line segment)
+        vec2 capsuleAxis = capsuleEnd - capsuleStart;
+        float capsuleLength = length(capsuleAxis);
+        
+        if (capsuleLength > 0.0) {
+          vec2 toPoint = pixelCoord - capsuleStart;
+          float t = clamp(dot(toPoint, capsuleAxis) / dot(capsuleAxis, capsuleAxis), 0.0, 1.0);
+          vec2 closestPointOnAxis = capsuleStart + t * capsuleAxis;
+          return length(pixelCoord - closestPointOnAxis) - radius;
+        } else {
+          // Degenerate case: just a circle
+          return length(pixelCoord - center) - radius;
+        }
+      }
+
+    void main() {
+        vec2 coord = v_texcoord;
+        
+        // Calculate which area of the page should be visible through the container
+        float scrollY = u_scrollY;
+        vec2 containerSize = u_resolution;
+        vec2 textureSize = u_textureSize;
+        
+        // Container position in viewport coordinates
+        vec2 containerCenter = u_containerPosition + vec2(0.0, scrollY);
+        
+        // Convert container coordinates to page coordinates
+        vec2 containerOffset = (coord - 0.5) * containerSize;
+        vec2 pagePixel = containerCenter + containerOffset;
+        
+        // Convert to texture coordinate (0 to 1)
+        vec2 textureCoord = pagePixel / textureSize;
+        
+        // Glass refraction effects
+        float distFromEdgeShape;
+        vec2 shapeNormal; // Normal vector pointing away from shape surface
+        
+        if (isPill(u_resolution, u_borderRadius)) {
+          distFromEdgeShape = -pillDistance(coord, u_resolution, u_borderRadius);
+          
+          // Calculate normal for pill shape
+          vec2 center = vec2(0.5, 0.5);
+          vec2 pixelCoord = coord * u_resolution;
+          vec2 capsuleStart = vec2(u_borderRadius, center.y * u_resolution.y);
+          vec2 capsuleEnd = vec2(u_resolution.x - u_borderRadius, center.y * u_resolution.y);
+          vec2 capsuleAxis = capsuleEnd - capsuleStart;
+          float capsuleLength = length(capsuleAxis);
+          
+          if (capsuleLength > 0.0) {
+            vec2 toPoint = pixelCoord - capsuleStart;
+            float t = clamp(dot(toPoint, capsuleAxis) / dot(capsuleAxis, capsuleAxis), 0.0, 1.0);
+            vec2 closestPointOnAxis = capsuleStart + t * capsuleAxis;
+            vec2 normalDir = pixelCoord - closestPointOnAxis;
+            shapeNormal = length(normalDir) > 0.0 ? normalize(normalDir) : vec2(0.0, 1.0);
+          } else {
+            shapeNormal = normalize(coord - center);
+          }
+        } else if (isCircle(u_resolution, u_borderRadius)) {
+          distFromEdgeShape = -circleDistance(coord, u_resolution, u_borderRadius);
+          vec2 center = vec2(0.5, 0.5);
+          shapeNormal = normalize(coord - center);
+        } else {
+          distFromEdgeShape = -roundedRectDistance(coord, u_resolution, u_borderRadius);
+      vec2 center = vec2(0.5, 0.5);
+          shapeNormal = normalize(coord - center);
+        }
+        distFromEdgeShape = max(distFromEdgeShape, 0.0);
+        
+        float distFromLeft = coord.x;
+        float distFromRight = 1.0 - coord.x;
+        float distFromTop = coord.y;
+        float distFromBottom = 1.0 - coord.y;
+        float distFromEdge = distFromEdgeShape / min(u_resolution.x, u_resolution.y);
+        
+        // Smooth glass refraction using shape-aware normal
+        float normalizedDistance = distFromEdge * min(u_resolution.x, u_resolution.y);
+        float baseIntensity = 1.0 - exp(-normalizedDistance * u_baseDistance);
+        float edgeIntensity = exp(-normalizedDistance * u_edgeDistance);
+        float rimIntensity = exp(-normalizedDistance * u_rimDistance);
+        
+        // Apply center warping only if warp is enabled, keep edge and rim effects always
+        float baseComponent = u_warp > 0.5 ? baseIntensity * u_baseIntensity : 0.0;
+        float totalIntensity = baseComponent + edgeIntensity * u_edgeIntensity + rimIntensity * u_rimIntensity;
+        
+        vec2 baseRefraction = shapeNormal * totalIntensity;
+        
+        float cornerProximityX = min(distFromLeft, distFromRight);
+        float cornerProximityY = min(distFromTop, distFromBottom);
+        float cornerDistance = max(cornerProximityX, cornerProximityY);
+        float cornerNormalized = cornerDistance * min(u_resolution.x, u_resolution.y);
+        
+        float cornerBoost = exp(-cornerNormalized * 0.3) * u_cornerBoost;
+        vec2 cornerRefraction = shapeNormal * cornerBoost;
+        
+        vec2 perpendicular = vec2(-shapeNormal.y, shapeNormal.x);
+        float rippleEffect = sin(distFromEdge * 25.0) * u_rippleEffect * rimIntensity;
+        vec2 textureRefraction = perpendicular * rippleEffect;
+        
+        vec2 totalRefraction = baseRefraction + cornerRefraction + textureRefraction;
+        textureCoord += totalRefraction;
+        
+        // Gaussian blur
+        vec4 color = vec4(0.0);
+        vec2 texelSize = 1.0 / u_textureSize;
+        float sigma = u_blurRadius / 2.0;
+        vec2 blurStep = texelSize * sigma;
+        
+        float totalWeight = 0.0;
+        
+        for(float i = -6.0; i <= 6.0; i += 1.0) {
+          for(float j = -6.0; j <= 6.0; j += 1.0) {
+            float distance = length(vec2(i, j));
+            if(distance > 6.0) continue;
+            
+            float weight = exp(-(distance * distance) / (2.0 * sigma * sigma));
+            
+            vec2 offset = vec2(i, j) * blurStep;
+            color += texture2D(u_image, textureCoord + offset) * weight;
+            totalWeight += weight;
+          }
+        }
+        
+        color /= totalWeight;
+        
+        // Simple vertical gradient
+        float gradientPosition = coord.y;
+        vec3 topTint = vec3(1.0, 1.0, 1.0);
+        vec3 bottomTint = vec3(0.7, 0.7, 0.7);
+        vec3 gradientTint = mix(topTint, bottomTint, gradientPosition);
+        vec3 tintedColor = mix(color.rgb, gradientTint, u_tintOpacity);
+        color = vec4(tintedColor, color.a);
+        
+        // Sampled gradient
+        vec2 viewportCenter = containerCenter;
+        float topY = (viewportCenter.y - containerSize.y * 0.4) / textureSize.y;
+        float midY = viewportCenter.y / textureSize.y;
+        float bottomY = (viewportCenter.y + containerSize.y * 0.4) / textureSize.y;
+        
+        vec3 topColor = vec3(0.0);
+        vec3 midColor = vec3(0.0);
+        vec3 bottomColor = vec3(0.0);
+        
+        float sampleCount = 0.0;
+        for(float x = 0.0; x < 1.0; x += 0.05) {
+          for(float yOffset = -5.0; yOffset <= 5.0; yOffset += 1.0) {
+            vec2 topSample = vec2(x, topY + yOffset * texelSize.y);
+            vec2 midSample = vec2(x, midY + yOffset * texelSize.y);
+            vec2 bottomSample = vec2(x, bottomY + yOffset * texelSize.y);
+            
+            topColor += texture2D(u_image, topSample).rgb;
+            midColor += texture2D(u_image, midSample).rgb;
+            bottomColor += texture2D(u_image, bottomSample).rgb;
+            sampleCount += 1.0;
+          }
+        }
+        
+        topColor /= sampleCount;
+        midColor /= sampleCount;
+        bottomColor /= sampleCount;
+        
+        vec3 sampledGradient;
+        if (gradientPosition < 0.1) {
+          sampledGradient = topColor;
+        } else if (gradientPosition > 0.9) {
+          sampledGradient = bottomColor;
+        } else {
+          float transitionPos = (gradientPosition - 0.1) / 0.8;
+          if (transitionPos < 0.5) {
+            float t = transitionPos * 2.0;
+            sampledGradient = mix(topColor, midColor, t);
+          } else {
+            float t = (transitionPos - 0.5) * 2.0;
+            sampledGradient = mix(midColor, bottomColor, t);
+          }
+        }
+        
+        vec3 finalTinted = mix(color.rgb, sampledGradient, u_tintOpacity * 0.3);
+        color = vec4(finalTinted, color.a);
+        
+        // Shape mask (rounded rectangle, circle, or pill)
+        float maskDistance;
+        if (isPill(u_resolution, u_borderRadius)) {
+          maskDistance = pillDistance(coord, u_resolution, u_borderRadius);
+        } else if (isCircle(u_resolution, u_borderRadius)) {
+          maskDistance = circleDistance(coord, u_resolution, u_borderRadius);
+        } else {
+          maskDistance = roundedRectDistance(coord, u_resolution, u_borderRadius);
+        }
+        float mask = 1.0 - smoothstep(-1.0, 1.0, maskDistance);
+        
+        gl_FragColor = vec4(color.rgb, mask);
+      }
+    `
+
+    const program = this.createProgram(gl, vsSource, fsSource)
+    if (!program) return
+
+    gl.useProgram(program)
+
+    // Set up geometry
+    const positionBuffer = gl.createBuffer()
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW)
+
+    const texcoordBuffer = gl.createBuffer()
+    gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer)
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0]), gl.STATIC_DRAW)
+
+    // Get locations
+    const positionLoc = gl.getAttribLocation(program, 'a_position')
+    const texcoordLoc = gl.getAttribLocation(program, 'a_texcoord')
+    const resolutionLoc = gl.getUniformLocation(program, 'u_resolution')
+    const textureSizeLoc = gl.getUniformLocation(program, 'u_textureSize')
+    const scrollYLoc = gl.getUniformLocation(program, 'u_scrollY')
+    const pageHeightLoc = gl.getUniformLocation(program, 'u_pageHeight')
+    const viewportHeightLoc = gl.getUniformLocation(program, 'u_viewportHeight')
+    const blurRadiusLoc = gl.getUniformLocation(program, 'u_blurRadius')
+    const borderRadiusLoc = gl.getUniformLocation(program, 'u_borderRadius')
+    const containerPositionLoc = gl.getUniformLocation(program, 'u_containerPosition')
+    const warpLoc = gl.getUniformLocation(program, 'u_warp')
+    const edgeIntensityLoc = gl.getUniformLocation(program, 'u_edgeIntensity')
+    const rimIntensityLoc = gl.getUniformLocation(program, 'u_rimIntensity')
+    const baseIntensityLoc = gl.getUniformLocation(program, 'u_baseIntensity')
+    const edgeDistanceLoc = gl.getUniformLocation(program, 'u_edgeDistance')
+    const rimDistanceLoc = gl.getUniformLocation(program, 'u_rimDistance')
+    const baseDistanceLoc = gl.getUniformLocation(program, 'u_baseDistance')
+    const cornerBoostLoc = gl.getUniformLocation(program, 'u_cornerBoost')
+    const rippleEffectLoc = gl.getUniformLocation(program, 'u_rippleEffect')
+    const tintOpacityLoc = gl.getUniformLocation(program, 'u_tintOpacity')
+    const imageLoc = gl.getUniformLocation(program, 'u_image')
+
+    // Create texture
+    const texture = gl.createTexture()
+    gl.bindTexture(gl.TEXTURE_2D, texture)
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image)
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
+
+    // Store references
+    this.gl_refs = {
+      gl,
+      texture,
+      textureSizeLoc,
+      scrollYLoc,
+      positionLoc,
+      texcoordLoc,
+      resolutionLoc,
+      pageHeightLoc,
+      viewportHeightLoc,
+      blurRadiusLoc,
+      borderRadiusLoc,
+      containerPositionLoc,
+      warpLoc,
+      edgeIntensityLoc,
+      rimIntensityLoc,
+      baseIntensityLoc,
+      edgeDistanceLoc,
+      rimDistanceLoc,
+      baseDistanceLoc,
+      cornerBoostLoc,
+      rippleEffectLoc,
+      tintOpacityLoc,
+      imageLoc,
+      positionBuffer,
+      texcoordBuffer
+    }
+
+    // Set up viewport and attributes
+    gl.viewport(0, 0, this.canvas.width, this.canvas.height)
+    gl.clearColor(0, 0, 0, 0)
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
+    gl.enableVertexAttribArray(positionLoc)
+    gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0)
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, texcoordBuffer)
+    gl.enableVertexAttribArray(texcoordLoc)
+    gl.vertexAttribPointer(texcoordLoc, 2, gl.FLOAT, false, 0, 0)
+
+    // Set uniforms
+    gl.uniform2f(resolutionLoc, this.canvas.width, this.canvas.height)
+    gl.uniform2f(textureSizeLoc, Container.logicalW || image.width, Container.logicalH || image.height)
+    gl.uniform1f(blurRadiusLoc, window.glassControls?.blurRadius || 5.0)
+    gl.uniform1f(borderRadiusLoc, this.borderRadius)
+    gl.uniform1f(warpLoc, this.warp ? 1.0 : 0.0)
+    gl.uniform1f(edgeIntensityLoc, window.glassControls?.edgeIntensity || 0.01)
+    gl.uniform1f(rimIntensityLoc, window.glassControls?.rimIntensity || 0.05)
+    gl.uniform1f(baseIntensityLoc, window.glassControls?.baseIntensity || 0.01)
+    gl.uniform1f(edgeDistanceLoc, window.glassControls?.edgeDistance || 0.15)
+    gl.uniform1f(rimDistanceLoc, window.glassControls?.rimDistance || 0.8)
+    gl.uniform1f(baseDistanceLoc, window.glassControls?.baseDistance || 0.1)
+    gl.uniform1f(cornerBoostLoc, window.glassControls?.cornerBoost || 0.02)
+    gl.uniform1f(rippleEffectLoc, window.glassControls?.rippleEffect || 0.1)
+    gl.uniform1f(tintOpacityLoc, this.tintOpacity)
+
+    // Set initial position (will be updated in render loop)
+    const position = this.getPosition()
+    gl.uniform2f(containerPositionLoc, position.x, position.y)
+
+    const pageHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
+    const viewportHeight = window.innerHeight
+    gl.uniform1f(pageHeightLoc, pageHeight)
+    gl.uniform1f(viewportHeightLoc, viewportHeight)
+
+    gl.activeTexture(gl.TEXTURE0)
+    gl.bindTexture(gl.TEXTURE_2D, texture)
+    gl.uniform1i(imageLoc, 0)
+
+    // Start rendering
+    this.startRenderLoop()
+  }
+
+  startRenderLoop() {
+    const render = () => {
+      if (!this.gl_refs.gl) return
+
+      const vr = this.element.getBoundingClientRect()
+      if (vr.bottom < -50 || vr.top > window.innerHeight + 50 || vr.width === 0) return
+      const gl = this.gl_refs.gl
+      gl.clear(gl.COLOR_BUFFER_BIT)
+
+      // Update scroll position
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop
+      gl.uniform1f(this.gl_refs.scrollYLoc, scrollY)
+
+      // Update container position (in case it moved)
+      const position = this.getPosition()
+      gl.uniform2f(this.gl_refs.containerPositionLoc, position.x, position.y)
+
+      gl.drawArrays(gl.TRIANGLES, 0, 6)
+    }
+
+    render()
+
+    let queued = false
+    const handleScroll = () => { if (queued) return; queued = true; requestAnimationFrame(() => { queued = false; render() }) }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    // Store render function for external calls
+    this.render = render
+  }
+
+  createProgram(gl, vsSource, fsSource) {
+    const vs = this.compileShader(gl, gl.VERTEX_SHADER, vsSource)
+    const fs = this.compileShader(gl, gl.FRAGMENT_SHADER, fsSource)
+    if (!vs || !fs) return null
+
+    const program = gl.createProgram()
+    gl.attachShader(program, vs)
+    gl.attachShader(program, fs)
+    gl.linkProgram(program)
+
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      console.error('Program link error:', gl.getProgramInfoLog(program))
+      return null
+    }
+
+    return program
+  }
+
+  compileShader(gl, type, source) {
+    const shader = gl.createShader(type)
+    gl.shaderSource(shader, source)
+    gl.compileShader(shader)
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      console.error('Shader compile error:', gl.getShaderInfoLog(shader))
+      return null
+    }
+    return shader
+  }
+}
+
+var Button = window.Button || class {}
+Container.maxTexture = (() => { try { const g = document.createElement('canvas').getContext('webgl'); return Math.min(8192, g.getParameter(g.MAX_TEXTURE_SIZE)) } catch (e) { return 4096 } })()
+Container.takeSnapshot = function () {
+  const body = document.body
+  const W = Math.max(body.scrollWidth, document.documentElement.clientWidth)
+  const H = Math.max(body.scrollHeight, 1)
+  const maxPx = window.innerWidth < 700 ? 6e6 : 14e6
+  const scale = Math.min(1, Container.maxTexture / H, Container.maxTexture / W, Math.sqrt(maxPx / (W * H)))
+  return html2canvas(body, {
+    scale, useCORS: true, logging: false,
+    backgroundColor: getComputedStyle(body).backgroundColor,
+    scrollX: 0, scrollY: -window.scrollY,
+    windowWidth: document.documentElement.clientWidth,
+    ignoreElements: el => el.classList && (el.classList.contains('glass-container') || el.hasAttribute('data-glass-ignore') || el.tagName === 'DIALOG')
+  }).then(c => { Container.logicalW = c.width / scale; Container.logicalH = c.height / scale; return c })
+}
+Container.refreshing = false
+Container.pending = false
+Container.refreshAll = function () {
+  if (Container.refreshing) { Container.pending = true; return }
+  Container.refreshing = true
+  Container.takeSnapshot().then(snap => {
+    Container.pageSnapshot = snap
+    Container.instances.forEach(inst => {
+      const r = inst.gl_refs
+      if (!r || !r.gl) return
+      const gl = r.gl
+      gl.bindTexture(gl.TEXTURE_2D, r.texture)
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, snap)
+      gl.uniform2f(r.textureSizeLoc, Container.logicalW, Container.logicalH)
+      inst.render && inst.render()
+    })
+  }).catch(() => {}).finally(() => {
+    Container.refreshing = false
+    if (Container.pending) { Container.pending = false; setTimeout(Container.refreshAll, 200) }
+  })
+}
+
+</script>
+<script>
+(() => {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.head.insertAdjacentHTML('beforeend','<style>.frame img[data-parallax]{transition:none}</style>');
+
+/* ---------- Immobili e FAQ (dati dimostrativi) ---------- */
+const PROPS=[
+  {id:'casa-cannaregio',name:'Casa Cannaregio',loc:'Venezia · Cannaregio',guests:4,rooms:2,baths:1,type:'Appartamento in palazzo storico',img:'suite-classica',cin:'IT000DEMO0001',desc:'Stucchi, tessuti damascati e lampade calde. Due camere affacciate su un rio laterale, arrivo dei bagagli via acqua organizzato su richiesta.'},
+  {id:'villa-dei-cipressi',name:'Villa dei Cipressi',loc:'Val d\'Orcia · Toscana',guests:6,rooms:3,baths:2,type:'Casale con vista sulle colline',img:'finestra-colline',cin:'IT000DEMO0002',desc:'Travi a vista, finestre sulle colline e silenzio. Tre camere, cucina di campagna e un portico per le sere d\'estate.'},
+  {id:'attico-brera',name:'Attico Brera',loc:'Milano · Brera',guests:3,rooms:2,baths:2,type:'Attico con bagni in travertino',img:'bagno-travertino',cin:'IT000DEMO0003',desc:'Ultimo piano con ascensore, bagni rivestiti in travertino e postazione di lavoro. Check-in autonomo con codice.'},
+  {id:'corte-santo-stefano',name:'Corte Santo Stefano',loc:'Bologna · Santo Stefano',guests:2,rooms:1,baths:1,type:'Suite in corte interna',img:'testiera',cin:'IT000DEMO0004',desc:'Una suite silenziosa affacciata sulla corte, letto con testiera capitonné e luci regolabili. Pensata per soggiorni di lavoro.'},
+  {id:'loggia-sul-lago',name:'Loggia sul Lago',loc:'Tremezzina · Lago di Como',guests:6,rooms:3,baths:2,type:'Villa con living open space',img:'lounge-colonne',cin:'IT000DEMO0005',desc:'Un grande living con colonne rivestite, cucina a vista e vetrate. Parcheggio privato e accesso al pontile condiviso.'},
+  {id:'dimora-di-pietra',name:'Dimora di Pietra',loc:'Lecce · Salento',guests:5,rooms:3,baths:2,type:'Casa a corte in pietra',img:'bagno-pietra',cin:'IT000DEMO0006',desc:'Muri in pietra, una vasca in rame sotto il lucernario e un piccolo cortile privato. Tre camere su due livelli.'}
+];
+const arrow='<svg viewBox="0 0 18 10" aria-hidden="true"><path d="M0 5h17M12.5 .5 17 5l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>';
+$('#propsGrid').innerHTML=PROPS.map(p=>`
+  <article class="prop">
+    <a class="ph-link" href="#immobile-${p.id}" tabindex="-1" aria-hidden="true"><div class="frame" data-reveal><img src="photos/${p.img}.jpg" alt="" decoding="async"></div></a>
+    <p class="loc">${p.loc}</p>
+    <div class="prop-top"><h3>${p.name}</h3></div>
+    <div class="prop-meta"><span>${p.guests} ospiti</span><span>${p.rooms} ${p.rooms>1?'camere':'camera'}</span><span>${p.baths} ${p.baths>1?'bagni':'bagno'}</span></div>
+    <a class="link" href="#immobile-${p.id}">Vedi i dettagli<span class="sr-only"> di ${p.name}</span> ${arrow}</a>
+  </article>`).join('');
+
+const FAQ=[
+  ['Quanto costa il servizio?','Lavoriamo con una commissione percentuale sugli incassi delle prenotazioni, concordata nel contratto in base all\'immobile e ai servizi scelti. La fatturiamo separatamente, così vedi sempre quanto incassi e quanto paghi per la gestione.'],
+  ['Gli incassi passano da voi?','No. Il conto di incasso sulle piattaforme è intestato a te e i versamenti arrivano direttamente sul tuo conto. Noi riceviamo solo il pagamento della nostra fattura.'],
+  ['Posso usare la casa quando voglio?','Sì. Blocchi le date nel calendario condiviso o le comunichi al tuo referente, e quelle notti non vengono messe in vendita.'],
+  ['Vi occupate di CIN, Alloggiati Web e imposta di soggiorno?','Sì. Ti aiutiamo a ottenere ed esporre il codice identificativo nazionale, registriamo gli ospiti sul portale Alloggiati Web e gestiamo riscossione e versamento dell\'imposta di soggiorno dove prevista.'],
+  ['Come funziona la tassazione degli affitti brevi?','Dipende dalla tua situazione, ad esempio se scegli la cedolare secca e quanti immobili affitti. Ti forniamo un rendiconto completo da condividere con il tuo commercialista, che resta il riferimento per le scelte fiscali.'],
+  ['Cosa succede se un ospite danneggia qualcosa?','Il referente documenta il danno con foto, apre la richiesta di rimborso sulla piattaforma e organizza la riparazione. Ti teniamo aggiornato a ogni passaggio.'],
+  ['Posso interrompere il contratto?','Sì, con il preavviso indicato nel contratto. Le prenotazioni già confermate vengono gestite fino alla fine o trasferite a te, come preferisci.']
+];
+$('#faqList').innerHTML=FAQ.map((f,i)=>`
+  <div class="faq-item"><h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-${i}" id="faq-q-${i}">${f[0]}<span class="pm" aria-hidden="true"></span></button></h3>
+  <div class="faq-a" id="faq-a-${i}" role="region" aria-labelledby="faq-q-${i}"><div><p>${f[1]}</p></div></div></div>`).join('');
+$$('.faq-q').forEach(b=>b.addEventListener('click',()=>{const it=b.closest('.faq-item');const open=!it.classList.contains('open');it.classList.toggle('open',open);b.setAttribute('aria-expanded',open)}));
+
+/* ---------- Vetro liquido ---------- */
+const Glass={ready:false,t:null,
+  schedule(delay=450){if(!this.ready)return;clearTimeout(this.t);this.t=setTimeout(()=>Container.refreshAll(),delay)},
+  init(){
+    if(typeof window.html2canvas!=='function'||typeof Container==='undefined')return;
+    if(!document.createElement('canvas').getContext('webgl'))return;
+    window.glassControls={blurRadius:10,edgeIntensity:.014,rimIntensity:.06,baseIntensity:.01,edgeDistance:.15,rimDistance:.8,baseDistance:.1,cornerBoost:.022,rippleEffect:.05};
+    const glassify=(el,opts)=>{if(!el)return;const ct=new Container(opts);const box=ct.element;box.className+=' '+el.className;
+      for(const a of Array.from(el.attributes)){if(a.name!=='class')box.setAttribute(a.name,a.value)}
+      while(el.firstChild)box.appendChild(el.firstChild);el.replaceWith(box);ct.updateSizeFromDOM();
+      if('ResizeObserver' in window)new ResizeObserver(()=>ct.updateSizeFromDOM()).observe(box);return ct};
+    glassify($('#navBar'),{type:'pill',tintOpacity:.06});
+    glassify($('#formCard'),{type:'rounded',borderRadius:28,tintOpacity:.06});
+    glassify($('#leadWrap'),{type:'rounded',borderRadius:30,tintOpacity:.06});
+    this.ready=true;
+    let lastH=document.body.scrollHeight,lastW=innerWidth;
+    if('ResizeObserver' in window)new ResizeObserver(()=>{const h=document.body.scrollHeight;if(Math.abs(h-lastH)>2||innerWidth!==lastW){lastH=h;lastW=innerWidth;this.schedule()}}).observe(document.body);
+  }
+};
+
+/* ---------- Movimento: parallasse e rivelazioni ---------- */
+const para=$$('img[data-parallax]');
+const lightSecs=$$('main > .light');
+let ticking=false;
+function onScroll(){
+  if(ticking)return;ticking=true;
+  requestAnimationFrame(()=>{ticking=false;
+    const hd=$('#siteHeader');hd.classList.toggle('compact',scrollY>40);
+    const y=hd.querySelector('.nav-bar').getBoundingClientRect().bottom-10;let onLight=false;
+    for(const s of lightSecs){const r=s.getBoundingClientRect();if(r.top<=y&&r.bottom>=y){onLight=true;break}}
+    hd.classList.toggle('on-light',onLight);
+    if(reduceMotion)return;
+    const vh=innerHeight;
+    for(const img of para){const f=img.parentElement.getBoundingClientRect();if(f.bottom<-100||f.top>vh+100)continue;
+      const p=(f.top+f.height/2-vh/2)/(vh/2+f.height/2);const s=Math.max(-1,Math.min(1,p))*f.height*.07;img.style.transform=`translate3d(0,${s.toFixed(1)}px,0)`}
+  });
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+if('IntersectionObserver' in window && !reduceMotion){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  $$('[data-reveal],[data-rise]').forEach(el=>{const r=el.getBoundingClientRect();if(r.top>innerHeight*.92){el.classList.add('pre');io.observe(el)}});
+}
+
+/* ---------- Navigazione e menu mobile ---------- */
+const menu=$('#mobileMenu'),openBtn=()=>$('#menuOpen');
+function openMenu(){menu.hidden=false;document.body.style.overflow='hidden';openBtn()?.setAttribute('aria-expanded','true');$('#menuClose').focus()}
+function closeMenu(focusBack=true){if(menu.hidden)return;menu.hidden=true;document.body.style.overflow='';openBtn()?.setAttribute('aria-expanded','false');if(focusBack)openBtn()?.focus()}
+document.addEventListener('click',e=>{if(e.target.closest('#menuOpen'))openMenu()});
+$('#menuClose').addEventListener('click',()=>closeMenu());
+$$('[data-close]',menu).forEach(a=>a.addEventListener('click',()=>closeMenu(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden)closeMenu()});
+menu.addEventListener('keydown',e=>{if(e.key!=='Tab')return;const f=$$('a,button',menu);const first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}});
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){$$('.nav-links a').forEach(a=>a.setAttribute('aria-current',a.getAttribute('href')==='#'+en.target.id?'true':'false'))}})},{rootMargin:'-45% 0px -50% 0px'});
+  ['servizi','metodo','immobili','faq'].forEach(id=>{const s=document.getElementById(id);if(s)io.observe(s)});
+}
+
+/* ---------- Moduli ---------- */
+$('#quickForm').addEventListener('submit',e=>{e.preventDefault();const city=$('#q-city').value.trim(),rooms=$('#q-rooms').value;const err=$('#q-error');
+  const miss=[];if(city.length<2)miss.push('la città');if(!rooms)miss.push('il numero di camere');
+  $('#q-city').setAttribute('aria-invalid',city.length<2);$('#q-rooms').setAttribute('aria-invalid',!rooms);
+  if(miss.length){err.textContent='Indica '+miss.join(' e ')+' per continuare.';(city.length<2?$('#q-city'):$('#q-rooms')).focus();return}
+  err.textContent='';$('#f-loc').value=city;$('#f-camere').value=rooms;$('#t-stima').checked=true;
+  $('#prefillText').textContent=`Abbiamo riportato ${city} e ${rooms} ${rooms==='1'?'camera':'camere'}. Completa i tuoi contatti per ricevere la stima.`;$('#prefillNote').hidden=false;
+  if(!$('#formSuccess').hidden)resetLead(false);
+  document.getElementById('stima').scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});
+  setTimeout(()=>$('#f-nome').focus({preventScroll:true}),reduceMotion?0:900);
+});
+const lf=$('#leadForm');let tried=false;
+const rules={
+  'f-nome':v=>v.trim().length>=2?'':'Scrivi nome e cognome.',
+  'f-tel':v=>{const d=v.replace(/[^\d]/g,'');if(!v.trim())return'Inserisci un numero di telefono.';return(/^[+\d\s().-]+$/.test(v)&&d.length>=8&&d.length<=15)?'':'Il numero sembra incompleto: usa solo cifre, spazi o il prefisso +39.'},
+  'f-email':v=>{if(!v.trim())return'Inserisci un indirizzo email.';return/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())?'':'Controlla l\'email: manca la @ o il dominio.'},
+  'f-loc':v=>v.trim().length>=2?'':'Indica la città o la località dell\'immobile.',
+  'f-camere':v=>v?'':'Seleziona il numero di camere.'
+};
+const errId={'f-nome':'e-nome','f-tel':'e-tel','f-email':'e-email','f-loc':'e-loc','f-camere':'e-camere'};
+function check(id){const el=document.getElementById(id);const m=rules[id](el.value);document.getElementById(errId[id]).textContent=m;el.setAttribute('aria-invalid',m?'true':'false');return!m}
+function checkTipo(){const ok=!!lf.querySelector('input[name=tipo]:checked');$('#e-tipo').textContent=ok?'':'Scegli il tipo di richiesta.';return ok}
+function checkPriv(){const ok=$('#f-privacy').checked;$('#e-privacy').textContent=ok?'':'Serve il consenso per poterti ricontattare.';$('#f-privacy').setAttribute('aria-invalid',ok?'false':'true');return ok}
+Object.keys(rules).forEach(id=>{const el=document.getElementById(id);el.addEventListener('blur',()=>{if(tried||el.value)check(id)});el.addEventListener('input',()=>{if(tried)check(id)});el.addEventListener('change',()=>{if(tried)check(id)})});
+lf.addEventListener('change',e=>{if(!tried)return;if(e.target.name==='tipo')checkTipo();if(e.target.id==='f-privacy')checkPriv()});
+lf.addEventListener('submit',e=>{e.preventDefault();tried=true;
+  const results=Object.keys(rules).map(id=>[id,check(id)]);const tipo=checkTipo(),priv=checkPriv();
+  const bad=results.filter(r=>!r[1]).map(r=>r[0]);if(!tipo)bad.push('t-stima');if(!priv)bad.push('f-privacy');
+  if(bad.length){$('#formSummary').textContent=bad.length===1?'Manca un dato: lo trovi evidenziato qui sopra.':`Mancano ${bad.length} dati: li trovi evidenziati qui sopra.`;document.getElementById(bad[0]).focus();return}
+  $('#formSummary').textContent='';
+  const fd=new FormData(lf);$('#successTitle').textContent=`Grazie, ${String(fd.get('nome')).trim().split(' ')[0]}. Richiesta pronta.`;
+  const dl=$('#successRecap');dl.innerHTML='';[['Località',fd.get('localita')],['Camere',fd.get('camere')],['Richiesta',fd.get('tipo')],['Contatto',fd.get('email')]].forEach(([k,v])=>{const dt=document.createElement('dt');dt.textContent=k;const dd=document.createElement('dd');dd.textContent=v;dl.append(dt,dd)});
+  lf.hidden=true;$('#prefillNote').hidden=true;$('#formSuccess').hidden=false;$('#formSuccess').focus();
+});
+function resetLead(focus=true){lf.reset();tried=false;$$('.err',lf).forEach(e=>e.textContent='');$$('[aria-invalid]',lf).forEach(e=>e.setAttribute('aria-invalid','false'));lf.hidden=false;$('#formSuccess').hidden=true;if(focus)$('#f-nome').focus()}
+$('#formReset').addEventListener('click',()=>resetLead());
+
+/* ---------- Schede immobile e testi legali ---------- */
+const pd=$('#propDialog'),lg=$('#legalDialog');
+function openProp(id){const p=PROPS.find(x=>x.id===id);if(!p)return;
+  $('#pd-title').textContent=p.name;$('#pd-loc').textContent=p.loc+' · '+p.type;$('#pd-desc').textContent=p.desc;
+  $('#pd-specs').innerHTML=`<dt>Ospiti</dt><dd>${p.guests}</dd><dt>Camere</dt><dd>${p.rooms}</dd><dt>Bagni</dt><dd>${p.baths}</dd><dt>CIN</dt><dd>${p.cin} (dimostrativo)</dd><dt>Gestione</dt><dd>Referente dedicato, pulizie, check-in, rendiconto mensile</dd>`;
+  const im=$('#pd-img');im.src=`photos/${p.img}.jpg`;im.alt=p.name;
+  if(!pd.open)pd.showModal();
+}
+function onHash(){const h=decodeURIComponent(location.hash.slice(1));if(h.startsWith('immobile-'))openProp(h.slice(9));else if(pd.open)pd.close()}
+addEventListener('hashchange',onHash);
+pd.addEventListener('close',()=>{if(location.hash.startsWith('#immobile-')){try{history.replaceState(null,'','#immobili')}catch(e){}}});
+$('#pd-cta').addEventListener('click',()=>{const p=PROPS.find(x=>x.name===$('#pd-title').textContent);pd.close();if(p){$('#f-loc').value=p.loc.split(' · ')[0];$('#f-camere').value=String(Math.min(p.rooms,4))}});
+$$('[data-dlg-close]').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
+[pd,lg].forEach(d=>d.addEventListener('click',e=>{if(e.target===d)d.close()}));
+const LEGAL={
+  privacy:['Informativa privacy','<p>Questo è un sito dimostrativo: i dati inseriti nei moduli non vengono inviati né salvati su alcun server e restano solo nel tuo browser finché la pagina è aperta.</p><p>Su un sito reale qui troveresti titolare del trattamento, finalità, base giuridica, tempi di conservazione e i tuoi diritti ai sensi del GDPR.</p>'],
+  cookie:['Cookie','<p>Questa pagina non usa cookie di profilazione né strumenti di analisi. Su un sito reale qui troveresti l\'elenco dei cookie tecnici e di terze parti con le relative scelte.</p>'],
+  note:['Note legali','<p>Soglia S.r.l. è una società di fantasia creata per questo esempio. Nomi degli immobili, codici CIN, recapiti e cifre sono dimostrativi. Le fotografie provengono da Unsplash e sono usate secondo la sua licenza.</p>']
+};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-legal]');if(!b)return;e.preventDefault();const t=LEGAL[b.dataset.legal];$('#lg-title').textContent=t[0];$('#lg-body').innerHTML=t[1];lg.showModal()});
+
+/* ---------- Avvio ---------- */
+const heroImg=new Image();heroImg.src='photos/hero-suite.jpg';
+const imgsReady=new Promise(r=>{if(heroImg.complete)r();else{heroImg.onload=heroImg.onerror=r}});
+const fontsReady=(document.fonts&&document.fonts.ready)?Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,1500))]):Promise.resolve();
+const settle=new Promise(r=>setTimeout(r,reduceMotion?50:900));
+Promise.all([fontsReady,imgsReady,settle]).then(()=>requestAnimationFrame(()=>{Glass.init();if(!reduceMotion)Glass.schedule(2600)}));
+$$('img[decoding="async"]').forEach(img=>img.addEventListener('load',()=>Glass.schedule(800),{once:true}));
+onHash();
+})();
+
+</script>
+
+</body>
+</html>
