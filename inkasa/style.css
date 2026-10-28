@@ -119,8 +119,8 @@ ol { padding: 0; list-style: none; }
 
 /* Services: the one dark moment. Moving gold field (ShaderGradient), the mark in liquid gold (Liquid Logo) */
 .svc { position: relative; margin-top: var(--gap-section); background: var(--field); color: var(--on-field); isolation: isolate; }
-/* subito dopo l'apertura: due sezioni scure attaccate, niente striscia chiara in mezzo */
-.hero + .svc { margin-top: 0; }
+/* sezioni a tutta foto/scure attaccate: niente striscia chiara vuota in mezzo */
+.hero + .svc, main:has(> .contact:last-child) + .foot { margin-top: 0; }
 .svc-bg { position: absolute; inset: 0; z-index: -1; }
 .svc-bg-pin { position: sticky; top: 0; height: 100svh; overflow: hidden; }
 .svc-bg-pin::after { content: ""; position: absolute; inset: 0; background: rgba(10, 9, 8, 0.22); }
