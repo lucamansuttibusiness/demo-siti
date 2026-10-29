@@ -168,7 +168,8 @@
       autoplay: reduce ? false : { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true },
       navigation: { nextEl: c.querySelector('.car-next'), prevEl: c.querySelector('.car-prev') },
       pagination: { el: c.querySelector('.car-frac'), type: 'fraction' },
-      a11y: { prevSlideMessage: 'Precedente', nextSlideMessage: 'Successivo' }
+      a11y: { prevSlideMessage: 'Precedente', nextSlideMessage: 'Successivo' },
+      on: { slideChange: function () { document.dispatchEvent(new Event('click')); } }
     });
   });
 
@@ -209,7 +210,8 @@
   var data = document.getElementById('hotspots'); if (!data) return;
   var HS = {}; try { HS = JSON.parse(data.textContent); } catch (e) { return; }
   var open = null;
-  function closePop() { if (open) { open.pop.classList.remove('show'); open.btn.setAttribute('aria-expanded', 'false'); var p = open.pop; setTimeout(function () { p.remove(); }, 250); open = null; } }
+  function sw(el) { var x = el && el.closest('.swiper'); return x && x.swiper; }
+  function closePop() { if (open) { var w = sw(open.btn); if (w && w.autoplay && w.params.autoplay) w.autoplay.start(); open.pop.classList.remove('show'); open.btn.setAttribute('aria-expanded', 'false'); var p = open.pop; setTimeout(function () { p.remove(); }, 250); open = null; } }
   document.querySelectorAll('img').forEach(function (img) {
     var file = (img.getAttribute('src') || '').split('?')[0].split('/').pop(), pts = HS[file];
     if (!pts || img.closest('.gthumb') || img.dataset.hs) return; img.dataset.hs = 1;
@@ -235,6 +237,7 @@
         layer.appendChild(pop);
         var lw = layer.clientWidth, pw = pop.offsetWidth, x = p.x / 100 * lw + 24; if (x + pw > lw) x = Math.max(0, p.x / 100 * lw - pw - 24);
         pop.style.left = x + 'px'; pop.style.top = Math.max(0, Math.min(layer.clientHeight - pop.offsetHeight, p.y / 100 * layer.clientHeight - 30)) + 'px';
+        var w = sw(b); if (w && w.autoplay) w.autoplay.stop();
         requestAnimationFrame(function () { pop.classList.add('show'); }); b.setAttribute('aria-expanded', 'true'); open = { btn: b, pop: pop };
       }
       b.addEventListener('click', toggle); b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') toggle(e); });
