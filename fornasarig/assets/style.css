@@ -457,3 +457,6 @@ body{animation:pageIn .35s ease-out both}
 /* finiture a cerchio, come l'originale */
 .psec .swatches .sw img{border-radius:50%}
 .psec .swatches .sw{border-radius:50%}
+
+/* gli elementi nascosti restano nascosti anche se hanno un display proprio */
+[hidden]{display:none!important}
