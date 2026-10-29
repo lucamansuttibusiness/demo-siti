@@ -123,7 +123,7 @@
   function frame() {
     ticking = false; var y = scrollY;
     if (sub && hero) {
-      sub.classList.toggle('on', y > hero.offsetTop + hero.offsetHeight * 0.6);
+      sub.classList.add('on');
       var cur = 0; targets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top < 160) cur = i; });
       links.forEach(function (a, i) { a.classList.toggle('cur', i === cur); });
       var c = links[cur]; if (c && sub.classList.contains('on')) { var ul = c.parentElement.parentElement; var l = c.offsetLeft - 24; if (l < ul.scrollLeft || l + c.offsetWidth > ul.scrollLeft + ul.clientWidth) ul.scrollTo({ left: l, behavior: 'smooth' }); }
@@ -150,4 +150,98 @@
     }, { threshold: 0.6 });
     document.querySelectorAll('.facts b').forEach(function (b) { if (/^\D*\d+\D*$/.test(b.textContent.trim())) nio.observe(b); });
   }
+})();
+
+
+// ---- elementi della scheda ufficiale: caroselli, video, punti pulsanti ----
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // caroselli (Swiper, stesse impostazioni del sito ufficiale)
+  document.querySelectorAll('.car').forEach(function (c) {
+    if (!window.Swiper) { c.classList.add('no-swiper'); return; }
+    var per = +c.dataset.per || 1, n = c.querySelectorAll('.swiper-slide').length;
+    var bp = per === 3 ? { 640: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: 3, slidesPerGroup: 3 } } : {};
+    new Swiper(c.querySelector('.swiper'), {
+      slidesPerView: 1, slidesPerGroup: 1, spaceBetween: per === 3 ? 16 : 0, speed: reduce ? 0 : 600,
+      loop: n > per, breakpoints: bp, grabCursor: true, keyboard: { enabled: true, onlyInViewport: true },
+      autoplay: reduce ? false : { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true },
+      navigation: { nextEl: c.querySelector('.car-next'), prevEl: c.querySelector('.car-prev') },
+      pagination: { el: c.querySelector('.car-frac'), type: 'fraction' },
+      a11y: { prevSlideMessage: 'Precedente', nextSlideMessage: 'Successivo' }
+    });
+  });
+
+  // finestra video (YouTube)
+  var vm = document.getElementById('vm'), vf = document.getElementById('vmf'), vx = document.getElementById('vmx'), lastF = null;
+  function openV(id, cap) {
+    if (!vm) return; lastF = document.activeElement;
+    vf.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0'; vf.title = cap || 'Video';
+    vm.hidden = false; document.body.style.overflow = 'hidden'; requestAnimationFrame(function () { vm.classList.add('show'); }); vx.focus();
+  }
+  function closeV() { vm.classList.remove('show'); setTimeout(function () { vm.hidden = true; vf.src = ''; }, reduce ? 0 : 300); document.body.style.overflow = ''; if (lastF) lastF.focus(); }
+  document.addEventListener('click', function (e) { var b = e.target.closest('[data-yt]'); if (b && b.dataset.yt) { e.preventDefault(); openV(b.dataset.yt, b.dataset.cap); } });
+  if (vm) { vx.addEventListener('click', closeV); vm.addEventListener('click', function (e) { if (e.target === vm) closeV(); }); document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !vm.hidden) closeV(); }); }
+
+  // video che avanzano con lo scorrimento (come ScrollMagic sul sito ufficiale)
+  var scrubs = Array.prototype.slice.call(document.querySelectorAll('.scrub video'));
+  scrubs.forEach(function (v) {
+    var sec = v.closest('section') || v.parentElement, target = 0, shown = 0, active = false;
+    v.addEventListener('loadedmetadata', function () { if (reduce) v.currentTime = v.duration; });
+    if (reduce) return;
+    function progress() { var r = sec.getBoundingClientRect(); return Math.min(1, Math.max(0, (innerHeight - r.top) / (r.height + innerHeight * 0.35))); }
+    function loop() {
+      if (!active) return;
+      if (v.duration) {
+        target = v.duration * progress();
+        shown += (target - shown) * 0.18;
+        if (Math.abs(v.currentTime - shown) > 0.033 && !v.seeking) v.currentTime = shown;
+      }
+      requestAnimationFrame(loop);
+    }
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { var was = active; active = e.isIntersecting; if (active && !was) requestAnimationFrame(loop); }); }, { rootMargin: '200px 0px' }).observe(sec);
+    else { active = true; loop(); }
+    // iOS: un primo play/pause sblocca il controllo dei fotogrammi
+    v.play && v.play().then(function () { v.pause(); }).catch(function () {});
+  });
+
+  // punti pulsanti sulle foto
+  var data = document.getElementById('hotspots'); if (!data) return;
+  var HS = {}; try { HS = JSON.parse(data.textContent); } catch (e) { return; }
+  var open = null;
+  function closePop() { if (open) { open.pop.classList.remove('show'); open.btn.setAttribute('aria-expanded', 'false'); var p = open.pop; setTimeout(function () { p.remove(); }, 250); open = null; } }
+  document.querySelectorAll('img').forEach(function (img) {
+    var file = (img.getAttribute('src') || '').split('?')[0].split('/').pop(), pts = HS[file];
+    if (!pts || img.closest('.gthumb') || img.dataset.hs) return; img.dataset.hs = 1;
+    var host = (img.closest('.zoom') || img).parentElement; host.classList.add('hs-wrap');
+    var layer = document.createElement('span'); layer.className = 'hs-layer'; host.appendChild(layer);
+    function place() { // l'immagine è contenuta nel riquadro: allinea i punti alla foto vera
+      var bw = img.clientWidth, bh = img.clientHeight, nw = img.naturalWidth || bw, nh = img.naturalHeight || bh;
+      var s = Math.min(bw / nw, bh / nh), w = nw * s, h = nh * s;
+      var ir = img.getBoundingClientRect(), hr = host.getBoundingClientRect();
+      layer.style.cssText = 'left:' + (ir.left - hr.left + (bw - w) / 2) + 'px;top:' + (ir.top - hr.top + (bh - h) / 2) + 'px;width:' + w + 'px;height:' + h + 'px';
+    }
+    pts.forEach(function (p) {
+      var b = document.createElement('span'); b.className = 'hs'; b.setAttribute('role', 'button'); b.tabIndex = 0; b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-label', p.t);
+      b.style.left = p.x + '%'; b.style.top = p.y + '%'; layer.appendChild(b);
+      function toggle(e) {
+        e.preventDefault(); e.stopPropagation();
+        var same = open && open.btn === b; closePop(); if (same) return;
+        var pop = document.createElement('span'); pop.className = 'hs-pop'; pop.setAttribute('role', 'dialog');
+        pop.innerHTML = '<b></b>' + (p.d ? '<span class="d"></span>' : '') + (p.h ? '<a></a>' : '');
+        pop.querySelector('b').textContent = p.t; if (p.d) pop.querySelector('.d').textContent = p.d;
+        if (p.h) { var a = pop.querySelector('a'); a.href = p.h; a.textContent = 'Vedi il prodotto \u2192'; }
+        pop.addEventListener('click', function (ev) { ev.stopPropagation(); });
+        layer.appendChild(pop);
+        var lw = layer.clientWidth, pw = pop.offsetWidth, x = p.x / 100 * lw + 24; if (x + pw > lw) x = Math.max(0, p.x / 100 * lw - pw - 24);
+        pop.style.left = x + 'px'; pop.style.top = Math.max(0, Math.min(layer.clientHeight - pop.offsetHeight, p.y / 100 * layer.clientHeight - 30)) + 'px';
+        requestAnimationFrame(function () { pop.classList.add('show'); }); b.setAttribute('aria-expanded', 'true'); open = { btn: b, pop: pop };
+      }
+      b.addEventListener('click', toggle); b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') toggle(e); });
+    });
+    if (img.complete) place(); else img.addEventListener('load', place);
+    addEventListener('resize', place);
+  });
+  document.addEventListener('click', closePop);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePop(); });
 })();
