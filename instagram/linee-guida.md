@@ -38,8 +38,10 @@ Durata 15-30 s. Apertura forte nei primi 2 secondi.
 L'obiettivo è che il profilo non sembri mai lo stesso post ripetuto.
 
 **Temi grafici dei caroselli** (`theme` in slides.json): `dark` (navy e oro), `cream` (crema e oro scuro),
-`photo` (foto vera a tutto schermo). Mai lo stesso tema due caroselli di fila. Se in `media/` ci sono
-foto nuove di case gestite, almeno un carosello su due usa `photo`.
+`gold` (oro pieno e testo navy), `photo` (foto vera a tutto schermo, solo con foto in `media/`). Mai lo stesso tema due caroselli di fila. Se in `media/` ci sono
+foto nuove di case gestite, almeno un carosello su due usa `photo`. Finché non ci sono, si possono usare
+le foto stock di `media/stock/` (ville e interni di design) con `"stock": true`: compare "Immagine illustrativa"
+e la didascalia non deve mai far credere che sia una casa gestita da Inkasa.
 
 **Modelli di carosello** (scegliere il tipo di slide in base al modello):
 | modello | slide principali |
@@ -68,6 +70,10 @@ da provare, annotati in fondo a questo file nella sezione "Formati da provare".
 
 **Contenuti reali**: foto e video di case gestite, numeri e storie vere hanno sempre la precedenza
 sui contenuti generici. Si trovano in `media/` (vedi `media/README.md`).
+
+## Orizzonte
+Il calendario resta sempre pronto **4 settimane in anticipo**: ogni domenica si aggiunge la settimana successiva
+all'ultima già presente e si possono ritoccare le settimane future in base ai risultati.
 
 ## Mix settimanale (4 post)
 | tipo | quanti | formato |

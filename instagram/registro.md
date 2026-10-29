@@ -10,3 +10,15 @@ Stato: `bozza Metricool` → `pubblicato` (o `da girare` per i reel).
 | 2026-11-04 | reel | opinione | parlato in camera | negazione ("non è una rendita") | gestire da soli | "Gestire un affitto breve da soli è un secondo lavoro" | da girare | |
 | 2026-11-06 | carosello | offerta | come lavoriamo | cream | come lavora Inkasa | "La tua casa, gestita da noi" in 5 passi | bozza Metricool | |
 | 2026-11-08 | reel | dietro le quinte | dietro le quinte | scena in corso | preparazione casa per gli ospiti | "Cosa facciamo prima che arrivi un ospite" | da girare | |
+| 2026-11-09 | carosello | consiglio | checklist | gold | burocrazia e preparazione | "Prima di affittare la tua casa" | bozza Metricool | |
+| 2026-11-11 | reel | intrattenimento | POV | scena in corso | reperibilità notturna | "POV: sono le 23:14" | da girare | |
+| 2026-11-13 | carosello | educazione | mito vs realtà | photo (stock) | falsi miti | "3 falsi miti sugli affitti brevi" | bozza Metricool | |
+| 2026-11-15 | reel | prova | tour veloce | dettaglio prima del tutto | tour di una casa gestita | tour in 20 secondi | da girare | |
+| 2026-11-16 | carosello | offerta | confronto | dark | da solo vs con Inkasa | "Da solo o con Inkasa?" | bozza Metricool | |
+| 2026-11-18 | reel | fiducia | risposta a una domanda | domanda diretta | danni degli ospiti | "Ma se un ospite rompe qualcosa?" | da girare | |
+| 2026-11-20 | carosello | brand | manifesto | gold | posizionamento | "La casa lavora. Tu no." | bozza Metricool | |
+| 2026-11-22 | reel | prova | prima/dopo | trasformazione | preparazione casa | prima e dopo il cambio ospiti | da girare | |
+| 2026-11-23 | carosello | consiglio | consigli ospitalità | photo (stock) | dettagli per gli ospiti | "5 dettagli che gli ospiti notano subito" | bozza Metricool | |
+| 2026-11-25 | reel | opinione | parlato in camera | errore comune | prezzi dinamici | "Il prezzo fisso ti costa notti" | da girare | |
+| 2026-11-27 | carosello | autovalutazione | domande | cream | casa pronta per affitti brevi | "La tua casa è pronta?" | bozza Metricool | |
+| 2026-11-29 | reel | dietro le quinte | senza parlato | scena in corso | giornata di cambio ospiti | "10:00 check-out → 15:00 tutto pronto" | da girare | |

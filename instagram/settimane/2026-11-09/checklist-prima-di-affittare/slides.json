@@ -1,0 +1,41 @@
+{
+ "theme": "gold",
+ "slides": [
+  {
+   "t": "cover",
+   "kicker": "Checklist da salvare",
+   "h": "Prima di affittare la tua casa",
+   "sub": "Le cose da avere in ordine prima del primo ospite."
+  },
+  {
+   "t": "stake",
+   "h": "Partire senza checklist costa caro.",
+   "p": "Una dimenticanza burocratica o una casa non pronta si paga in sanzioni, recensioni e notti perse."
+  },
+  {
+   "t": "check",
+   "h": "Burocrazia",
+   "items": [
+    "Codice CIN nell'annuncio",
+    "Registrazione degli ospiti",
+    "Tassa di soggiorno, se prevista",
+    "Assicurazione per la casa"
+   ]
+  },
+  {
+   "t": "check",
+   "h": "La casa",
+   "items": [
+    "Foto curate e luminose",
+    "Regole della casa chiare",
+    "Istruzioni d'arrivo semplici",
+    "Kit di benvenuto"
+   ]
+  },
+  {
+   "t": "cta",
+   "h": "Vuoi che ci pensiamo noi?",
+   "p": "Scrivici VALUTAZIONE in DM: partiamo da una stima gratuita."
+  }
+ ]
+}

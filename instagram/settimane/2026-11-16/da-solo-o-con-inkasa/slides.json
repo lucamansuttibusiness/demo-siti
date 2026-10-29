@@ -1,0 +1,61 @@
+{
+ "theme": "dark",
+ "slides": [
+  {
+   "t": "cover",
+   "kicker": "Confronto",
+   "h": "Da solo o con Inkasa?",
+   "sub": "Lo stesso affitto, due settimane molto diverse."
+  },
+  {
+   "t": "stake",
+   "h": "Il problema non è affittare. È tutto il resto.",
+   "p": "Messaggi, prezzi, pulizie, arrivi: ogni settimana, tutto l'anno."
+  },
+  {
+   "t": "compare",
+   "h": "Ospiti e prezzi",
+   "left": {
+    "t": "Da solo",
+    "items": [
+     "Messaggi a ogni ora",
+     "Prezzo fisso tutto l'anno",
+     "Recensioni da gestire"
+    ]
+   },
+   "right": {
+    "t": "Con Inkasa",
+    "items": [
+     "Rispondiamo noi",
+     "Prezzi per stagione",
+     "Ospiti seguiti"
+    ]
+   }
+  },
+  {
+   "t": "compare",
+   "h": "Casa e tempo",
+   "left": {
+    "t": "Da solo",
+    "items": [
+     "Pulizie da organizzare",
+     "Check-in il sabato",
+     "Burocrazia da ricordare"
+    ]
+   },
+   "right": {
+    "t": "Con Inkasa",
+    "items": [
+     "Casa sempre pronta",
+     "Arrivi gestiti",
+     "Pratiche in ordine"
+    ]
+   }
+  },
+  {
+   "t": "cta",
+   "h": "Quale settimana preferisci?",
+   "p": "Scrivici VALUTAZIONE in DM per una stima gratuita."
+  }
+ ]
+}

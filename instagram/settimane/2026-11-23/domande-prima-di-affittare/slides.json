@@ -1,0 +1,36 @@
+{
+ "theme": "cream",
+ "slides": [
+  {
+   "t": "cover",
+   "kicker": "Fatti queste domande",
+   "h": "La tua casa è pronta per gli affitti brevi?",
+   "sub": "Quattro domande per capirlo in un minuto."
+  },
+  {
+   "t": "faq",
+   "q": "La casa resta vuota per buona parte dell'anno?",
+   "a": "Allora può lavorare per te anche quando non la usi."
+  },
+  {
+   "t": "faq",
+   "q": "Hai tempo per messaggi, arrivi e pulizie?",
+   "a": "Se la risposta è no, serve qualcuno che se ne occupi."
+  },
+  {
+   "t": "faq",
+   "q": "Sai quanto vale una notte nella tua zona?",
+   "a": "Il prezzo giusto cambia con stagione ed eventi: va calcolato, non indovinato."
+  },
+  {
+   "t": "faq",
+   "q": "Chi interviene se si rompe qualcosa?",
+   "a": "Gli ospiti vogliono risposte in fretta: serve una persona di riferimento."
+  },
+  {
+   "t": "cta",
+   "h": "Vuoi le risposte per la tua casa?",
+   "p": "Scrivici VALUTAZIONE in DM: stima gratuita."
+  }
+ ]
+}

@@ -1,0 +1,39 @@
+{
+ "theme": "photo",
+ "stock": true,
+ "photo": "../../../media/stock/31817156.jpg",
+ "slides": [
+  {
+   "t": "cover",
+   "kicker": "Mito o realtà?",
+   "h": "3 falsi miti sugli affitti brevi",
+   "sub": "Quelli che frenano molti proprietari."
+  },
+  {
+   "t": "myth",
+   "myth": "Gli ospiti rovinano la casa.",
+   "truth": "Con regole chiare e controlli a ogni uscita, la casa resta curata."
+  },
+  {
+   "t": "myth",
+   "myth": "Bisogna essere sempre reperibili.",
+   "truth": "Solo se te ne occupi da solo. Se lo fa qualcun altro, no."
+  },
+  {
+   "t": "myth",
+   "myth": "Rende solo d'estate.",
+   "truth": "Mare, montagna e città hanno stagioni diverse: conta il prezzo giusto al momento giusto."
+  },
+  {
+   "t": "photo",
+   "image": "../../../media/stock/22469110.jpg",
+   "h": "La casa resta casa tua.",
+   "p": "Curata, controllata, pronta per te e per gli ospiti."
+  },
+  {
+   "t": "cta",
+   "h": "Hai altri dubbi?",
+   "p": "Scrivici VALUTAZIONE in DM: ti rispondiamo con una stima gratuita."
+  }
+ ]
+}

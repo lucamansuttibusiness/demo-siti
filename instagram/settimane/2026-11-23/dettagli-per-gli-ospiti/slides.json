@@ -1,0 +1,62 @@
+{
+ "theme": "photo",
+ "stock": true,
+ "photo": "../../../media/stock/2725675.jpg",
+ "slides": [
+  {
+   "t": "cover",
+   "kicker": "Ospitalità",
+   "h": "5 dettagli che gli ospiti notano subito",
+   "sub": "E che fanno la differenza nelle recensioni."
+  },
+  {
+   "t": "step",
+   "n": "01",
+   "label": "Dettaglio",
+   "h": "Luce calda",
+   "p": "Lampade da comodino e luci soffuse: la casa sembra subito accogliente."
+  },
+  {
+   "t": "photo",
+   "image": "../../../media/stock/22469110.jpg",
+   "h": "02 · Biancheria da hotel",
+   "p": "Lenzuola bianche, cuscini in più, letto fatto bene."
+  },
+  {
+   "t": "step",
+   "n": "03",
+   "label": "Dettaglio",
+   "h": "Istruzioni d'arrivo chiare",
+   "p": "Indirizzo, chiavi, parcheggio: mandate prima che l'ospite le chieda."
+  },
+  {
+   "t": "step",
+   "n": "04",
+   "label": "Dettaglio",
+   "h": "Wi-Fi che funziona",
+   "p": "Nome e password ben visibili. Sembra poco, finisce in ogni recensione."
+  },
+  {
+   "t": "photo",
+   "image": "../../../media/stock/19836798.jpg",
+   "h": "05 · Ordine e pulizia",
+   "p": "Il primo sguardo decide il voto."
+  },
+  {
+   "t": "recap",
+   "h": "In breve",
+   "items": [
+    "Luce calda",
+    "Biancheria da hotel",
+    "Istruzioni d'arrivo",
+    "Wi-Fi che funziona",
+    "Ordine e pulizia"
+   ]
+  },
+  {
+   "t": "cta",
+   "h": "Vuoi una casa da 5 stelle senza pensarci?",
+   "p": "Scrivici VALUTAZIONE in DM."
+  }
+ ]
+}

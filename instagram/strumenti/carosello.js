@@ -1,10 +1,11 @@
-// Generatore caroselli Inkasa — 3 temi x 11 tipi di slide, 1080x1350.
+// Generatore caroselli Inkasa — 4 temi x 11 tipi di slide, 1080x1350.
 // Uso:   NODE_PATH=$(npm root -g):<cartella node_modules> node carosello.js slides.json cartella-output
 // Serve: npm i @fontsource/cormorant-garamond   (Playwright e il font Inter sono già nell'ambiente)
 //
 // slides.json:
-// { "theme": "dark" | "cream" | "photo",
+// { "theme": "dark" | "cream" | "gold" | "photo",
 //   "photo": "percorso/o/url foto di sfondo (solo tema photo, opzionale per slide)",
+//   "stock": true  → foto non di Inkasa: aggiunge "Immagine illustrativa" sulle slide con foto,
 //   "slides": [ { "t": "<tipo>", ... } ] }
 // Tipi (campi):
 //   cover   kicker, h, sub                 — copertina, max 6 parole in h
@@ -33,6 +34,7 @@ const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const T = {
   dark:  { bg: 'radial-gradient(ellipse at 85% 0%,#1C2D47 0%,#0E1A2B 60%)', fg: '#F2ECE0', soft: 'rgba(242,236,224,.82)', acc: '#C9A24A', line: 'rgba(201,162,74,.35)', num: 'rgba(201,162,74,.22)', foot: 'rgba(242,236,224,.6)' },
   cream: { bg: 'linear-gradient(160deg,#F7F2E9 0%,#EFE7DA 100%)', fg: '#0E1A2B', soft: 'rgba(14,26,43,.75)', acc: '#A9812F', line: 'rgba(169,129,47,.45)', num: 'rgba(169,129,47,.20)', foot: 'rgba(14,26,43,.55)' },
+  gold:  { bg: 'linear-gradient(160deg,#DDBB66 0%,#C49A45 100%)', fg: '#0E1A2B', soft: 'rgba(14,26,43,.82)', acc: '#0E1A2B', line: 'rgba(14,26,43,.35)', num: 'rgba(14,26,43,.14)', foot: 'rgba(14,26,43,.62)' },
   photo: { bg: '#0E1A2B', fg: '#FFFFFF', soft: 'rgba(255,255,255,.88)', acc: '#E2C77E', line: 'rgba(226,199,126,.5)', num: 'rgba(226,199,126,.3)', foot: 'rgba(255,255,255,.7)' },
 }[theme];
 
@@ -53,6 +55,7 @@ function body(s) {
     default: throw new Error('tipo di slide sconosciuto: ' + s.t);
   }
 }
+function hasPhoto(s) { return !!(s.image || (theme === 'photo' && (s.t === 'photo' || s.t === 'cover') && deck.photo)); }
 function sectionStyle(s) {
   const ph = s.image || (theme === 'photo' && (s.t === 'photo' || s.t === 'cover') ? deck.photo : '');
   if (!ph) return '';
@@ -90,14 +93,15 @@ ul.chk li{font-size:44px;padding:22px 0;display:flex;align-items:center;gap:30px
 .box{width:56px;height:56px;border:2.5px solid ${T.acc};border-radius:10px;display:inline-flex;align-items:center;justify-content:center;color:${T.acc};font-size:36px;flex:none}
 .cmp{display:flex;gap:40px;margin-top:60px}
 .col{flex:1;border:1.5px solid ${T.line};padding:40px 34px}
-.col.yes{border-color:${T.acc};background:${theme === 'cream' ? 'rgba(169,129,47,.07)' : 'rgba(201,162,74,.08)'}}
+.col.yes{border-color:${T.acc};background:${theme === 'cream' ? 'rgba(169,129,47,.07)' : theme === 'gold' ? 'rgba(14,26,43,.07)' : 'rgba(201,162,74,.08)'}}
 .ci{font-size:36px;line-height:1.3;padding:16px 0;border-bottom:1px solid ${T.line}}
 .ci.no{opacity:.6;text-decoration:line-through;text-decoration-color:${T.acc}}
 .ph-cap h2{font-size:92px;text-shadow:0 4px 30px rgba(0,0,0,.35)}
 .ph-cap p{margin-top:24px}
+.ill{position:absolute;right:130px;bottom:94px;font-size:20px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 .kw{margin-top:30px;align-self:flex-start;border:2px solid ${T.acc};color:${T.acc};padding:22px 44px;font-size:40px;letter-spacing:.22em;font-weight:600}
 </style></head><body>
-${slides.map((s, i) => `<section class="t-${s.t}"${sectionStyle(s)}><div class="top"><span>Inkasa Property Management</span><span>${i + 1}/${N}</span></div>${body(s)}<div class="foot"><span>inkasa.casa</span></div></section>`).join('\n')}
+${slides.map((s, i) => `<section class="t-${s.t}"${sectionStyle(s)}><div class="top"><span>Inkasa Property Management</span><span>${i + 1}/${N}</span></div>${body(s)}<div class="foot"><span>inkasa.casa</span></div>${deck.stock && hasPhoto(s) ? '<div class="ill">Immagine illustrativa</div>' : ''}</section>`).join('\n')}
 </body></html>`;
 
 (async () => {
