@@ -419,8 +419,8 @@ body{animation:pageIn .35s ease-out both}
 /* test: schede grigie con video */
 .tests{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin-top:28px}
 .tcard{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:280px;padding:28px 20px;border:0;cursor:pointer;color:#fff;font:inherit;text-align:center;overflow:hidden;background:#6c6a66}
-.tcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.62);transition:transform .9s var(--ease-out),filter .4s}
-.tcard:hover img{transform:scale(1.05);filter:grayscale(1) brightness(.5)}
+.tcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.75);transition:transform .9s var(--ease-out),filter .4s}
+.tcard:hover img{transform:scale(1.05);filter:grayscale(1) brightness(.62)}
 .tcard > span{position:relative}
 .tt{font-size:var(--s-h3);line-height:1.25;max-width:16em}
 .tw{text-decoration:underline;text-underline-offset:4px;font-size:var(--s-sm)}
