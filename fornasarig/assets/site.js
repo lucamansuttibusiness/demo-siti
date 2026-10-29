@@ -22,7 +22,7 @@
     t.addEventListener('click', function () {
       document.querySelectorAll('.gthumb').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
       t.setAttribute('aria-pressed', 'true');
-      gm.dataset.src = t.dataset.src; gm.querySelector('img').src = t.dataset.src;
+      gm.dataset.src = t.dataset.src; if (matchMedia('(prefers-reduced-motion: reduce)').matches) gm.querySelector('img').src = t.dataset.src;
     });
   });
 
@@ -75,5 +75,79 @@
       if (bad.length) { msg.textContent = 'Compila i campi evidenziati: nome, email valida, tipo di attività, paese e consenso privacy.'; bad[0].focus(); return; }
       msg.textContent = 'Questa è una versione dimostrativa del sito: la richiesta non è stata inviata. Nel sito definitivo arriverà direttamente all’ufficio commerciale. Per ora chiama il +39 0432 750057.';
     });
+  }
+})();
+
+// ---- movimento: comparse allo scorrimento, menu interno, parallasse ----
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
+  var groups = ['.psec h2', '.psec .lead', '.feats > *', '.mosaic > *', '.variants-img > li', '.vars > .var', '.fin', '.dl', '.designer-box > *',
+    '.pgrid > .pcard', '#pgrid > .pcard', '.ambs > *', '.three > *', '.refs4 > *', '.ncards > *', '.timeline > *', '.facts > *', '.band h2', '.band .lead', '.split > *', '.des', '.places > *', 'details'];
+  var items = [];
+  groups.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      if (el.closest('.phero') || el.classList.contains('rv')) return;
+      var sib = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.setProperty('--d', Math.min(sib % 4, 3) * 90 + 'ms');
+      el.classList.add('rv'); items.push(el);
+    });
+  });
+  document.querySelectorAll('figure.wide, .hero-img, .art-hero').forEach(function (el) { el.classList.add('rv-img'); items.push(el); });
+  if (reduce || !('IntersectionObserver' in window)) { items.forEach(function (el) { el.classList.add('in'); }); }
+  else {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    items.forEach(function (el) { io.observe(el); });
+    // sicurezza: se qualcosa non è entrato in 4 s (stampa, salto di pagina) lo mostra comunque
+    setTimeout(function () { items.forEach(function (el) { var r = el.getBoundingClientRect(); if (r.top < innerHeight) el.classList.add('in'); }); }, 4000);
+  }
+
+  // galleria: dissolvenza al cambio immagine
+  var gmImg = document.querySelector('.gmain img');
+  if (gmImg) document.querySelectorAll('.gthumb').forEach(function (t) {
+    t.addEventListener('click', function () {
+      if (reduce) return;
+      gmImg.classList.add('swap');
+      var src = t.dataset.src, pre = new Image(); pre.onload = pre.onerror = function () { gmImg.src = src; requestAnimationFrame(function () { gmImg.classList.remove('swap'); }); }; pre.src = src;
+    }, true);
+  });
+
+  // menu interno della scheda: compare dopo l'apertura e segue la sezione in vista
+  var sub = document.querySelector('.psubnav'), hero = document.querySelector('.phero');
+  var links = sub ? Array.prototype.slice.call(sub.querySelectorAll('a')) : [];
+  var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+  var top = document.querySelector('.top'), lastY = scrollY, ticking = false;
+  var wides = Array.prototype.slice.call(document.querySelectorAll('figure.wide .zoom img'));
+  function frame() {
+    ticking = false; var y = scrollY;
+    if (sub && hero) {
+      sub.classList.toggle('on', y > hero.offsetTop + hero.offsetHeight * 0.6);
+      var cur = 0; targets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top < 160) cur = i; });
+      links.forEach(function (a, i) { a.classList.toggle('cur', i === cur); });
+      var c = links[cur]; if (c && sub.classList.contains('on')) { var ul = c.parentElement.parentElement; var l = c.offsetLeft - 24; if (l < ul.scrollLeft || l + c.offsetWidth > ul.scrollLeft + ul.clientWidth) ul.scrollTo({ left: l, behavior: 'smooth' }); }
+    }
+    if (top && !sub) top.classList.toggle('away', y > 400 && y > lastY + 4 && !(document.getElementById('menu') || {}).classList?.contains('open'));
+    if (top && (y < lastY - 4 || y < 400)) top.classList.remove('away');
+    if (!reduce) wides.forEach(function (im) { var r = im.parentElement.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return; var p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight; im.style.transform = 'scale(1.08) translateY(' + (p * -5).toFixed(2) + '%)'; });
+    lastY = y;
+  }
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
+  frame();
+  links.forEach(function (a) { a.addEventListener('click', function (e) { var t = document.getElementById(a.getAttribute('href').slice(1)); if (!t) return; e.preventDefault(); scrollTo({ top: t.getBoundingClientRect().top + scrollY - 128, behavior: reduce ? 'auto' : 'smooth' }); history.replaceState(null, '', a.getAttribute('href')); }); });
+
+  // numeri che contano fino al valore
+  if (!reduce && 'IntersectionObserver' in window) {
+    var nio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return; nio.unobserve(e.target);
+        var el = e.target, m = el.textContent.match(/^(\D*)(\d+)(.*)$/); if (!m) return;
+        var end = +m[2], t0 = null; if (end < 10) return;
+        function step(ts) { if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 1400), v = Math.round(end * (1 - Math.pow(1 - k, 3))); el.textContent = m[1] + v + m[3]; if (k < 1) requestAnimationFrame(step); }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.facts b').forEach(function (b) { if (/^\D*\d+\D*$/.test(b.textContent.trim())) nio.observe(b); });
   }
 })();
