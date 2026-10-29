@@ -65,6 +65,11 @@ parlato in camera · tour veloce di una casa · dietro le quinte senza parlato (
 POV ("POV: sei un proprietario e…") · risposta a una domanda arrivata in DM o nei commenti ·
 prima/dopo di una casa preparata.
 
+**Reel animati senza riprese** (immagini generate su Gemini + `strumenti/reel-kit/`, skill `inkasa-reel`):
+contano come formato a sé nella rotazione. Ogni reel animato cambia argomento, formato del testo, stile grafico
+(collage, tipo Airbnb, risograph, carta ritagliata, blueprint, clay 3D…), stile delle scritte e animazioni rispetto
+ai precedenti; immagini sempre nuove. Oro `#B8853C` unico colore saturo, chiusura con logo e inkasa.casa.
+
 **Frase d'attacco dei reel**: usare le formule in `ig-reel/hooks.json` del plugin instagram-agent;
 la stessa formula non torna prima di 4 settimane (annotarla nel registro).
 

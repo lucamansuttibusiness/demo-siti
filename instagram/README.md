@@ -7,6 +7,7 @@ Questa cartella è la memoria permanente dei contenuti Instagram di **@inkasapro
 - `settimane/AAAA-MM-GG/` — una cartella per settimana (data del lunedì): `piano.md`,
   e una sottocartella per ogni carosello con `slides.json` e le immagini `01.jpg` … `09.jpg`.
 - `strumenti/carosello.js` — genera le slide 1080x1350 da un `slides.json` (3 temi, 11 tipi di slide: istruzioni in testa al file).
+- `strumenti/reel-kit/` — motore per i reel animati da immagini (`python3 engine.py reel.json`, istruzioni nel suo README e in `SKILL.md`).
 - `media/` — foto e video veri delle case gestite, da usare con priorità.
 
 ## Routine della domenica

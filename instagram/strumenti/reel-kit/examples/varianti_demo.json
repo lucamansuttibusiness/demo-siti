@@ -1,0 +1,20 @@
+{"out":"varianti_demo.mp4","scenes":[
+ {"img":"img1.png","dur":3.4,"entry":"zoom","font":"serif","text_style":"marker","caption_style":"pill","badge_style":"circle","badge":1,
+  "title":["Ingresso [zoom]"],"objects":{"anim":"pulse","amp":1.2},"extras":[{"type":"glow","pos":"auto_object","color":"#E6AF50","radius":150,"flicker":false}],
+  "texts":[{"text":"Elegante + [evidenziatore]","y":1560,"at":0.8}]},
+ {"img":"img2.png","dur":3.4,"entry":"spin","idle":"sway","font":"sans","text_style":"underline","badge_style":"outline","badge":2,
+  "title":["Ingresso [a giro]"],"objects":{"anim":"swing","pivot":[0.28,0.06]},"extras":[{"type":"stamp","text":"-20%","obj":0,"pos":[0.5,0.62],"rot":-12,"at":1.0}],
+  "texts":[{"text":"Testo [sottolineato]","y":860,"at":0.8}]},
+ {"img":"img4.png","dur":3.4,"entry":"slide_left","font":"mono","text_style":"sticker","caption_style":"pill","badge":3,
+  "title":["Entra [di lato]"],"objects":{"anim":"jingle","pivot":[0.15,0.05]},"extras":[{"type":"glow","pos":"auto","radius":120}],
+  "texts":[{"text":"Macchina da [scrivere]","y":880,"at":0.8}]},
+ {"img":"img3.png","dur":3.4,"entry":"drop","idle":"breathe","badge_style":"square","badge":4,
+  "title":["Cade [dall'alto]"],"objects":{"anim":"drop","pivot":[0.5,0.9]},"extras":[{"type":"sparkles","n":6,"seed":5}],
+  "texts":[{"text":"Riquadro [pieno]","y":1520,"at":0.9}]},
+ {"img":"img5.png","dur":3.4,"entry":"rise","idle":"drift","font":"serif","text_style":"marker","caption_style":"stroke","badge_style":"circle","badge":5,
+  "title":["Sale dal [basso]"],"objects":{"anim":"spin","stagger":0.15},"extras":[{"type":"dust","n":35}],
+  "texts":[{"text":"Nastri che [girano]","y":1560,"at":0.9}]},
+ {"img":"img0.png","dur":4.2,"entry":"slide_right","idle":"float","objects":{"anim":"float","amp":0.8},
+  "extras":[{"type":"logo_pill","y":1260,"at":1.6},{"type":"pill","text":"inkasa.casa","y":1420,"at":2.0}],
+  "texts":[{"role":"title","text":"…e [tante] altre","y":330,"size":90,"at":0.3},{"text":"combinazioni","y":960,"at":0.9}]}
+]}

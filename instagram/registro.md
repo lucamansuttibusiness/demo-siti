@@ -6,6 +6,7 @@ Stato: `bozza Metricool` → `pubblicato` (o `da girare` per i reel).
 | data | formato | tipo | modello / formato reel | tema grafico / formula gancio | tema | angolazione / gancio | stato | risultati (da Metricool) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-10-27 | reel | presentazione | video di lancio | — | lancio Inkasa | video di lancio | pubblicato | 559 raggiunti, 16 like, 2 commenti, 0 salvataggi, 16,9% oltre 3 s |
+| 2026-10-29 | reel | intrattenimento | reel animato (collage-halftone, testo box/stroke/sans) | elenco "I N tipi di…" | gestire da soli | "I 5 tipi di proprietario che affittano casa da soli" | pronto (da pubblicare) | |
 | 2026-11-02 | carosello | consiglio | errori / consigli | dark | errori di chi affitta da solo | "5 errori che ti costano soldi" | bozza Metricool | |
 | 2026-11-04 | reel | opinione | parlato in camera | negazione ("non è una rendita") | gestire da soli | "Gestire un affitto breve da soli è un secondo lavoro" | da girare | |
 | 2026-11-06 | carosello | offerta | come lavoriamo | cream | come lavora Inkasa | "La tua casa, gestita da noi" in 5 passi | bozza Metricool | |
