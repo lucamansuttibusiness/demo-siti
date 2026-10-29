@@ -3,7 +3,8 @@
  "slides": [
   {
    "t": "quote",
-   "q": "La casa lavora. Tu no."
+   "q": "La casa lavora. Tu no.",
+   "img": "../../../media/stock/16292080.jpg"
   },
   {
    "t": "quote",
@@ -11,12 +12,14 @@
   },
   {
    "t": "quote",
-   "q": "Il tuo sabato vale più di un check-in."
+   "q": "Il tuo sabato vale più di un check-in.",
+   "img": "../../../media/stock/2725675.jpg"
   },
   {
    "t": "cta",
    "h": "Inkasa Property Management",
    "p": "Gestiamo la tua casa negli affitti brevi. Scrivici VALUTAZIONE in DM."
   }
- ]
+ ],
+ "stock": true
 }

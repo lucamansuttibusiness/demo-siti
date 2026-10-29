@@ -17,3 +17,10 @@ Appena ci sono foto vere in `media/<nome-casa>/`, hanno la precedenza.
 | 34574357.jpg | https://www.pexels.com/photo/34574357/ |
 | 37252541.jpg | https://www.pexels.com/photo/37252541/ |
 | 8082228.jpg | https://www.pexels.com/photo/8082228/ |
+| 19737857.jpg | https://www.pexels.com/photo/19737857/ |
+| 31762677.jpg | https://www.pexels.com/photo/31762677/ |
+| 16292080.jpg | https://www.pexels.com/photo/16292080/ |
+| 35189706.jpg | https://www.pexels.com/photo/35189706/ |
+| 6920614.jpg | https://www.pexels.com/photo/6920614/ |
+| 6585741.jpg | https://www.pexels.com/photo/6585741/ |
+| 16113326.jpg | https://www.pexels.com/photo/16113326/ |

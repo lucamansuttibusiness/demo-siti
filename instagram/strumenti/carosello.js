@@ -17,6 +17,7 @@
 //   quote   q, by                          — frase grande (by opzionale)
 //   compare h, left{t,items[]}, right{t,items[]} — prima/dopo, da solo/con Inkasa
 //   photo   image, h, p                    — foto a tutto schermo con didascalia
+// Ogni slide (in ogni tema) può avere "img": foto nella metà alta della slide, testo sotto.
 //   recap   h, items[]                     — riepilogo da salvare
 //   cta     h, p, kw                       — invito finale (kw default VALUTAZIONE)
 // Un vecchio slides.json che è un array semplice vale come { theme: "dark", slides: [...] }; "err" = "step".
@@ -55,7 +56,7 @@ function body(s) {
     default: throw new Error('tipo di slide sconosciuto: ' + s.t);
   }
 }
-function hasPhoto(s) { return !!(s.image || (theme === 'photo' && (s.t === 'photo' || s.t === 'cover') && deck.photo)); }
+function hasPhoto(s) { return !!(s.img || s.image || (theme === 'photo' && (s.t === 'photo' || s.t === 'cover') && deck.photo)); }
 function sectionStyle(s) {
   const ph = s.image || (theme === 'photo' && (s.t === 'photo' || s.t === 'cover') ? deck.photo : '');
   if (!ph) return '';
@@ -99,9 +100,20 @@ ul.chk li{font-size:44px;padding:22px 0;display:flex;align-items:center;gap:30px
 .ph-cap h2{font-size:92px;text-shadow:0 4px 30px rgba(0,0,0,.35)}
 .ph-cap p{margin-top:24px}
 .ill{position:absolute;right:130px;bottom:94px;font-size:20px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.has-img{justify-content:flex-start;padding-top:690px;padding-bottom:150px}
+.has-img ul.chk{margin-top:30px}.has-img ul.chk li{font-size:38px;padding:12px 0}.has-img .box{width:46px;height:46px;font-size:30px}
+.has-img .kicker,.has-img .label{margin-bottom:22px}
+.has-img .imgbox{position:absolute;left:0;right:0;top:0;height:640px;background-size:cover;background-position:center}
+.has-img .imgbox::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,26,.45) 0%,rgba(8,14,26,0) 35%)}
+.has-img .top{color:#fff;z-index:2;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.has-img .num,.has-img .qmark,.has-img .swipe{display:none}
+.has-img h1.cover{font-size:112px}.has-img h2{font-size:78px}.has-img h2.big{font-size:84px}.has-img h2.quote{font-size:88px}
+.has-img .rule{margin:34px 0}.has-img p,.has-img .sub{font-size:38px}
+.has-img .qq{height:90px;font-size:240px}
+.has-img .ill{bottom:auto;top:596px;z-index:2}
 .kw{margin-top:30px;align-self:flex-start;border:2px solid ${T.acc};color:${T.acc};padding:22px 44px;font-size:40px;letter-spacing:.22em;font-weight:600}
 </style></head><body>
-${slides.map((s, i) => `<section class="t-${s.t}"${sectionStyle(s)}><div class="top"><span>Inkasa Property Management</span><span>${i + 1}/${N}</span></div>${body(s)}<div class="foot"><span>inkasa.casa</span></div>${deck.stock && hasPhoto(s) ? '<div class="ill">Immagine illustrativa</div>' : ''}</section>`).join('\n')}
+${slides.map((s, i) => `<section class="t-${s.t}${s.img ? ' has-img' : ''}"${sectionStyle(s)}>${s.img ? `<div class="imgbox" style="background-image:url('${img(s.img)}')"></div>` : ''}<div class="top"><span>Inkasa Property Management</span><span>${i + 1}/${N}</span></div>${body(s)}<div class="foot"><span>inkasa.casa</span></div>${deck.stock && hasPhoto(s) ? '<div class="ill">Immagine illustrativa</div>' : ''}</section>`).join('\n')}
 </body></html>`;
 
 (async () => {

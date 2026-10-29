@@ -5,7 +5,8 @@
    "t": "cover",
    "kicker": "Checklist da salvare",
    "h": "Prima di affittare la tua casa",
-   "sub": "Le cose da avere in ordine prima del primo ospite."
+   "sub": "Le cose da avere in ordine prima del primo ospite.",
+   "img": "../../../media/stock/34574357.jpg"
   },
   {
    "t": "stake",
@@ -30,12 +31,14 @@
     "Regole della casa chiare",
     "Istruzioni d'arrivo semplici",
     "Kit di benvenuto"
-   ]
+   ],
+   "img": "../../../media/stock/35189706.jpg"
   },
   {
    "t": "cta",
    "h": "Vuoi che ci pensiamo noi?",
    "p": "Scrivici VALUTAZIONE in DM: partiamo da una stima gratuita."
   }
- ]
+ ],
+ "stock": true
 }

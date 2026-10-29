@@ -43,6 +43,10 @@ foto nuove di case gestite, almeno un carosello su due usa `photo`. Finché non 
 le foto stock di `media/stock/` (ville e interni di design) con `"stock": true`: compare "Immagine illustrativa"
 e la didascalia non deve mai far credere che sia una casa gestita da Inkasa.
 
+**Foto in ogni carosello** (qualsiasi tema): copertina sempre con foto (`img` nella copertina) e almeno
+2 slide con foto. Nei temi dark/cream/gold si usa `img` (foto nella metà alta, testo sotto); nel tema photo
+le slide `photo`. Non usare la stessa foto stock in due caroselli della stessa settimana.
+
 **Modelli di carosello** (scegliere il tipo di slide in base al modello):
 | modello | slide principali |
 | --- | --- |

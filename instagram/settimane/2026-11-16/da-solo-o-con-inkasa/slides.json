@@ -5,12 +5,14 @@
    "t": "cover",
    "kicker": "Confronto",
    "h": "Da solo o con Inkasa?",
-   "sub": "Lo stesso affitto, due settimane molto diverse."
+   "sub": "Lo stesso affitto, due settimane molto diverse.",
+   "img": "../../../media/stock/19737857.jpg"
   },
   {
    "t": "stake",
    "h": "Il problema non è affittare. È tutto il resto.",
-   "p": "Messaggi, prezzi, pulizie, arrivi: ogni settimana, tutto l'anno."
+   "p": "Messaggi, prezzi, pulizie, arrivi: ogni settimana, tutto l'anno.",
+   "img": "../../../media/stock/31762677.jpg"
   },
   {
    "t": "compare",
@@ -57,5 +59,6 @@
    "h": "Quale settimana preferisci?",
    "p": "Scrivici VALUTAZIONE in DM per una stima gratuita."
   }
- ]
+ ],
+ "stock": true
 }

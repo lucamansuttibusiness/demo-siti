@@ -1,59 +1,71 @@
-[
- {
-  "t": "cover",
-  "kicker": "Per chi affitta casa da solo",
-  "h": "5 errori che ti costano soldi",
-  "sub": "E quasi nessuno se ne accorge."
- },
- {
-  "t": "stake",
-  "h": "Ogni notte vuota è un incasso che non torna.",
-  "p": "Una recensione da tre stelle ti fa scendere nella ricerca e ti costa le prenotazioni dei mesi dopo."
- },
- {
-  "t": "err",
-  "n": "01",
-  "h": "Prezzo fisso tutto l’anno",
-  "p": "Agosto e novembre non valgono uguale. Il prezzo va adattato a stagione, eventi e richiesta, anche settimana per settimana."
- },
- {
-  "t": "err",
-  "n": "02",
-  "h": "Foto fatte col telefono",
-  "p": "L’ospite sceglie dalla prima foto. Luce, ordine e inquadrature decidono se clicca su di te o sull’annuncio accanto."
- },
- {
-  "t": "err",
-  "n": "03",
-  "h": "Rispondere tardi",
-  "p": "Chi scrive alle 23 vuole una risposta subito. Se arriva il giorno dopo, ha già prenotato altrove."
- },
- {
-  "t": "err",
-  "n": "04",
-  "h": "Pulizie improvvisate",
-  "p": "Un capello nella doccia vale una stella in meno. E le stelle decidono dove compari nei risultati."
- },
- {
-  "t": "err",
-  "n": "05",
-  "h": "Burocrazia rimandata",
-  "p": "CIN, registrazione degli ospiti, tassa di soggiorno. Dimenticarne una costa più di una notte di affitto."
- },
- {
-  "t": "recap",
-  "h": "In breve",
-  "items": [
-   "Prezzo che cambia con la stagione",
-   "Foto professionali",
-   "Risposte in pochi minuti",
-   "Pulizie da hotel",
-   "Burocrazia sempre in regola"
-  ]
- },
- {
-  "t": "cta",
-  "h": "Quanto può rendere la tua casa?",
-  "p": "Scrivici VALUTAZIONE in DM. Ti rispondiamo con una stima gratuita."
- }
-]
+{
+ "theme": "dark",
+ "slides": [
+  {
+   "t": "cover",
+   "kicker": "Per chi affitta casa da solo",
+   "h": "5 errori che ti costano soldi",
+   "sub": "E quasi nessuno se ne accorge.",
+   "img": "../../../media/stock/2227832.jpg"
+  },
+  {
+   "t": "stake",
+   "h": "Ogni notte vuota è un incasso che non torna.",
+   "p": "Una recensione da tre stelle ti fa scendere nella ricerca e ti costa le prenotazioni dei mesi dopo."
+  },
+  {
+   "t": "err",
+   "n": "01",
+   "h": "Prezzo fisso tutto l’anno",
+   "p": "Agosto e novembre non valgono uguale. Il prezzo va adattato a stagione, eventi e richiesta, anche settimana per settimana.",
+   "label": "Errore"
+  },
+  {
+   "t": "err",
+   "n": "02",
+   "h": "Foto fatte col telefono",
+   "p": "L’ospite sceglie dalla prima foto. Luce, ordine e inquadrature decidono se clicca su di te o sull’annuncio accanto.",
+   "img": "../../../media/stock/37252541.jpg",
+   "label": "Errore"
+  },
+  {
+   "t": "err",
+   "n": "03",
+   "h": "Rispondere tardi",
+   "p": "Chi scrive alle 23 vuole una risposta subito. Se arriva il giorno dopo, ha già prenotato altrove.",
+   "label": "Errore"
+  },
+  {
+   "t": "err",
+   "n": "04",
+   "h": "Pulizie improvvisate",
+   "p": "Un capello nella doccia vale una stella in meno. E le stelle decidono dove compari nei risultati.",
+   "img": "../../../media/stock/6920614.jpg",
+   "label": "Errore"
+  },
+  {
+   "t": "err",
+   "n": "05",
+   "h": "Burocrazia rimandata",
+   "p": "CIN, registrazione degli ospiti, tassa di soggiorno. Dimenticarne una costa più di una notte di affitto.",
+   "label": "Errore"
+  },
+  {
+   "t": "recap",
+   "h": "In breve",
+   "items": [
+    "Prezzo che cambia con la stagione",
+    "Foto professionali",
+    "Risposte in pochi minuti",
+    "Pulizie da hotel",
+    "Burocrazia sempre in regola"
+   ]
+  },
+  {
+   "t": "cta",
+   "h": "Quanto può rendere la tua casa?",
+   "p": "Scrivici VALUTAZIONE in DM. Ti rispondiamo con una stima gratuita."
+  }
+ ],
+ "stock": true
+}

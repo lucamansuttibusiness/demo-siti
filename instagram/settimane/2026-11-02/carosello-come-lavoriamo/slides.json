@@ -5,7 +5,8 @@
    "t": "cover",
    "kicker": "Per i proprietari",
    "h": "La tua casa, gestita da noi",
-   "sub": "Come lavoriamo, passo per passo."
+   "sub": "Come lavoriamo, passo per passo.",
+   "img": "../../../media/stock/32647226.jpg"
   },
   {
    "t": "stake",
@@ -24,7 +25,8 @@
    "n": "02",
    "label": "Passo",
    "h": "Foto e annuncio",
-   "p": "Prepariamo un annuncio curato, con immagini che fanno scegliere la tua casa."
+   "p": "Prepariamo un annuncio curato, con immagini che fanno scegliere la tua casa.",
+   "img": "../../../media/stock/19689230.jpg"
   },
   {
    "t": "err",
@@ -38,7 +40,8 @@
    "n": "04",
    "label": "Passo",
    "h": "Ospiti e pulizie",
-   "p": "Rispondiamo agli ospiti, gestiamo arrivi e partenze, teniamo la casa pronta."
+   "p": "Rispondiamo agli ospiti, gestiamo arrivi e partenze, teniamo la casa pronta.",
+   "img": "../../../media/stock/22469110.jpg"
   },
   {
    "t": "err",
@@ -63,5 +66,6 @@
    "h": "Vuoi sapere quanto rende la tua casa?",
    "p": "Scrivici VALUTAZIONE in DM. Ti rispondiamo con una stima gratuita."
   }
- ]
+ ],
+ "stock": true
 }
