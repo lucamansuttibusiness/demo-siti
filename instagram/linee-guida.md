@@ -34,6 +34,41 @@ arco animato attorno a numeri o parole forti, sfondo leggermente sfocato.
 Suoni: pochi, morbidi, **tutti diversi tra loro** (mai lo stesso effetto ripetuto). Niente emoji.
 Durata 15-30 s. Apertura forte nei primi 2 secondi.
 
+## Varietà — regole di rotazione (obbligatorie)
+L'obiettivo è che il profilo non sembri mai lo stesso post ripetuto.
+
+**Temi grafici dei caroselli** (`theme` in slides.json): `dark` (navy e oro), `cream` (crema e oro scuro),
+`photo` (foto vera a tutto schermo). Mai lo stesso tema due caroselli di fila. Se in `media/` ci sono
+foto nuove di case gestite, almeno un carosello su due usa `photo`.
+
+**Modelli di carosello** (scegliere il tipo di slide in base al modello):
+| modello | slide principali |
+| --- | --- |
+| errori / consigli | step (label "Errore" o "Consiglio") |
+| come lavoriamo | step (label "Passo") |
+| mito vs realtà | myth |
+| checklist da salvare | check |
+| domande frequenti | faq |
+| da solo vs con Inkasa | compare |
+| dietro le quinte / casa gestita | photo |
+| frase manifesto (anche carosello corto da 3-4 slide) | quote |
+Mai lo stesso modello due volte nello stesso mese. Lunghezza variabile: da 4 a 10 slide.
+
+**Formati dei reel** (a rotazione, mai lo stesso due volte di fila):
+parlato in camera · tour veloce di una casa · dietro le quinte senza parlato (clip + scritte + musica) ·
+POV ("POV: sei un proprietario e…") · risposta a una domanda arrivata in DM o nei commenti ·
+prima/dopo di una casa preparata.
+
+**Frase d'attacco dei reel**: usare le formule in `ig-reel/hooks.json` del plugin instagram-agent;
+la stessa formula non torna prima di 4 settimane (annotarla nel registro).
+
+**Ricerca mensile**: la prima domenica di ogni mese guardare cosa funziona negli account del settore
+(anche USA/UK, property management, short-term rental, luxury real estate) e proporre 2-3 formati nuovi
+da provare, annotati in fondo a questo file nella sezione "Formati da provare".
+
+**Contenuti reali**: foto e video di case gestite, numeri e storie vere hanno sempre la precedenza
+sui contenuti generici. Si trovano in `media/` (vedi `media/README.md`).
+
 ## Mix settimanale (4 post)
 | tipo | quanti | formato |
 | --- | --- | --- |
@@ -45,3 +80,6 @@ Durata 15-30 s. Apertura forte nei primi 2 secondi.
 
 Mai due post dello stesso tipo uno dopo l'altro. Un tema non torna prima di 6 settimane
 con la stessa angolazione (controllare `registro.md`).
+
+## Formati da provare
+_(aggiornato ogni mese dalla ricerca)_

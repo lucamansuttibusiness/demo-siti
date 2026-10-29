@@ -1,64 +1,67 @@
-[
- {
-  "t": "cover",
-  "kicker": "Per i proprietari",
-  "h": "La tua casa, gestita da noi",
-  "sub": "Come lavoriamo, passo per passo."
- },
- {
-  "t": "stake",
-  "h": "Affittare a turisti rende. Gestirlo da soli stanca.",
-  "p": "Annunci, prezzi, messaggi, pulizie, check-in. Ogni settimana, tutto l’anno."
- },
- {
-  "t": "err",
-  "n": "01",
-  "label": "Passo",
-  "h": "Valutazione gratuita",
-  "p": "Vediamo la casa e ti diciamo con chiarezza quanto può rendere con gli affitti brevi."
- },
- {
-  "t": "err",
-  "n": "02",
-  "label": "Passo",
-  "h": "Foto e annuncio",
-  "p": "Prepariamo un annuncio curato, con immagini che fanno scegliere la tua casa."
- },
- {
-  "t": "err",
-  "n": "03",
-  "label": "Passo",
-  "h": "Prezzi e calendario",
-  "p": "Adattiamo le tariffe a stagione ed eventi, per riempire le date giuste."
- },
- {
-  "t": "err",
-  "n": "04",
-  "label": "Passo",
-  "h": "Ospiti e pulizie",
-  "p": "Rispondiamo agli ospiti, gestiamo arrivi e partenze, teniamo la casa pronta."
- },
- {
-  "t": "err",
-  "n": "05",
-  "label": "Passo",
-  "h": "Tu ti godi il risultato",
-  "p": "La casa lavora per te, senza pensieri e senza perdere tempo."
- },
- {
-  "t": "recap",
-  "h": "In breve",
-  "items": [
-   "Valutazione gratuita",
-   "Annuncio curato",
-   "Prezzi dinamici",
-   "Ospiti e pulizie",
-   "Zero pensieri per te"
-  ]
- },
- {
-  "t": "cta",
-  "h": "Vuoi sapere quanto rende la tua casa?",
-  "p": "Scrivici VALUTAZIONE in DM. Ti rispondiamo con una stima gratuita."
- }
-]
+{
+ "theme": "cream",
+ "slides": [
+  {
+   "t": "cover",
+   "kicker": "Per i proprietari",
+   "h": "La tua casa, gestita da noi",
+   "sub": "Come lavoriamo, passo per passo."
+  },
+  {
+   "t": "stake",
+   "h": "Affittare a turisti rende. Gestirlo da soli stanca.",
+   "p": "Annunci, prezzi, messaggi, pulizie, check-in. Ogni settimana, tutto l’anno."
+  },
+  {
+   "t": "err",
+   "n": "01",
+   "label": "Passo",
+   "h": "Valutazione gratuita",
+   "p": "Vediamo la casa e ti diciamo con chiarezza quanto può rendere con gli affitti brevi."
+  },
+  {
+   "t": "err",
+   "n": "02",
+   "label": "Passo",
+   "h": "Foto e annuncio",
+   "p": "Prepariamo un annuncio curato, con immagini che fanno scegliere la tua casa."
+  },
+  {
+   "t": "err",
+   "n": "03",
+   "label": "Passo",
+   "h": "Prezzi e calendario",
+   "p": "Adattiamo le tariffe a stagione ed eventi, per riempire le date giuste."
+  },
+  {
+   "t": "err",
+   "n": "04",
+   "label": "Passo",
+   "h": "Ospiti e pulizie",
+   "p": "Rispondiamo agli ospiti, gestiamo arrivi e partenze, teniamo la casa pronta."
+  },
+  {
+   "t": "err",
+   "n": "05",
+   "label": "Passo",
+   "h": "Tu ti godi il risultato",
+   "p": "La casa lavora per te, senza pensieri e senza perdere tempo."
+  },
+  {
+   "t": "recap",
+   "h": "In breve",
+   "items": [
+    "Valutazione gratuita",
+    "Annuncio curato",
+    "Prezzi dinamici",
+    "Ospiti e pulizie",
+    "Zero pensieri per te"
+   ]
+  },
+  {
+   "t": "cta",
+   "h": "Vuoi sapere quanto rende la tua casa?",
+   "p": "Scrivici VALUTAZIONE in DM. Ti rispondiamo con una stima gratuita."
+  }
+ ]
+}
