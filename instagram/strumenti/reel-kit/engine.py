@@ -91,13 +91,15 @@ class Reel:
 
     def word_img(self, text, size, hl, role):
         caption = role == 'caption'
-        f = self.font(size)
+        st = self.text_style
+        if role == 'label': text = '\u200a'.join(text.upper())
+        f = self.font(size, 1 if (hl and st == 'accent') else 0)
         bb = f.getbbox(text); hb = f.getbbox('Hg')
         tw, th = bb[2] - bb[0], hb[3] - hb[1]
         stroke = int(size * .09) if (caption and self.caption_style == 'stroke') else 0
-        col = self.CAPC if (caption and self.caption_style != 'plain') else self.INK
+        col = self.CAPC if (caption and self.caption_style not in ('plain', 'card')) else self.INK
         if role == 'pill': col = self.ONACC
-        st = self.text_style
+        if role == 'label': col = tuple(int(c * .6 + p * .4) for c, p in zip(self.INK, self.PAPER))
         if hl and st in ('box', 'sticker'):
             padx, pady = int(size * .28), int(size * .16)
         else:
@@ -121,6 +123,7 @@ class Reel:
         else:
             if hl: col = self.ACC
             d.text((tx, ty), text, font=f, fill=col, stroke_width=stroke, stroke_fill=self.INK)
+        if role == 'label' or (caption and self.caption_style == 'card'): return im
         if caption and self.caption_style == 'pill' and not hl:
             p = Image.new('RGBA', (w + 24, h + 8), (0, 0, 0, 0))
             ImageDraw.Draw(p).rounded_rectangle((0, 0, w + 23, h + 7), radius=int(size * .2), fill=self.INK + (215,))
@@ -128,22 +131,36 @@ class Reel:
         return im
 
     def block(self, text_lines, size, cy, t0, t1, role='title', step=.11):
-        lh = int(size * 1.22); items = []
+        lh = int(size * 1.22); items = []; ext = []
         y0 = cy - lh * len(text_lines) / 2
         n = 0
         for li, line in enumerate(text_lines):
             toks = re.findall(r'\[[^\]]+\]|[^ \[\]]+', line)
             for attempt in range(2):
                 ims = [self.word_img(t.strip('[]'), size, t.startswith('['), role) for t in toks]
-                gap = int(size * (.12 if role == 'caption' and self.caption_style == 'stroke' else .26))
+                gap = int(size * (.12 if role == 'caption' and self.caption_style == 'stroke' else .24 if role == 'caption' and self.caption_style == 'card' else .26))
                 total = sum(i.width for i in ims) + gap * (len(ims) - 1)
                 if total <= W - 110: break
                 size2 = int(size * (W - 110) / total)
                 ims = [self.word_img(t.strip('[]'), size2, t.startswith('['), role) for t in toks]
                 gap = int(size2 * .2); total = sum(i.width for i in ims) + gap * (len(ims) - 1); break
             x = (W - total) / 2
+            if role == 'caption' and self.caption_style == 'card':
+                hh = max(i.height for i in ims); ly = y0 + li * lh + (lh - hh) / 2
+                ext.append((x, x + total, ly, ly + hh, size))
             for im in ims:
                 items.append((im, x, y0 + li * lh + (lh - im.height) / 2, t0 + n * step)); x += im.width + gap; n += 1
+        if ext:  # one white card behind the whole block
+            sz = min(e[4] for e in ext); px, py = int(sz * .55), int(sz * .32)
+            x0, x1 = min(e[0] for e in ext) - px, max(e[1] for e in ext) + px
+            y0_, y1_ = min(e[2] for e in ext) - py, max(e[3] for e in ext) + py
+            cw, ch = int(x1 - x0), int(y1_ - y0_); r = int(min(ch, sz * 1.6) * .32)
+            bg = Image.new('RGBA', (cw + 60, ch + 70), (0, 0, 0, 0))
+            sh = Image.new('RGBA', bg.size, (0, 0, 0, 0))
+            ImageDraw.Draw(sh).rounded_rectangle((30, 42, 30 + cw, 42 + ch), radius=r, fill=(60, 40, 20, 70))
+            bg.alpha_composite(sh.filter(ImageFilter.GaussianBlur(14)))
+            ImageDraw.Draw(bg).rounded_rectangle((30, 30, 30 + cw, 30 + ch), radius=r, fill=(255, 255, 255, 250))
+            items.insert(0, (bg, x0 - 30, y0_ - 30, t0 - .06))
         self.ticks += [it[3] for it in items]
         self.blocks.append(dict(items=items, t1=t1))
 

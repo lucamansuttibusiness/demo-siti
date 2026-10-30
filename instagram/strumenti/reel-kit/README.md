@@ -16,8 +16,8 @@ Le immagini vanno nella stessa cartella del `reel.json`. Esempio completo: `exam
 |---|---|
 | `palette` | `accent` (oro Inkasa `#B8853C`), `ink`, `paper`, `caption`, `on_accent` |
 | `font` | `sans` (Inter) · `serif` (Caladea) · `mono` (macchina da scrivere) |
-| `text_style` (parole tra `[ ]`) | `box` riquadro pieno · `marker` evidenziatore · `underline` sottolineato · `sticker` etichetta nera storta |
-| `caption_style` | `stroke` bianco con contorno · `pill` su pillola scura · `plain` testo scuro |
+| `text_style` (parole tra `[ ]`) | `box` riquadro pieno · `marker` evidenziatore · `underline` sottolineato · `sticker` etichetta nera storta · `accent` grassetto color oro |
+| `caption_style` | `stroke` bianco con contorno · `pill` su pillola scura · `plain` testo scuro · `card` riga intera su scheda bianca arrotondata con ombra (stili puliti) |
 | `badge_style` | `square` · `circle` · `outline` |
 | `grain` | `true`/`false` grana pellicola |
 | `outline` | `false` = non cercare il bordo bianco a sticker attorno agli oggetti oro (per stili puliti/chiari tipo Airbnb, dove il bordo si mangerebbe muri e sfondo). Anche per scena in `objects.outline` |
@@ -43,7 +43,7 @@ Ogni scena può sovrascrivere `font`, `text_style`, `caption_style`, `badge_styl
 Con foto realistiche (muri caldi, legno) il rilevamento può prendere zone sbagliate: `objects.roi` = lista di rettangoli `[x0,y0,x1,y1]` (coordinate 1080×1920) in cui cercare gli oggetti.
 Per oggetti grandi usare `swing/float/pulse/buzz` (quelli che compaiono dopo lasciano vedere la zona ricostruita sotto).
 
-**Ruoli testo**: `title` (scuro), `caption` (didascalia), `pill`.
+**Ruoli testo**: `title` (scuro), `caption` (didascalia), `pill`, `label` (etichetta piccola maiuscola spaziata, sopra i titoli).
 
 **Extra**: `stamp` (testo stampato su un oggetto: `text,obj,pos,rot,at`) · `glow` (`pos:"auto"|"auto_object"|[x,y]`, `color`, `radius`, `flicker`) · `sparkles` (`n`,`seed`) · `dust` · `logo_pill` (`y`,`at`,`name`,`sub`) · `pill` (`text`,`y`,`at`).
 
