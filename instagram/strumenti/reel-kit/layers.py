@@ -33,18 +33,22 @@ def fit(src):
     return big[top:top + H].copy()
 
 
-def split(path, accent='#B8853C', layout='card', fill='inpaint', min_area=250, detect=True):
+def split(path, accent='#B8853C', layout='card', fill='inpaint', min_area=250, detect=True, outline=True, roi=None):
     src = np.array(Image.open(path).convert('RGB'))
     big = fit(src)
     acc = hex2rgb(accent)
     lum = big.mean(axis=2)
     objs, keep = [], np.zeros(big.shape[:2], np.uint8)
     gold = accent_mask(big, acc)
+    if roi:  # only look for objects inside these rectangles [x0,y0,x1,y1] (1080x1920 coords)
+        rm = np.zeros_like(gold)
+        for x0, y0, x1, y1 in roi: rm[int(y0):int(y1), int(x0):int(x1)] = 1
+        gold = gold * rm
     if detect:
         g2 = cv2.morphologyEx(gold, cv2.MORPH_CLOSE, np.ones((9, 9), np.uint8))
         near = cv2.dilate(g2, np.ones((17, 17), np.uint8))
-        outline = (near > 0) & (lum > 205)
-        obj = ((g2 > 0) | outline).astype(np.uint8)
+        rim = ((near > 0) & (lum > 205)) if outline else np.zeros_like(g2, bool)
+        obj = ((g2 > 0) | rim).astype(np.uint8)
         obj = cv2.morphologyEx(obj, cv2.MORPH_CLOSE, np.ones((7, 7), np.uint8))
         n, lab, stats, _ = cv2.connectedComponentsWithStats(obj)
         for k in range(1, n):
@@ -53,6 +57,8 @@ def split(path, accent='#B8853C', layout='card', fill='inpaint', min_area=250, d
             if w > W * .85 and h > H * .6: continue  # whole background tinted: not an object
             m = (lab == k)
             if (g2[m] > 0).sum() < 80: continue
+            if w * h > .15 * W * H: continue  # warm wall / whole photo region, not an object
+            if min(w, h) < 28 or (g2[m] > 0).sum() < .18 * w * h: continue  # thin edges / sparse warm streaks (wood, door frames, card borders)
             keep[m] = 1
             alpha = cv2.GaussianBlur(m.astype(np.float32), (3, 3), 0)
             rgba = np.dstack([big, (alpha * 255).astype(np.uint8)])[y:y + h, x:x + w]
@@ -87,20 +93,20 @@ def split(path, accent='#B8853C', layout='card', fill='inpaint', min_area=250, d
     lum_p = pc.mean(); crb_p = pc[0] - pc[2]; cgb_p = pc[1] - pc[2]
     paper = (np.abs(bi.mean(axis=2) - lum_p) < 32) & (np.abs((bi[..., 0] - bi[..., 2]) - crb_p) < 9) & (np.abs((bi[..., 1] - bi[..., 2]) - cgb_p) < 8)
     if abs(crb_p) < 6:  # neutral (white/grey) paper: cannot be told apart from photo highlights
-        return split(path, accent, 'full', fill, min_area, detect)
+        return split(path, accent, 'full', fill, min_area, detect, outline, roi)
     cardm = (~paper).astype(np.uint8)
     cardm = cv2.morphologyEx(cardm, cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))
     cardm = cv2.morphologyEx(cardm, cv2.MORPH_CLOSE, np.ones((15, 15), np.uint8))
     n, lab, stats, _ = cv2.connectedComponentsWithStats(cardm)
     if n < 2:
-        return split(path, accent, 'full', fill, min_area, detect)
+        return split(path, accent, 'full', fill, min_area, detect, outline, roi)
     k = 1 + np.argmax(stats[1:, 4])
     cm = (lab == k).astype(np.uint8)
     cnts, _ = cv2.findContours(cm, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     cm = np.zeros_like(cm); cv2.drawContours(cm, cnts, -1, 1, -1)
     cm = cv2.erode(cm, np.ones((3, 3), np.uint8))
     if cm.sum() > .93 * W * H:  # basically full-bleed
-        return split(path, accent, 'full', fill, min_area, detect)
+        return split(path, accent, 'full', fill, min_area, detect, outline, roi)
     ca = cv2.GaussianBlur(cm.astype(np.float32), (5, 5), 0)
     ys, xs = np.where(cm > 0)
     x0, y0, x1, y1 = xs.min(), ys.min(), xs.max() + 1, ys.max() + 1

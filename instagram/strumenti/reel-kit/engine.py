@@ -214,9 +214,11 @@ class Reel:
     def _prep2(self, sc):
         oa = sc.get('objects', {}).get('anim', 'none')
         fill = sc.get('objects', {}).get('fill') or ('clone' if oa == 'drop' else 'inpaint')
-        key = (sc['img'], sc.get('layout', 'card'), fill, oa != 'none')
+        ol = sc.get('objects', {}).get('outline', self.cfg.get('outline', True))
+        roi = sc.get('objects', {}).get('roi')
+        key = (sc['img'], sc.get('layout', 'card'), fill, oa != 'none', ol, str(roi))
         if key not in self.layers:
-            L = split(os.path.join(self.base, sc['img']), '#%02x%02x%02x' % self.ACC, sc.get('layout', 'card'), fill, detect=oa != 'none')
+            L = split(os.path.join(self.base, sc['img']), '#%02x%02x%02x' % self.ACC, sc.get('layout', 'card'), fill, detect=oa != 'none', outline=ol, roi=roi)
             P = {}
             P['layout'] = L['layout']
             if L['layout'] == 'card':

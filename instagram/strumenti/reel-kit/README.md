@@ -20,6 +20,7 @@ Le immagini vanno nella stessa cartella del `reel.json`. Esempio completo: `exam
 | `caption_style` | `stroke` bianco con contorno · `pill` su pillola scura · `plain` testo scuro |
 | `badge_style` | `square` · `circle` · `outline` |
 | `grain` | `true`/`false` grana pellicola |
+| `outline` | `false` = non cercare il bordo bianco a sticker attorno agli oggetti oro (per stili puliti/chiari tipo Airbnb, dove il bordo si mangerebbe muri e sfondo). Anche per scena in `objects.outline` |
 | `paper_fill` | `true` = sfondo a tinta unita (`palette.paper`) invece della carta dell'immagine |
 | `sfx` | `{"whoosh":true,"pop":true,"ticks":true,"rip":true}` |
 | `voice` | file audio (es. `voce.m4a`) mixato sopra gli effetti |
@@ -39,6 +40,7 @@ Ogni scena può sovrascrivere `font`, `text_style`, `caption_style`, `badge_styl
  "extras":[...]}
 ```
 **Oggetti animati** = parti dell'immagine nel colore `accent` (oro). Animazioni: `swing` dondola · `jingle` tintinnio · `buzz` vibrazione · `drop` cade e rimbalza · `pop` attaccati uno a uno · `slide_in` entrano di lato · `spin` girano entrando · `float` galleggiano · `pulse` pulsano · `none`.
+Con foto realistiche (muri caldi, legno) il rilevamento può prendere zone sbagliate: `objects.roi` = lista di rettangoli `[x0,y0,x1,y1]` (coordinate 1080×1920) in cui cercare gli oggetti.
 Per oggetti grandi usare `swing/float/pulse/buzz` (quelli che compaiono dopo lasciano vedere la zona ricostruita sotto).
 
 **Ruoli testo**: `title` (scuro), `caption` (didascalia), `pill`.
