@@ -25,6 +25,7 @@ Le immagini vanno nella stessa cartella del `reel.json`. Esempio completo: `exam
 | `outline` | `false` = non cercare il bordo bianco a sticker attorno agli oggetti oro (per stili puliti/chiari tipo Airbnb, dove il bordo si mangerebbe muri e sfondo). Anche per scena in `objects.outline` |
 | `paper_fill` | `true` = sfondo a tinta unita (`palette.paper`) invece della carta dell'immagine |
 | `sfx` | `{"whoosh":true,"pop":true,"ticks":true,"rip":true}` |
+| `ambient` | suono neutro di fondo: `pad` (accordo caldo e morbido + aria) · `pad_low` (più grave); volume con `ambient_vol` (default 0,16) |
 | `voice` | file audio (es. `voce.m4a`) mixato sopra gli effetti |
 | `logo` | percorso logo (default `assets/logo.png`) |
 

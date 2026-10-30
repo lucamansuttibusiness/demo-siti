@@ -479,6 +479,19 @@ class Reel:
         rip = np.convolve(rng.randn(L) * (rng.rand(L) > .55) * np.exp(-tt * 4) * np.clip(tt / .03, 0, 1), np.ones(3) / 3, 'same')
         if sfx.get('rip', True):
             add(rip, .02, .35); add(rip, self.scenes[-1]['t0'] - .05, .3)
+        amb = self.cfg.get('ambient')
+        if amb:  # soft neutral background bed: warm sustained chord + airy room tone, slow fades
+            vol = self.cfg.get('ambient_vol', .16); t = np.arange(n) / sr
+            notes = {'pad': [110.0, 164.81, 220.0, 277.18, 329.63], 'pad_low': [87.31, 130.81, 174.61, 220.0, 261.63]}.get(amb, [110.0, 164.81, 220.0, 277.18, 329.63])
+            bed = np.zeros(n)
+            for k, f in enumerate(notes):
+                lfo = 1 + .35 * np.sin(2 * np.pi * (.05 + .013 * k) * t + k)
+                bed += (np.sin(2 * np.pi * f * t + .3 * np.sin(2 * np.pi * .21 * t + k)) + .3 * np.sin(2 * np.pi * f * 2.003 * t)) * lfo / (1 + k * .35)
+            bed /= np.abs(bed).max()
+            spec = np.fft.rfft(rng.randn(n)); fr = np.fft.rfftfreq(n, 1 / sr)
+            spec *= 1 / (1 + (fr / 450) ** 2); air = np.fft.irfft(spec, n); air /= np.abs(air).max()
+            env = np.clip(t / 2.5, 0, 1) * np.clip((self.dur - t) / 2.0, 0, 1)
+            out += (bed * .8 + air * .25) * env * vol
         out = np.tanh(out[:int(self.dur * sr)] * 1.2) * .8
         with wave.open(path, 'wb') as w:
             w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr); w.writeframes((out * 32767).astype('<i2').tobytes())
