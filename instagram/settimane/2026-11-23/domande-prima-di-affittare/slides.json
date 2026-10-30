@@ -36,5 +36,8 @@
    "p": "Scrivici VALUTAZIONE in DM: stima gratuita."
   }
  ],
- "stock": true
+ "stock": true,
+ "swap": {
+  "31817156.jpg": "37252541.jpg"
+ }
 }

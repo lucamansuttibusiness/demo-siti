@@ -20,6 +20,8 @@ Portare proprietari a scrivere **VALUTAZIONE** in DM (stima gratuita). Una sola 
   invito a scrivere VALUTAZIONE, 3-5 hashtag (#affittibrevi #propertymanagement #casevacanza + 1-2 locali/di formato).
 
 ## Stile grafico (caroselli e grafiche)
+> **Da novembre 2026 vale lo stile del sito** (bianco/nero, Switzer, colore pieno solo nella colonna centrale): vedi `strumenti/stile-sito/README.md`. Le regole qui sotto (navy/oro, temi dark/cream/gold) restano solo come storico.
+
 - 1080x1350, sfondo navy (#0E1A2B → #1C2D47), accento oro (#C9A24A / #E2C77E), testo crema (#F2ECE0).
 - Titoli in Cormorant Garamond 600, testo in Inter. Bordo oro sottile, numerazione "3/9" in alto,
   "INKASA.CASA" in basso.
