@@ -17,6 +17,7 @@ PAD = 360
 FONTS = {
     'sans': ('InterDisplay-ExtraBold.otf', 'Inter-Black.otf', 'InterDisplay-Medium.otf'),
     'serif': ('Caladea-Bold.ttf', 'Caladea-BoldItalic.ttf', 'Caladea-Bold.ttf'),
+    'cormorant': ('CormorantGaramond-SemiBold.ttf', 'CormorantGaramond-SemiBoldItalic.ttf', 'CormorantGaramond-Medium.ttf'),
     'mono': ('DejaVuSansMono-Bold.ttf', 'DejaVuSansMono-Bold.ttf', 'DejaVuSansMono-Bold.ttf'),
 }
 
@@ -170,6 +171,13 @@ class Reel:
             if b['t1'] is not None:
                 ok = 1 - clamp((t - b['t1']) / .18)
                 if ok <= 0: continue
+            if self.cfg.get('text_anim') == 'fade':
+                if b['t1'] is not None: ok = 1 - clamp((t - b['t1']) / .35)
+                for im, x, y, ts in b['items']:
+                    k = (t - ts) / .55
+                    if k <= 0: continue
+                    frame.alpha_composite(set_alpha(im, eoc(k) * ok), (int(x), int(y + (1 - eoc(k)) * 26)))
+                continue
             for im, x, y, ts in b['items']:
                 k = (t - ts) / .2
                 if k <= 0: continue
@@ -270,6 +278,8 @@ class Reel:
                 ex['img'] = self.logo_pill(ex.get('name', 'INKASA'), ex.get('sub', 'PROPERTY MANAGEMENT')); self.pops.append(t0 + ex.get('at', 3))
             elif ex['type'] == 'pill':
                 ex['img'] = self.pill(ex['text'], ex.get('size', 40), hex2rgb(ex['fill']) if ex.get('fill') else None); self.pops.append(t0 + ex.get('at', 3))
+            elif ex['type'] == 'logo':
+                lw = ex.get('w', 300); ex['img'] = self.logo.resize((lw, int(self.logo.height * lw / self.logo.width)), Image.LANCZOS)
             elif ex['type'] == 'stamp':
                 f = self.font(ex.get('size', 92), 1)
                 im = Image.new('RGBA', (900, 300), (0, 0, 0, 0))
@@ -407,6 +417,19 @@ class Reel:
     def render(self, t):
         sc = next((s for s in self.scenes if s['t0'] <= t < s['t1']), self.scenes[-1])
         lt = t - sc['t0']
+        frame = self.base_frame(sc, lt)
+        td = self.cfg.get('transition_dur', .6)
+        i = self.scenes.index(sc)
+        if self.cfg.get('transition') == 'fade' and i > 0 and lt < td:
+            pv = self.scenes[i - 1]
+            frame = Image.blend(self.base_frame(pv, pv['dur'] + lt), frame, eoc(lt / td) if lt > 0 else 0)
+        self.draw_blocks(frame, t)
+        if self.grain:
+            g = self.grain[int(t * self.fps) % 4]
+            frame = Image.composite(frame, Image.new('RGBA', (W, H), (40, 30, 20, 255)), g.point(lambda p: 255 if p > 14 else 235))
+        return frame.convert('RGB')
+
+    def base_frame(self, sc, lt):
         frame = self.scene_frame(sc, lt)
         if sc.get('badge'):
             kb = (lt - .12) / .28
@@ -425,11 +448,12 @@ class Reel:
                     x0, y0, sp = rs.randint(0, W), rs.randint(400, H), 20 + rs.rand() * 40
                     y = (y0 - lt * sp) % H; x = x0 + 10 * math.sin(lt + i); r = 1.5 + rs.rand() * 2.5
                     d.ellipse((x - r, y - r, x + r, y + r), fill=(255, 255, 255, int(120 + 100 * rs.rand())))
-        self.draw_blocks(frame, t)
-        if self.grain:
-            g = self.grain[int(t * self.fps) % 4]
-            frame = Image.composite(frame, Image.new('RGBA', (W, H), (40, 30, 20, 255)), g.point(lambda p: 255 if p > 14 else 235))
-        return frame.convert('RGB')
+            elif ex['type'] == 'logo' and k > 0:
+                frame.alpha_composite(set_alpha(ex['img'], eoc(k / 1.6)), (int((W - ex['img'].width) / 2), int(ex.get('y', 260) - ex['img'].height / 2 + (1 - eoc(k / 1.6)) * 20)))
+            elif ex['type'] == 'rule' and k > 0:
+                L_ = ex.get('w', 120) * eoc(k / 1.8); y = ex.get('y', 300)
+                ImageDraw.Draw(frame).rectangle((W / 2 - L_ / 2, y, W / 2 + L_ / 2, y + ex.get('h', 3)), fill=self.ACC + (255,))
+        return frame
 
     # ---------- audio ----------
     def audio(self, path):

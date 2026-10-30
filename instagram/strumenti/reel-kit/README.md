@@ -15,10 +15,12 @@ Le immagini vanno nella stessa cartella del `reel.json`. Esempio completo: `exam
 | chiave | valori |
 |---|---|
 | `palette` | `accent` (oro Inkasa `#B8853C`), `ink`, `paper`, `caption`, `on_accent` |
-| `font` | `sans` (Inter) · `serif` (Caladea) · `mono` (macchina da scrivere) |
+| `font` | `sans` (Inter) · `serif` (Caladea) · `cormorant` (Cormorant Garamond, font del brand: premium) · `mono` (macchina da scrivere) |
 | `text_style` (parole tra `[ ]`) | `box` riquadro pieno · `marker` evidenziatore · `underline` sottolineato · `sticker` etichetta nera storta · `accent` grassetto color oro |
 | `caption_style` | `stroke` bianco con contorno · `pill` su pillola scura · `plain` testo scuro · `card` riga intera su scheda bianca arrotondata con ombra (stili puliti) |
 | `badge_style` | `square` · `circle` · `outline` |
+| `text_anim` | `pop` (default, parole che rimbalzano) · `fade` (dissolvenza lenta con leggero rialzo: stile premium) |
+| `transition` | `fade` = dissolvenza incrociata tra le scene (`transition_dur`, default 0,6 s); con `entry:"none"` |
 | `grain` | `true`/`false` grana pellicola |
 | `outline` | `false` = non cercare il bordo bianco a sticker attorno agli oggetti oro (per stili puliti/chiari tipo Airbnb, dove il bordo si mangerebbe muri e sfondo). Anche per scena in `objects.outline` |
 | `paper_fill` | `true` = sfondo a tinta unita (`palette.paper`) invece della carta dell'immagine |
@@ -45,7 +47,7 @@ Per oggetti grandi usare `swing/float/pulse/buzz` (quelli che compaiono dopo las
 
 **Ruoli testo**: `title` (scuro), `caption` (didascalia), `pill`, `label` (etichetta piccola maiuscola spaziata, sopra i titoli).
 
-**Extra**: `stamp` (testo stampato su un oggetto: `text,obj,pos,rot,at`) · `glow` (`pos:"auto"|"auto_object"|[x,y]`, `color`, `radius`, `flicker`) · `sparkles` (`n`,`seed`) · `dust` · `logo_pill` (`y`,`at`,`name`,`sub`) · `pill` (`text`,`y`,`at`).
+**Extra**: `stamp` (testo stampato su un oggetto: `text,obj,pos,rot,at`) · `glow` (`pos:"auto"|"auto_object"|[x,y]`, `color`, `radius`, `flicker`) · `sparkles` (`n`,`seed`) · `dust` · `logo_pill` (`y`,`at`,`name`,`sub`) · `logo` (solo logo, `w`,`y`,`at`) · `rule` (filetto oro che si allarga, `y`,`w`,`h`,`at`) · `pill` (`text`,`y`,`at`).
 
 ## Zone sicure Instagram
 Testi importanti tra y 220 e y 1600 (sotto 1650 ci sono didascalia e pulsanti dell'app).
