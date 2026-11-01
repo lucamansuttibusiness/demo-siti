@@ -100,3 +100,9 @@ con la stessa angolazione (controllare `registro.md`).
 
 ## Formati da provare
 _(aggiornato ogni mese dalla ricerca)_
+
+### Novembre 2026
+Dati generali di settore, non specifici degli affitti brevi: da verificare sui nostri risultati.
+- **Carosello e reel gemelli** (in prova 4-6 dicembre): stessa idea raccontata in un carosello e, due giorni dopo, in un reel. Inman riporta dall'analisi Hootsuite 2026 un 25-35% di interazioni in più per i contenuti riproposti in più formati. [Fonte](https://www.inman.com/2026/07/06/latest-data-reveals-social-media-engagement/)
+- **Scheda zona**: un carosello da salvare su Lignano o Sauze d'Oulx (stagioni, tipo di ospiti, cosa conta per chi ha casa lì), solo con dati verificati. Inman cita le guide di quartiere tra i contenuti educativi che raccolgono salvataggi; i caroselli ne ottengono circa il doppio dei reel. [Fonte](https://www.inman.com/2026/07/06/latest-data-reveals-social-media-engagement/)
+- **Passeggiata in zona**: reel di 15 s camminando sul posto, con una sola informazione utile a voce. Con meno di 50k follower i reel portano più copertura dei caroselli (Metricool/HypeAuditor via Inman); l'idea della visita viene dagli esempi di Lodgify, senza numeri. [Fonte](https://encyclopedia.lodgify.com/instagram-marketing-for-vacation-rentals)

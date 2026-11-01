@@ -24,3 +24,9 @@ Stato: `bozza Metricool` → `pubblicato` (o `da girare` per i reel).
 | 2026-11-25 | reel | opinione | parlato in camera | errore comune | prezzi dinamici | "Il prezzo fisso ti costa notti" | da girare | |
 | 2026-11-27 | carosello | autovalutazione | domande | cream | casa pronta per affitti brevi | "La tua casa è pronta?" | bozza Metricool | |
 | 2026-11-29 | reel | dietro le quinte | senza parlato | scena in corso | giornata di cambio ospiti | "10:00 check-out → 15:00 tutto pronto" | da girare | |
+| 2026-11-30 | carosello | consiglio | foto a tutto schermo | photo (stock), copertina foto | foto dell'annuncio | "Le 4 foto che fanno scegliere la tua casa" | pronto, bozza Metricool da caricare (403) | |
+| 2026-12-02 | reel | opinione | parlato in camera | 20 Permission | proprietario lontano dalla casa | "Non devi abitare vicino alla tua seconda casa" | da girare | |
+| 2026-12-04 | carosello | offerta | come lavoriamo | dark, copertina nera | valutazione gratuita | "4 cose che guardiamo in una valutazione" (gemello del reel del 6) | pronto, bozza Metricool da caricare (403) | |
+| 2026-12-06 | reel | dietro le quinte | POV | 18 Cold Open Demo | valutazione gratuita | "POV: hai appena scritto VALUTAZIONE" (gemello del carosello del 4) | da girare | |
+
+Nota 2026-11-01: risultati non aggiornati, Metricool ha risposto 403 sul brand 7743456. Il connettore vede solo il brand volleyinkasa.

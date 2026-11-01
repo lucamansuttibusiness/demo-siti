@@ -4,7 +4,7 @@ Caroselli e copertine nello stile del sito nuovo: bianco e nero, Switzer stretto
 numeri giganti. Nel feed il **colore pieno (nero) sta solo nella colonna centrale**: un carosello su tre
 ha la copertina nera col numero, gli altri foto piena luminosa (contando anche i reel che finiscono in griglia).
 
-Preparazione (una volta): `npm i playwright @carrot-kpi/switzer-font @fontsource-variable/archivo` in questa cartella.
+Preparazione (una volta): `npm i @carrot-kpi/switzer-font @fontsource-variable/archivo` in questa cartella, poi `NODE_PATH=$(npm root -g)` per usare il Playwright già installato (una copia locale non trova il browser).
 
 - `copertine3.js` — copertine (`k: 'black'` con numero, oppure `k: 'photo'`), output in `out3/<data>.jpg`.
 - `carosello-sito.js slides.json copertina.jpg cartella/` — slide interne dagli stessi `slides.json`
