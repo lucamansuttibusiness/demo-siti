@@ -7,6 +7,8 @@ const STOCK = path.resolve(__dirname, '../../media/stock') + '/';
 const SW = 'file://' + path.resolve(__dirname, 'node_modules/@carrot-kpi/switzer-font/files/switzer-latin');
 const AR = 'file://' + path.resolve(__dirname, 'node_modules/@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2');
 const covers = [
+  { d: '2026-12-04', k: 'black', n: '4.', h: 'Cose che guardiamo<br>in una valutazione' },
+  { d: '2026-11-30', k: 'photo', h: 'Le 4 foto che fanno<br>scegliere la tua casa', img: '19737857.jpg', pos: '50% 50%' },
   { d: '2026-11-27', k: 'photo', h: 'La tua casa è pronta<br>per gli affitti brevi?', img: '31817156.jpg', pos: '50% 50%' },
   { d: '2026-11-23', k: 'black', n: '5.', h: 'Dettagli che gli ospiti<br>notano subito' },
   { d: '2026-11-20', k: 'photo', h: 'La casa lavora.<br>Tu no.', img: '19836798.jpg', pos: '50% 50%' },

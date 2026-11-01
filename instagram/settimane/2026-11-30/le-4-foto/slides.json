@@ -1,0 +1,14 @@
+{
+ "theme": "photo",
+ "stock": true,
+ "slides": [
+  {"t":"cover","h":"Le 4 foto che fanno scegliere la tua casa"},
+  {"t":"stake","h":"L'ospite sceglie con gli occhi.","p":"Prima di leggere una riga scorre le foto. Queste quattro sono da curare per prime."},
+  {"t":"photo","image":"../../../media/stock/2227832.jpg","h":"1. Il soggiorno","p":"Di giorno, tende aperte, luci accese. Deve sembrare grande e pronto."},
+  {"t":"photo","image":"../../../media/stock/22469110.jpg","h":"2. Il letto","p":"Biancheria stirata, cuscini in ordine. Deve far venire voglia di restare."},
+  {"t":"photo","image":"../../../media/stock/6920614.jpg","h":"3. Il bagno","p":"Asciugamani piegati, nessun oggetto personale. Qui l'ospite controlla tutto."},
+  {"t":"photo","image":"../../../media/stock/31762677.jpg","h":"4. Il motivo per venire","p":"La vista, il terrazzo, il camino: quello che ha solo la tua casa."},
+  {"t":"recap","h":"Le 4 foto","items":["Soggiorno luminoso","Letto impeccabile","Bagno in ordine","Quello che ha solo la tua casa"]},
+  {"t":"cta","h":"Quanto può rendere la tua casa?","p":"Scrivici VALUTAZIONE in DM: stima gratuita."}
+ ]
+}

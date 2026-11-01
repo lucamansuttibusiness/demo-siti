@@ -1,0 +1,14 @@
+{
+ "theme": "dark",
+ "stock": true,
+ "slides": [
+  {"t":"cover","h":"Cose che guardiamo in una valutazione"},
+  {"t":"stake","h":"Una stima parte dalla tua casa.","p":"Non da una media trovata online. Bastano quattro informazioni."},
+  {"t":"step","n":"01","label":"Dove si trova","h":"Mare o montagna","p":"Cambiano ospiti, stagione e prezzi. Lignano lavora d'estate, Sauze d'Oulx d'inverno.","img":"../../../media/stock/16292080.jpg"},
+  {"t":"step","n":"02","label":"Che immobile è","h":"Non tutte le case sono uguali","p":"Appartamento, villa, casa indipendente o baita: ognuna ha i suoi ospiti.","img":"../../../media/stock/34574357.jpg"},
+  {"t":"step","n":"03","label":"Quante camere","h":"Chi può dormire qui","p":"Una coppia, una famiglia, un gruppo di amici sulla neve. Il soggiorno cambia, e anche il prezzo."},
+  {"t":"step","n":"04","label":"Quando è libera","h":"Decidi tu le date","p":"Tutto l'anno, solo d'estate o solo d'inverno. Quando la vuoi per te, resta tua."},
+  {"t":"recap","h":"Le 4 informazioni","items":["Dove si trova","Che immobile è","Quante camere ha","Quando è libera"]},
+  {"t":"cta","h":"Le hai già tutte e quattro.","p":"Scrivici VALUTAZIONE in DM: stima gratuita."}
+ ]
+}
