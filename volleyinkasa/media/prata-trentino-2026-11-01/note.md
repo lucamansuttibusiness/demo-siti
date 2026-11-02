@@ -12,3 +12,5 @@ Fotogrammi presi dai video di Luca (alta nitidezza, 1080x1920 salvo il roll-up c
 | palloni-in-aria-tribuna, palazzetto-vista, tribuna-pubblico, pubblico-bordo, panchine | palazzetto e pubblico |
 | bordocampo-pallone, luca-bordocampo | bordo campo con il pallone Inkasa |
 | maxischermo | il pallone Inkasa sul maxischermo |
+| campo-palazzetto | campo e tribune viste dal bordo |
+| pallone-inkasa-mani | primo piano del pallone Inkasa in mano a Michieletto |
