@@ -32,7 +32,7 @@ function body(s, i) {
       return { dark: false, html: `${head(i)}<div class="label">Mito</div><h2 class="myth">${esc(s.myth)}</h2><div class="label mt">Realtà</div><h2 class="truth">${esc(s.truth)}</h2><div class="num big">${i}.</div>` };
     case 'faq':
       return { dark: false, html: `${head(i)}<div class="label">Domanda</div><h2>${esc(s.q)}</h2><p class="txt">${esc(s.a)}</p>` +
-        (s.img ? `<div class="side" style="background-image:url('${pic(s.img)}')"></div>${ILL}` : '') + `<div class="num${s.img ? '' : ' big'}">${i}.</div>` };
+        (s.img ? `<div class="side" style="background-image:url('${pic(s.img)}')"></div>${ILL}` : '') + `<div class="num${s.img ? '' : ' big'}">${s.n ? num(s.n) : i + '.'}</div>` };
     case 'check':
       return { dark: false, html: `${head(i)}<h2>${esc(s.h)}</h2><ul class="list">${s.items.map((x, k) => `<li><span>${String(k + 1).padStart(2, '0')}</span>${esc(x)}</li>`).join('')}</ul>` +
         (s.img ? `<div class="strip" style="background-image:url('${pic(s.img)}')"></div>${ILL}` : '') };

@@ -1,0 +1,47 @@
+{
+ "theme": "gold",
+ "stock": true,
+ "slides": [
+  {
+   "t": "cover",
+   "h": "4 domande che ci fanno i proprietari",
+   "img": "../../../media/stock/19689230.jpg"
+  },
+  {
+   "t": "stake",
+   "h": "Prima di affidarci la casa, tutti chiedono le stesse cose.",
+   "p": "Ecco le risposte, senza giri di parole."
+  },
+  {
+   "t": "faq",
+   "q": "Posso usare la casa quando voglio?",
+   "a": "Sì. Blocchi le date che ti servono e in quei giorni la casa resta tua.",
+   "img": "../../../media/stock/35189706.jpg",
+   "n": "01"
+  },
+  {
+   "t": "faq",
+   "q": "Chi pulisce tra un ospite e l'altro?",
+   "a": "Ce ne occupiamo noi: pulizie, biancheria e controllo della casa a ogni cambio.",
+   "n": "02"
+  },
+  {
+   "t": "faq",
+   "q": "Come faccio a sapere cosa succede?",
+   "a": "Ricevi un report ogni mese. E se serve qualcosa, ci senti prima.",
+   "n": "03"
+  },
+  {
+   "t": "faq",
+   "q": "Quanto costa?",
+   "a": "Dipende dalla casa. Te lo diciamo con la valutazione, che è gratuita.",
+   "img": "../../../media/stock/6585741.jpg",
+   "n": "04"
+  },
+  {
+   "t": "cta",
+   "h": "Hai un'altra domanda?",
+   "p": "Scrivici VALUTAZIONE in DM e rispondiamo anche a quella."
+  }
+ ]
+}

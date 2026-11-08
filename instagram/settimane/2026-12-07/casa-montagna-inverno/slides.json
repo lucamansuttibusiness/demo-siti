@@ -1,0 +1,15 @@
+{
+ "theme": "cream",
+ "stock": true,
+ "slides": [
+  {"t":"cover","h":"Casa in montagna: 5 cose prima della neve","img":"../../../media/stock/2725675.jpg"},
+  {"t":"stake","h":"Il primo ospite arriva con la neve.","p":"Stanco, con gli sci e il buio alle cinque. Quello che non hai sistemato prima lo trova lui."},
+  {"t":"step","n":"01","label":"Consiglio","h":"Fai controllare il riscaldamento","p":"Caldaia, termosifoni, termostato. Una casa fredda all'arrivo rovina tutta la settimana.","img":"../../../media/stock/19737857.jpg"},
+  {"t":"step","n":"02","label":"Consiglio","h":"Dai un posto a sci e scarponi","p":"Un angolo all'ingresso o in cantina, con rastrelliera. Altrimenti finiscono in camera."},
+  {"t":"step","n":"03","label":"Consiglio","h":"Prepara l'ingresso al bagnato","p":"Tappeto grande, appendiabiti, un posto per le scarpe. La neve entra con gli ospiti."},
+  {"t":"step","n":"04","label":"Consiglio","h":"Metti una coperta in più","p":"Plaid sul divano e piumoni pesanti. Dormire al caldo è quello che ricordano.","img":"../../../media/stock/8082228.jpg"},
+  {"t":"step","n":"05","label":"Consiglio","h":"Spiega l'arrivo con la neve","p":"Dove parcheggiare, come raggiungere la porta, chi chiamare se la strada è bianca."},
+  {"t":"recap","h":"Prima della neve","items":["Riscaldamento controllato","Posto per sci e scarponi","Ingresso pronto al bagnato","Coperte in più","Istruzioni d'arrivo"]},
+  {"t":"cta","h":"Hai una casa in montagna?","p":"Scrivici VALUTAZIONE in DM: stima gratuita."}
+ ]
+}
