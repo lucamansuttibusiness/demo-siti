@@ -3,570 +3,427 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Beautiful Hair by Martina · Manzano</title>
+<title>Beautiful Hair by Martina · Parrucchiera a Manzano</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Beautiful Hair by Martina, parrucchiera in via Zorutti 40 a Manzano: taglio, piega, colore e colpi di sole per donna, taglio e barba per uomo.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="Beautiful Hair by Martina, parrucchiera e barbiere in via Zorutti 40 a Manzano: taglio, colore e piega per lei, taglio e barba per lui. Prenoti su WhatsApp.">
+<meta name="theme-color" content="#a3124a">
+<link rel="preload" href="fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/reception.jpg" as="image" fetchpriority="high">
+<script>document.documentElement.className='js';</script>
 <style>
-/* Idea: the page is a hairdresser's colour chart. The hero is a ring of hair
-   swatches; tapping one sets the page's accent and goes straight into the
-   WhatsApp booking message. Everything else stays quiet. */
+/* Idea: the salon's appointment card is the pinned thing. It opens the page as
+   the hero, shrinks to a stub that stays in the corner, and fills in with the
+   service and the day the visitor taps. */
+@font-face{font-family:'Instrument Sans';src:url('fonts/instrument-sans-latin-wght-normal.woff2') format('woff2');font-weight:400 700;font-display:swap}
 :root{
   color-scheme:light;
-  --foil:#ecebef;      /* aluminium foils */
-  --mist:#dedce4;      /* second ground */
-  --cape:#221f2e;      /* the black-violet salon cape */
-  --ink2:#5d586b;      /* secondary text */
-  --chrome:#a9a6b3;    /* scissors and ring */
-  --white:#ffffff;
-  --shade:#c49a5f;     /* chosen hair colour, set by JS */
-  --on-shade:#221f2e;
+  --bg:#a3124a;          /* the pink of the logo stitched on the salon's shirts, deepened to a field */
+  --surface:#8f1041;
+  --ink:#ffffff;
+  --muted:#f6c6d6;
+  --accent:#ffdbe6;
+  --accent-ink:#8a0e3e;
+  --field:#2a2a2a;
+  --field-ink:#ffffff;
+  --field-muted:#b9b4b6;
 
-  --display:'Gloock', 'Bodoni 72', Didot, Georgia, serif;
-  --text:'Figtree', 'Avenir Next', system-ui, sans-serif;
+  --face:'Instrument Sans','Helvetica Neue',Arial,sans-serif;
+  --step-small:clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body:clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead:clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head:clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --step-display:clamp(3.5rem, 8vw, 8.125rem);
 
-  --s-small:.875rem;
-  --s-body:clamp(1.0625rem, 1rem + .2vw, 1.1875rem);
-  --s-lead:clamp(1.1875rem, 1.05rem + .55vw, 1.4375rem);
-  --s-head:clamp(2.25rem, 1.5rem + 2.8vw, 4rem);
-  --s-display:clamp(2.75rem, 1.6rem + 4.2vw, 5.75rem);
-
-  --gut:max(clamp(20px, 5vw, 80px), env(safe-area-inset-left, 0px));
-  --ease:cubic-bezier(0.23, 1, 0.32, 1);
+  --m:max(clamp(16px, 2.2vw, 32px), env(safe-area-inset-left, 0px));
+  --gap:clamp(120px, 14vw, 220px);
+  --out:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--foil);color:var(--cape);font-family:var(--text);font-size:var(--s-body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit}
-h1,h2,h3{font-weight:400;text-wrap:balance}
-h2{font-family:var(--display);font-size:var(--s-head);line-height:1.02}
-p{max-width:60ch}
-:focus-visible{outline:2px solid var(--cape);outline-offset:3px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+html{-webkit-text-size-adjust:100%;scroll-padding-bottom:140px}
+body{background:var(--bg);color:var(--ink);font:400 var(--step-body)/1.45 var(--face);-webkit-font-smoothing:antialiased;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.18em}
+button{font:inherit;color:inherit;touch-action:manipulation}
+h1,h2,h3{font-weight:700;letter-spacing:-.02em;line-height:.9;text-wrap:balance}
+:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+.skip{position:absolute;left:var(--m);top:-80px;z-index:50;background:var(--accent);color:var(--accent-ink);padding:12px 16px}
+.skip:focus{top:12px}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:52px;padding:0 1.5em;border-radius:999px;background:var(--cape);color:var(--foil);font:600 1rem/1 var(--text);text-decoration:none;border:0;cursor:pointer;transition:background-color 200ms ease, transform 160ms var(--ease)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:52px;padding:0 1.4em;background:var(--bg);color:var(--ink);font-weight:500;text-decoration:none;border:0;cursor:pointer;transition:transform 160ms var(--out), background-color 160ms ease}
 .btn:active{transform:scale(.97)}
-.btn svg{width:20px;height:20px;fill:currentColor}
-@media (hover:hover) and (pointer:fine){.btn:hover{background:#3a3550}}
-.link{font-weight:500;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:var(--field)}}
 
-/* ---------- hero ---------- */
-.hero{min-height:100svh;display:grid;grid-template-rows:auto 1fr;padding:24px var(--gut) clamp(40px,6vh,72px)}
-.top{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:var(--s-small)}
-.mark{display:flex;flex-direction:column;text-decoration:none;line-height:1}
-.mark b{font-family:var(--display);font-weight:400;font-size:1.6rem}
-.mark span{font-size:.8125rem;color:var(--ink2);margin-top:3px;letter-spacing:.02em}
-.top nav{display:flex;gap:24px;align-items:center}
-.top nav a{text-decoration:none}
-.top nav .tel{font-weight:600}
+/* entrances: parts arrive in reading order; visible by default without script */
+.js [data-r]{opacity:0;transform:translateY(24px)}
+.js [data-r].in{opacity:1;transform:none;transition:opacity 700ms ease var(--d,0ms), transform 900ms var(--out) var(--d,0ms)}
+.js [data-r="mask"]{transform:none;clip-path:inset(0 0 100% 0)}
+.js [data-r="mask"].in{clip-path:inset(0);transition:clip-path 1100ms var(--out) var(--d,0ms), opacity 300ms ease var(--d,0ms)}
 
-.hero-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:center;padding-top:clamp(24px,5vh,56px)}
-.hero h1{font-family:var(--display);font-size:var(--s-display);line-height:.98;letter-spacing:-.01em}
-.hero .lead{font-size:var(--s-lead);line-height:1.4;margin-top:24px;max-width:32ch;color:var(--ink2)}
-.hero-actions{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;margin-top:32px}
-.status{display:flex;align-items:center;gap:10px;font-size:var(--s-small)}
-.dot{width:9px;height:9px;border-radius:50%;background:#3f8a57;flex:none}
-.dot.off{background:#b5544a}
+/* ---------- hero: card over a dim room ---------- */
+.hero{position:relative;height:170svh}
+.hero-stage{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center;background:var(--field)}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.62);transform:scale(1.04)}
+.card{position:relative;z-index:1;width:min(55vw, 900px);min-height:62svh;background:var(--accent);color:var(--accent-ink);padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;transform-origin:0 100%;will-change:transform}
+.card h1{display:flex;justify-content:space-between;gap:16px;font-size:clamp(1.75rem, 3.4vw, 3.25rem);line-height:1}
+.card-body{display:grid;gap:28px}
+.facts{list-style:none;font-size:var(--step-lead);line-height:1.12;font-weight:500}
+.card-say{font-size:var(--step-lead);line-height:1.2;max-width:30ch}
+.card-foot{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;font-size:var(--step-small)}
+.card-foot > :last-child{justify-self:end}
+.status{display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;background:#1f8f4e;flex:none}
+.dot.off{background:var(--accent-ink)}
 
-/* the swatch ring */
-.chart{position:relative;padding-top:22px}
-.ring{position:absolute;left:-2%;right:-2%;top:10px;height:14px;border-radius:7px;background:linear-gradient(#d9d7df,#8f8c99 60%,#c5c3cc);box-shadow:inset 0 -1px 0 rgba(0,0,0,.15)}
-.locks{position:relative;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:clamp(6px,1vw,14px);list-style:none}
-.lock{position:relative}
-.lock button{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;width:100%;transform-origin:50% 0;transition:transform 420ms var(--ease)}
-.lock .tab{width:100%;z-index:1;padding:28px 0 8px;background:var(--white);border-radius:6px 6px 2px 2px;text-align:center;font-size:.75rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--cape);position:relative}
-.lock .tab::before{content:"";position:absolute;top:6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--foil);box-shadow:inset 0 1px 2px rgba(0,0,0,.25)}
-.lock .hair{display:block;width:160%;margin:-2px -30% 0;aspect-ratio:384/1000;pointer-events:none}
-.lock .name{margin-top:12px;font-size:.8125rem;line-height:1.25;text-align:center;color:var(--ink2);min-height:2.5em}
-.lock button[aria-pressed="true"]{transform:translateY(-14px)}
-.lock button[aria-pressed="true"] .tab{background:var(--cape);color:var(--foil)}
-.lock button[aria-pressed="true"] .name{color:var(--cape);font-weight:600}
-.lock button:focus-visible .tab{outline:2px solid var(--cape);outline-offset:2px}
-@media (hover:hover) and (pointer:fine){.lock button:hover{transform:translateY(-8px) rotate(-1.5deg)}.lock button[aria-pressed="true"]:hover{transform:translateY(-14px)}}
-.pick{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;font-size:var(--s-small);color:var(--ink2)}
-.pick strong{color:var(--cape);font-weight:600}
-.pick .chip{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:999px;background:var(--white);color:var(--cape)}
-.pick .chip i{width:22px;height:22px;border-radius:50%;background:var(--shade);transition:background-color 400ms ease}
+/* the stub the card turns into */
+.stub{position:fixed;left:var(--m);bottom:max(16px, env(safe-area-inset-bottom, 0px));z-index:30;width:min(300px, calc(100vw - 2 * var(--m)));background:var(--accent);color:var(--accent-ink);padding:14px 14px 14px 16px;display:none;grid-template-columns:1fr auto;align-items:center;gap:12px}
+.stub.on{display:grid}
+.stub b{display:block;font-size:var(--step-small);font-weight:700}
+.stub span{display:block;font-size:var(--step-small);line-height:1.3}
+.stub .btn{min-height:44px;padding:0 1em;font-size:var(--step-small)}
+
+/* ---------- showcase: one frame, three distances ---------- */
+.show{position:relative;height:300svh}
+.show-stage{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 var(--m);text-align:center}
+.show h2{display:contents}
+.show h2 span{display:block;font-size:var(--step-display);position:relative;z-index:2}
+.show .h-a{order:1}.frame{order:2}.show-cap{order:4}
+.show .h-b{order:3;margin-top:-.3em;transition:opacity 500ms ease, transform 800ms var(--out)}
+.js .show[data-stage="0"] .h-b{opacity:0;transform:translateY(.4em)}
+.frame{--fw:min(30vw, 46svh);width:var(--fw);aspect-ratio:4/5;overflow:hidden;margin-top:20px;background:var(--surface);position:relative;z-index:1}
+.frame img{width:100%;height:100%;object-fit:cover;transition:transform 900ms var(--out), transform-origin 900ms var(--out);transform-origin:50% 50%}
+.show[data-stage="1"] .frame img{transform:scale(1.8);transform-origin:78% 40%}
+.show[data-stage="2"] .frame img{transform:scale(2.9);transform-origin:14% 20%}
+.show-cap{position:absolute;left:calc(50% + min(15vw, 23svh) + 32px);top:34%;max-width:28ch;text-align:left;transition:opacity 500ms ease, transform 800ms var(--out)}
+.js .show:not([data-stage="2"]) .show-cap{opacity:0;transform:translateY(16px)}
+
+/* ---------- list: services and hours at one size ---------- */
+.list{background:var(--field);color:var(--field-ink);padding:var(--gap) var(--m)}
+.list h2{font-size:var(--step-lead);font-weight:400;letter-spacing:0;line-height:1.5;color:var(--accent);padding:72px 0 20px;position:sticky;top:0;background:var(--field);z-index:2}
+.list h2:first-of-type{padding-top:0}
+.line{width:100%;border-collapse:collapse;table-layout:fixed;font-size:var(--step-lead);line-height:1.5;font-variant-numeric:tabular-nums}
+.line col.c1{width:33%}.line col.c2{width:33%}.line col.c4{width:7.5em}
+.line th,.line td{font-weight:400;text-align:left;padding:0;vertical-align:baseline;overflow-wrap:anywhere}
+.line td:last-child{text-align:right}
+.line tr{cursor:pointer;transition:background-color 160ms ease, color 160ms ease}
+@media (hover:hover) and (pointer:fine){.line tr:hover{background:#353535}}
+.line tr.on{background:var(--accent);color:var(--accent-ink)}
+.line tr.shut{color:var(--field-muted);cursor:default}
+@media (hover:hover) and (pointer:fine){.line tr.shut:hover{background:none}}
+.line tr.today th{font-weight:700}
+.pick{background:none;border:0;cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em;padding:0 0 0 .5em;min-height:1.5em}
+.pick:active{transform:scale(.97)}
+.list-note{margin-top:72px;max-width:44ch;color:var(--field-muted)}
+.list-note a{color:var(--field-ink)}
+
+/* ---------- about: pinned title, portraits pass ---------- */
+.about{position:relative;padding:0 var(--m)}
+.about-title{position:sticky;top:0;height:100svh;display:grid;place-items:center;z-index:2;pointer-events:none}
+.about h2{font-size:clamp(4.5rem, 10.4vw, 10rem);line-height:.85;text-align:center}
+.people{list-style:none;margin-top:-100svh;padding:30svh 0 30svh;display:grid;gap:12svh}
+.people li{width:24vw;margin-left:0}
+.people li:nth-child(even){margin-left:auto;margin-right:0}
+.people figure{aspect-ratio:4/5;overflow:hidden;background:var(--surface)}
+.people img{width:100%;height:100%;object-fit:cover;filter:brightness(.8);transition:transform 1200ms var(--out)}
+@media (hover:hover) and (pointer:fine){.people li:hover img{transform:scale(1.04)}}
+.people h3{font-size:var(--step-body);letter-spacing:0;line-height:1.3;margin-top:14px}
+.people .role{font-size:var(--step-small);color:var(--muted)}
+.people p.say{margin-top:8px;max-width:280px}
+
+/* ---------- gallery: full-bleed sequence ---------- */
+.gallery{position:relative}
+.shot{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--field)}
+.shot img{width:100%;height:100%;object-fit:cover}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:120px var(--m) 104px;background:linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.62));color:#fff} /* taste-skill-ignore: neutral scrim under a caption on a photograph */
+.gallery-head{display:grid;grid-template-columns:repeat(12, minmax(0,1fr));gap:24px;align-items:end;padding:40px var(--m) 40px}
+.gallery-head h2{grid-column:1/8;font-size:var(--step-display)}
+.gallery-head p{grid-column:9/13;font-size:var(--step-lead);line-height:1.25}
+.shot p{max-width:46ch}
+
+/* ---------- contact: the number as display type ---------- */
+.contact{background:var(--accent);color:var(--accent-ink);min-height:100svh;padding:var(--m);display:grid;grid-template-rows:auto 1fr auto;gap:32px;position:relative;z-index:3}
+.contact h2{font-size:var(--step-lead);font-weight:500;letter-spacing:0;line-height:1.25;max-width:24ch;padding-top:calc(var(--gap) / 3)}
+.chosen{margin-top:12px;max-width:40ch}
+.number{align-self:end;display:block;font-weight:400;letter-spacing:-.04em;line-height:.9;font-size:14.2vw;white-space:nowrap;text-decoration:none;font-variant-numeric:tabular-nums;transition:color 200ms ease}
+@media (hover:hover) and (pointer:fine){.number:hover{color:var(--bg)}}
+.contact-foot{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;font-size:var(--step-small);padding-bottom:12vh}
+.contact-foot ul{list-style:none;display:flex;gap:20px;flex-wrap:wrap}
+
+/* ---------- footer: name first, places under it ---------- */
+footer{background:var(--field);color:var(--field-ink);padding:var(--m) var(--m) 28px;min-height:90svh;display:flex;flex-direction:column;position:relative;z-index:3}
+.foot-name{font-weight:700;letter-spacing:-.04em;line-height:.9;font-size:13.4vw;white-space:nowrap}
+.foot-row{margin-top:72px;display:grid;grid-template-columns:repeat(12, minmax(0,1fr));gap:24px}
+.places{grid-column:1/6;list-style:none;font-size:var(--step-head);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--accent)}
+.places a{text-decoration:none}
+@media (hover:hover) and (pointer:fine){.places a:hover{text-decoration:underline;text-decoration-thickness:3px}}
+.foot-cols{grid-column:7/13;display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:24px;font-size:var(--step-small)}
+.foot-cols h3{font-size:var(--step-small);letter-spacing:0;line-height:1.45;font-weight:700;margin-bottom:8px}
+.foot-cols ul{list-style:none;display:grid;gap:6px}
+.foot-cols a{text-decoration:none}
+@media (hover:hover) and (pointer:fine){.foot-cols a:hover{text-decoration:underline}}
+.legal{margin-top:auto;padding-top:96px;display:flex;justify-content:space-between;gap:16px;font-size:var(--step-small);color:var(--field-muted)}
+.legal a{color:var(--field-ink)}
 
 @media (prefers-reduced-motion:no-preference){
-  .lock button{animation:swing 1100ms var(--ease) both;animation-delay:calc(var(--i) * 70ms + 200ms)}
-  @keyframes swing{0%{transform:rotate(-9deg) translateY(-10px);opacity:0}60%{opacity:1}100%{transform:none}}
+  .hero-photo{animation:drift 22s ease-in-out infinite alternate}
+  .stub.on{animation:stub-in 420ms var(--out)}
+  @keyframes stub-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @keyframes drift{from{transform:scale(1.04)}to{transform:scale(1.14) translate(-1.5%, 1%)}}
 }
-
-/* ---------- salon strip ---------- */
-.salon{padding:0 var(--gut) clamp(72px,9vw,120px);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:12px}
-.salon figure{position:relative;overflow:hidden;border-radius:14px;background:var(--mist)}
-.salon img{width:100%;height:100%;object-fit:cover;display:block}
-.salon .big{grid-row:span 2;aspect-ratio:1200/859}
-.salon figure:not(.big) img{position:absolute;inset:0}
-.salon figcaption,.wall figcaption{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--cape);font-size:.8125rem}
-
-/* ---------- services ---------- */
-.services{padding:clamp(88px,11vw,152px) var(--gut);background:var(--white)}
-.services-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:end;margin-bottom:clamp(48px,6vw,80px)}
-.services-head p{font-size:var(--s-lead);line-height:1.4;color:var(--ink2)}
-.menus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(32px,4vw,64px)}
-.menus figure{margin-bottom:24px;border-radius:14px;overflow:hidden;aspect-ratio:4/5;background:var(--mist)}
-.menus figure img{width:100%;height:100%;object-fit:cover;display:block}
-.menus h3{font-family:var(--display);font-size:2rem;line-height:1;padding-bottom:16px;border-bottom:2px solid var(--cape)}
-.menus ul{list-style:none}
-.menus li{padding:16px 0;border-bottom:1px solid var(--mist);display:flex;flex-direction:column;gap:2px}
-.menus li b{font-weight:600}
-.menus li span{font-size:var(--s-small);color:var(--ink2);line-height:1.45}
-.ask{margin-top:40px;font-size:var(--s-small);color:var(--ink2)}
-
-/* ---------- team ---------- */
-.team{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,5vw,88px);align-items:center;padding:clamp(88px,11vw,152px) var(--gut);background:var(--cape);color:var(--foil)}
-.team figure{border-radius:18px;overflow:hidden;aspect-ratio:1073/1200}
-.team figure img{width:100%;height:100%;object-fit:cover;display:block}
-.team .lead{font-size:var(--s-lead);line-height:1.4;margin-top:20px;color:#cfccd8;max-width:34ch}
-.team p.more{margin-top:20px;color:#cfccd8;max-width:44ch}
-
-/* ---------- wall ---------- */
-.wall-sec{padding:clamp(88px,11vw,152px) var(--gut)}
-.wall-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
-.wall{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:clamp(70px,7vw,112px);gap:12px}
-.wall figure{position:relative;overflow:hidden;border-radius:14px;background:var(--mist)}
-.wall img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 900ms var(--ease)}
-@media (hover:hover) and (pointer:fine){.wall figure:hover img{transform:scale(1.04)}}
-.w1{grid-column:1/6;grid-row:span 5}.w2{grid-column:6/9;grid-row:span 3}.w3{grid-column:9/13;grid-row:span 4}
-.w4{grid-column:6/9;grid-row:span 3}.w5{grid-column:9/13;grid-row:span 2}.w6{grid-column:1/5;grid-row:span 3}
-.w7{grid-column:5/13;grid-row:span 3}
-
-/* ---------- hours ---------- */
-.hours-sec{padding:clamp(88px,11vw,152px) var(--gut);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:start}
-.hours-sec .lead{font-size:var(--s-lead);line-height:1.4;color:var(--ink2);margin-top:20px;max-width:34ch}
-.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;align-items:end;height:260px;font-variant-numeric:tabular-nums}
-.day{display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end;font-size:var(--s-small)}
-.day .bar{position:relative;width:100%;flex:1;border-radius:6px;background:var(--mist)}
-.day .bar i{position:absolute;left:0;right:0;border-radius:6px;background:var(--cape)}
-.day.closed .bar{background:repeating-linear-gradient(135deg,var(--mist) 0 6px,transparent 6px 12px)}
-.day.today b{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
-.day small{color:var(--ink2);font-size:.75rem;text-align:center;line-height:1.3;min-height:2.6em}
-.scale{display:flex;justify-content:space-between;font-size:.75rem;color:var(--ink2);margin-bottom:8px}
-.where{margin-top:36px;display:flex;flex-direction:column;gap:6px}
-
-/* ---------- words ---------- */
-.words{padding:clamp(72px,9vw,128px) var(--gut);background:var(--cape);color:var(--foil);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(32px,5vw,88px)}
-.words blockquote{font-family:var(--display);font-size:clamp(1.75rem,1.2rem + 2vw,3rem);line-height:1.1}
-.words .more{display:flex;flex-direction:column;gap:12px;justify-content:flex-end;color:var(--chrome)}
-.words cite{display:block;margin-top:16px;font:400 var(--s-small)/1.4 var(--text);font-style:normal;color:var(--chrome)}
-
-/* ---------- booking ---------- */
-.book{padding:clamp(88px,11vw,152px) var(--gut);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:start}
-.book .lead{font-size:var(--s-lead);line-height:1.4;color:var(--ink2);margin-top:20px;max-width:30ch}
-.composer{background:var(--white);border-radius:20px;padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;gap:22px}
-.group{display:flex;flex-direction:column;gap:10px;font-size:var(--s-small);color:var(--ink2)}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips label{position:relative}
-.chips input{position:absolute;opacity:0;inset:0;cursor:pointer}
-.chips span{display:block;padding:10px 16px;border-radius:999px;background:var(--foil);color:var(--cape);font-size:var(--s-small);transition:background-color 160ms ease,color 160ms ease}
-.chips input:checked + span{background:var(--cape);color:var(--foil)}
-.chips input:focus-visible + span{outline:2px solid var(--cape);outline-offset:2px}
-.composer input[type=text],.composer select{width:100%;height:52px;border:0;border-radius:12px;background:var(--foil);color:var(--cape);font:400 16px/1 var(--text);padding:0 16px;appearance:none;-webkit-appearance:none}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.shade-line{display:flex;align-items:center;gap:10px;color:var(--cape)}
-.shade-line i{width:18px;height:18px;border-radius:50%;background:var(--shade);flex:none}
-.shade-line button{all:unset;cursor:pointer;color:var(--ink2);text-decoration:underline;text-underline-offset:3px;margin-left:auto}
-.bubble{align-self:flex-end;max-width:92%;background:#dcf3d0;color:#1d2a1a;padding:14px 16px 10px;border-radius:14px 14px 4px 14px;font-size:var(--s-small);line-height:1.5}
-.bubble small{display:block;text-align:right;color:#5d7356;font-size:.75rem;margin-top:4px}
-.composer .btn{width:100%}
-.note{font-size:var(--s-small);color:var(--ink2)}
-
-footer{padding:56px var(--gut) 40px;border-top:1px solid var(--mist);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:var(--s-small);color:var(--ink2)}
-footer .mark b{color:var(--cape)}
-footer .cols{display:flex;gap:32px;flex-wrap:wrap}
-footer .cols div{display:flex;flex-direction:column;gap:4px}
-
-.wa{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;align-items:center;gap:10px;height:52px;padding:0 20px;border-radius:999px;background:#1f8f4e;color:#fff;text-decoration:none;font-weight:600;box-shadow:0 6px 20px rgba(34,31,46,.25);transition:opacity 200ms ease,transform 160ms var(--ease)}
-.wa svg{width:20px;height:20px;fill:currentColor}
-.wa:active{transform:scale(.97)}
-.wa.hide{opacity:0;pointer-events:none;transform:translateY(8px)}
+@media (prefers-reduced-motion:reduce){
+  .js [data-r],.js [data-r="mask"]{opacity:1;transform:none;clip-path:none}
+  .frame img,.show .h-b,.show-cap{transition:none}
+}
 
 /* ---------- phone ---------- */
-@media (max-width:900px){
-  .hero{min-height:0}
-  .top nav a:not(.tel){display:none}
-  .hero-body,.services-head,.hours-sec,.book,.words{grid-template-columns:1fr}
-  .menus{grid-template-columns:1fr}
-  .menus figure{aspect-ratio:4/3}
-  .salon{grid-template-columns:1fr 1fr}.salon .big{grid-column:1/-1;grid-row:auto}.salon figure:not(.big){aspect-ratio:4/5}
-  .team{grid-template-columns:1fr}
-  .wall{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:150px;gap:8px}
-  .wall figure{grid-column:auto;grid-row:span 2}.wall .w1,.wall .w7{grid-column:1/-1}
-  .lock .tab{padding:22px 0 6px;font-size:.6875rem}
-  .lock .tab::before{width:9px;height:9px;margin-left:-4.5px;top:5px}
-  .lock .name{font-size:.6875rem}
-  .row2{grid-template-columns:1fr}
+@media (max-width:820px){
+  .card{width:calc(100vw - 32px);min-height:70svh;padding:22px}
+  .card h1{display:block;font-size:min(9vw, 3.25rem);line-height:.95}
+  .card h1 span{display:inline}
+  .card h1 span:last-child{display:block}
+  .facts,.card-say{font-size:min(5.2vw, 1.625rem)}
+  .card-foot{grid-template-columns:1fr 1fr;row-gap:14px}
+  .card-foot .btn{grid-column:1/-1;grid-row:2;width:100%}
+  .show h2 span{font-size:11.6vw}
+  .frame{--fw:min(70vw, 50svh)}
+  .show-stage{justify-content:flex-start;padding-top:9svh}
+  .show-cap{position:static;margin-top:16px;max-width:30ch;text-align:center}
+  .gallery-head h2,.gallery-head p{grid-column:1/-1}
+  .about-title{place-items:start center;padding-top:16px}
+  .about h2{font-size:15vw}
+  .people{padding:34svh 0 30svh;gap:48px}
+  .people li,.people li:nth-child(even){width:72%}
+  .shot{height:88svh}
+  .contact-foot{padding-bottom:6vh}
+  .foot-row{grid-template-columns:1fr}
+  .places,.foot-cols{grid-column:1/-1}
+  .places{font-size:26px}
+  .foot-cols{grid-template-columns:1fr 1fr}
+  .legal{flex-wrap:wrap}
 }
-@media (max-width:420px){.lock .name{display:none}.locks{gap:5px}}
+@media (max-width:640px){
+  .line,.line tbody,.line tr,.line th,.line td{display:block}
+  .line colgroup{display:none}
+  .line tr{display:grid;grid-template-columns:1fr auto;column-gap:12px;padding:9px 0}
+  .line th{grid-column:1/-1;font-size:22px;line-height:1.25}
+  .line td{font-size:14px;line-height:1.4;color:var(--field-muted)}
+  .line td:nth-child(2){grid-column:1;grid-row:2}
+  .line td:nth-child(3){grid-column:1;grid-row:3}
+  .line td:last-child{grid-column:2;grid-row:2 / span 2;align-self:center;color:var(--field-ink)}
+  .line tr.on td{color:var(--accent-ink)}
+  .pick{min-height:44px;padding:0 0 0 12px}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#servizi">Vai a servizi e orari</a>
 
 <header class="hero" id="top">
-  <div class="top">
-    <a class="mark" href="#top"><b>Beautiful Hair</b><span>by Martina</span></a>
-    <nav aria-label="Sezioni">
-      <a href="#servizi">Servizi</a>
-      <a href="#orari">Orari</a>
-      <a class="tel" href="tel:+393347496307">334 749 6307</a>
-    </nav>
-  </div>
-
-  <div class="hero-body">
-    <div>
-      <h1>Taglio, colore e piega in via Zorutti</h1>
-      <p class="lead">Martina e il suo team, a Manzano. Per donna e per uomo, con prodotti professionali che rispettano cute e capelli.</p>
-      <div class="hero-actions">
-        <a class="btn" href="#prenota">Prenota</a>
-        <span class="status" data-status><span class="dot"></span>Aperto da martedì a sabato</span>
+  <div class="hero-stage">
+    <img class="hero-photo" src="img/reception.jpg" width="1200" height="859" alt="Il salone: il banco in vetro, gli specchi e gli scaffali dei prodotti" fetchpriority="high">
+    <div class="card" id="card">
+      <h1><span>Beautiful</span> <span>Hair</span> <span>Martina</span></h1>
+      <div class="card-body">
+        <ul class="facts">
+          <li>Parrucchiera e barbiere</li>
+          <li>Via Zorutti 40, Manzano</li>
+          <li>Da martedì a sabato</li>
+        </ul>
+        <p class="card-say">Taglio, colore e piega per lei. Taglio e barba per lui.</p>
       </div>
-    </div>
-
-    <div class="chart">
-      <div class="ring" aria-hidden="true"></div>
-      <ul class="locks" id="locks" aria-label="Scegli una nuance di colore"></ul>
-      <div class="pick" aria-live="polite">
-        <span class="chip"><i></i><span id="pick-name">Biondo miele 8.3</span></span>
-        <span>Che colore hai in mente? Tocca una ciocca e lo aggiungiamo alla prenotazione.</span>
+      <div class="card-foot">
+        <span class="status" data-status><span class="dot"></span>Aperto da martedì a sabato</span>
+        <a class="btn" data-wa href="https://wa.me/393347496307?text=Ciao%20Martina!%20Vorrei%20prenotare%20un%20appuntamento." target="_blank" rel="noopener">Prenota su WhatsApp</a>
+        <a href="#servizi">Servizi e orari</a>
       </div>
     </div>
   </div>
 </header>
 
-<section class="salon" aria-label="Il salone">
-  <figure class="big"><img src="img/reception.jpg" width="1200" height="859" alt="Il salone: la postazione in vetro, gli specchi e lo scaffale dei prodotti" loading="lazy"><figcaption>Il salone in via Zorutti</figcaption></figure>
-  <figure><img src="img/specchio.jpg" width="1200" height="934" alt="Lo specchio con cornice in vetro e la poltrona da barbiere" loading="lazy"></figure>
-  <figure><img src="img/poltrona.jpg" width="960" height="1200" alt="La poltrona da barbiere davanti allo specchio" loading="lazy"></figure>
+<aside class="stub" id="stub" aria-label="Il tuo appuntamento">
+  <div><b>Beautiful Hair</b><span id="stub-line" aria-live="polite">Scegli servizio e giorno</span></div>
+  <a class="btn" data-wa href="https://wa.me/393347496307?text=Ciao%20Martina!%20Vorrei%20prenotare%20un%20appuntamento." target="_blank" rel="noopener">Prenota</a>
+</aside>
+
+<main>
+<section class="show" id="salone" data-stage="0">
+  <div class="show-stage">
+    <h2><span class="h-a">Uno specchio,</span><span class="h-b">due mestieri.</span></h2>
+    <figure class="frame"><img src="img/poltrona.jpg" width="960" height="1200" alt="La poltrona da barbiere davanti allo specchio grande con la cornice in vetro" loading="lazy"></figure>
+    <p class="show-cap">Davanti allo specchio grande c’è la poltrona da barbiere, sulle mensole la linea Depot. Nella stessa stanza, colore e piega per lei.</p>
+  </div>
 </section>
 
-<section class="services" id="servizi" aria-labelledby="sv-h">
-  <div class="services-head">
-    <h2 id="sv-h">Cosa facciamo</h2>
-    <p>Esperienza, inventiva e fantasia: dal taglio di tutti i giorni al colore che cambia il look.</p>
-  </div>
-  <div class="menus">
-    <div>
-      <figure><img src="img/piega.jpg" width="960" height="1200" alt="Piega con spazzola tonda e phon" loading="lazy"></figure>
-      <h3>Donna</h3>
-      <ul>
-        <li><b>Taglio e piega</b><span>Shampoo, taglio su misura e piega.</span></li>
-        <li><b>Piega</b><span>Liscia o mossa, anche solo per un'occasione.</span></li>
-        <li><b>Acconciature</b><span>Raccolti e onde per cerimonie e feste.</span></li>
-      </ul>
-    </div>
-    <div>
-      <figure><img src="img/lavaggio.jpg" width="960" height="1200" alt="Risciacquo del colore al lavatesta" loading="lazy"></figure>
-      <h3>Colore</h3>
-      <ul>
-        <li><b>Colore</b><span>Ripresa della ricrescita o colore pieno, anche naturale.</span></li>
-        <li><b>Colpi di sole</b><span>Schiariture a ciocche per luce e movimento.</span></li>
-        <li><b>Maschere e trattamenti</b><span>Nutrimento per capelli trattati o sfibrati, con prodotti milk_shake.</span></li>
-      </ul>
-    </div>
-    <div>
-      <figure><img src="img/barba.jpg" width="1092" height="1200" alt="Rifinitura della nuca con il trimmer" loading="lazy"></figure>
-      <h3>Uomo</h3>
-      <ul>
-        <li><b>Taglio uomo</b><span>Shampoo e taglio, classico o sfumato.</span></li>
-        <li><b>Barba</b><span>Rifinitura e rasatura, da sola o con il taglio.</span></li>
-        <li><b>Linea Depot</b><span>I prodotti da barbiere per la cura a casa.</span></li>
-      </ul>
-    </div>
-  </div>
-  <p class="ask">Prezzi e tempi di ogni servizio: chiedi su WhatsApp.</p>
+<section class="list" id="servizi">
+  <h2 data-r>Servizi</h2>
+  <table class="line">
+    <colgroup><col class="c1"><col class="c2"><col><col class="c4"></colgroup>
+    <tbody>
+      <tr data-r><th scope="row">Taglio e piega</th><td>shampoo, taglio, piega</td><td>donna</td><td><button class="pick" type="button" data-kind="service" data-value="taglio e piega" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r><th scope="row">Piega</th><td>liscia o mossa</td><td>donna</td><td><button class="pick" type="button" data-kind="service" data-value="una piega" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r><th scope="row">Colore</th><td>ricrescita o colore pieno</td><td>donna</td><td><button class="pick" type="button" data-kind="service" data-value="il colore" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r><th scope="row">Colpi di sole</th><td>schiariture a ciocche</td><td>donna</td><td><button class="pick" type="button" data-kind="service" data-value="i colpi di sole" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r><th scope="row">Maschera</th><td>nutrimento per capelli trattati</td><td>donna</td><td><button class="pick" type="button" data-kind="service" data-value="una maschera" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r><th scope="row">Acconciatura</th><td>raccolti e onde</td><td>cerimonie</td><td><button class="pick" type="button" data-kind="service" data-value="un’acconciatura" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r><th scope="row">Taglio uomo</th><td>shampoo e taglio</td><td>uomo</td><td><button class="pick" type="button" data-kind="service" data-value="un taglio uomo" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r><th scope="row">Barba</th><td>rifinitura e rasatura</td><td>uomo</td><td><button class="pick" type="button" data-kind="service" data-value="la barba" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r><th scope="row">Taglio e barba</th><td>insieme, con prodotti Depot</td><td>uomo</td><td><button class="pick" type="button" data-kind="service" data-value="taglio e barba" aria-pressed="false">Scegli</button></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="orari" data-r>Orari</h2>
+  <table class="line" id="hours">
+    <colgroup><col class="c1"><col class="c2"><col><col class="c4"></colgroup>
+    <tbody>
+      <tr data-r data-d="1" class="shut"><th scope="row">Lunedì</th><td>chiuso</td><td></td><td></td></tr>
+      <tr data-r data-d="2"><th scope="row">Martedì</th><td>9:30 – 14:30</td><td>mattina e pranzo</td><td><button class="pick" type="button" data-kind="day" data-value="martedì" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r data-d="3"><th scope="row">Mercoledì</th><td>9:30 – 15:00</td><td>mattina e pranzo</td><td><button class="pick" type="button" data-kind="day" data-value="mercoledì" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r data-d="4"><th scope="row">Giovedì</th><td>11:00 – 20:00</td><td>aperto fino a sera</td><td><button class="pick" type="button" data-kind="day" data-value="giovedì" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r data-d="5"><th scope="row">Venerdì</th><td>9:30 – 18:00</td><td>orario continuato</td><td><button class="pick" type="button" data-kind="day" data-value="venerdì" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r data-d="6"><th scope="row">Sabato</th><td>8:00 – 16:00</td><td>si apre presto</td><td><button class="pick" type="button" data-kind="day" data-value="sabato" aria-pressed="false">Scegli</button></td></tr>
+      <tr data-r data-d="0" class="shut"><th scope="row">Domenica</th><td>chiuso</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+  <p class="list-note" data-r>Tocca un servizio e un giorno: finiscono nel messaggio per Martina. Prezzi e durata te li dice lei su <a data-wa href="https://wa.me/393347496307" target="_blank" rel="noopener">WhatsApp</a>.</p>
 </section>
 
-<section class="team" aria-labelledby="tm-h">
-  <figure><img src="img/martina-taglio.jpg" width="1073" height="1200" alt="Martina mentre rifinisce un taglio uomo" loading="lazy"></figure>
+<section class="about" id="martina">
+  <div class="about-title"><h2>Martina<br>al lavoro</h2></div>
+  <ul class="people">
+    <li>
+      <figure data-r="mask"><img src="img/martina-taglio.jpg" width="1073" height="1200" alt="Martina rifinisce un taglio uomo" loading="lazy"></figure>
+      <h3 data-r>Martina</h3><p class="role" data-r>titolare</p>
+      <p class="say" data-r>Il salone porta il suo nome. Tagli e colore passano dalle sue mani.</p>
+    </li>
+    <li>
+      <figure data-r="mask"><img src="img/forbici.jpg" width="960" height="1200" alt="Scalatura a forbice su capelli biondi fermati con le pinze" loading="lazy"></figure>
+      <h3 data-r>Forbici e pettine</h3><p class="role" data-r>taglio donna</p>
+      <p class="say" data-r>Ciocca per ciocca, a capello bagnato, per dare forma senza togliere lunghezza.</p>
+    </li>
+    <li>
+      <figure data-r="mask"><img src="img/piega.jpg" width="960" height="1200" alt="Piega con spazzola tonda e phon" loading="lazy"></figure>
+      <h3 data-r>Spazzola e phon</h3><p class="role" data-r>piega</p>
+      <p class="say" data-r>Si esce con i capelli a posto, per tutti i giorni o per una sera.</p>
+    </li>
+  </ul>
+</section>
+
+<section class="gallery" id="lavori">
+  <div class="gallery-head"><h2 data-r>In salone</h2><p data-r>Tre momenti di una giornata in via Zorutti.</p></div>
+  <figure class="shot">
+    <img src="img/pettine.jpg" width="1200" height="911" alt="Taglio a forbice sopra il pettine" loading="lazy">
+    <figcaption><p>Taglio uomo a forbice, sopra il pettine.</p></figcaption>
+  </figure>
+  <figure class="shot">
+    <img src="img/taglio-biondo.jpg" width="1200" height="800" alt="Martina taglia una ciocca bionda tenuta tra le dita" loading="lazy">
+    <figcaption><p>Le punte, una ciocca alla volta.</p></figcaption>
+  </figure>
+  <figure class="shot">
+    <img src="img/specchio.jpg" width="1200" height="934" alt="Lo specchio con la cornice in vetro sulla parete in pietra, accanto alla vetrina" loading="lazy">
+    <figcaption><p>Lo specchio grande, accanto alla vetrina su via Zorutti.</p></figcaption>
+  </figure>
+</section>
+</main>
+
+<section class="contact" id="contatti">
   <div>
-    <h2 id="tm-h">Martina e il suo team</h2>
-    <p class="lead">Parrucchiere con esperienza, inventiva e fantasia, e una formazione anche nei trattamenti estetici.</p>
-    <p class="more">Per donna c'è il colore, la piega e le acconciature; per uomo una postazione da barbiere con la linea Depot. Si lavora con prodotti professionali che rispettano cute e capelli.</p>
+    <h2 data-r>Scrivi a Martina su WhatsApp: ti risponde con il primo orario libero.</h2>
+    <p class="chosen" id="chosen" data-r aria-live="polite">Non hai ancora scelto servizio e giorno. <a href="#servizi">Scegli dalla lista</a>, oppure scrivi e basta.</p>
   </div>
-</section>
-
-<section class="wall-sec" aria-labelledby="wl-h">
-  <div class="wall-head">
-    <h2 id="wl-h">Dal salone</h2>
-    <a class="link" href="https://www.instagram.com/beautifulhair_manzano/" target="_blank" rel="noopener">@beautifulhair_manzano</a>
+  <a class="number" data-wa data-fit href="https://wa.me/393347496307?text=Ciao%20Martina!%20Vorrei%20prenotare%20un%20appuntamento." target="_blank" rel="noopener" aria-label="Scrivi su WhatsApp al 334 749 6307">334 749 6307</a>
+  <div class="contact-foot">
+    <p><a href="tel:+393347496307">Chiama</a> · <a href="https://www.google.com/maps/search/?api=1&query=Beautiful%20Hair%20by%20Martina%20Via%20Pietro%20Zorutti%2040%20Manzano" target="_blank" rel="noopener">Via Pietro Zorutti 40, Manzano (UD)</a></p>
+    <ul><li><a href="https://www.instagram.com/beautifulhair_manzano/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/BeautifulHairByMartina/" target="_blank" rel="noopener">Facebook</a></li></ul>
   </div>
-  <div class="wall">
-    <figure class="w1"><img src="img/taglio-corto.jpg" width="960" height="1200" alt="Taglio corto su capelli biondi, con forbici e pettine" loading="lazy"><figcaption>Corto biondo</figcaption></figure>
-    <figure class="w2"><img src="img/pettine.jpg" width="1200" height="911" alt="Taglio a forbice con il pettine rosa" loading="lazy"><figcaption>A forbice</figcaption></figure>
-    <figure class="w3"><img src="img/forbici.jpg" width="960" height="1200" alt="Scalatura con pinze e pettine" loading="lazy"><figcaption>Scalatura</figcaption></figure>
-    <figure class="w4"><img src="img/macchinetta.jpg" width="1054" height="1200" alt="Sfumatura con la macchinetta" loading="lazy" style="object-position:50% 40%"><figcaption>Sfumatura</figcaption></figure>
-    <figure class="w5"><img src="img/rasatura.jpg" width="1002" height="1200" alt="Pennello da barba e vaporizzatore Depot" loading="lazy" style="object-position:50% 35%"><figcaption>Angolo barbiere</figcaption></figure>
-    <figure class="w6"><img src="img/martina-logo.jpg" width="1200" height="1200" alt="La maglia con il logo Beautiful Hair" loading="lazy" style="object-position:50% 60%"></figure>
-    <figure class="w7"><img src="img/taglio-biondo.jpg" width="1200" height="800" alt="Martina mentre taglia una ciocca bionda" loading="lazy" style="object-position:50% 45%"><figcaption>Punte e forma</figcaption></figure>
-  </div>
-</section>
-
-<section class="hours-sec" id="orari" aria-labelledby="or-h">
-  <div>
-    <h2 id="or-h">Orari pensati per chi lavora</h2>
-    <p class="lead">Il giovedì restiamo aperti fino alle 20, il sabato apriamo alle 8.</p>
-    <p class="status" data-status-long style="margin-top:24px"><span class="dot"></span>Aperto da martedì a sabato</p>
-    <div class="where">
-      <span>Via Pietro Zorutti 40, 33044 Manzano (UD)</span>
-      <span>Telefono e WhatsApp: <a href="tel:+393347496307">334 749 6307</a></span>
-      <a class="link" href="https://www.google.com/maps/search/?api=1&query=Beautiful%20Hair%20by%20Martina%20Via%20Pietro%20Zorutti%2040%20Manzano" target="_blank" rel="noopener">Apri in Google Maps</a>
-    </div>
-  </div>
-  <div>
-    <div class="scale" aria-hidden="true"><span>8:00</span><span>14:00</span><span>20:00</span></div>
-    <div class="week" id="week" role="table" aria-label="Orari di apertura"></div>
-  </div>
-</section>
-
-<section class="words" aria-label="Recensioni">
-  <figure><blockquote>“Salone luminoso e accogliente”</blockquote><cite>Recensione su Google</cite></figure>
-  <div class="more"><p>Le recensioni dei clienti, su Google e sui social.</p><a class="link" href="https://www.google.com/maps/search/?api=1&query=Beautiful%20Hair%20by%20Martina%20Manzano" target="_blank" rel="noopener">Leggi tutte le recensioni</a></div>
-</section>
-
-<section class="book" id="prenota" aria-labelledby="bk-h">
-  <div>
-    <h2 id="bk-h">Prenota su WhatsApp</h2>
-    <p class="lead">Scegli cosa ti serve: il messaggio si scrive da solo, tu devi solo inviarlo.</p>
-  </div>
-
-  <form class="composer" id="book-form">
-    <div class="group">
-      <span id="g-what">Cosa vuoi fare</span>
-      <div class="chips" role="group" aria-labelledby="g-what">
-        <label><input type="radio" name="what" value="taglio e piega" checked><span>Taglio e piega</span></label>
-        <label><input type="radio" name="what" value="colore"><span>Colore</span></label>
-        <label><input type="radio" name="what" value="colpi di sole"><span>Colpi di sole</span></label>
-        <label><input type="radio" name="what" value="un trattamento"><span>Trattamento</span></label>
-        <label><input type="radio" name="what" value="un taglio uomo"><span>Uomo</span></label>
-        <label><input type="radio" name="what" value="un'acconciatura"><span>Acconciatura</span></label>
-      </div>
-    </div>
-    <div class="group shade-group" id="shade-group" hidden>
-      <span>Nuance</span>
-      <div class="shade-line"><i></i><span id="shade-txt">Biondo miele 8.3</span><button type="button" id="shade-change">Cambia</button></div>
-    </div>
-    <div class="row2">
-      <div class="group"><label for="f-day">Giorno</label><select id="f-day" name="day"><option>Primo giorno libero</option></select></div>
-      <div class="group"><label for="f-when">Momento</label><select id="f-when" name="when"><option>Mattina</option><option>Primo pomeriggio</option><option>Tardo pomeriggio</option></select></div>
-    </div>
-    <div class="group"><label for="f-name">Il tuo nome</label><input type="text" id="f-name" name="name" autocomplete="given-name" placeholder="Es. Giulia"></div>
-    <p class="bubble" id="bubble" aria-live="polite"></p>
-    <a class="btn" id="wa-link" href="https://wa.me/393347496307" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8a3.3 3.3 0 0 0 2.1-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg>Invia su WhatsApp</a>
-    <p class="note">Ti risponde il salone con il primo orario libero.</p>
-  </form>
 </section>
 
 <footer>
-  <a class="mark" href="#top"><b>Beautiful Hair</b><span>by Martina</span></a>
-  <div class="cols">
-    <div><span>Via Pietro Zorutti 40</span><span>33044 Manzano (UD)</span></div>
-    <div><a href="tel:+393347496307">334 749 6307</a><a href="https://www.instagram.com/beautifulhair_manzano/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/BeautifulHairByMartina/" target="_blank" rel="noopener">Facebook</a></div>
-    <div><span>Foto: Beautiful Hair by Martina</span></div>
+  <p class="foot-name" data-fit translate="no">Beautiful Hair</p>
+  <div class="foot-row">
+    <ul class="places">
+      <li><a data-wa href="https://wa.me/393347496307" target="_blank" rel="noopener">WhatsApp</a></li>
+      <li><a href="tel:+393347496307">334 749 6307</a></li>
+      <li><a href="https://www.google.com/maps/search/?api=1&query=Beautiful%20Hair%20by%20Martina%20Via%20Pietro%20Zorutti%2040%20Manzano" target="_blank" rel="noopener">Via Zorutti 40</a></li>
+    </ul>
+    <div class="foot-cols">
+      <div><h3>Pagina</h3><ul><li><a href="#salone">Il salone</a></li><li><a href="#servizi">Servizi</a></li><li><a href="#orari">Orari</a></li><li><a href="#martina">Martina</a></li></ul></div>
+      <div><h3>Social</h3><ul><li><a href="https://www.instagram.com/beautifulhair_manzano/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/BeautifulHairByMartina/" target="_blank" rel="noopener">Facebook</a></li></ul></div>
+      <div><h3>Aperto</h3><ul><li>Mar 9:30 – 14:30</li><li>Mer 9:30 – 15:00</li><li>Gio 11:00 – 20:00</li><li>Ven 9:30 – 18:00</li><li>Sab 8:00 – 16:00</li></ul></div>
+    </div>
   </div>
+  <div class="legal"><span>Beautiful Hair by Martina, 33044 Manzano (UD). Foto: Beautiful Hair by Martina.</span><a href="#top">Torna su</a></div>
 </footer>
-
-<a class="wa hide" id="wa-float" href="https://wa.me/393347496307?text=Ciao%20Martina%2C%20vorrei%20prenotare" target="_blank" rel="noopener" aria-label="Scrivi su WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8a3.3 3.3 0 0 0 2.1-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg>Prenota</a>
 
 <script>
 (function(){
-  var PHONE='393347496307';
-  // hours in minutes from midnight; null = closed
+  var PHONE='393347496307', RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var H={0:null,1:null,2:[570,870],3:[570,900],4:[660,1200],5:[570,1080],6:[480,960]};
   var DAYS=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
-  var SHORT=['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
   function fmt(m){return Math.floor(m/60)+':'+(m%60<10?'0':'')+m%60;}
 
-  // ---- swatches: [label, level, base, root, tip]
-  var SH=[
-    ['Nero','1.0','#1d1919','#141111','#2b2524','nero'],
-    ['Castano scuro','3.0','#33231d','#251915','#4a342a','castano'],
-    ['Cioccolato','5.35','#5b3a2a','#3f281e','#7a5139','cioccolato'],
-    ['Rame','7.44','#a8492a','#6e3720','#c06a3c','rame'],
-    ['Biondo dorato','7.3','#a87a45','#7c5933','#c99a5f','dorato'],
-    ['Biondo miele','8.3','#c49a5f','#9b7646','#ddb985','miele'],
-    ['Biondo cenere','9.1','#aea38e','#958b78','#d8d0c0','cenere'],
-    ['Platino','10.21','#d6cec1','#bdb5a9','#f3eee8','platino'],
-    ['Lavanda','fantasia','#ad98c6','#8d78a6','#d6c9e3','lavanda']
-  ];
-  var ul=document.getElementById('locks'),btns=[],chosen=5;
-  SH.forEach(function(s,i){
-    var li=document.createElement('li');li.className='lock';li.style.setProperty('--i',i);
-    var b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed',i===chosen?'true':'false');
-    b.setAttribute('aria-label',s[0]+' '+s[1]);
-    b.innerHTML='<span class="tab">'+(s[1]==='fantasia'?'★':s[1])+'</span><canvas class="hair" aria-hidden="true"></canvas><span class="name">'+s[0]+'</span>';
-    b.addEventListener('click',function(){pick(i,true);});
-    li.appendChild(b);ul.appendChild(li);btns.push(b);
-  });
-  function lum(hex){var n=parseInt(hex.slice(1),16),r=(n>>16)/255,g=(n>>8&255)/255,bl=(n&255)/255;
-    function c(v){return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*c(r)+.7152*c(g)+.0722*c(bl);}
-  function label(i){var s=SH[i];return s[0]+(s[1]==='fantasia'?' (colore fantasia)':' '+s[1]);}
-  var f=document.getElementById('book-form'),touched=false;
-  function pick(i,fromUser){
-    chosen=i;var s=SH[i];
-    btns.forEach(function(b,k){b.setAttribute('aria-pressed',k===i?'true':'false');});
-    document.documentElement.style.setProperty('--shade',s[2]);
-    document.documentElement.style.setProperty('--on-shade',lum(s[2])>.3?'#221f2e':'#ffffff');
-    document.getElementById('pick-name').textContent=label(i);
-    document.getElementById('shade-txt').textContent=label(i);
-    if(fromUser){touched=true;var c=f.querySelector('input[value="colore"]');if(c){c.checked=true;}upd();}
+  // ---- open now
+  var now=new Date(),d=now.getDay(),mins=now.getHours()*60+now.getMinutes(),t=H[d],open=t&&mins>=t[0]&&mins<t[1],st;
+  if(open)st='<span class="dot"></span>Aperto ora, fino alle '+fmt(t[1]);
+  else{var k=0,nd=d,slot;if(t&&mins<t[0])slot=t;else{do{k++;nd=(d+k)%7;slot=H[nd];}while(!slot&&k<7);}
+    st='<span class="dot off"></span>Chiuso ora, riapre '+(k===0?'oggi':k===1?'domani':DAYS[nd])+' alle '+fmt(slot[0]);}
+  document.querySelectorAll('[data-status]').forEach(function(e){e.innerHTML=st;});
+  var row=document.querySelector('#hours tr[data-d="'+d+'"]');
+  if(row){row.classList.add('today');row.children[2].textContent=open?'oggi, aperto ora':'oggi';}
+
+  // ---- the appointment fills in as rows are tapped
+  var sel={service:null,day:null};
+  var picks=[].slice.call(document.querySelectorAll('.pick'));
+  function message(){
+    if(!sel.service&&!sel.day)return 'Ciao Martina! Vorrei prenotare un appuntamento.';
+    return 'Ciao Martina! Vorrei prenotare '+(sel.service||'un appuntamento')+(sel.day?' per '+sel.day:'')+'. Grazie!';
   }
-  document.getElementById('shade-change').addEventListener('click',function(){
-    document.getElementById('top').scrollIntoView();btns[chosen].focus({preventScroll:true});});
+  function summary(){var a=[];if(sel.service)a.push(sel.service.replace(/^(una |un’|un |il |la |i )/,''));if(sel.day)a.push(sel.day);
+    var s=a.join(', ');return s.charAt(0).toUpperCase()+s.slice(1);}
+  function render(){
+    picks.forEach(function(b){var on=sel[b.dataset.kind]===b.dataset.value;b.setAttribute('aria-pressed',on);b.textContent=on?'Scelto':'Scegli';b.closest('tr').classList.toggle('on',on);});
+    var href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(message());
+    document.querySelectorAll('[data-wa]').forEach(function(a){a.href=href;});
+    var has=sel.service||sel.day;
+    document.getElementById('stub-line').textContent=has?summary():'Scegli servizio e giorno';
+    if(has){var c=document.getElementById('chosen');c.textContent='Nel messaggio c’è già: '+summary().toLowerCase()+'. ';var a=document.createElement('a');a.href='#servizi';a.textContent='Cambia';c.appendChild(a);}
+  }
+  picks.forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var k=b.dataset.kind;sel[k]=sel[k]===b.dataset.value?null:b.dataset.value;render();});});
+  document.querySelectorAll('.line tr').forEach(function(tr){var b=tr.querySelector('.pick');if(b)tr.addEventListener('click',function(){b.click();});});
 
-  // ---- status
-  var now=new Date(),d=now.getDay(),mins=now.getHours()*60+now.getMinutes();
-  var t=H[d],open=t&&mins>=t[0]&&mins<t[1],s,l;
-  if(open){s='<span class="dot"></span>Aperto ora, fino alle '+fmt(t[1]);l=s+'. Rispondiamo anche su WhatsApp.';}
-  else{var k=0,nd=d,slot;if(t&&mins<t[0]){slot=t;}else{do{k++;nd=(d+k)%7;slot=H[nd];}while(!slot&&k<7);}
-    var w=k===0?'oggi':(k===1?'domani':DAYS[nd]);s='<span class="dot off"></span>Chiuso ora, riapre '+w+' alle '+fmt(slot[0]);l=s+'. Puoi già scrivere su WhatsApp.';}
-  document.querySelectorAll('[data-status]').forEach(function(e){e.innerHTML=s;});
-  var sl=document.querySelector('[data-status-long]');if(sl)sl.innerHTML=l;
+  // ---- fit the two big lines to the content width
+  function fit(){document.querySelectorAll('[data-fit]').forEach(function(el){
+    var cs=getComputedStyle(el.parentElement),w=el.parentElement.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+    el.style.fontSize='100px';var r=document.createRange();r.selectNodeContents(el);var tw=r.getBoundingClientRect().width;
+    if(tw>0)el.style.fontSize=(100*w/tw*0.99)+'px';});}
+  fit();addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 
-  // ---- week chart (8:00–20:00)
-  var wk=document.getElementById('week'),A=480,B=1200;
-  [1,2,3,4,5,6,0].forEach(function(dd){
-    var h=H[dd],el=document.createElement('div');el.className='day'+(h?'':' closed')+(dd===d?' today':'');el.setAttribute('role','row');
-    var bar='<span class="bar" aria-hidden="true">'+(h?'<i style="top:'+((h[0]-A)/(B-A)*100)+'%;bottom:'+((B-h[1])/(B-A)*100)+'%"></i>':'')+'</span>';
-    el.innerHTML=bar+'<b role="rowheader">'+SHORT[dd]+'</b><small role="cell">'+(h?fmt(h[0])+'<br>'+fmt(h[1]):'chiuso')+'</small>';
-    wk.appendChild(el);
-  });
+  // ---- entrances, staggered inside each block
+  var rs=[].slice.call(document.querySelectorAll('[data-r]'));
+  if('IntersectionObserver' in window&&!RM){
+    var io=new IntersectionObserver(function(es){var n=0;es.forEach(function(e){if(e.isIntersecting){e.target.style.setProperty('--d',(n++*70)+'ms');e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
+    rs.forEach(function(el){io.observe(el);});
+  }else rs.forEach(function(el){el.classList.add('in');});
 
-  // ---- booking
-  var sel=document.getElementById('f-day');
-  for(var i=0,n=0;n<10&&i<21;i++){var dt=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i),h=H[dt.getDay()];
-    if(!h||(i===0&&mins>h[1]-60))continue;var lab=(i===0?'Oggi, ':i===1?'Domani, ':'')+DAYS[dt.getDay()]+' '+dt.getDate()+'/'+(dt.getMonth()+1);
-    var o=document.createElement('option');o.textContent=lab.charAt(0).toUpperCase()+lab.slice(1);sel.appendChild(o);n++;}
-  var bub=document.getElementById('bubble'),wl=document.getElementById('wa-link'),sg=document.getElementById('shade-group');
-  function msg(){var nm=f.name.value.trim(),what=f.querySelector('input[name=what]:checked').value;
-    var colourish=(what==='colore'||what==='colpi di sole');
-    var extra=colourish&&touched?' Pensavo a un '+label(chosen).toLowerCase()+'.':'';
-    return 'Ciao Martina'+(nm?', sono '+nm:'')+'! Vorrei prenotare '+what+'.'+extra+' '+f.day.value+', '+f.when.value.toLowerCase()+'. Grazie!';}
-  function upd(){var what=f.querySelector('input[name=what]:checked').value;
-    sg.hidden=!((what==='colore'||what==='colpi di sole')&&touched);
-    var m=msg(),hh=now.getHours(),mm=now.getMinutes();bub.textContent=m;
-    var sm=document.createElement('small');sm.textContent=hh+':'+(mm<10?'0':'')+mm;bub.appendChild(sm);
-    wl.href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(m);}
-  f.addEventListener('input',upd);f.addEventListener('change',upd);f.addEventListener('submit',function(e){e.preventDefault();});
-  pick(chosen,false);upd();
-
-  // ---- hair physics: each lock is two layers of hair (back and front) that
-  // swing on their own springs, so the hair separates a little as it moves
-  (function(){
-    var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var CW=1.6, SEG=160; // canvas is 1.6x the lock width
-    var L=btns.map(function(b,i){
-      var r=Math.sin(i*12.9898)*43758.5453;r=r-Math.floor(r);
-      var o={cv:b.querySelector('canvas.hair'),dir:(i%2?1:-1)*(0.7+0.6*r),k:52+r*24,ph:r*6.28,fq:0.6+r*0.5,w:0,h:0,layers:[]};
-      ['b','f'].forEach(function(n,j){
-        var img=new Image();img.src='img/ciocche/'+SH[i][5]+'-'+n+'.webp';
-        o.layers.push({img:img,a:0,va:0,b:0,vb:0,km:j?0.82:1.08,lag:j?0.48:0.62,push:j?1.25:0.75,ph:j*1.3});
-      });
-      return o;
-    });
-    var VS='attribute vec2 p;attribute vec2 uv;uniform vec2 res;varying vec2 v;void main(){v=uv;gl_Position=vec4(p.x/res.x*2.-1.,1.-p.y/res.y*2.,0.,1.);}';
-    var FS='precision mediump float;varying vec2 v;uniform sampler2D t;void main(){gl_FragColor=texture2D(t,v);}';
-    function glSetup(o){
-      var gl=o.cv.getContext('webgl',{alpha:true,premultipliedAlpha:true,antialias:true})||o.cv.getContext('experimental-webgl');
-      if(!gl)return false;
-      function sh(type,src){var x=gl.createShader(type);gl.shaderSource(x,src);gl.compileShader(x);return x;}
-      var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);
-      if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return false;
-      gl.useProgram(pr);
-      o.gl=gl;o.buf=gl.createBuffer();o.arr=new Float32Array((SEG+1)*2*4);
-      gl.bindBuffer(gl.ARRAY_BUFFER,o.buf);
-      var lp=gl.getAttribLocation(pr,'p'),lu=gl.getAttribLocation(pr,'uv');
-      gl.enableVertexAttribArray(lp);gl.vertexAttribPointer(lp,2,gl.FLOAT,false,16,0);
-      gl.enableVertexAttribArray(lu);gl.vertexAttribPointer(lu,2,gl.FLOAT,false,16,8);
-      o.ures=gl.getUniformLocation(pr,'res');
-      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,true);
-      gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.clearColor(0,0,0,0);
-      o.layers.forEach(function(l){l.tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,l.tex);
-        gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);});
-      return true;
+  // ---- the card shrinks to its stub; the frame steps through three distances
+  var card=document.getElementById('card'),stub=document.getElementById('stub'),stage=document.querySelector('.hero-stage'),show=document.querySelector('.show'),
+      contact=document.getElementById('contatti'),ticking=false,base=null;
+  function measure(){card.style.transform='none';var c=card.getBoundingClientRect(),s=stage.getBoundingClientRect();base={l:c.left-s.left,b:c.bottom-s.top,w:c.width};}
+  function frame(){
+    ticking=false;
+    var vh=innerHeight,p=Math.max(0,Math.min(1,scrollY/(vh*0.7)));
+    if(!RM){
+      if(!base)measure();
+      var m=Math.max(16,Math.min(32,innerWidth*0.022)),sw=Math.min(300,innerWidth-2*m),ss=sw/base.w,e=1-Math.pow(1-p,3);
+      var s=1+(ss-1)*e,tx=(m-base.l)*e,ty=((vh-16)-base.b)*e;
+      card.style.transform='translate('+tx+'px,'+ty+'px) scale('+s+')';
+      card.style.opacity=p>0.86?Math.max(0,1-(p-0.86)/0.1):1;
     }
-    function size(){var d=Math.min(3,window.devicePixelRatio||1);L.forEach(function(o){
-      var w=o.cv.clientWidth,h=o.cv.clientHeight;if(!w||!h)return;o.w=w;o.h=h;o.cv.width=Math.round(w*d);o.cv.height=Math.round(h*d);o.d=d;
-      if(o.mode===undefined)o.mode=glSetup(o)?'gl':'2d';
-      if(o.mode==='2d')o.ctx=o.cv.getContext('2d');
-      o.layers.forEach(function(l){l.off=null;prep(o,l);});});}
-    function prep(o,l){if(!l.img.complete||!l.img.naturalWidth||!o.w)return;
-      // pre-scale to the exact on-screen size with high-quality filtering
-      var lw=Math.round(o.w/CW*o.d),hh=o.cv.height,c=document.createElement('canvas');c.width=lw;c.height=hh;
-      var x=c.getContext('2d');x.imageSmoothingQuality='high';x.drawImage(l.img,0,0,lw,hh);l.off=c;
-      if(o.mode==='gl'){var gl=o.gl;try{gl.bindTexture(gl.TEXTURE_2D,l.tex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,c);}catch(e){l.off=null;}}
-    }
-    function draw(o){
-      if(!o.mode)return;
-      var W=o.cv.width,H=o.cv.height,first=true;
-      for(var li=0;li<2;li++){
-        var l=o.layers[li];if(!l.off)prep(o,l);if(!l.off)continue;
-        var lw=l.off.width,x0=(W-lw)/2;
-        var bend=function(y){var t=y/H;return lw*(l.a*Math.pow(t,1.7)+(l.b-l.a)*0.9*t*t*t);};
-        if(o.mode==='gl'){
-          var gl=o.gl,a=o.arr,k=0;
-          if(first){gl.viewport(0,0,W,H);gl.clear(gl.COLOR_BUFFER_BIT);gl.uniform2f(o.ures,W,H);first=false;}
-          for(var i=0;i<=SEG;i++){var y=H*i/SEG,dx=x0+bend(y),v=i/SEG;
-            a[k++]=dx;a[k++]=y;a[k++]=0;a[k++]=v;a[k++]=dx+lw;a[k++]=y;a[k++]=1;a[k++]=v;}
-          gl.bindBuffer(gl.ARRAY_BUFFER,o.buf);gl.bufferData(gl.ARRAY_BUFFER,a,gl.DYNAMIC_DRAW);
-          gl.bindTexture(gl.TEXTURE_2D,l.tex);gl.drawArrays(gl.TRIANGLE_STRIP,0,(SEG+1)*2);
-        }else{
-          var c=o.ctx,N=48;c.setTransform(1,0,0,1,0,0);if(first){c.clearRect(0,0,W,H);first=false;}
-          var y0=0,d0=0;
-          for(var j=1;j<=N;j++){var y1=Math.round(H*j/N),d1=bend(y1),h1=y1-y0;if(h1<=0)continue;var sk=(d1-d0)/h1;
-            c.setTransform(1,0,sk,1,x0+d0-sk*y0,0);c.drawImage(l.off,0,y0,lw,h1,0,y0,lw,h1);y0=y1;d0=d1;}
-          c.setTransform(1,0,0,1,0,0);
-        }
-      }
-    }
-    var lastY=scrollY,px=null,tilt=0,running=false,visible=true,last=0,t0=performance.now();
-    function frame(now){
-      var dt=Math.min(.033,(now-(last||now))/1000);last=now;
-      var dy=scrollY-lastY;lastY=scrollY;
-      var tm=(now-t0)/1000;
-      L.forEach(function(o){
-        var f=Math.max(-2.5,Math.min(2.5,dy*0.03*o.dir));             // scroll flick
-        o.layers.forEach(function(l){
-          var breeze=0.035*Math.sin(tm*o.fq+o.ph+l.ph)+0.02*Math.sin(tm*o.fq*2.3+o.ph*1.7+l.ph);
-          var k=o.k*l.km;
-          l.va+=(-k*(l.a-tilt-breeze)-5.5*l.va)*dt+f*l.push;
-          l.a+=l.va*dt;
-          l.vb+=(-(k*l.lag)*(l.b-l.a)-3.0*l.vb)*dt;                    // tip lags behind
-          l.b+=l.vb*dt;
-          l.a=Math.max(-.9,Math.min(.9,l.a));l.b=Math.max(-1.2,Math.min(1.2,l.b));
-        });
-        draw(o);
-      });
-      if(visible){requestAnimationFrame(frame);}else running=false;
-    }
-    function start(){if(!running&&!RM){running=true;last=0;requestAnimationFrame(frame);}}
-    // pointer brushing through the locks: the front hair is touched first
-    var chart=document.querySelector('.chart');
-    chart.addEventListener('pointermove',function(ev){
-      if(px!==null){var vx=ev.clientX-px;
-        L.forEach(function(o){var r=o.cv.getBoundingClientRect(),cx=r.left+r.width/2,lw=r.width/CW;
-          if(ev.clientY>r.top&&ev.clientY<r.bottom&&Math.abs(ev.clientX-cx)<lw*0.9){
-            var depth=(ev.clientY-r.top)/r.height;
-            o.layers.forEach(function(l){l.va+=vx*0.02*(0.4+depth)*l.push;l.vb+=vx*0.03*depth*l.push;});}});}
-      px=ev.clientX;});
-    chart.addEventListener('pointerleave',function(){px=null;});
-    // phone tilt (where the browser allows it without asking)
-    addEventListener('deviceorientation',function(ev){if(ev.gamma!=null)tilt=Math.max(-.5,Math.min(.5,-ev.gamma/60));},{passive:true});
-    addEventListener('resize',function(){size();if(RM)L.forEach(draw);});
-    L.forEach(function(o){o.layers.forEach(function(l){l.img.addEventListener('load',function(){if(!o.mode)size();prep(o,l);draw(o);});});});
-    size();
-    if('IntersectionObserver' in window){new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible)start();}).observe(chart);}
-    start();
-  })();
-
-  var wa=document.getElementById('wa-float'),book=document.getElementById('prenota');
-  function wc(){var r=book.getBoundingClientRect();wa.classList.toggle('hide',scrollY<innerHeight*.6||(r.top<innerHeight&&r.bottom>0));}
-  addEventListener('scroll',wc,{passive:true});wc();
+    stub.classList.toggle('on',p>(RM?0.99:0.9)&&contact.getBoundingClientRect().top>vh*0.75);
+    var r=show.getBoundingClientRect(),q=Math.max(0,Math.min(1,-r.top/(r.height-vh)));
+    show.dataset.stage=(r.top>0||q<0.14)?0:(q<0.58?1:2);
+  }
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(frame);}}
+  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',function(){base=null;onScroll();});
+  frame();render();
 })();
 </script>
 </body>
