@@ -1,0 +1,69 @@
+{
+ "slides": [
+  {
+   "bg": "orange",
+   "kicker": "Lo sapevi?",
+   "h": "Ti bastano 3&nbsp;m²",
+   "hc": "xl",
+   "rule": true,
+   "sub": "il campo ne misura 162",
+   "svg": "<svg width=\"900\" height=\"540\" viewBox=\"0 -20 910 540\" style=\"margin-top:70px;display:block\"><rect x=\"6\" y=\"40\" width=\"860\" height=\"430\" fill=\"none\" stroke=\"FG\" stroke-width=\"8\"/><line x1=\"436\" y1=\"22\" x2=\"436\" y2=\"490\" stroke=\"FG\" stroke-width=\"8\" stroke-dasharray=\"18 12\"/>\n<text x=\"436\" y=\"6\" text-anchor=\"middle\" font-family=\"Inter\" font-weight=\"800\" font-size=\"26\" letter-spacing=\"4\" fill=\"FG\">RETE</text>\n<rect x=\"70\" y=\"355\" width=\"83\" height=\"83\" fill=\"FG\"/><text x=\"172\" y=\"410\" font-family=\"Inter\" font-style=\"italic\" font-weight=\"900\" font-size=\"38\" fill=\"FG\">TU</text>\n<text x=\"650\" y=\"275\" text-anchor=\"middle\" font-family=\"Inter\" font-style=\"italic\" font-weight=\"900\" font-size=\"64\" fill=\"FG\" fill-opacity=\".35\">162 m²</text></svg>",
+   "pos": "top"
+  },
+  {
+   "bg": "cream",
+   "kicker": "Il campo",
+   "big": "18×9 m",
+   "svg": "<svg width=\"900\" height=\"520\" viewBox=\"0 0 900 520\" style=\"margin-top:60px;display:block\"><text x=\"450\" y=\"34\" text-anchor=\"middle\" font-family=\"Inter\" font-weight=\"800\" font-size=\"26\" letter-spacing=\"6\" fill=\"FG\">RETE</text>\n<rect x=\"60\" y=\"60\" width=\"760\" height=\"380\" fill=\"none\" stroke=\"FG\" stroke-width=\"8\"/><line x1=\"440\" y1=\"44\" x2=\"440\" y2=\"456\" stroke=\"FG\" stroke-width=\"8\" stroke-dasharray=\"18 12\"/>\n<text x=\"440\" y=\"500\" text-anchor=\"middle\" font-family=\"Inter\" font-style=\"italic\" font-weight=\"900\" font-size=\"40\" fill=\"FG\">18 m</text>\n<text x=\"860\" y=\"262\" text-anchor=\"middle\" font-family=\"Inter\" font-style=\"italic\" font-weight=\"900\" font-size=\"40\" fill=\"FG\" transform=\"rotate(90 860 262)\">9 m</text></svg>",
+   "p": "Le misure ufficiali di un campo da pallavolo: 162 m², rete a metà.",
+   "pos": "top"
+  },
+  {
+   "bg": "navy",
+   "kicker": "A casa",
+   "big": "3 m²",
+   "svg": "<svg width=\"900\" height=\"470\" viewBox=\"0 0 900 470\" style=\"display:block;margin-top:40px\"><rect x=\"0\" y=\"10\" width=\"400\" height=\"400\" fill=\"ACC\"/>\n<text x=\"200\" y=\"460\" text-anchor=\"middle\" font-family=\"Inter\" font-style=\"italic\" font-weight=\"900\" font-size=\"38\" fill=\"FG\">1,7 m</text><text x=\"430\" y=\"210\" text-anchor=\"middle\" font-family=\"Inter\" font-style=\"italic\" font-weight=\"900\" font-size=\"38\" fill=\"FG\" transform=\"rotate(90 430 210)\">1,7 m</text>\n<text font-family=\"Inter\" font-weight=\"800\" font-style=\"italic\" font-size=\"46\" fill=\"FG\"><tspan x=\"510\" y=\"190\">Grande come</tspan><tspan x=\"510\" dy=\"56\">un tappeto.</tspan></text></svg>",
+   "p": "Un quadrato di circa 1,7 metri per lato. Basta per allenare il tocco.",
+   "pos": "top"
+  },
+  {
+   "bg": "cream",
+   "kicker": "Dove trovarli",
+   "h": "Corridoio, salotto, cameretta",
+   "rule": true,
+   "p": "Basta un angolo libero, senza lampadari e vasi a portata di pallone.",
+   "svg": "<svg width=\"900\" height=\"470\" viewBox=\"0 0 900 470\" style=\"display:block;margin-top:70px\"><g fill=\"none\" stroke=\"FG\" stroke-width=\"8\"><rect x=\"4\" y=\"4\" width=\"880\" height=\"440\"/><line x1=\"300\" y1=\"4\" x2=\"300\" y2=\"444\"/><line x1=\"300\" y1=\"190\" x2=\"884\" y2=\"190\"/></g>\n<rect x=\"110\" y=\"250\" width=\"80\" height=\"80\" fill=\"ACC\" stroke=\"FG\" stroke-width=\"6\"/><rect x=\"440\" y=\"60\" width=\"80\" height=\"80\" fill=\"ACC\" stroke=\"FG\" stroke-width=\"6\"/><rect x=\"520\" y=\"290\" width=\"80\" height=\"80\" fill=\"ACC\" stroke=\"FG\" stroke-width=\"6\"/>\n<text x=\"150\" y=\"60\" text-anchor=\"middle\" font-family=\"Inter\" font-weight=\"800\" font-size=\"26\" letter-spacing=\"4\" fill=\"FG\">CORRIDOIO</text><text x=\"720\" y=\"110\" text-anchor=\"middle\" font-family=\"Inter\" font-weight=\"800\" font-size=\"26\" letter-spacing=\"4\" fill=\"FG\">SALOTTO</text><text x=\"745\" y=\"420\" text-anchor=\"middle\" font-family=\"Inter\" font-weight=\"800\" font-size=\"26\" letter-spacing=\"4\" fill=\"FG\">CAMERETTA</text></svg>",
+   "pos": "top"
+  },
+  {
+   "bg": "orange",
+   "kicker": "Cosa ci fai",
+   "h": "Palleggio e bagher, da fermo",
+   "rule": true,
+   "p": "Il tocco si allena senza correre e senza saltare: polsi, dita, braccia.",
+   "svg": "<svg width=\"900\" height=\"420\" viewBox=\"0 0 900 420\" style=\"display:block;margin-top:80px\"><circle cx=\"210\" cy=\"210\" r=\"200\" fill=\"FG\"/>\n<g fill=\"none\" stroke=\"#EDA93C\" stroke-width=\"16\" stroke-linecap=\"round\"><circle cx=\"210\" cy=\"210\" r=\"140\"/><path d=\"M210 210 C170 160 175 110 210 70\"/><path d=\"M210 210 C270 200 310 230 331 280\"/><path d=\"M210 210 C200 270 150 300 89 280\"/></g>\n<circle cx=\"640\" cy=\"210\" r=\"150\" fill=\"none\" stroke=\"FG\" stroke-width=\"12\"/><path d=\"M640 300 V130 M585 185 L640 130 L695 185\" fill=\"none\" stroke=\"FG\" stroke-width=\"16\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"535\" y1=\"315\" x2=\"745\" y2=\"105\" stroke=\"FG\" stroke-width=\"16\" stroke-linecap=\"round\"/>\n<text x=\"210\" y=\"0\" /></svg>",
+   "pos": "top"
+  },
+  {
+   "bg": "cream",
+   "kicker": "Salva questo",
+   "h": "In breve",
+   "list": [
+    "Il campo: 18×9 m, 162 m²",
+    "A casa: 3 m² liberi",
+    "Un angolo senza oggetti",
+    "Palleggio e bagher da fermo"
+   ],
+   "pos": "top"
+  },
+  {
+   "bg": "navy",
+   "h": "Misura il tuo angolo.",
+   "p": "Il pallone in cotone è nel link in bio.",
+   "rule": true,
+   "link": true,
+   "house": true,
+   "pos": "top"
+  }
+ ]
+}
