@@ -1,0 +1,39 @@
+{
+ "theme": "dark",
+ "stock": true,
+ "slides": [
+  {
+   "t": "cover",
+   "h": "Casa pronta per le feste: 6 cose da controllare"
+  },
+  {
+   "t": "stake",
+   "h": "Tra Natale e Capodanno la casa è piena.",
+   "p": "Gruppi, famiglie, cene lunghe, negozi chiusi. Quello che manca si nota subito.",
+   "img": "../../../media/stock/37252541.jpg"
+  },
+  {
+   "t": "check",
+   "h": "Da controllare adesso",
+   "items": [
+    "Orari dei festivi nella guida",
+    "Pentole e piatti per cene di gruppo",
+    "Un letto e un asciugamano per tutti",
+    "Luce esterna e arrivo chiaro col buio",
+    "Un numero che risponde il 25 e il 31",
+    "Regole su feste e botti scritte"
+   ]
+  },
+  {
+   "t": "photo",
+   "h": "Le regole si scrivono prima.",
+   "p": "Feste in casa, ospiti in più, botti dal balcone: mettilo nell'annuncio, non in un messaggio il 31 sera.",
+   "image": "../../../media/stock/22469110.jpg"
+  },
+  {
+   "t": "cta",
+   "h": "Vuoi la casa pronta senza pensarci?",
+   "p": "Scrivici VALUTAZIONE in DM: stima gratuita."
+  }
+ ]
+}

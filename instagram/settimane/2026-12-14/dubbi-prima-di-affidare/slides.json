@@ -1,0 +1,51 @@
+{
+ "theme": "cream",
+ "stock": true,
+ "slides": [
+  {
+   "t": "cover",
+   "h": "4 dubbi prima di affidare la casa",
+   "img": "../../../media/stock/32647226.jpg"
+  },
+  {
+   "t": "stake",
+   "h": "Affidare la casa a qualcuno fa pensare.",
+   "p": "È normale. Ecco quattro dubbi comuni, e come stanno le cose.",
+   "img": "../../../media/stock/34574357.jpg"
+  },
+  {
+   "t": "myth",
+   "myth": "Se la affido, non è più casa mia.",
+   "truth": "Resti tu il proprietario. Date e regole le decidi tu.",
+   "n": "01"
+  },
+  {
+   "t": "myth",
+   "myth": "Devo comunque rispondere io agli ospiti.",
+   "truth": "Messaggi, arrivi e imprevisti passano da noi.",
+   "n": "02"
+  },
+  {
+   "t": "myth",
+   "myth": "Un gestore conviene solo con le ville.",
+   "truth": "Conta dove si trova la casa e com'è tenuta, non i metri quadri.",
+   "n": "03"
+  },
+  {
+   "t": "myth",
+   "myth": "Per capire se conviene devo firmare.",
+   "truth": "Prima viene la valutazione, gratuita. Poi decidi.",
+   "n": "04"
+  },
+  {
+   "t": "quote",
+   "q": "Prima capisci. Poi decidi.",
+   "img": "../../../media/stock/31762677.jpg"
+  },
+  {
+   "t": "cta",
+   "h": "Hai un altro dubbio?",
+   "p": "Scrivici VALUTAZIONE in DM: stima gratuita."
+  }
+ ]
+}

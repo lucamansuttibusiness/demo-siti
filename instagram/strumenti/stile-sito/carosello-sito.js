@@ -29,7 +29,7 @@ function body(s, i) {
       return { dark: false, html: `${head(i)}<div class="label">${esc(s.label || '')}</div><h2>${esc(s.h)}</h2><p class="txt">${esc(s.p)}</p>` +
         (s.img ? `<div class="side" style="background-image:url('${pic(s.img)}')"></div>${ILL}` : '') + `<div class="num${s.img ? '' : ' big'}">${num(s.n)}</div>` };
     case 'myth':
-      return { dark: false, html: `${head(i)}<div class="label">Mito</div><h2 class="myth">${esc(s.myth)}</h2><div class="label mt">Realtà</div><h2 class="truth">${esc(s.truth)}</h2><div class="num big">${i}.</div>` };
+      return { dark: false, html: `${head(i)}<div class="label">Mito</div><h2 class="myth">${esc(s.myth)}</h2><div class="label mt">Realtà</div><h2 class="truth">${esc(s.truth)}</h2><div class="num big">${s.n ? num(s.n) : i + "."}</div>` };
     case 'faq':
       return { dark: false, html: `${head(i)}<div class="label">Domanda</div><h2>${esc(s.q)}</h2><p class="txt">${esc(s.a)}</p>` +
         (s.img ? `<div class="side" style="background-image:url('${pic(s.img)}')"></div>${ILL}` : '') + `<div class="num${s.img ? '' : ' big'}">${s.n ? num(s.n) : i + '.'}</div>` };
