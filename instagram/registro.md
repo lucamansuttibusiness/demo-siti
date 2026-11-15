@@ -32,6 +32,11 @@ Stato: `bozza Metricool` → `pubblicato` (o `da girare` per i reel).
 | 2026-12-09 | reel | opinione | parlato in camera | 22 Contrarian Flip | costi della casa chiusa d'inverno | "Una casa chiusa non è gratis" | da girare | |
 | 2026-12-11 | carosello | rotazione libera | domande frequenti | gold, copertina foto (stock) | domande dei proprietari sul servizio | "4 domande che ci fanno i proprietari" | pronto, bozza Metricool da caricare (403) | |
 | 2026-12-13 | reel | dietro le quinte | passeggiata in zona (formato in prova) | 24 The Reveal | preparare la stagione estiva in inverno | "Questa è Lignano a dicembre" | da girare | |
+| 2026-12-14 | carosello | consiglio | checklist da salvare | dark, copertina nera | casa pronta per le feste | "Casa pronta per le feste: 6 cose da controllare" | pronto, bozza Metricool da caricare (403) | |
+| 2026-12-16 | reel | opinione | risposta a una domanda | 12 The Objection | prime recensioni di un annuncio nuovo | "Prezzo basso per le prime recensioni?" | da girare | |
+| 2026-12-18 | carosello | offerta | mito vs realtà | cream, copertina foto (stock) | dubbi prima di affidare la casa a un gestore | "4 dubbi prima di affidare la casa" | pronto, bozza Metricool da caricare (403) | |
+| 2026-12-20 | reel | dietro le quinte | senza parlato | 9 The Steal | guida della casa per gli ospiti | "Ruba questa guida della casa" | da girare | |
 
 Nota 2026-11-01: risultati non aggiornati, Metricool ha risposto 403 sul brand 7743456. Il connettore vede solo il brand volleyinkasa.
 Nota 2026-11-08: di nuovo 403 su Metricool (brand 7743456, sia lettura sia creazione bozze): risultati non aggiornati, bozze della settimana 7 dicembre da caricare a mano o dopo aver dato accesso al brand.
+Nota 2026-11-15: terza settimana di 403 su Metricool (brand 7743456, lettura e creazione bozze; il connettore vede solo volleyinkasa): risultati non aggiornati, stato dei post 2-15 novembre non verificato, bozze 30 novembre - 18 dicembre da caricare.
